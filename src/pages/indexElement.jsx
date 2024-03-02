@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 
 import Image from "../assests/image-1.jpg";
 import Footer from "../components/footer";
@@ -21,10 +22,14 @@ import Swiperslide from "../components/slider";
 import SidebarPrices from "../components/Sidebar";
 import UseThemMode from "../hooks/use-theme";
 import PaginationComponent from "../components/pagination";
+import DateComponent from "../components/momentDate.jsx";
 import MyComponent from "../searchandSelect.jsx";
+import WhileView from "../components/formui/whileView.jsx";
 
 function IndexElement() {
   const { themeMode } = UseThemMode();
+  const { ref, inView } = useInView({ triggerOnce: false });
+
   const [page, setPage] = useState(1);
   const changePage = useCallback((e, value) => {
     setPage(value);
@@ -32,6 +37,7 @@ function IndexElement() {
   return (
     <>
       <Swiperslide />
+      <WhileView />
       <Container maxWidth="lg">
         <Grid container spacing={1.5} style={{ width: "100%" }}>
           <Grid item sm={1} xs={1} md={1}>
@@ -44,14 +50,16 @@ function IndexElement() {
               .map((_, idx) => (
                 <Grid item xs={12} sm={6} md={4} key={idx}>
                   <motion.div
-                    component={motion.div}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    viewport={{ amount: 0.6, once: false }}
-                    transition={{ delay: idx * 0.5, duration: 2 }}
+                    ref={ref}
+                    initial={{ x: 50, opacity: 0 }}
+                    // animate={inView ? { y: 0, opacity: 1 } : {}}
+                    transition={{ duration: 0.5 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    // viewport={{ amount: 0.6, once: false }}
+                    // transition={{ delay: idx * 0.5, duration: 2 }}
                     style={{
                       border: `1px solid ${
-                        themeMode == "dark" ? Colors.light_gray : Colors.shaft
+                        themeMode === "dark" ? Colors.light_gray : Colors.shaft
                       }`,
                       borderRadius: "12px",
                     }}
@@ -102,8 +110,10 @@ function IndexElement() {
             />
           </Grid>
         </Grid>
-      </Container>
-      <Footer />
+      </Container>{" "}
+      <WhileView />
+      <DateComponent /> <WhileView />
+      <Footer /> 
     </>
   );
 }

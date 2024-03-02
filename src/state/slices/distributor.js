@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "../../hooks/use-initial-state";
-import { authAPI } from "../API/global-api";
+import { majnAPI, majnaFiles } from "../API/global-api";
 
 const { initialStateDistributor } = UseInitialStates();
 
@@ -10,20 +10,23 @@ export const addBrand = createAsyncThunk(
   async ({ Uid, authorization_doc, identity_doc }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.post(
+      const res = await majnaFiles.post(
         `api/brands/${Uid}/applications`,
-        { authorization_doc, identity_doc },
-        {
-          headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-            Accept: "application/json",
-            "Content-Type":
-              'multipart/form-data; charset=utf-8; boundary="another cool boundary";',
-            // many kind of data
-          },
-        }
+        { authorization_doc, identity_doc }
+        // {
+        //   headers: {
+        //     Authorization: `Token ${localStorage.getItem("token")}`,
+        //     Accept: "application/json",
+        //     "Content-Type":
+        //       'multipart/form-data; charset=utf-8; boundary="another cool boundary";',
+        //     // many kind of data
+        //   },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here
@@ -39,12 +42,17 @@ export const fetchPrands = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.get(`api/brands`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return data;
+      const res = await majnAPI.get(
+        `api/brands`
+        //  {
+        //   headers: {
+        //     // "Content-Type": "application/json",
+        //   },
+        // }
+      );
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here
@@ -60,16 +68,18 @@ export const getAllBrandsApplication = createAsyncThunk(
   async ({ Uid }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.get(
-        `api/distributors/${Uid}/brands-applications`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
+      const res = await majnAPI.get(
+        `api/distributors/${Uid}/brands-applications`
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Token ${localStorage.getItem("token")}`,
+        //   },
+        // }
       );
-      return data;
+      console.log("From Slice all applications");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here
@@ -85,13 +95,18 @@ export const getAtuthorizedBrands = createAsyncThunk(
   async ({ Uid }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.get(`api/distributors/${Uid}/brands`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      });
-      return data;
+      const res = await majnAPI.get(
+        `api/distributors/${Uid}/brands`
+        // {
+        //   headers: {
+        //     // "Content-Type": "application/json",
+        //     // Authorization: `Token ${localStorage.getItem("token")}`,
+        //   },
+        // }
+      );
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here

@@ -9,6 +9,7 @@ import { Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { motion } from "framer-motion";
 
 import TextFieldWrapper from "../../../components/formui/textField";
 import ButtonWrapper from "../../../components/formui/SubmitButton";
@@ -146,7 +147,13 @@ function Login() {
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <Typography>
-                        <AppbarHeader>{t("login-now")}</AppbarHeader>
+                        <motion.div
+                          initial={{ opacity: 0, y: -25 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 1.2, delay: 0.3 }}
+                        >
+                          <AppbarHeader>{t("login-now")}</AppbarHeader>
+                        </motion.div>
                       </Typography>
                     </Grid>{" "}
                     <Grid item xs={12}>

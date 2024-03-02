@@ -16,7 +16,7 @@ function AllBrandsApplications() {
     (state) => state.distributor
   );
   console.log("distributorBrands.length");
-  console.log(distributorBrands.length);
+  console.log(distributorBrands?.length);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllBrandsApplication({ Uid }));
@@ -38,7 +38,7 @@ function AllBrandsApplications() {
   ];
 
   // Transform allBrands data into rows for the DataGrid
-  const rows = distributorBrands.map((brand) => ({
+  const rows = distributorBrands?.map((brand) => ({
     id: brand.id,
     brand: brand.brand,
     status: brand.status,

@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import TextFieldWrapper from "../../../components/formui/textField";
 import PasswordField from "../../../components/formui/passwordField";
 import CheckboxWrapper from "../../../components/formui/CheckBox";
+import PhoneNumber from "../../../components/formui/phone";
 import ButtonWrapper from "../../../components/formui/SubmitButton";
 import UseFormValidation from "../../../formValidation/use-form-validation";
 import UseThemMode from "../../../hooks/use-theme";
@@ -114,6 +115,10 @@ function SignUp() {
                     name="termsOfService"
                     legend={t("terms-conditions")}
                     label={t("i-agree")}
+                  />{" "}
+                </Grid>{" "}
+                <Grid item xs={6}>
+                  <PhoneNumber
                   />{" "}
                 </Grid>{" "}
                 <Grid item xs={12}>

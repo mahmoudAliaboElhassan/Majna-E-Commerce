@@ -48,7 +48,7 @@ import FileInput from "../../components/formui/file";
 import { addBrand, fetchPrands } from "../../state/slices/distributor";
 import withGuard from "../../utils/withGuard";
 import LoadingFetching from "../../components/loadingFetching";
-import NameAndAgeSelector from "../../searchandSelect";
+import MultipleSelect from "../../components/formui/multipleSelect";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const { INITIAL_FORM_STATE_ADD_PRODUCT } = UseInitialValues();
 
-function AddBrand() {
+function AddProduct() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { FORM_VALIDATION_SCHEMA_Add_PRODUCT } = UseFormValidation();
@@ -160,7 +160,7 @@ function AddBrand() {
                       </Grid>{" "}
                       {[...Array(count)].map((_, index) => (
                         <Grid item xs={12} key={index}>
-                          <NameAndAgeSelector
+                          <MultipleSelect
                             nameStore={`StoresAndQuantities.${index}.store`}
                             nameQuantity={`StoresAndQuantities.${index}.quantity`}
                             label={`Quantity ${index + 1}`}
@@ -194,4 +194,4 @@ function AddBrand() {
   );
 }
 
-export default withGuard(AddBrand);
+export default withGuard(AddProduct);

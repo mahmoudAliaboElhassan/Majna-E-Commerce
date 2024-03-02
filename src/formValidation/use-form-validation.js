@@ -126,6 +126,19 @@ function UseFormValidation() {
 
     authorizeDocument: Yup.mixed()
       .required("Authorize Document is required")
+      .test(
+        "notEqualFileName",
+        "Authorize Document file name must be different from IdDistributor file name",
+        (value, { parent }) => {
+          const { IdDistributor } = parent;
+          if (value && IdDistributor) {
+            const idDistributorFileName = IdDistributor.name;
+            const authorizeDocumentFileName = value.name;
+            return idDistributorFileName !== authorizeDocumentFileName;
+          }
+          return true;
+        }
+      )
       .test("fileFormat", "Only PDF files are allowed", (value) => {
         if (value) {
           const supportedFormats = ["pdf"];
@@ -140,10 +153,11 @@ function UseFormValidation() {
         return true;
       }),
   });
+
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     StoresAndQuantities: Yup.array().of(
       Yup.object().shape({
-        store: Yup.string().required("Required storName"),
+        store: Yup.string().required("Required Store Name"),
         quantity: Yup.string().required("Required quantity"),
       })
     ),

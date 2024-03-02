@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "../../hooks/use-initial-state";
-import { authAPI } from "../API/global-api";
+import { majnAPI } from "../API/global-api";
 
 const { initialStateReviewer } = UseInitialStates();
 
@@ -10,7 +10,7 @@ const { initialStateReviewer } = UseInitialStates();
 //   async ({ Uid, authorization_doc, identity_doc }, thunkAPI) => {
 //     const { rejectWithValue } = thunkAPI;
 //     try {
-//       const { data } = await authAPI.post(
+//       const { data } = await majnAPI.post(
 //         `api/brands/${Uid}/applications`,
 //         { authorization_doc, identity_doc },
 //         {
@@ -39,16 +39,18 @@ export const getBrandsPyPage = createAsyncThunk(
   async ({ page }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.get(
-        `api/brands-applications?page=${page}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
+      const res = await majnAPI.get(
+        `api/brands-applications?page=${page}`
+        // {
+        // headers: {
+        //   "Content-Type": "application/json",
+        //   Authorization: `Token ${localStorage.getItem("token")}`,
+        // },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here
@@ -64,16 +66,18 @@ export const getSpecificBrand = createAsyncThunk(
   async ({ ApplicationId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.get(
-        `api/brands-applications/${ApplicationId}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
+      const res = await majnAPI.get(
+        `api/brands-applications/${ApplicationId}`
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Token ${localStorage.getItem("token")}`,
+        //   },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here
@@ -89,17 +93,19 @@ export const UpdateBrandStatus = createAsyncThunk(
   async ({ id, status }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const { data } = await authAPI.patch(
+      const res = await majnAPI.patch(
         `api/brands-applications/${id}`,
-        { status },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
+        { status }
+        // {
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //     Authorization: `Token ${localStorage.getItem("token")}`,
+        //   },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here

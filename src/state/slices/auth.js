@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "../../hooks/use-initial-state";
-import { authAPI } from "../API/global-api";
+import { majnAPI } from "../API/global-api";
 
 const { initialStateAuth } = UseInitialStates();
 
@@ -11,8 +11,10 @@ export const signUp = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const { data } = await authAPI.post("api/users/", userData);
-      return data;
+      const res = await majnAPI.post("api/users/", userData);
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 400) {
         // Handle 403 error here
@@ -29,8 +31,10 @@ export const logIn = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const { data } = await authAPI.post("api/auth/login", userData);
-      return data;
+      const res = await majnAPI.post("api/auth/login", userData);
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       if (error.response && error.response.status === 403) {
         // Handle 403 error here
@@ -47,18 +51,20 @@ export const changePassword = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const { data } = await authAPI.post(
+      const res = await majnAPI.post(
         `api/users/${userId}/password-change`,
-        rest, // Include the rest of the fields in the request body
-        {
-          headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
+        rest // Include the rest of the fields in the request body
+        // {
+        //   headers: {
+        //     Authorization: `Token ${localStorage.getItem("token")}`,
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -70,17 +76,19 @@ export const ActivateAccount = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const { data } = await authAPI.post(
+      const res = await majnAPI.post(
         `api/users/${uid}/email-confirm`,
-        { token }, // Include token in the request body
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
+        { token } // Include token in the request body
+        // {
+        //   headers: {
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -92,17 +100,19 @@ export const ResendConfirmation = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const { data } = await authAPI.post(
+      const res = await majnAPI.post(
         "api/users/resend-confirmation-email",
-        userData, // Include email in the request body
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
+        userData // Include email in the request body
+        // {
+        //   headers: {
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        // }
       );
-      return data;
+      console.log("from slice res is");
+      console.log(res);
+      return res;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -114,13 +124,17 @@ export const logOut = createAsyncThunk(
   async (userData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await authAPI.post("api/auth/logout", userData, {
-        headers: {
-          Authorization: `Token ${localStorage.getItem("token")}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+      await majnAPI.post(
+        "api/auth/logout",
+        userData,
+        //   {
+        //   headers: {
+        //     Authorization: `Token ${localStorage.getItem("token")}`,
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        // }
+      );
       // return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -132,12 +146,16 @@ export const forgetPassword = createAsyncThunk(
   async (userData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await authAPI.post("api/users/password-reset", userData, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
+      await majnAPI.post(
+        "api/users/password-reset",
+        userData
+        // {
+        //   headers: {
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        // }
+      );
       // return data;
     } catch (error) {
       return rejectWithValue(error);
@@ -149,15 +167,15 @@ export const resetPassword = createAsyncThunk(
   async ({ uid, token, password }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      await authAPI.post(
+      await majnAPI.post(
         `api/users/${uid}/password-reset`,
         { token, password },
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
+        // {
+        //   headers: {
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //   },
+        // }
       );
       // return data;
     } catch (error) {

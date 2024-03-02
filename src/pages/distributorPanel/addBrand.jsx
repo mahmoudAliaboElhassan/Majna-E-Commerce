@@ -45,7 +45,7 @@ function AddBrand() {
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
   useEffect(() => {
     dispatch(fetchPrands());
-  }, [brands.length]);
+  }, [brands?.length]);
 
   return (
     <>

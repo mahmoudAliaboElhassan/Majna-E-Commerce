@@ -13,8 +13,8 @@ import LoadingFetching from "../../../components/loadingFetching";
 
 function ActivationAccount() {
   const { uid, token } = useParams();
-  const navigate = useNavigate();
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
   const { themeMode } = UseThemMode();
