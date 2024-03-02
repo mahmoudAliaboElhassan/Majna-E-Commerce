@@ -13,11 +13,11 @@ import LoadingFetching from "../../../components/loadingFetching";
 
 function ActivationAccount() {
   const { uid, token } = useParams();
-  const { t } = useTranslation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.auth);
   const { themeMode } = UseThemMode();
+  const { loading, error } = useSelector((state) => state.auth);
   useEffect(() => {
     if (uid && token) {
       dispatch(ActivateAccount({ uid, token }))
