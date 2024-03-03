@@ -45,7 +45,11 @@ import UseFormValidation from "../../formValidation/use-form-validation";
 import UseInitialValues from "../../utils/use-initial-values";
 import SelectComp from "../../components/formui/Select";
 import FileInput from "../../components/formui/file";
-import { addBrand, fetchPrands } from "../../state/slices/distributor";
+import {
+  addBrand,
+  fetchPrands,
+  getStores,
+} from "../../state/slices/distributor";
 import withGuard from "../../utils/withGuard";
 import LoadingFetching from "../../components/loadingFetching";
 import MultipleSelect from "../../components/formui/multipleSelect";
@@ -74,9 +78,14 @@ function AddProduct() {
   const { themeMode } = UseThemMode();
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
   const [count, setCount] = useState(1); // Initial count state
+  const { Uid } = useSelector((state) => state.auth);
+
   const handleAddClick = () => {
     setCount(count + 1); // Increment count
   };
+  useEffect(() => {
+    dispatch(getStores({ Uid }));
+  });
   return (
     <>
       <Container maxWidth="sm">

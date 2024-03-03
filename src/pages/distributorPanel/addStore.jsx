@@ -50,7 +50,16 @@ function AddStore() {
   useEffect(() => {
     dispatch(fetchGovernance());
   }, []);
+  // Initialize an empty array to store all cities
+  let allCities = [];
 
+  // Loop through each object and concatenate its cities array to the allCities array
+  governance?.forEach((obj) => {
+    allCities = allCities.concat(obj.cities);
+  });
+
+  // Now allCities array contains all cities
+  console.log(allCities);
   return (
     <>
       {!loadingGovernaces ? (
@@ -83,7 +92,7 @@ function AddStore() {
                         .unwrap()
                         .then(() => {
                           {
-                            toast.success(t("brand-added"), {
+                            toast.success(t("store-added"), {
                               position: "top-right",
                               autoClose: 1000,
                               hideProgressBar: false,
@@ -143,12 +152,7 @@ function AddStore() {
                           <SelectComp
                             name="storeCity"
                             label={t("storeCity")}
-                            options={[
-                              { name: "first", id: 5 },
-                              { name: "second", id: 8 },
-                              { name: "third", id: 11 },
-                              { name: "foutith", id: 15 },
-                            ]}
+                            options={allCities}
                           />
                         </Grid>
                         <Grid item xs={12}>

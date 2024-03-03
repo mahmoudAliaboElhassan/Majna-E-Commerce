@@ -14,6 +14,7 @@ function SelectComp({ name, label, options, ...otherProps }) {
 
   const handleChange = (evt) => {
     const { value } = evt.target;
+    console.log(typeof value);
     setFieldValue(name, value);
     console.log(value);
   };

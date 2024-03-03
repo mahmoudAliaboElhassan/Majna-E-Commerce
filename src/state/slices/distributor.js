@@ -68,7 +68,7 @@ export const fetchGovernance = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get();
+      const res = await majnAPI.get("api/locations/governorates");
       console.log("from slice res is");
       console.log(res);
       return res;
@@ -142,8 +142,36 @@ export const addStore = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
     try {
       const res = await majnAPI.post(
-        `api/distributors/${Uid}/store`,
+        `api/distributors/${Uid}/stores`,
         rest
+        // {
+        //   headers: {
+        //     // "Content-Type": "application/json",
+        //     // Authorization: `Token ${localStorage.getItem("token")}`,
+        //   },
+        // }
+      );
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const getStores = createAsyncThunk(
+  "distributorSlice/getStores",
+  async ({ Uid }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnAPI.get(
+        `api/distributors/${Uid}/stores`,
+       
         // {
         //   headers: {
         //     // "Content-Type": "application/json",
@@ -295,7 +323,8 @@ export const distributorSlice = createSlice({
         // state.BrandAppLink = action.payload._links.self;
         console.log(action.payload);
         state.loadingGovernaces = false;
-        state.governance = action.payload;
+        state.governance = action.payload.governorates;
+        console.log(state.governance);
       })
       .addCase(fetchGovernance.rejected, (state, action) => {
         // state.loadingProducts = false;
