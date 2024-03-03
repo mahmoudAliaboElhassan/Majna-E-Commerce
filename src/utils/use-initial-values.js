@@ -26,6 +26,11 @@ function UseInitialValues() {
     IdDistributor: null,
     authorizeDocument: null,
   };
+  const INITIAL_FORM_STATE_ADD_STORE = {
+    storeName: null,
+    storeAddress: null,
+    storeCity: null,
+  };
   const INITIAL_FORM_STATE_ADD_PRODUCT = {
     StoresAndQuantities: [{}],
   };
@@ -36,6 +41,7 @@ function UseInitialValues() {
     INITIAL_FORM_STATE_FORGET_PASSWORD,
     INITIAL_FORM_STATE_RESET_PASSWORD,
     INITIAL_FORM_STATE_ADD_BRAND,
+    INITIAL_FORM_STATE_ADD_STORE,
     INITIAL_FORM_STATE_ADD_PRODUCT,
   };
 }

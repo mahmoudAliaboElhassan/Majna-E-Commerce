@@ -98,5 +98,10 @@
   "approved_brands": "Approved Brands",
   "all_brands_applications": "All Brands Applications",
   "add-product": "Add Product",
-  "add-store": "Add Store"
+  "add-store": "Add Store",
+  "storeName": "Store Name",
+  "storeCity": "Store City",
+  "storeAddress": "Full Address for Store",
+  "addStore": "Add Store",
+  "loading-governance": "Wait for All Governance to be Loaded"
 }

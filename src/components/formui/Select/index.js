@@ -5,7 +5,7 @@ import { useField, useFormikContext } from "formik";
 import Typography from "@mui/material/Typography";
 
 import UseThemMode from "../../../hooks/use-theme";
-import {helperStyle} from '../../../styles/error'
+import { helperStyle } from "../../../styles/error";
 import { Colors } from "../../../styles/theme";
 
 function SelectComp({ name, label, options, ...otherProps }) {
@@ -51,15 +51,15 @@ function SelectComp({ name, label, options, ...otherProps }) {
         {label}
       </InputLabel>
       <Select {...configSelect}>
-        {options.map((option) => (
+        {options?.map((option) => (
           <MenuItem key={option.id} value={option.id}>
             {option.name}
           </MenuItem>
         ))}
       </Select>
       <Typography component="div" sx={helperStyle}>
-          {  configSelect.helperText}
-        </Typography>
+        {configSelect.helperText}
+      </Typography>
     </FormControl>
   );
 }

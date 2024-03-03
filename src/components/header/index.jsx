@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   AppBar,
   IconButton,
@@ -45,7 +45,7 @@ function Header() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(location.pathname.slice(1) || "");
   const handleActiveTab = (to) => setActiveTab(to);
-
+  const firstRef = useRef();
   const theme = useTheme();
 
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -80,7 +80,7 @@ function Header() {
 
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="fixed" ref={firstRef}>
         <Toolbar>
           {isMatch ? (
             <>
@@ -188,6 +188,7 @@ function Header() {
         <SlideSearch show={showSearch} dir={"down"} close={setSearchFn} />
       </Container>
       <ModalSignup open_modal={open_modal} close={closeModal} />
+      <div id="firstSection"></div>
     </div>
   );
 }

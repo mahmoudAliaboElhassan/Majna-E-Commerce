@@ -113,7 +113,7 @@ function IndexElement() {
       </Container>{" "}
       <WhileView />
       <DateComponent /> <WhileView />
-      <Footer /> 
+      <Footer />
     </>
   );
 }

@@ -63,6 +63,25 @@ export const fetchPrands = createAsyncThunk(
     }
   }
 );
+export const fetchGovernance = createAsyncThunk(
+  "distributorSlice/fetchGovernance",
+  async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnAPI.get();
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
 export const getAllBrandsApplication = createAsyncThunk(
   "distributorSlice/getAllBrandsApplication",
   async ({ Uid }, thunkAPI) => {
@@ -97,6 +116,34 @@ export const getAtuthorizedBrands = createAsyncThunk(
     try {
       const res = await majnAPI.get(
         `api/distributors/${Uid}/brands`
+        // {
+        //   headers: {
+        //     // "Content-Type": "application/json",
+        //     // Authorization: `Token ${localStorage.getItem("token")}`,
+        //   },
+        // }
+      );
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const addStore = createAsyncThunk(
+  "distributorSlice/addStore",
+  async ({ Uid, ...rest }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnAPI.post(
+        `api/distributors/${Uid}/store`,
+        rest
         // {
         //   headers: {
         //     // "Content-Type": "application/json",
@@ -207,6 +254,55 @@ export const distributorSlice = createSlice({
         // state.loading = false;
         // state.Uid = null;
         state.loadingAuthorized = false;
+      })
+      .addCase(addStore.pending, (state, action) => {
+        // state.loadingProducts = false;
+        // state.error = action.payload;
+        // state.loading = false;
+        // state.Uid = null;
+        state.loadingStore = true;
+      })
+      .addCase(addStore.fulfilled, (state, action) => {
+        // state.loadingProducts = false;
+        // state.error = action.payload;
+        // state.loading = false;
+        // state.Uid = null;
+        // state.approvedBrands = action.payload;
+        // state.BrandAppLink = action.payload._links.self;
+        console.log(action.payload);
+        state.loadingStore = false;
+      })
+      .addCase(addStore.rejected, (state, action) => {
+        // state.loadingProducts = false;
+        // state.error = action.payload;
+        // state.loading = false;
+        // state.Uid = null;
+        state.loadingStore = false;
+      })
+      .addCase(fetchGovernance.pending, (state, action) => {
+        // state.loadingProducts = false;
+        // state.error = action.payload;
+        // state.loading = false;
+        // state.Uid = null;
+        state.loadingGovernaces = true;
+      })
+      .addCase(fetchGovernance.fulfilled, (state, action) => {
+        // state.loadingProducts = false;
+        // state.error = action.payload;
+        // state.loading = false;
+        // state.Uid = null;
+        // state.approvedBrands = action.payload;
+        // state.BrandAppLink = action.payload._links.self;
+        console.log(action.payload);
+        state.loadingGovernaces = false;
+        state.governance = action.payload;
+      })
+      .addCase(fetchGovernance.rejected, (state, action) => {
+        // state.loadingProducts = false;
+        // state.error = action.payload;
+        // state.loading = false;
+        // state.Uid = null;
+        state.loadingGovernaces = false;
       });
   },
 });

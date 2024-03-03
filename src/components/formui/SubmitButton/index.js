@@ -9,10 +9,12 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
   const { t } = useTranslation();
   const { submitForm } = useFormikContext();
   const { loading } = useSelector((state) => state.auth);
-  const { loadingProducts } = useSelector((state) => state.distributor);
+  const { loadingProducts, loadingStore } = useSelector(
+    (state) => state.distributor
+  );
   const handleSubmit = (e) => {
     submitForm();
-    console.log(e.target);
+    // console.log(e.target);
   };
 
   const configButton = {
@@ -20,13 +22,13 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
     color: "primary",
     fullWidth: true,
     type: "submit",
-    disabled: loading || loadingProducts,
+    disabled: loading || loadingProducts || loadingStore,
     onClick: handleSubmit,
   };
   console.log(loading);
   return (
     <Button {...configButton}>
-      {loading || loadingProducts ? t("laoading") : children}
+      {loading || loadingProducts || loadingStore ? t("laoading") : children}
     </Button>
   );
 };

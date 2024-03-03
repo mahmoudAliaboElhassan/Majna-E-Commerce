@@ -67,9 +67,9 @@ function RootLayout() {
           // dispatch(logOut())
           //   .unwrap()
           //   .then(() => navigate("/login"));
-            localStorage.removeItem("token")
-            localStorage.removeItem("role")
-            localStorage.removeItem("expired")
+          localStorage.removeItem("token");
+          localStorage.removeItem("role");
+          localStorage.removeItem("expired");
           clearInterval(interval);
         } else {
           // console.log("not yet");

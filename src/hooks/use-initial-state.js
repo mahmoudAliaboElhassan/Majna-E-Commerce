@@ -24,6 +24,9 @@ function UseInitialStates() {
     loadingDistributorApplications: false,
     loadingAuthorized: false,
     countofBrandsApplication: 0,
+    loadingStore: false,
+    loadingGovernaces: false,
+    governance: [],
   };
 
   const initialStateReviewer = {
