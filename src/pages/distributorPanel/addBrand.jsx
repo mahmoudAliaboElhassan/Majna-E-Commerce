@@ -148,7 +148,7 @@ function AddBrand() {
                           />
                         </Grid>
                         <Grid item xs={12}>
-                          <ButtonWrapper>{t("add")}</ButtonWrapper>{" "}
+                          <ButtonWrapper>{t("add-brand")}</ButtonWrapper>{" "}
                         </Grid>
                       </Grid>{" "}
                     </Form>
