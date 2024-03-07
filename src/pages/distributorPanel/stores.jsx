@@ -1,0 +1,77 @@
+import React, { useEffect } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { DataGrid } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
+import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
+
+import {
+  getAllBrandsApplication,
+  getStores,
+} from "../../state/slices/distributor";
+import LoadingFetching from "../../components/loadingFetching";
+
+function AllStores() {
+  const { t } = useTranslation();
+  const { Uid } = useSelector((state) => state.auth);
+  const { stores, loadingStores } = useSelector((state) => state.distributor);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getStores({ Uid }));
+  }, []);
+  const columns = [
+    { field: "id", headerName: t("id"), width: 100 },
+    {
+      field: "storeName",
+      headerName: t("store_name"),
+      width: 150,
+    },
+
+    {
+      field: "governorate",
+      headerName: t("governorate"),
+    },
+    {
+      field: "city",
+      headerName: t("city"),
+    },
+    {
+      field: "edit",
+      headerName: t("edit"),
+      renderCell: (params) => (
+        <Link to={`/distributor-control-panel/edit-store/${params.row.id}`}>
+          {params.value}
+        </Link>
+      ),
+    },
+  ];
+
+  // Transform allBrands data into rows for the DataGrid
+  const rows = stores?.map((store) => ({
+    id: store.id,
+    storeName: store.name,
+    // status: store.status,
+    governorate: store.governorate,
+    city: store.city,
+    edit: t("edit"),
+  }));
+  return (
+    <>
+      {loadingStores ? (
+        <LoadingFetching>{t("loading-stores")}</LoadingFetching>
+      ) : stores.length ? (
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={12}
+          pagination={false}
+        />
+      ) : (
+        <Typography style={{ fontSize: "18px" }}>{t("no_stores")}</Typography>
+      )}
+    </>
+  );
+}
+
+export default AllStores;

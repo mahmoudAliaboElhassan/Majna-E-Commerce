@@ -164,20 +164,55 @@ export const addStore = createAsyncThunk(
     }
   }
 );
+
+export const editStore = createAsyncThunk(
+  "distributorSlice/editStore",
+  async ({ Uid, storeId, ...rest }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnAPI.patch(
+        `api/distributors/${Uid}/stores/${storeId}`,
+        rest
+      );
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
 export const getStores = createAsyncThunk(
   "distributorSlice/getStores",
   async ({ Uid }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
+      const res = await majnAPI.get(`api/distributors/${Uid}/stores`);
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const getStore = createAsyncThunk(
+  "distributorSlice/getStore",
+  async ({ Uid, storeId }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
       const res = await majnAPI.get(
-        `api/distributors/${Uid}/stores`,
-       
-        // {
-        //   headers: {
-        //     // "Content-Type": "application/json",
-        //     // Authorization: `Token ${localStorage.getItem("token")}`,
-        //   },
-        // }
+        `api/distributors/${Uid}/stores/${storeId}`
       );
       console.log("from slice res is");
       console.log(res);
@@ -332,7 +367,43 @@ export const distributorSlice = createSlice({
         // state.loading = false;
         // state.Uid = null;
         state.loadingGovernaces = false;
-      });
+      })
+      .addCase(getStores.pending, (state, action) => {
+        state.loadingStores = true;
+      })
+      .addCase(getStores.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.stores = action.payload.stores;
+        state.loadingStores = false;
+      })
+      .addCase(getStores.rejected, (state, action) => {
+        state.loadingStores = false;
+      })
+      .addCase(getStore.pending, (state, action) => {
+        state.loadingSingleStoreData = true;
+      })
+      .addCase(getStore.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.singleStoreData = action.payload;
+        state.loadingSingleStoreData = false;
+        // localStorage.setItem(storeId,action.payload.)
+        // state.storeId=localStorage.getItem("storeId")
+      })
+      .addCase(getStore.rejected, (state, action) => {
+        state.loadingSingleStoreData = false;
+      })
+      .addCase(editStore.pending, (state, action) => {
+        state.loadingEdit = true;
+      })
+      .addCase(editStore.fulfilled, (state, action) => {
+        console.log(action.payload);
+         state.loadingEdit = false;
+        // localStorage.setItem(storeId,action.payload.)
+        // state.storeId=localStorage.getItem("storeId")
+      })
+      .addCase(editStore.rejected, (state, action) => {
+        state.loadingEdit = false;
+      })
   },
 });
 

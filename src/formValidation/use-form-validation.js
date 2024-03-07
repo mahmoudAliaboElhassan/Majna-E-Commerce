@@ -161,6 +161,13 @@ function UseFormValidation() {
       "Full Address of the Store is Required"
     ),
   });
+  const FORM_VALIDATION_SCHEMA_EDIT_STORE = Yup.object().shape({
+    singleStoreName: Yup.string().required("Store Name is Required"),
+    singleStoreAddress: Yup.string().required("Store City is Required"),
+    singleStoreCity: Yup.string().required(
+      "Full Address of the Store is Required"
+    ),
+  });
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     StoresAndQuantities: Yup.array().of(
       Yup.object().shape({
@@ -178,6 +185,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_RESET_PASSWORD,
     FORM_VALIDATION_SCHEMA_Add_BRAND,
     FORM_VALIDATION_SCHEMA_Add_STORE,
+    FORM_VALIDATION_SCHEMA_EDIT_STORE,
     FORM_VALIDATION_SCHEMA_Add_PRODUCT,
   };
 }

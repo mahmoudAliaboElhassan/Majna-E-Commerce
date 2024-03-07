@@ -27,6 +27,11 @@ function UseInitialStates() {
     loadingStore: false,
     loadingGovernaces: false,
     governance: [],
+    loadingStores: false,
+    stores: [],
+    singleStoreData: null,
+    loadingSingleStoreData: false,
+    loadingEdit:false
   };
 
   const initialStateReviewer = {

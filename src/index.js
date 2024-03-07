@@ -13,6 +13,7 @@ import ErrorPage from "./pages/errorPage.jsx";
 import IndexElement from "./pages/indexElement.jsx";
 import RootLayout from "./pages/RootLayout.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
+
 const ResetPassword = React.lazy(() =>
   import("./pages/authentication/user/reset-password.jsx")
 );
@@ -50,6 +51,7 @@ const ApprovedBrands = React.lazy(() =>
 const AllBrandsApplications = React.lazy(() =>
   import("./pages/distributorPanel/allBrandsApplications.jsx")
 );
+const AllStores = React.lazy(() => import("./pages/distributorPanel/stores"));
 const AddStore = React.lazy(() =>
   import("./pages/distributorPanel/addStore.jsx")
 );
@@ -59,6 +61,10 @@ const AddBrand = React.lazy(() =>
 
 const AddProduct = React.lazy(() =>
   import("./pages/distributorPanel/addProduct.jsx")
+);
+
+const EditStore = React.lazy(() =>
+  import("./pages/distributorPanel/editStore.jsx")
 );
 
 const CardProductDetails = React.lazy(() =>
@@ -187,6 +193,22 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <AddProduct />
+              </Suspense>
+            ),
+          },
+          {
+            path: "all-stores",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AllStores />
+              </Suspense>
+            ),
+          },
+          {
+            path: "edit-store/:id",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <EditStore />
               </Suspense>
             ),
           },

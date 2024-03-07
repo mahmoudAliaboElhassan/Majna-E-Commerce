@@ -7,6 +7,10 @@ function UseDistributorElements() {
       label: t("all_brands_applications"),
       to: "",
     },
+    {
+      label: t("all_stores"),
+      to: "all-stores",
+    },
     // {
     //   label: t("App_status"),
     //   to: "",
