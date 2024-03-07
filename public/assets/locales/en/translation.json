@@ -100,13 +100,20 @@
   "all_brands_applications": "All Brands Applications",
   "all_stores": "All Your Stores",
   "add-product": "Add Product",
-  "add-store": "Add Store",
+  "add-store": "Add Your Store",
   "storeName": "Store Name",
   "storeCity": "Store City",
   "storeAddress": "Full Address for Store",
-  "addStore": "Add Store",
   "loading-governance": "Wait for All Governance to be Loaded",
   "governorate": "Governorate",
   "city": "City",
-  "edit": "Edit"
+  "edit": "Edit",
+  "add-product-now": "Add Your Product To be Shown to Customers",
+  "quantity": "Quantity",
+  "add-store-now": "Add Your Store Now to add Products in it",
+  "edit-store": "Edit Store",
+  "loading-singlesingleStoreData": "Wait Until Your previous Store  Data be Loaded",
+  "loading-stores": "Wait Until All Your Stores is Loaded",
+  "no-stores": "No Stores is Added Until Now",
+  "store-edited": "Your Store Has been Edited Successfully"
 }

@@ -24,17 +24,19 @@ function AllStores() {
     { field: "id", headerName: t("id"), width: 100 },
     {
       field: "storeName",
-      headerName: t("store_name"),
+      headerName: t("storeName"),
       width: 150,
     },
 
     {
       field: "governorate",
       headerName: t("governorate"),
+      width: 150,
     },
     {
       field: "city",
-      headerName: t("city"),
+      headerName: t("storeCity"),
+      width: 150,
     },
     {
       field: "edit",
@@ -51,7 +53,6 @@ function AllStores() {
   const rows = stores?.map((store) => ({
     id: store.id,
     storeName: store.name,
-    // status: store.status,
     governorate: store.governorate,
     city: store.city,
     edit: t("edit"),
@@ -68,7 +69,7 @@ function AllStores() {
           pagination={false}
         />
       ) : (
-        <Typography style={{ fontSize: "18px" }}>{t("no_stores")}</Typography>
+        <Typography style={{ fontSize: "18px" }}>{t("no-stores")}</Typography>
       )}
     </>
   );

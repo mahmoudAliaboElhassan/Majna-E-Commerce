@@ -139,7 +139,7 @@ function AddStore() {
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
                           <Typography>
-                            <AppbarHeader>{t("add-brand")}</AppbarHeader>
+                            <AppbarHeader>{t("add-store-now")}</AppbarHeader>
                           </Typography>
                         </Grid>{" "}
                         <Grid item xs={12}>
@@ -163,7 +163,7 @@ function AddStore() {
                           />
                         </Grid>
                         <Grid item xs={12}>
-                          <ButtonWrapper>{t("addStore")}</ButtonWrapper>{" "}
+                          <ButtonWrapper>{t("add-store")}</ButtonWrapper>{" "}
                         </Grid>
                       </Grid>{" "}
                     </Form>

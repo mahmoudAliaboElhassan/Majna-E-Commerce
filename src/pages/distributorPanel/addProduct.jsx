@@ -164,7 +164,7 @@ function AddProduct() {
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
                         <Typography>
-                          <AppbarHeader>add Your Product Now</AppbarHeader>
+                          <AppbarHeader>{t("add-product-now")}</AppbarHeader>
                         </Typography>
                       </Grid>{" "}
                       {[...Array(count)].map((_, index) => (
@@ -172,7 +172,7 @@ function AddProduct() {
                           <MultipleSelect
                             nameStore={`StoresAndQuantities.${index}.store`}
                             nameQuantity={`StoresAndQuantities.${index}.quantity`}
-                            label={`Quantity ${index + 1}`}
+                            label={`${t("quantity")} ${index + 1}`}
                           />
                         </Grid>
                       ))}
@@ -189,7 +189,7 @@ function AddProduct() {
                         />
                       </Grid> */}
                       <Grid item xs={12}>
-                        <ButtonWrapper>{t("add")}</ButtonWrapper>{" "}
+                        <ButtonWrapper>{t("add-product")}</ButtonWrapper>{" "}
                       </Grid>
                     </Grid>{" "}
                   </Form>

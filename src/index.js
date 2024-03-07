@@ -205,7 +205,7 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: "edit-store/:id",
+            path: "edit-store/:storeId",
             element: (
               <Suspense fallback={<Loader />}>
                 <EditStore />

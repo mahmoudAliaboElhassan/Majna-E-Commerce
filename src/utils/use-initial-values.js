@@ -38,7 +38,7 @@ function UseInitialValues(props) {
     // singleStoreAddress: singleStoreData.address,
     singleStoreName: props?.name,
     singleStoreAddress: props?.address,
-    singleStoreCity: "15 May",
+    singleStoreCity: props?.city_id,
   };
   const INITIAL_FORM_STATE_ADD_PRODUCT = {
     StoresAndQuantities: [{}],

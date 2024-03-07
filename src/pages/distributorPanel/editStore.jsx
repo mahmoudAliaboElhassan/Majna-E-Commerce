@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 
 function EditStore() {
   const classes = useStyles();
-  const { id } = useParams();
+  const { storeId } = useParams();
   const dispatch = useDispatch();
   const { FORM_VALIDATION_SCHEMA_EDIT_STORE } = UseFormValidation();
   const { t } = useTranslation();
@@ -55,12 +55,13 @@ function EditStore() {
     governance,
   } = useSelector((state) => state.distributor);
   const { Uid } = useSelector((state) => state.auth);
-
+  const navigate = useNavigate();
   useEffect(() => {
-    dispatch(getStore({ Uid, storeId: id }));
+    dispatch(getStore({ Uid, storeId }));
     dispatch(fetchGovernance());
   }, []);
   console.log(singleStoreData?.city);
+  console.log(typeof singleStoreData?.city);
   const { INITIAL_FORM_STATE_EDIT_STORE } = UseInitialValues(singleStoreData);
   let allCities = [];
 
@@ -93,10 +94,11 @@ function EditStore() {
                     validationSchema={FORM_VALIDATION_SCHEMA_EDIT_STORE}
                     onSubmit={(values) => {
                       console.log({ ...values });
+
                       dispatch(
                         editStore({
                           Uid,
-                          storeId: id,
+                          storeId,
                           name: values.singleStoreName,
                           address: values.singleStoreAddress,
                           city: values.singleStoreCity,
@@ -115,6 +117,9 @@ function EditStore() {
                               progress: undefined,
                               theme: themeMode,
                             });
+                            setTimeout(() => {
+                              navigate("/distributor-control-panel/all-stores");
+                            }, 1000);
                           }
                         })
 
@@ -176,7 +181,7 @@ function EditStore() {
                           />
                         </Grid>
                         <Grid item xs={12}>
-                          <ButtonWrapper>{t("editStore")}</ButtonWrapper>{" "}
+                          <ButtonWrapper>{t("edit-store")}</ButtonWrapper>{" "}
                         </Grid>
                       </Grid>{" "}
                     </Form>
