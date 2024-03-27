@@ -13,7 +13,12 @@ import ErrorPage from "./pages/errorPage.jsx";
 import IndexElement from "./pages/indexElement.jsx";
 import RootLayout from "./pages/RootLayout.jsx";
 import ProtectedRoute from "./components/protectedRoute.jsx";
-
+const RootProductList = React.lazy(() =>
+  import("./pages/productList/rootProductList.jsx")
+);
+const ProductType = React.lazy(() =>
+  import("./pages/productList/productType.jsx")
+);
 const ResetPassword = React.lazy(() =>
   import("./pages/authentication/user/reset-password.jsx")
 );
@@ -221,6 +226,20 @@ const router = createBrowserRouter([
             <CardProductDetails />
           </Suspense>
         ),
+      },
+      {
+        path: "productlist",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <RootProductList />
+          </Suspense>
+        ),
+        children: [
+          {
+            path: ":producttype",
+            element: <ProductType />,
+          },
+        ],
       },
       {
         path: "activate-account/:uid/:token",
