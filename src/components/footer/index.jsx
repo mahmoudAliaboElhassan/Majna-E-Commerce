@@ -50,7 +50,14 @@ function Footer() {
                 </StyledLinkItem>
               </Grid>
             ))}
-            <Grid item xs={12} sm={12} md={12}>
+
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              sx={{ borderTop: "2px solid white",paddingTop:3 }}
+            >
               <AppbarHeader sx={{ position: "relative", zIndex: "9999" }}>
                 {t("made-with")} &copy; {year}
               </AppbarHeader>

@@ -7,7 +7,7 @@ import UseThemMode from "../../hooks/use-theme";
 
 export const StyledLinkItem = styled(Link)(() => ({
   position: "relative",
-  paddingBottom: "4px",
+  paddingBottom: "8px",
   overflow: "hidden",
   "&::after": {
     content: "''",
@@ -38,6 +38,7 @@ export const CardFooter = styled(Card)(() => {
     borderRadius: "4px",
     backgroundColor: themeMode === "dark" ? "#121212" : Colors.primary,
     position: "relative",
+    zIndex:'999',
     "&::before": {
       content: "''",
       position: "absolute",
