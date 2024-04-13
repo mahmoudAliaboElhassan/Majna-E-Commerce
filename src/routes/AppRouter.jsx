@@ -1,85 +1,84 @@
-
 import React, { Suspense } from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Loader from "../components/loader/index.jsx";
-import ErrorPage from "../pages/errorPage.jsx";
-import IndexElement from "../pages/indexElement.jsx";
-import RootLayout from "../pages/RootLayout.jsx";
-import ProtectedRoute from "../components/protectedRoute.jsx";
+import Loader from "@components/loader/index.jsx";
+import ErrorPage from "@pages/errorPage.jsx";
+import IndexElement from "@pages/indexElement.jsx";
+import RootLayout from "@pages/RootLayout.jsx";
+import ProtectedRoute from "@components/protectedRoute.jsx";
 const RootProductList = React.lazy(() =>
-  import("../pages/productList/rootProductList.jsx")
+  import("@pages/productList/rootProductList.jsx")
 );
 const ProductType = React.lazy(() =>
-  import("../pages/productList/productType.jsx")
+  import("@pages/productList/productType.jsx")
 );
 const ResetPassword = React.lazy(() =>
-  import("../pages/authentication/user/reset-password.jsx")
+  import("@pages/authentication/user/reset-password.jsx")
 );
 
 const Activation = React.lazy(() =>
-  import("../pages/authentication/activation/index.jsx")
+  import("@pages/authentication/activation/index.jsx")
 );
 
-const AboutUsPage = React.lazy(() => import("../pages/about.jsx"));
+const AboutUsPage = React.lazy(() => import("@pages/about.jsx"));
 
 const SignUpPage = React.lazy(() =>
-  import("../pages/authentication/user/signUp.jsx")
+  import("@pages/authentication/user/signUp.jsx")
 );
 
 const LoginPage = React.lazy(() =>
-  import("../pages/authentication/user/login.jsx")
+  import("@pages/authentication/user/login.jsx")
 );
 
-const ContactUsPage = React.lazy(() => import("../pages/contacts.jsx"));
+const ContactUsPage = React.lazy(() => import("@pages/contacts.jsx"));
 
 const ChangePassword = React.lazy(() =>
-  import("../pages/authentication/user/change-password.jsx")
+  import("@pages/authentication/user/change-password.jsx")
 );
 
 const ForgetPassword = React.lazy(() =>
-  import("../pages/authentication/user/forget-password.jsx")
+  import("@pages/authentication/user/forget-password.jsx")
 );
 
 const RootProductLayout = React.lazy(() =>
-  import("../pages/distributorPanel/rootDistributorPanel.jsx")
+  import("@pages/distributorPanel/rootDistributorPanel.jsx")
 );
 const ApprovedBrands = React.lazy(() =>
-  import("../pages/distributorPanel/aprovedBrands.jsx")
+  import("@pages/distributorPanel/aprovedBrands.jsx")
 );
 const AllBrandsApplications = React.lazy(() =>
-  import("../pages/distributorPanel/allBrandsApplications.jsx")
+  import("@pages/distributorPanel/allBrandsApplications.jsx")
 );
-const AllStores = React.lazy(() => import("../pages/distributorPanel/stores"));
+const AllStores = React.lazy(() => import("@pages/distributorPanel/stores"));
 const AddStore = React.lazy(() =>
-  import("../pages/distributorPanel/addStore.jsx")
+  import("@pages/distributorPanel/addStore.jsx")
 );
 const AddBrand = React.lazy(() =>
-  import("../pages/distributorPanel/addBrand.jsx")
+  import("@pages/distributorPanel/addBrand.jsx")
 );
 
 const AddProduct = React.lazy(() =>
-  import("../pages/distributorPanel/addProduct.jsx")
+  import("@pages/distributorPanel/addProduct.jsx")
 );
 
 const EditStore = React.lazy(() =>
-  import("../pages/distributorPanel/editStore.jsx")
+  import("@pages/distributorPanel/editStore.jsx")
 );
 
 const CardProductDetails = React.lazy(() =>
-  import("../pages/distributorPanel/productDetails.jsx")
+  import("@pages/distributorPanel/productDetails.jsx")
 );
 
 const RootReviewerLayout = React.lazy(() =>
-  import("../pages/reviewer/rootReviewerLayout.jsx")
+  import("@pages/reviewer/rootReviewerLayout.jsx")
 );
 
-const IndexReviewer = React.lazy(() => import("../pages/reviewer/index.jsx"));
+const IndexReviewer = React.lazy(() => import("@pages/reviewer/index.jsx"));
 
-const Profile = React.lazy(() => import("../pages/reviewer/profile.jsx"));
+const Profile = React.lazy(() => import("@pages/reviewer/profile.jsx"));
 const BrnadApplication = React.lazy(() =>
-  import("../pages/reviewer/brnadApplication.jsx")
+  import("@pages/reviewer/brnadApplication.jsx")
 );
 
 const router = createBrowserRouter([

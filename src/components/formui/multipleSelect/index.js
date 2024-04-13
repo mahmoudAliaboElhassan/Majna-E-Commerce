@@ -3,9 +3,9 @@ import { useField, useFormikContext } from "formik";
 import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { TextField, Typography } from "@mui/material";
 
-import { Colors } from "../../../styles/theme";
-import {helperStyle} from '../../../styles/error';
-import UseThemMode from "../../../hooks/use-theme";
+import { Colors } from "@styles/theme";
+import {helperStyle} from '@styles/error';
+import UseThemMode from "@hooks/use-theme";
 
 function MultipleSelect({ nameStore, nameQuantity, ...otherProps }) {
   const [formData, setFormData] = useState({

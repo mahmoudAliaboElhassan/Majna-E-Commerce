@@ -4,8 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 
-import { getAtuthorizedBrands } from "../../state/slices/distributor";
-import LoadingFetching from "../../components/loadingFetching";
+import { getAtuthorizedBrands } from "@state/slices/distributor";
+import LoadingFetching from "@components/loadingFetching";
 
 function AprovedBrands() {
   const { t } = useTranslation();

@@ -21,12 +21,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-import ScrollToTopButton from "../components/scroll";
-import Header from "../components/header";
-import UseDirection from "../hooks/use-direction";
-import { Colors } from "../styles/theme";
-import PdfViewer from "../components/pdfFile";
-import { logOut } from "../state/slices/auth";
+import ScrollToTopButton from "@components/scroll";
+import Header from "@components/header";
+import UseDirection from "@hooks/use-direction";
+import { Colors } from "@styles/theme";
+import PdfViewer from "@components/pdfFile";
+import { logOut } from "@state/slices/auth";
 
 // Configure JSS
 const jss = create({

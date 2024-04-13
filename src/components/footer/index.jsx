@@ -4,10 +4,10 @@ import { Container, Grid, Card } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import UseHeaderElements from "../../hooks/use-header-elements";
-import { AppbarHeader } from "../../styles/appbar";
-import { CardFooter, StyledLinkItem } from "../../styles/footer";
-import ModalSignup from "../Modal";
+import UseHeaderElements from "@hooks/use-header-elements";
+import { AppbarHeader } from "@styles/appbar";
+import { CardFooter, StyledLinkItem } from "@styles/footer";
+import ModalSignup from "@components/Modal";
 
 function Footer() {
   const [open_modal, setOpenModal] = useState(false);
@@ -56,7 +56,7 @@ function Footer() {
               xs={12}
               sm={12}
               md={12}
-              sx={{ borderTop: "2px solid white",paddingTop:3 }}
+              sx={{ borderTop: "2px solid white", paddingTop: 3 }}
             >
               <AppbarHeader sx={{ position: "relative", zIndex: "9999" }}>
                 {t("made-with")} &copy; {year}

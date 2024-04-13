@@ -16,15 +16,15 @@ import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 
 import Image from "../assests/image-1.jpg";
-import Footer from "../components/footer";
-import { Colors } from "../styles/theme";
-import Swiperslide from "../components/slider";
-import SidebarPrices from "../components/Sidebar";
-import UseThemMode from "../hooks/use-theme";
-import PaginationComponent from "../components/pagination";
-import DateComponent from "../components/momentDate.jsx";
-import MyComponent from "../searchandSelect.jsx";
-import WhileView from "../components/formui/whileView.jsx";
+import Footer from "@components/footer";
+import { Colors } from "@styles/theme";
+import Swiperslide from "@components/slider";
+import SidebarPrices from "@components/Sidebar";
+import PaginationComponent from "@components/pagination";
+import DateComponent from "@components/momentDate.jsx";
+import WhileView from "@components/formui/whileView.jsx";
+import UseThemMode from "@hooks/use-theme";
+// import MyComponent from "@searchandSelect.jsx";
 
 function IndexElement() {
   const { themeMode } = UseThemMode();

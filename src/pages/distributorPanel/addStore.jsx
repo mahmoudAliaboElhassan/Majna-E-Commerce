@@ -9,16 +9,16 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import UseThemMode from "../../hooks/use-theme";
-import ButtonWrapper from "../../components/formui/SubmitButton";
-import { AppbarHeader } from "../../styles/appbar";
-import UseFormValidation from "../../formValidation/use-form-validation";
-import UseInitialValues from "../../utils/use-initial-values";
-import SelectComp from "../../components/formui/Select";
-import { addStore, fetchGovernance } from "../../state/slices/distributor";
-import withGuard from "../../utils/withGuard";
-import LoadingFetching from "../../components/loadingFetching";
-import TextFieldWrapper from "../../components/formui/textField";
+import UseThemMode from "@hooks/use-theme";
+import ButtonWrapper from "@components/formui/SubmitButton";
+import { AppbarHeader } from "@styles/appbar";
+import UseFormValidation from "@formValidation/use-form-validation";
+import UseInitialValues from "@utils/use-initial-values";
+import SelectComp from "@components/formui/Select";
+import { addStore, fetchGovernance } from "@state/slices/distributor";
+import withGuard from "@utils/withGuard";
+import LoadingFetching from "@components/loadingFetching";
+import TextFieldWrapper from "@components/formui/textField";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {

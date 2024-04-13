@@ -3,7 +3,7 @@ import React from "react";
 import { Container } from "@mui/material";
 import { motion } from "framer-motion";
 
-import Motion2 from "../components/motion2";
+import Motion2 from "@components/motion2";
 
 function About() {
   return (

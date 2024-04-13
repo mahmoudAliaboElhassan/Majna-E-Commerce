@@ -9,8 +9,8 @@ import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import {
   getAllBrandsApplication,
   getStores,
-} from "../../state/slices/distributor";
-import LoadingFetching from "../../components/loadingFetching";
+} from "@state/slices/distributor";
+import LoadingFetching from "@components/loadingFetching";
 
 function AllStores() {
   const { t } = useTranslation();

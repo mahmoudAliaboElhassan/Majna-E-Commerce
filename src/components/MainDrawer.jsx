@@ -16,10 +16,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 
-import { DrawerHeader, DrawerContainer } from "../styles/reviewer";
-import UseDirection from "../hooks/use-direction";
-import UseThemMode from "../hooks/use-theme";
-import { Colors } from "../styles/theme";
+import { DrawerHeader, DrawerContainer } from "@styles/reviewer";
+import UseDirection from "@hooks/use-direction";
+import UseThemMode from "@hooks/use-theme";
+import { Colors } from "@styles/theme";
 
 function MainDrawer({ open, handleClose, elements }) {
   const { Direction } = UseDirection();

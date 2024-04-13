@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { Card } from "@mui/material";
 
-import { Colors } from "../theme";
-import UseThemMode from "../../hooks/use-theme";
+import { Colors } from "@styles/theme";
+import UseThemMode from "@hooks/use-theme";
 
 export const StyledLinkItem = styled(Link)(() => ({
   position: "relative",
@@ -38,7 +38,7 @@ export const CardFooter = styled(Card)(() => {
     borderRadius: "4px",
     backgroundColor: themeMode === "dark" ? "#121212" : Colors.primary,
     position: "relative",
-    zIndex:'999',
+    zIndex: "999",
     "&::before": {
       content: "''",
       position: "absolute",

@@ -1,15 +1,18 @@
 import { useState } from "react";
+
 import PhoneInput, {
   formatPhoneNumber,
   formatPhoneNumberIntl,
-  isValidPhoneNumber,isPossiblePhoneNumber
+  isValidPhoneNumber,
+  isPossiblePhoneNumber,
 } from "react-phone-number-input";
 
 function PhoneNumber() {
   const [phone, setPhone] = useState(null);
   const handleOnChange = (value) => {
     setPhone(value);
-  };  return (
+  };
+  return (
     <>
       <PhoneInput
         placeholder="Enter phone number"

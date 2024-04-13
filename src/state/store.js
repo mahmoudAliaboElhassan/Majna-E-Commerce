@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-import modeSlice from "./slices/mode";
-import authSlice from "./slices/auth";
-import distributorSlice from "./slices/distributor";
-import reviewrSlice from "./slices/reviewer";
+import modeSlice from "@state/slices/mode";
+import authSlice from "@state/slices/auth";
+import distributorSlice from "@state/slices/distributor";
+import reviewrSlice from "@state/slices/reviewer";
 
 const rootReducer = combineReducers({
   mode: modeSlice,

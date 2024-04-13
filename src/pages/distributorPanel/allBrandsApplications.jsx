@@ -6,8 +6,8 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 
-import { getAllBrandsApplication } from "../../state/slices/distributor";
-import LoadingFetching from "../../components/loadingFetching";
+import { getAllBrandsApplication } from "@state/slices/distributor";
+import LoadingFetching from "@components/loadingFetching";
 
 function AllBrandsApplications() {
   const { t } = useTranslation();

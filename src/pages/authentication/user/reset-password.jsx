@@ -10,13 +10,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 
-import PasswordField from "../../../components/formui/passwordField";
-import ButtonWrapper from "../../../components/formui/SubmitButton";
-import UseFormValidation from "../../../formValidation/use-form-validation";
-import UseThemMode from "../../../hooks/use-theme";
-import UseInitialValues from "../../../utils/use-initial-values";
-import { resetPassword } from "../../../state/slices/auth";
-import { AppbarHeader } from "../../../styles/appbar";
+import PasswordField from "@components/formui/passwordField";
+import ButtonWrapper from "@components/formui/SubmitButton";
+import UseFormValidation from "@formValidation/use-form-validation";
+import UseThemMode from "@hooks/use-theme";
+import UseInitialValues from "@utils/use-initial-values";
+import { resetPassword } from "@state/slices/auth";
+import { AppbarHeader } from "@styles/appbar";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {

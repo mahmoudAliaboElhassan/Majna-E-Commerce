@@ -5,9 +5,9 @@ import { Button, FormControl, FormHelperText } from "@material-ui/core";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import InputLabel from "@mui/material/InputLabel";
 
-import UseThemMode from "../../../hooks/use-theme";
-import UseDirection from "../../../hooks/use-direction";
-import { Colors } from "../../../styles/theme";
+import UseThemMode from "@hooks/use-theme";
+import UseDirection from "@hooks/use-direction";
+import { Colors } from "@styles/theme";
 
 const FileInput = ({ name, label, ...otherProps }) => {
   const { setFieldValue, errors, touched } = useFormikContext();

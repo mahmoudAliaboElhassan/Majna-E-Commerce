@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import UseInitialStates from "../../hooks/use-initial-state";
-import { majnAPI, majnaFiles } from "../API/global-api";
+import UseInitialStates from "@hooks/use-initial-state";
+import { majnAPI, majnaFiles } from "@state/API/global-api";
 
 const { initialStateDistributor } = UseInitialStates();
 

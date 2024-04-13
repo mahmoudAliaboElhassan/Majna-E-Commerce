@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "react-i18next";
 
-import { SearchBoxContainer, SerarchField } from "../styles/search";
+import { SearchBoxContainer, SerarchField } from "@styles/search";
 
 function SlideSearch({ show, close, dir }) {
   const skills = ["html", "css", "javascript", "typescipt"];

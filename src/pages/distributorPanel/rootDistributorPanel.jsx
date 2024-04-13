@@ -7,11 +7,11 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { useTheme } from "@emotion/react";
 
-import withGuard from "../../utils/withGuard";
-import { MainBody } from "../../styles/reviewer";
-import MainDrawer from "../../components/MainDrawer";
-import { DrawerButton } from "../../styles/products";
-import UseDistributorElements from "../../hooks/use-distributor-elements";
+import withGuard from "@utils/withGuard";
+import { MainBody } from "@styles/reviewer";
+import MainDrawer from "@components/MainDrawer";
+import { DrawerButton } from "@styles/products";
+import UseDistributorElements from "@hooks/use-distributor-elements";
 
 function RootProductLayout() {
   const [open, setOpen] = useState(false);

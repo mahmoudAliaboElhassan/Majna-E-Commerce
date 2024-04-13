@@ -11,15 +11,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 
-import TextFieldWrapper from "../../../components/formui/textField";
-import ButtonWrapper from "../../../components/formui/SubmitButton";
-import PasswordField from "../../../components/formui/passwordField";
-import ModalSignup from "../../../components/Modal";
-import UseFormValidation from "../../../formValidation/use-form-validation";
-import UseThemMode from "../../../hooks/use-theme";
-import UseInitialValues from "../../../utils/use-initial-values";
-import { ResendConfirmation, logIn } from "../../../state/slices/auth";
-import { AppbarHeader } from "../../../styles/appbar";
+import TextFieldWrapper from "@components/formui/textField";
+import ButtonWrapper from "@components/formui/SubmitButton";
+import PasswordField from "@components/formui/passwordField";
+import ModalSignup from "@components/Modal";
+import UseFormValidation from "@formValidation/use-form-validation";
+import UseThemMode from "@hooks/use-theme";
+import UseInitialValues from "@utils/use-initial-values";
+import { ResendConfirmation, logIn } from "@state/slices/auth";
+import { AppbarHeader } from "@styles/appbar";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {

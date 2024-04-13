@@ -7,10 +7,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
 
-import { PdfContainer } from "../styles/reviewer";
-import UseThemMode from "../hooks/use-theme";
-import { Colors } from "../styles/theme";
-import ImageUploader from "./formui/multipleImages";
+import { PdfContainer } from "@styles/reviewer";
+import UseThemMode from "@hooks/use-theme";
+import { Colors } from "@styles/theme";
+import ImageUploader from "@components/formui/multipleImages";
 
 const PdfViewer = ({ file, label }) => {
   const { t } = useTranslation();

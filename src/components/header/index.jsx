@@ -21,22 +21,18 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import DrawerComponent from "./Drawer";
-import ModalSignup from "../Modal";
-import SlideSearch from "../Slide";
-import {
-  AppbarHeader,
-  CartNumber,
-  tabsElementsList,
-} from "../../styles/appbar";
-import useHeaderElements from "../../hooks/use-header-elements";
-import UseDirection from "../../hooks/use-direction";
-import UseLanguages from "../../hooks/use-languages";
-import { Colors } from "../../styles/theme";
-import LanguageSelection from "../languages";
-import Mode from "../mode";
-import Search from "../search";
-import MyComponent from "../../searchandSelect.jsx";
+import DrawerComponent from "@components/header/Drawer";
+import ModalSignup from "@components/Modal";
+import SlideSearch from "@components/Slide";
+import { AppbarHeader, CartNumber, tabsElementsList } from "@styles/appbar";
+import useHeaderElements from "@hooks/use-header-elements";
+import UseDirection from "@hooks/use-direction";
+import UseLanguages from "@hooks/use-languages";
+import { Colors } from "@styles/theme";
+import LanguageSelection from "@components/languages";
+import Mode from "@components/mode";
+import Search from "@components/search";
+// import MyComponent from "../../searchandSelect.jsx";
 
 function Header() {
   const { Languages } = UseLanguages();

@@ -6,9 +6,9 @@ import LanguageIcon from "@mui/icons-material/Language";
 import i18next from "i18next";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-import UseLanguages from "../../hooks/use-languages";
-import UseDirection from "../../hooks/use-direction";
-import { Colors } from "../../styles/theme";
+import UseLanguages from "@hooks/use-languages";
+import UseDirection from "@hooks/use-direction";
+import { Colors } from "@styles/theme";
 
 function LanguageSelection() {
   const { Languages } = UseLanguages();
@@ -32,10 +32,7 @@ function LanguageSelection() {
   };
   return (
     <>
-      <IconButton
-        onClick={handleClick}
-      
-      >
+      <IconButton onClick={handleClick}>
         <LanguageIcon style={{ color: Colors.white }} />
         <ArrowDropDownIcon fontSize="small" sx={{ color: Colors.white }} />
       </IconButton>

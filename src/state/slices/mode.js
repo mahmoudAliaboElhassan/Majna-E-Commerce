@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import UseInitialStates from "../../hooks/use-initial-state";
+import UseInitialStates from "@hooks/use-initial-state";
 
 const { initialStateMode } = UseInitialStates();
 

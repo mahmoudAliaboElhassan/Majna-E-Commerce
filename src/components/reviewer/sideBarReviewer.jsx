@@ -4,14 +4,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-
-import UseReviewerElements from "../../hooks/use-reviewer-elements";
-import { AppBarReviwer } from "../../styles/reviewer";
-import UseDirection from "../../hooks/use-direction";
 import { useTranslation } from "react-i18next";
-import Mode from "../mode";
-import LanguageSelection from "../languages";
-import MainDrawer from "../MainDrawer";
+
+import UseReviewerElements from "@hooks/use-reviewer-elements";
+import { AppBarReviwer } from "@styles/reviewer";
+import UseDirection from "@hooks/use-direction";
+import Mode from "@components/mode";
+import LanguageSelection from "@components/languages";
+import MainDrawer from "@components/MainDrawer";
 
 function SideBarReviewer({ open, handleOpen, handleClose }) {
   const { ReviewerElements } = UseReviewerElements();

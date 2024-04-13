@@ -9,8 +9,8 @@ import { styled, alpha } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { useTheme } from "@emotion/react";
 
-import UseDirection from "../hooks/use-direction";
-import { SearchIconWrapper, inputBaseStyles } from "../styles/search";
+import UseDirection from "@hooks/use-direction";
+import { SearchIconWrapper, inputBaseStyles } from "@styles/search";
 
 const Search = (props) => {
   const { Direction } = UseDirection();

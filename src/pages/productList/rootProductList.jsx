@@ -17,7 +17,7 @@ import {
 } from "@mui/material";
 
 
-import ProductTypesSidebar from "../../components/productList/productTypesSidebar";
+import ProductTypesSidebar from "@components/productList/productTypesSidebar";
 function RootProductList() {
   return (
     <div>

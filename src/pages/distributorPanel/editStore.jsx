@@ -10,12 +10,12 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import UseThemMode from "../../hooks/use-theme";
-import ButtonWrapper from "../../components/formui/SubmitButton";
-import { AppbarHeader } from "../../styles/appbar";
-import UseFormValidation from "../../formValidation/use-form-validation";
-import UseInitialValues from "../../utils/use-initial-values";
-import SelectComp from "../../components/formui/Select";
+import UseThemMode from "@hooks/use-theme";
+import ButtonWrapper from "@components/formui/SubmitButton";
+import { AppbarHeader } from "@styles/appbar";
+import UseFormValidation from "@formValidation/use-form-validation";
+import UseInitialValues from "@utils/use-initial-values";
+import SelectComp from "@components/formui/Select";
 import {
   editStore,
   fetchsinglesingleStoreData,

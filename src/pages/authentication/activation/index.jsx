@@ -7,9 +7,9 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { ActivateAccount } from "../../../state/slices/auth";
-import UseThemMode from "../../../hooks/use-theme";
-import LoadingFetching from "../../../components/loadingFetching";
+import { ActivateAccount } from "@state/slices/auth";
+import UseThemMode from "@hooks/use-theme";
+import LoadingFetching from "@components/loadingFetching";
 
 function ActivationAccount() {
   const { uid, token } = useParams();

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AppbarHeader } from "../../styles/appbar";
+import { AppbarHeader } from "@styles/appbar";
 import "./loading-fetching.css";
 
 function LoadingFetching({ children }) {

@@ -4,9 +4,9 @@ import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { useField, useFormikContext } from "formik";
 import Typography from "@mui/material/Typography";
 
-import UseThemMode from "../../../hooks/use-theme";
-import { helperStyle } from "../../../styles/error";
-import { Colors } from "../../../styles/theme";
+import UseThemMode from "@hooks/use-theme";
+import { helperStyle } from "@styles/error";
+import { Colors } from "@styles/theme";
 
 function SelectComp({ name, label, options, ...otherProps }) {
   const [field, meta] = useField(name);

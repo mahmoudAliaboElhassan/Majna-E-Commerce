@@ -20,12 +20,12 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import SlideSearch from "../Slide";
-import ModalSignup from "../Modal";
-import { CartNumber, DrawerCloseIcon } from "../../styles/appbar";
-import { Colors } from "../../styles/theme";
-import UseThemMode from "../../hooks/use-theme";
-import UseDirection from "../../hooks/use-direction";
+import SlideSearch from "@components/Slide";
+import ModalSignup from "@components/Modal";
+import { CartNumber, DrawerCloseIcon } from "@styles/appbar";
+import { Colors } from "@styles/theme";
+import UseThemMode from "@hooks/use-theme";
+import UseDirection from "@hooks/use-direction";
 
 function DrawerComponent({ drawerElements }) {
   const [active, setActive] = useState(false);

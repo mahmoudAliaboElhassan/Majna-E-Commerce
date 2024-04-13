@@ -4,7 +4,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
-import { Colors } from "../../styles/theme";
+import { Colors } from "@styles/theme";
 
 function IncDec() {
   return (

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import Loader from "../components/loader";
+
+import Loader from "@components/loader";
 
 const withGuard = (Component) => {
   const Wrapper = () => {

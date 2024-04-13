@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IconButton } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import UseDirection from "../hooks/use-direction";
-import { ScrollButton } from "../styles/scrollBtn";
+
+import UseDirection from "@hooks/use-direction";
+import { ScrollButton } from "@styles/scrollBtn";
 
 const ScrollToTopButton = () => {
   const [showButton, setShowButton] = useState(false);

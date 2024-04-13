@@ -9,7 +9,7 @@ import { Link, useRouteError } from "react-router-dom";
 
 import image from "../image";
 import errorImage from "../assests/error2.svg";
-import { ErrorContainer } from "../styles/error";
+import { ErrorContainer } from "@styles/error";
 
 const ErrorPage = () => {
   const { t } = useTranslation();

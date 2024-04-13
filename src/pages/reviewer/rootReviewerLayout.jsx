@@ -4,9 +4,9 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router-dom";
 
-import withGuard from "../../utils/withGuard";
-import SideBarReviewer from "../../components/reviewer/sideBarReviewer";
-import { MainBody } from "../../styles/reviewer";
+import withGuard from "@utils/withGuard";
+import SideBarReviewer from "@components/reviewer/sideBarReviewer";
+import { MainBody } from "@styles/reviewer";
 
 function RootReviewerLayout() {
   const [open, setOpen] = useState(false);

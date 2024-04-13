@@ -14,12 +14,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
-import {
-  ProducDetailInfoWrapper,
-  ProducDetailWrapper,
-} from "../../styles/products";
+import { ProducDetailInfoWrapper, ProducDetailWrapper } from "@styles/products";
 import errorImage from "../../assests/error.jpg";
-import IncDec from "../../components/productUi";
+import IncDec from "@components/productUi";
 
 function ProductDetails(props) {
   const theme = useTheme();

@@ -10,16 +10,16 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
 import {
   UpdateBrandStatus,
   getSpecificBrand,
-} from "../../state/slices/reviewer";
-import { useParams } from "react-router-dom";
-import PdfViewer from "../../components/pdfFile";
-import UseThemMode from "../../hooks/use-theme";
-import UseDirection from "../../hooks/use-direction";
-import LoadingFetching from "../../components/loadingFetching";
+} from "@state/slices/reviewer";
+import PdfViewer from "@components/pdfFile";
+import LoadingFetching from "@components/loadingFetching";
+import UseThemMode from "@hooks/use-theme";
+import UseDirection from "@hooks/use-direction";
 
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {

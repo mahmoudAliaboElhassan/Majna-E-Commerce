@@ -13,10 +13,10 @@ import {
 import { Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { Colors } from "../../styles/theme";
-import UseProductTypes from "../../hooks/use-product-types";
-import UseDirection from "../../hooks/use-direction";
-import UseThemMode from "../../hooks/use-theme";
+import { Colors } from "@styles/theme";
+import UseProductTypes from "@hooks/use-product-types";
+import UseDirection from "@hooks/use-direction";
+import UseThemMode from "@hooks/use-theme";
 
 function ProductTypesSidebar() {
   const { productTypes } = UseProductTypes();
@@ -38,16 +38,16 @@ function ProductTypesSidebar() {
         >
           {productTypes &&
             productTypes.map((product, index) => (
-      <>
-                  <h3
-                    style={{ color: "white" }}
-                    onClick={() => setActive(index)}
-                    component={Link}
-                    {...product}
-                  >
-                    {product.label}
-                  </h3>
-                  <motion.div
+              <>
+                <h3
+                  style={{ color: "white" }}
+                  onClick={() => setActive(index)}
+                  component={Link}
+                  {...product}
+                >
+                  {product.label}
+                </h3>
+                <motion.div
                   initial={{ height: 0 }}
                   transition={{
                     type: "keyframes",
@@ -65,8 +65,8 @@ function ProductTypesSidebar() {
                       <p key={innerIndex}>{nestedType.label}</p>
                     ))}
                 </motion.div>
-                </>
-             ))}
+              </>
+            ))}
           {/* <div key={index}>
             <h1 onClick={() => setActive(index)}>{product.label}</h1>
             <motion.div
