@@ -25,6 +25,7 @@ import DateComponent from "@components/momentDate.jsx";
 import WhileView from "@components/formui/whileView.jsx";
 import UseThemMode from "@hooks/use-theme";
 // import MyComponent from "@searchandSelect.jsx";
+import ProjectsForm from "@components/formui/mutlipleCheckBox";
 
 function IndexElement() {
   const { themeMode } = UseThemMode();
@@ -36,6 +37,7 @@ function IndexElement() {
   }, []);
   return (
     <>
+      <ProjectsForm />
       <Swiperslide />
       <WhileView />
       <Container maxWidth="lg">
