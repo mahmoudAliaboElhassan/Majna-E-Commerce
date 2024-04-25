@@ -147,17 +147,17 @@ function BrnadApplication() {
               >
                 {brandName}
               </Typography>
-              <Grid container spacing={2}>
-                <Grid item xs={12} md={6} lg={6}>
-                  <PdfViewer file={authorizationDocument} label="idDocument" />
-                </Grid>
-                <Grid item xs={12} md={6} lg={6}>
-                  <PdfViewer
-                    file={identityDocument}
-                    label="authorizeDocument"
-                  />
-                </Grid>
-              </Grid>{" "}
+              {/* <Grid container spacing={2}> */}
+                {/* <Grid item xs={12} md={6} lg={6}> */}
+                  <PdfViewer fileAuthorize={authorizationDocument} fileIdntity={ identityDocument}  />
+                {/* </Grid> */}
+                {/* <Grid item xs={12} md={6} lg={6}> */}
+                  {/* <PdfViewer */}
+                    {/* file={identityDocument} */}
+                    {/* label="authorizeDocument" */}
+                  {/* /> */}
+                {/* </Grid> */}
+              {/* </Grid>{" "} */}
               <Box className={classes.buttonContainer}>
                 <Button
                   startIcon={

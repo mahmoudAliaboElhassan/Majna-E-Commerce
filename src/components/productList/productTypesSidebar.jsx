@@ -40,7 +40,8 @@ function ProductTypesSidebar() {
             productTypes.map((product, index) => (
               <>
                 <h3
-                  style={{ color: "white" }}
+                  style={{ color: "white", cursor: "pointer", padding: "5px" }}
+                  sx={{ fontSize: { md: "12px", lg: "16px" } }}
                   onClick={() => setActive(index)}
                   component={Link}
                   {...product}

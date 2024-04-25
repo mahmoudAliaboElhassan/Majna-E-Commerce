@@ -18,9 +18,9 @@ import { useTheme } from "@emotion/react";
 import { motion } from "framer-motion";
 import { TabContext } from "@mui/lab";
 import { useTranslation } from "react-i18next";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+ 
 import DrawerComponent from "@components/header/Drawer";
 import ModalSignup from "@components/Modal";
 import SlideSearch from "@components/Slide";
@@ -43,6 +43,7 @@ function Header() {
   const handleActiveTab = (to) => setActiveTab(to);
   const firstRef = useRef();
   const theme = useTheme();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
@@ -63,6 +64,9 @@ function Header() {
 
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value);
+    console.log(searchValue);
+    setSearchParams({ queryformMahmoud: searchValue });
+    console.log(searchParams);
   };
   console.log(searchValue);
 

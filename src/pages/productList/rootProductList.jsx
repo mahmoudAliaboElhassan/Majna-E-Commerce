@@ -22,10 +22,10 @@ function RootProductList() {
   return (
     <div>
       <Grid container>
-        <Grid item xs={2} md={2} lg={2}>
+        <Grid item xs={3} md={3} lg={3}>
           <ProductTypesSidebar />
         </Grid>
-        <Grid item xs={10} md={10} lg={10}>
+        <Grid item xs={9} md={9} lg={9}>
           <Outlet />
         </Grid>
       </Grid>

@@ -6,20 +6,32 @@ import { pdfjs } from "react-pdf";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 
 import { PdfContainer } from "@styles/reviewer";
 import UseThemMode from "@hooks/use-theme";
 import { Colors } from "@styles/theme";
 import ImageUploader from "@components/formui/multipleImages";
 
-const PdfViewer = ({ file, label }) => {
+const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
   const { t } = useTranslation();
   const [view, setView] = useState(false);
   const toggleFile = () => setView(!view);
   const { themeMode } = UseThemMode();
+
+  const docs = [
+    { uri: fileAuthorize, fileType: "pdf", fileName: t("authorizeDocument") }, // Remote file
+    { uri: fileIdntity, fileType: "pdf", fileName: t("idDocument") }, // Remote file
+    // { uri: require("./files/jadwal.pdf"), fileType: "pdf" }, // Local File}
+    // {
+    //   uri: require("./files/mahmoud.pdf"),
+    //   fileType: "pdf",
+    //   fileName: "mahmoud",
+    // }, // Local File
+  ];
   return (
     <>
-      <Button
+      {/* <Button
         component={Typography}
         sx={{
           display: "flex",
@@ -42,7 +54,13 @@ const PdfViewer = ({ file, label }) => {
           </Worker>
         </PdfContainer>
       )}
-      {/* <ImageUploader /> */}
+      <ImageUploader /> */}
+      <DocViewer
+        documents={docs}
+        // initialActiveDocument={initialActiveDocument}
+        pluginRenderers={DocViewerRenderers}
+        stye={{ height: "100vh" }}
+      />
     </>
   );
 };

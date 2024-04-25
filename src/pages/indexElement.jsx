@@ -26,6 +26,7 @@ import WhileView from "@components/formui/whileView.jsx";
 import UseThemMode from "@hooks/use-theme";
 // import MyComponent from "@searchandSelect.jsx";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
+import SearchParamsComponent from "@components/searchParams";
 
 function IndexElement() {
   const { themeMode } = UseThemMode();
@@ -38,6 +39,7 @@ function IndexElement() {
   return (
     <>
       <ProjectsForm />
+      <SearchParamsComponent />
       <Swiperslide />
       <WhileView />
       <Container maxWidth="lg">
