@@ -231,7 +231,23 @@ export const getStore = createAsyncThunk(
 export const distributorSlice = createSlice({
   name: "distributorSlice",
   initialState: initialStateDistributor,
-  reducers: {},
+  reducers: {
+    cleanUpBrands: (state) => {
+      state.brands = [];
+    },
+    cleanUpGovernance: (state) => {
+      state.governance = [];
+    },
+    cleanUpBrandsApplication: (state) => {
+      state.distributorBrands = [];
+    },
+    cleanUpAuthorizedBrands: (state) => {
+      state.approvedBrands = [];
+    },
+    cleanUpStores: (state) => {
+      state.stores = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPrands.pending, (state, action) => {
@@ -397,14 +413,21 @@ export const distributorSlice = createSlice({
       })
       .addCase(editStore.fulfilled, (state, action) => {
         console.log(action.payload);
-         state.loadingEdit = false;
+        state.loadingEdit = false;
         // localStorage.setItem(storeId,action.payload.)
         // state.storeId=localStorage.getItem("storeId")
       })
       .addCase(editStore.rejected, (state, action) => {
         state.loadingEdit = false;
-      })
+      });
   },
 });
 
 export default distributorSlice.reducer;
+export const {
+  cleanUpBrands,
+  cleanUpGovernance,
+  cleanUpBrandsApplication,
+  cleanUpAuthorizedBrands,
+  cleanUpStores,
+} = distributorSlice.actions;

@@ -16,7 +16,11 @@ import UseFormValidation from "@formValidation/use-form-validation";
 import UseInitialValues from "@utils/use-initial-values";
 import SelectComp from "@components/formui/Select";
 import FileInput from "@components/formui/file";
-import { addBrand, fetchPrands } from "@state/slices/distributor";
+import {
+  addBrand,
+  fetchPrands,
+  cleanUpBrands,
+} from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
 import LoadingFetching from "@components/loadingFetching";
 
@@ -44,8 +48,13 @@ function AddBrand() {
   const { themeMode } = UseThemMode();
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
   useEffect(() => {
-    dispatch(fetchPrands());
-  }, [brands?.length]);
+    if (brands.length === 0) {
+      dispatch(fetchPrands());
+    }
+    return () => {
+      dispatch(cleanUpBrands());
+    };
+  }, [dispatch]);
 
   return (
     <>

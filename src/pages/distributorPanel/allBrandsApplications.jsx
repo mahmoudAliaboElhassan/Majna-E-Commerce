@@ -6,7 +6,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 
-import { getAllBrandsApplication } from "@state/slices/distributor";
+import {
+  getAllBrandsApplication,
+  cleanUpBrandsApplication,
+} from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
 
 function AllBrandsApplications() {
@@ -20,7 +23,10 @@ function AllBrandsApplications() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllBrandsApplication({ Uid }));
-  }, []);
+    return () => {
+      dispatch(cleanUpBrandsApplication());
+    };
+  }, [dispatch]);
   const columns = [
     { field: "id", headerName: t("id"), width: 100 },
     {

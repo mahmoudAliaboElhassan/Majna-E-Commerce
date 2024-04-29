@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 
-import { getAtuthorizedBrands } from "@state/slices/distributor";
+import {
+  getAtuthorizedBrands,
+  cleanUpAuthorizedBrands,
+} from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
 
 function AprovedBrands() {
@@ -16,7 +19,10 @@ function AprovedBrands() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAtuthorizedBrands({ Uid }));
-  }, []);
+    return () => {
+      dispatch(cleanUpAuthorizedBrands());
+    };
+  }, [dispatch]);
   return (
     <>
       {loadingAuthorized ? (

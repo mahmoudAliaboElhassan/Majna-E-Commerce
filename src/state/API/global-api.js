@@ -1,23 +1,16 @@
 import axios from "axios";
 
-export const majnAPI = axios.create({
-  baseURL: "https://majna.onrender.com/",
-});
-export const majnaFiles = axios.create({
-  baseURL: "https://majna.onrender.com/",
-  // headers: {
-  //   "Content-Type":
-  //     'multipart/form-data; charset=utf-8; boundary="another cool boundary";',
-  // },
-});
-const token = localStorage.getItem("token");
+// Function to create Axios instances with common settings
+function createAxiosInstance(baseURL, contentType) {
+  const instance = axios.create({
+    baseURL: baseURL,
+  });
 
-majnaFiles.interceptors.request.use(
-  function (config) {
+  // Request interceptor function
+  const requestInterceptor = (config) => {
     console.log("token");
     console.log(localStorage.getItem("token"));
-    config.headers["Content-Type"] =
-      'multipart/form-data; charset=utf-8; boundary="another cool boundary";';
+    config.headers["Content-Type"] = contentType;
     if (localStorage.getItem("token")) {
       config.headers["Authorization"] = `Token ${localStorage.getItem(
         "token"
@@ -26,54 +19,50 @@ majnaFiles.interceptors.request.use(
     console.log("config");
     console.log(config);
     return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
-majnAPI.interceptors.request.use(
-  function (config) {
-    console.log("token");
-    console.log(token);
-    config.headers["Content-Type"] = "application/json";
-    if (localStorage.getItem("token")) {
-      config.headers["Authorization"] = `Token ${localStorage.getItem(
-        "token"
-      )}`;
-    }
-    console.log("config");
-    console.log(config);
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
+  };
 
-// Add a response interceptor
-majnaFiles.interceptors.response.use(
-  function (response) {
-    // Do something with response data
+  // Response interceptor function
+  const responseInterceptor = (response) => {
     console.log("response");
     console.log(response);
     return response.data;
-  },
-  function (error) {
-    // Do something with response error
+  };
+
+  // Error handler for request interceptor
+  const requestErrorInterceptor = (error) => {
+    console.error("Request error");
+    console.error(error);
     return Promise.reject(error);
-  }
+  };
+
+  // Error handler for response interceptor
+  const responseErrorInterceptor = (error) => {
+    console.error("Response error");
+    console.error(error);
+    return Promise.reject(error);
+  };
+
+  // Apply request interceptor
+  instance.interceptors.request.use(
+    requestInterceptor,
+    requestErrorInterceptor
+  );
+
+  // Apply response interceptor
+  instance.interceptors.response.use(
+    responseInterceptor,
+    responseErrorInterceptor
+  );
+
+  return instance;
+}
+
+// Create Axios instances for API and Files
+export const majnAPI = createAxiosInstance(
+  "https://majna.onrender.com/",
+  "application/json"
 );
-majnAPI.interceptors.response.use(
-  function (response) {
-    // Do something with response data
-    console.log("response");
-    console.log(response);
-    return response.data;
-  },
-  function (error) {
-    // Do something with response error
-    return Promise.reject(error);
-  }
+export const majnaFiles = createAxiosInstance(
+  "https://majna.onrender.com/",
+  'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
 );

@@ -5,10 +5,14 @@ import { IconButton, Divider, MenuItem, Menu } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import i18next from "i18next";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import UseLanguages from "@hooks/use-languages";
 import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
+import { MenuItemElement } from "@styles/langs";
+import UseThemMode from "@hooks/use-theme";
 
 function LanguageSelection() {
   const { Languages } = UseLanguages();
@@ -20,8 +24,10 @@ function LanguageSelection() {
   });
   const [clickedElement, setClickedElement] = useState(null);
   const open = Boolean(clickedElement);
+  const [openMenu, setOpenMenu] = useState(false);
   const handleClose = (e, val) => {
     setClickedElement(null);
+    setOpenMenu(false);
   };
   const changeLang = (lng) => {
     i18next.changeLanguage(lng.code);
@@ -29,29 +35,51 @@ function LanguageSelection() {
   };
   const handleClick = (e, val) => {
     setClickedElement(e.currentTarget);
+    setOpenMenu(!openMenu);
   };
+  const { themeMode } = UseThemMode();
+  const { ref, inView } = useInView({ triggerOnce: false });
+
   return (
     <>
       <IconButton onClick={handleClick}>
         <LanguageIcon style={{ color: Colors.white }} />
         <ArrowDropDownIcon fontSize="small" sx={{ color: Colors.white }} />
       </IconButton>
-      <Menu open={open} anchorEl={clickedElement} onClose={handleClose}>
-        {Languages.map((lang) => (
-          <>
-            <MenuItem
-              onClick={() => changeLang(lang)}
-              disabled={currLanguageCode == lang.code}
-            >
-              <i
-                className={`flag flag-${lang.country_code} larger-icon mx-1`}
-              ></i>{" "}
-              {lang.name}
-            </MenuItem>
-            <Divider />
-          </>
-        ))}
-      </Menu>
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        animate={open ? { y: 100, opacity: 1 } : { y: -50, opacity: 0 }}
+        transition={{ duration: 100 }}
+        style={{
+          border: `1px solid ${
+            themeMode === "dark" ? Colors.light_gray : Colors.shaft
+          }`,
+          borderRadius: "12px",
+        }}
+      > 
+
+        <Menu
+          open={open}
+          anchorEl={clickedElement}
+          onClose={handleClose}
+          style={{ borderRadius: "10px" }}
+        >
+          {Languages.map((lang) => (
+            <>
+              <MenuItemElement
+                onClick={() => changeLang(lang)}
+                disabled={currLanguageCode == lang.code}
+              >
+                <i
+                  className={`flag flag-${lang.country_code} larger-icon mx-1`}
+                ></i>{" "}
+                {lang.name}
+              </MenuItemElement>
+              <Divider />
+            </>
+          ))}
+        </Menu>
+      </motion.div>
     </>
   );
 }

@@ -15,7 +15,11 @@ import { AppbarHeader } from "@styles/appbar";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseInitialValues from "@utils/use-initial-values";
 import SelectComp from "@components/formui/Select";
-import { addStore, fetchGovernance } from "@state/slices/distributor";
+import {
+  addStore,
+  fetchGovernance,
+  cleanUpGovernance,
+} from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
 import LoadingFetching from "@components/loadingFetching";
 import TextFieldWrapper from "@components/formui/textField";
@@ -48,8 +52,13 @@ function AddStore() {
   const { Uid } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchGovernance());
-  }, []);
+    if (governance.length === 0) {
+      dispatch(fetchGovernance());
+    }
+    return () => {
+      dispatch(cleanUpGovernance());
+    };
+  }, [dispatch]);
   // Initialize an empty array to store all cities
   let allCities = [];
 
