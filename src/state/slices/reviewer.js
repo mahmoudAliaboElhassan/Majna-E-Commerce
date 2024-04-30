@@ -121,7 +121,13 @@ export const reviewrSlice = createSlice({
   name: "reviewrSlice",
   initialState: initialStateReviewer,
   reducers: {
-    check: () => console.log("reviewer slice"),
+    cleanUpSpecifiedBrand: (state) => {
+      state.authorizationDocument = null;
+      state.identityDocument = null;
+    },
+    cleanUpBrandsByPage: (state) => {
+      state.allBrans=[]
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -199,4 +205,4 @@ export const reviewrSlice = createSlice({
 });
 
 export default reviewrSlice.reducer;
-export const { check } = reviewrSlice.actions;
+export const { cleanUpSpecifiedBrand ,cleanUpBrandsByPage,} = reviewrSlice.actions;

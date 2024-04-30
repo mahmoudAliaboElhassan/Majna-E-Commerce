@@ -10,11 +10,12 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 
 import {
   UpdateBrandStatus,
   getSpecificBrand,
+  cleanUpSpecifiedBrand,
 } from "@state/slices/reviewer";
 import PdfViewer from "@components/pdfFile";
 import LoadingFetching from "@components/loadingFetching";
@@ -71,6 +72,9 @@ function BrnadApplication() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getSpecificBrand({ ApplicationId }));
+    return () => {
+      dispatch(cleanUpSpecifiedBrand());
+    };
   }, [ApplicationId]);
 
   const handleStatus = (statusCondition) => {
@@ -148,15 +152,18 @@ function BrnadApplication() {
                 {brandName}
               </Typography>
               {/* <Grid container spacing={2}> */}
-                {/* <Grid item xs={12} md={6} lg={6}> */}
-                  <PdfViewer fileAuthorize={authorizationDocument} fileIdntity={ identityDocument}  />
-                {/* </Grid> */}
-                {/* <Grid item xs={12} md={6} lg={6}> */}
-                  {/* <PdfViewer */}
-                    {/* file={identityDocument} */}
-                    {/* label="authorizeDocument" */}
-                  {/* /> */}
-                {/* </Grid> */}
+              {/* <Grid item xs={12} md={6} lg={6}> */}
+              <PdfViewer
+                fileAuthorize={authorizationDocument}
+                fileIdntity={identityDocument}
+              />
+              {/* </Grid> */}
+              {/* <Grid item xs={12} md={6} lg={6}> */}
+              {/* <PdfViewer */}
+              {/* file={identityDocument} */}
+              {/* label="authorizeDocument" */}
+              {/* /> */}
+              {/* </Grid> */}
               {/* </Grid>{" "} */}
               <Box className={classes.buttonContainer}>
                 <Button
@@ -193,6 +200,7 @@ function BrnadApplication() {
                 >
                   {t("reject_application")}
                 </Button>
+ 
               </Box>
             </>
           )}

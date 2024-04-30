@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
+ 
 import PaginationComponent from "@components/pagination";
-import { check, getBrandsPyPage } from "@state/slices/reviewer";
+import { getBrandsPyPage,cleanUpBrandsByPage } from "@state/slices/reviewer";
 import LoadingFetching from "@components/loadingFetching";
 
 function IndexReviewer() {
@@ -24,6 +24,9 @@ function IndexReviewer() {
 
   useEffect(() => {
     dispatch(getBrandsPyPage({ page }));
+    return()=>{
+      dispatch(cleanUpBrandsByPage())
+    }
   }, [page]);
   const columns = [
     { field: "id", headerName: t("id"), width: 100 },
@@ -70,7 +73,7 @@ function IndexReviewer() {
               {t("no_brands")}
             </Typography>
           )}
-        </>
+          </>
       )}
     </>
   );
