@@ -1,6 +1,7 @@
 function UseInitialStates() {
   const initialStateMode = {
     mymode: localStorage.getItem("mymode") === "true" ? "dark" : "light",
+    // mymode: null,
   };
 
   const initialStateAuth = {
@@ -31,7 +32,7 @@ function UseInitialStates() {
     stores: [],
     singleStoreData: null,
     loadingSingleStoreData: false,
-    loadingEdit:false
+    loadingEdit: false,
   };
 
   const initialStateReviewer = {

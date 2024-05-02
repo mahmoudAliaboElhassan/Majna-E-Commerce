@@ -31,7 +31,7 @@ function Footer() {
             {allElements.map((el, idx, array) => (
               <Grid
                 item
-                key={el.to}
+                key={idx}
                 xs={12}
                 sm={6}
                 md={4}

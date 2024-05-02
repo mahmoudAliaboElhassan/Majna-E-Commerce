@@ -42,7 +42,7 @@ const Swiperslide = () => {
       >
         {image.map((img) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={img}>
               <img
                 src={img}
                 alt={img}

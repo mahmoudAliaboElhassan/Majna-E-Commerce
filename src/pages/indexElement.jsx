@@ -27,6 +27,8 @@ import UseThemMode from "@hooks/use-theme";
 // import MyComponent from "@searchandSelect.jsx";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@state/slices/cart";
 
 function IndexElement() {
   const { themeMode } = UseThemMode();
@@ -36,6 +38,8 @@ function IndexElement() {
   const changePage = useCallback((e, value) => {
     setPage(value);
   }, []);
+  const dispatch = useDispatch();
+
   return (
     <>
       <ProjectsForm />
@@ -95,7 +99,11 @@ function IndexElement() {
                           >
                             View
                           </Button>{" "}
-                          <Button variant="success" size="small">
+                          <Button
+                            variant="success"
+                            size="small"
+                            onClick={() => dispatch(addToCart(idx))}
+                          >
                             Add to Card
                           </Button>
                         </CardActions>
@@ -105,7 +113,7 @@ function IndexElement() {
                 </Grid>
               ))}
           </Grid>
-          <Grid item sm={12} sx={12} md={12}>
+          <Grid item xs={12}  sm={12} md={12}>
             {" "}
             <PaginationComponent
               page={page}

@@ -125,6 +125,7 @@ function DrawerComponent({ drawerElements }) {
             {drawerElements?.map((el, idx, array) => (
               <ListItemButton
                 {...el}
+                key={idx}
                 component={Link}
                 onClick={() => handleClick(el, idx, array)}
               >

@@ -46,7 +46,7 @@ function LanguageSelection() {
         <LanguageIcon style={{ color: Colors.white }} />
         <ArrowDropDownIcon fontSize="small" sx={{ color: Colors.white }} />
       </IconButton>
-      <motion.div
+      {/* <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={open ? { y: 100, opacity: 1 } : { y: -50, opacity: 0 }}
         transition={{ duration: 100 }}
@@ -56,8 +56,7 @@ function LanguageSelection() {
           }`,
           borderRadius: "12px",
         }}
-      > 
-
+      > */}
         <Menu
           open={open}
           anchorEl={clickedElement}
@@ -66,9 +65,12 @@ function LanguageSelection() {
         >
           {Languages.map((lang) => (
             <>
+            <div key={lang.country_code}>
+
               <MenuItemElement
                 onClick={() => changeLang(lang)}
                 disabled={currLanguageCode == lang.code}
+           
               >
                 <i
                   className={`flag flag-${lang.country_code} larger-icon mx-1`}
@@ -76,10 +78,11 @@ function LanguageSelection() {
                 {lang.name}
               </MenuItemElement>
               <Divider />
+              </div>
             </>
           ))}
         </Menu>
-      </motion.div>
+      {/* </motion.div> */}
     </>
   );
 }

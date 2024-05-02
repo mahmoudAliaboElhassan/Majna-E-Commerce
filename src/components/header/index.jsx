@@ -18,13 +18,13 @@ import { useTheme } from "@emotion/react";
 import { motion } from "framer-motion";
 import { TabContext } from "@mui/lab";
 import { useTranslation } from "react-i18next";
-import { Link, useLocation,useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
- 
+
 import DrawerComponent from "@components/header/Drawer";
 import ModalSignup from "@components/Modal";
 import SlideSearch from "@components/Slide";
-import { AppbarHeader, CartNumber, tabsElementsList } from "@styles/appbar";
+import { AppbarHeader, CartNumber, TabsElementsList } from "@styles/appbar";
 import useHeaderElements from "@hooks/use-header-elements";
 import UseDirection from "@hooks/use-direction";
 import UseLanguages from "@hooks/use-languages";
@@ -32,6 +32,7 @@ import { Colors } from "@styles/theme";
 import LanguageSelection from "@components/languages";
 import Mode from "@components/mode";
 import Search from "@components/search";
+import { getTotalQuantities } from "@state/slices/cart";
 // import MyComponent from "../../searchandSelect.jsx";
 
 function Header() {
@@ -68,9 +69,10 @@ function Header() {
     setSearchParams({ queryformMahmoud: searchValue });
     console.log(searchParams);
   };
-  console.log(searchValue);
 
   const { token, role } = useSelector((state) => state.auth);
+  const qunatityNumbers = useSelector(getTotalQuantities);
+
   const handleClickAuth = (authel, index) => {
     handleCloseSign();
     index === 1 && (token ? authel.click?.() : setOpenModal(!open_modal));
@@ -86,7 +88,7 @@ function Header() {
             <>
               <IconButton>
                 <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
-                <CartNumber>1</CartNumber>
+                <CartNumber>{qunatityNumbers}</CartNumber>
               </IconButton>
               <AppbarHeader
                 className="logo"
@@ -116,11 +118,10 @@ function Header() {
               </motion.div>
               <IconButton>
                 <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
-                <CartNumber>1</CartNumber>
+                <CartNumber>{qunatityNumbers}</CartNumber>
               </IconButton>
-              <TabContext>
-                <tabsElementsList
-                  value={value}
+              <TabContext value={value}>
+                <TabsElementsList
                   textColor="inherit"
                   indicatorColor="secondary"
                   // onChange={handleChange}
@@ -141,7 +142,7 @@ function Header() {
                       }}
                     />
                   ))}
-                </tabsElementsList>
+                </TabsElementsList>
               </TabContext>
               {/* <MyComponent onChange={handleSearchChange} /> */}
               <Search onChange={handleSearchChange} />

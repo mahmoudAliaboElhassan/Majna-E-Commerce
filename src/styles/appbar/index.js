@@ -25,7 +25,7 @@ export const CartNumber = styled(Typography)(() => ({
   color: Colors.white,
 }));
 
-export const tabsElementsList = styled(Tabs)(() => ({
+export const TabsElementsList = styled(Tabs)(() => ({
   marginRight: "auto",
   marginLeft: "auto",
 }));
