@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+
 import {
   AppBar,
   IconButton,
@@ -19,7 +20,7 @@ import { motion } from "framer-motion";
 import { TabContext } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 
 import DrawerComponent from "@components/header/Drawer";
 import ModalSignup from "@components/Modal";
@@ -33,6 +34,7 @@ import LanguageSelection from "@components/languages";
 import Mode from "@components/mode";
 import Search from "@components/search";
 import { getTotalQuantities } from "@state/slices/cart";
+import { activate } from "@state/slices/active";
 // import MyComponent from "../../searchandSelect.jsx";
 
 function Header() {
@@ -69,6 +71,8 @@ function Header() {
     setSearchParams({ queryformMahmoud: searchValue });
     console.log(searchParams);
   };
+const dispatch=useDispatch()
+  const {activeLink}=useSelector((state)=>state.active)
 
   const { token, role } = useSelector((state) => state.auth);
   const qunatityNumbers = useSelector(getTotalQuantities);
@@ -130,15 +134,15 @@ function Header() {
                     <Tab
                       key={el.to}
                       component={Link}
-                      onClick={() => handleActiveTab(el.to)}
+                      onClick={() => dispatch(activate(el.to))}
                       {...el}
                       sx={{
                         fontSize: { md: "12px", lg: "16px" },
                         display: "inline",
                         textAlign: "center",
-                        color: activeTab === el.to ? "bold" : "normal",
+                        color: activeLink === el.to ? "bold" : "normal",
                         borderBottom:
-                          activeTab === el.to ? "2px solid white" : "none",
+                          activeLink === el.to ? "2px solid white" : "none",
                       }}
                     />
                   ))}

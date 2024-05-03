@@ -1,6 +1,10 @@
 function UseInitialStates() {
   const initialStateMode = {
-    mymode: localStorage.getItem("mymode") === "true" ? "dark" : "light",
+    // mymode: localStorage.getItem("mymode") === "true" ? "dark" : "light",
+    mymode: "light",
+  };
+  const initialStateActiveLinks = {
+    activeLink: localStorage.getItem("activeLink"),
     // mymode: null,
   };
 
@@ -52,6 +56,7 @@ function UseInitialStates() {
     initialStateAuth,
     initialStateDistributor,
     initialStateReviewer,
+    initialStateActiveLinks,
   };
 }
 

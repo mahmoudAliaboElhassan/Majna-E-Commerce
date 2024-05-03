@@ -17,15 +17,16 @@ import CloseIcon from "@mui/icons-material/Close";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import SlideSearch from "@components/Slide";
 import ModalSignup from "@components/Modal";
-import { CartNumber, DrawerCloseIcon } from "@styles/appbar";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
+import { activate } from "@state/slices/active";
+import { CartNumber, DrawerCloseIcon } from "@styles/appbar";
 
 function DrawerComponent({ drawerElements }) {
   const [active, setActive] = useState(false);
@@ -38,9 +39,11 @@ function DrawerComponent({ drawerElements }) {
   const { token } = useSelector((state) => state.auth);
   const closeModal = useCallback(() => setOpenModal(false), []);
   const closeSearch = useCallback(() => setShowSearch(false), []);
-
+  const dispatch = useDispatch();
   const handleClick = (element, index, array) => {
+    dispatch(activate(element.to));
     setOpenDrawer(false);
+
     if (index === array.length - 1) {
       if (token) {
         element.click?.();

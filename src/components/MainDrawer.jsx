@@ -36,7 +36,7 @@ function MainDrawer({ open, handleClose, elements }) {
 
   const [activeLink, setActiveLink] = useState(result || "");
   console.log(location.pathname);
-  const handleClick = (to) => setActiveLink(to);
+  const handleClick = (to) => setActiveLink(to||"");
   const DrawerTheme = createTheme({
     components: {
       MuiDrawer: {

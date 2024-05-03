@@ -1,25 +1,14 @@
 import React, { useCallback, useState } from "react";
 
-import {
-  Typography,
-  Container,
-  Button,
-  Grid,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Box,
-} from "@mui/material";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import { useInView } from "react-intersection-observer";
+import { Container, Grid } from "@mui/material";
 
-import Image from "../assests/image-1.jpg";
+import { useInView } from "react-intersection-observer";
+import { useDispatch } from "react-redux";
+
 import Footer from "@components/footer";
-import { Colors } from "@styles/theme";
 import Swiperslide from "@components/slider";
 import SidebarPrices from "@components/Sidebar";
+import Product from "@components/productUi";
 import PaginationComponent from "@components/pagination";
 import DateComponent from "@components/momentDate.jsx";
 import WhileView from "@components/formui/whileView.jsx";
@@ -27,18 +16,12 @@ import UseThemMode from "@hooks/use-theme";
 // import MyComponent from "@searchandSelect.jsx";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@state/slices/cart";
 
 function IndexElement() {
-  const { themeMode } = UseThemMode();
-  const { ref, inView } = useInView({ triggerOnce: false });
-
   const [page, setPage] = useState(1);
   const changePage = useCallback((e, value) => {
     setPage(value);
   }, []);
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -56,64 +39,10 @@ function IndexElement() {
             {Array(100)
               .fill()
               .map((_, idx) => (
-                <Grid item xs={12} sm={6} md={4} key={idx}>
-                  <motion.div
-                    ref={ref}
-                    initial={{ x: 50, opacity: 0 }}
-                    // animate={inView ? { y: 0, opacity: 1 } : {}}
-                    transition={{ duration: 0.5 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    // viewport={{ amount: 0.6, once: false }}
-                    // transition={{ delay: idx * 0.5, duration: 2 }}
-                    style={{
-                      border: `1px solid ${
-                        themeMode === "dark" ? Colors.light_gray : Colors.shaft
-                      }`,
-                      borderRadius: "12px",
-                    }}
-                  >
-                    <Box>
-                      <Card raised>
-                        <CardMedia
-                          image={Image}
-                          title="Random Image"
-                          style={{ height: "180px", borderRadius: "12px" }}
-                          component="img"
-                          loading="lazy"
-                          alt="Random Image"
-                        />
-                        <CardContent>
-                          <Typography variant="h4">Heading</Typography>{" "}
-                          <Typography variant="subtitle1">
-                            Description this is is mata;
-                          </Typography>
-                        </CardContent>
-                        <CardActions disableSpacing>
-                          <Button
-                            variant="success"
-                            size="small"
-                            component={Link}
-                            to={{
-                              pathname: "/product/3",
-                            }}
-                          >
-                            View
-                          </Button>{" "}
-                          <Button
-                            variant="success"
-                            size="small"
-                            onClick={() => dispatch(addToCart(idx))}
-                          >
-                            Add to Card
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Box>
-                  </motion.div>{" "}
-                </Grid>
+                <Product idx={idx} />
               ))}
           </Grid>
-          <Grid item xs={12}  sm={12} md={12}>
+          <Grid item xs={12} sm={12} md={12}>
             {" "}
             <PaginationComponent
               page={page}

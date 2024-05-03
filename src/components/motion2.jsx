@@ -35,6 +35,7 @@ function Motion2() {
           {Persons.map((pers) => (
             <li>
               <div
+                key={pers.id}
                 onClick={() => handleClick(pers)}
                 style={{
                   display: "flex",

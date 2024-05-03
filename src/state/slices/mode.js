@@ -9,12 +9,11 @@ export const modeSlice = createSlice({
   initialState: initialStateMode,
   reducers: {
     change: (state) => {
-      localStorage.setItem(
-        "mymode",
-        localStorage.getItem("mymode") === "false" ? true : false
-      );
-      state.mymode =
-        localStorage.getItem("mymode") === "true" ? "dark" : "light";
+      // localStorage.setItem(
+      //   "mymode",
+      //   localStorage.getItem("mymode") === "false" ? true : false
+      // );
+      state.mymode = state.mymode === "dark" ? "light" : "dark";
     },
   },
 });
