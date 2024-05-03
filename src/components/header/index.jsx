@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import {
   AppBar,
@@ -20,7 +20,7 @@ import { motion } from "framer-motion";
 import { TabContext } from "@mui/lab";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import DrawerComponent from "@components/header/Drawer";
 import ModalSignup from "@components/Modal";
@@ -36,18 +36,16 @@ import Search from "@components/search";
 import { getTotalQuantities } from "@state/slices/cart";
 import { activate } from "@state/slices/active";
 // import MyComponent from "../../searchandSelect.jsx";
+import styles from "@components/header/style.module.css";
 
 function Header() {
-  const { Languages } = UseLanguages();
   const [showSearch, setShowSearch] = useState(false);
   const [value, setValue] = useState(null);
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState(location.pathname.slice(1) || "");
-  const handleActiveTab = (to) => setActiveTab(to);
   const firstRef = useRef();
   const theme = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const { pumpCartQuantity } = styles;
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const { allElements, allTabsElements, authElements } = useHeaderElements();
@@ -61,7 +59,7 @@ function Header() {
   const handleCloseSign = () => {
     setAnchorElSign(null);
   };
-  const [open_modal, setOpenModal] = React.useState(false);
+  const [open_modal, setOpenModal] = useState(false);
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -71,8 +69,8 @@ function Header() {
     setSearchParams({ queryformMahmoud: searchValue });
     console.log(searchParams);
   };
-const dispatch=useDispatch()
-  const {activeLink}=useSelector((state)=>state.active)
+  const dispatch = useDispatch();
+  const { activeLink } = useSelector((state) => state.active);
 
   const { token, role } = useSelector((state) => state.auth);
   const qunatityNumbers = useSelector(getTotalQuantities);
@@ -83,7 +81,22 @@ const dispatch=useDispatch()
   };
   const setSearchFn = () => setShowSearch(false);
   const closeModal = () => setOpenModal(false);
+  const [isAnimate, setIsAnimate] = useState(false);
+  useEffect(() => {
+    if (!qunatityNumbers) {
+      return;
+    }
+    setIsAnimate(true);
+    const debounce = setTimeout(() => {
+      setIsAnimate(false);
+    }, 300);
 
+    return () => {
+      clearTimeout(debounce);
+      console.log("return from effect");
+    };
+  }, [qunatityNumbers]);
+  const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`;
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -92,7 +105,9 @@ const dispatch=useDispatch()
             <>
               <IconButton>
                 <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
-                <CartNumber>{qunatityNumbers}</CartNumber>
+                <CartNumber className={quantityStyle}>
+                  {qunatityNumbers}
+                </CartNumber>
               </IconButton>
               <AppbarHeader
                 className="logo"
@@ -122,7 +137,9 @@ const dispatch=useDispatch()
               </motion.div>
               <IconButton>
                 <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
-                <CartNumber>{qunatityNumbers}</CartNumber>
+                <CartNumber className={quantityStyle}>
+                  {qunatityNumbers}
+                </CartNumber>
               </IconButton>
               <TabContext value={value}>
                 <TabsElementsList
