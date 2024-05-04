@@ -12,7 +12,7 @@
 - the website has Sign Up Page , so you can sign Up as buyer or Seller
 - Activation Notification is sent to the email , so you can sign in and be authorized
 - Seller User can add Brand, Store and Products and show all stores, all Products,
-- and Approved Brands form Reviewer.
+- and Approved Brands from Reviewer.
 - Reviewer can see a list of uploaded brands and accept or reject this Brand.
 - The Website applies the Principles of Optimization such as useCallback and useMemo.
 - The Website applies the proper instruction of import statement **built-in**, **external** and **internal**.
