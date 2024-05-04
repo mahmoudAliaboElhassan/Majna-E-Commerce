@@ -38,6 +38,6 @@
 10. react-toastify\*\*\*: Displays informative toasts for user actions.
 11. **_swiper_**: Creates beautiful sliders for showcasing content.
     **_sweetalert_**: Presents attractive alerts for user notifications.
-12. axios\*\*\*: Facilitates data fetching and backend communication with interceptors for request and response handling.
+12. **_axios_** Facilitates data fetching and backend communication with interceptors for request and response handling.
 13. **_craco/craco_**: Utilizes path aliases for cleaner import statements.
 14. **_gh-pages_**: Enables hosting on GitHub pages for easy deployment.
