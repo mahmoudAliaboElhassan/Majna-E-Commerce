@@ -18,6 +18,9 @@
 - The Website applies the proper instruction of import statement **built-in**, **external** and **internal**.
 - The Website applies the Principle of Destructuring Objects
 - components and hooks applies the Principle of **DRY** (do not repeat yourself)
+- Website uses **Optional Chaining** to Increase readability and simplify otherwise long logical conjunctions and complex-looking conditions.
+- Website uses **nullish coalescing** to Handle null or undefined value.
+- Website uses the principle of **custom hooks** to shorten The code and make it more **efficient**.
 - the Code is Seperated in many folders based on best practises to apply
 
 1. pages
