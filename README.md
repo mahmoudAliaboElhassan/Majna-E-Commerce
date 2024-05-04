@@ -2,15 +2,26 @@
 ### This site is for commercial transactions of buying and selling
 ## **Features**
 - The Website can be in both modes Dark and Light.
-- the Website is in both languages arabic and english
-- the Code is Seperated in many folders based on best practises
+- the Website is in both languages arabic and english.
+- Website has Search Bar for Products, Sorting, Filtering Products.
+- User Can Add Product to Card and mark it as favourite.
+- the Website has Logging Page to sign in the website
+- the website has Sign Up Page , so you can sign Up as buyer or Seller
+- Activation Notification is sent to the email , so you can sign in and be authorized
+- Seller User can add Brand, Store and Products and show all stores, all Products,
+- and Approved Brands form Reviewer.
+- Reviewer can see a list of uploaded brands and accept or reject this Brand.
+- The Website applies the Principles of Optimization such as useCallback and useMemo.
+- The Website applies the proper instruction of import statement **built-in**, **external** and **internal**.
+- The Website applies the Principle of Destructuring Objects
+- components and hooks applies the Principle of **DRY**  (do not repeat yourself)
+- the Code is Seperated in many folders based on best practises to apply
 1. pages
 2. components 
-3. hooks
+3. hooks    
 4. styles
 5. Form Validation
 6. Translation
-
 ## This Crud was made by many **libraries**
 1. Material Ui and its libraries for Awesome Syles and to serve the principle of **responsiveness**.
 2. react-router-dom to serve the principle of **Single Page Application**.
