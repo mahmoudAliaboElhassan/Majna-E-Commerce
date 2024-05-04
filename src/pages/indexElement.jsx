@@ -3,7 +3,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import { Container, Grid } from "@mui/material";
 
 import { useInView } from "react-intersection-observer";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -129,7 +129,7 @@ function IndexElement() {
 
   return (
     <>
-      <ProjectsForm />
+      {/* <ProjectsForm /> */}
       <SearchParamsComponent />
       <Swiperslide />
       <WhileView />

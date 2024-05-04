@@ -29,7 +29,7 @@
 
 ## This Crud was made by many **libraries**
 
-1. Material Ui and its libraries for Awesome Syles and to serve the principle of \*_responsiveness_.
+1. Material Ui and its libraries for Awesome Syles and to serve the principle of **responsiveness**.
 2. react-router-dom to serve the principle of **Single Page Application**.
 3. react-redux and redux toolkit to handle state management **globally**.
 4. redux-persist to Persist and rehydrate a redux store.
