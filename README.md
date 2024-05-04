@@ -44,7 +44,7 @@
 10. cyntler/react-doc-viewer to View pdf and other formate[word, Excel, PowerPoint] in the Website.
 11. react-toastify to display amazing toasts when signing up , logging in , adding Brands, Editing brands and ...
 12. swiper for making beatuiful slider
-13. sweetalert to display **beautiful alerts** for warning when deleting post or when there is a problem in authentication.
+13. sweetalert to display **beautiful alerts** for warning when when there is a problem in authentication.
 14. axios for the use of data fetching and linking with backend
 
 - with its baseUrl.
