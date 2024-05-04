@@ -55,13 +55,13 @@ function RootLayout() {
     const value = "mahmoud";
 
     const expired = new Date(expireToken).getTime();
-     const interval = setInterval(() => {
+    const interval = setInterval(() => {
       const currentTime = new Date().getTime();
- 
+
       if (token && role) {
         if (currentTime >= expired) {
-           console.log("expired");
-  
+          console.log("expired");
+
           localStorage.removeItem("token");
           localStorage.removeItem("role");
           localStorage.removeItem("expired");

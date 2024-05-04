@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# **Majna Store**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### This site is for commercial transactions of buying and selling
 
-## Available Scripts
+## **Features**
 
-In the project directory, you can run:
+- The Website can be in both modes Dark and Light.
+- the Website is in both languages arabic and english.
+- Website has Search Bar for Products, Sorting, Filtering Products.
+- User Can Add Product to Card and mark it as favourite.
+- the Website has Logging Page to sign in the website
+- the website has Sign Up Page , so you can sign Up as buyer or Seller
+- Activation Notification is sent to the email , so you can sign in and be authorized
+- Seller User can add Brand, Store and Products and show all stores, all Products,
+- and Approved Brands form Reviewer.
+- Reviewer can see a list of uploaded brands and accept or reject this Brand.
+- The Website applies the Principles of Optimization such as useCallback and useMemo.
+- The Website applies the proper instruction of import statement **built-in**, **external** and **internal**.
+- The Website applies the Principle of Destructuring Objects
+- components and hooks applies the Principle of **DRY** (do not repeat yourself)
+- the Code is Seperated in many folders based on best practises to apply
 
-### `npm start`
+1. pages
+2. components
+3. hooks
+4. styles
+5. Form Validation
+6. Translation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## This Crud was made by many **libraries**
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Material Ui and its libraries for Awesome Syles and to serve the principle of \*_responsiveness_.
+2. react-router-dom to serve the principle of **Single Page Application**.
+3. react-redux and redux toolkit to handle state management **globally**.
+4. redux-persist to Persist and rehydrate a redux store.
+5. aos and framer motion for beautiful animations.
+6. formik for handling forms and its Validation.
+7. 18next, i18next-browser-languagedetector, i18next-http-backend, react-i18next, js-cookie and i18next-http-backend to make website multilingual.
+8. jss-rtl to make website in arabic comes from right to left.
+9. mdb-ui-kit for **flags** that appears when dealing with languages
+10. cyntler/react-doc-viewer to View pdf and other formate[word, Excel, PowerPoint] in the Website.
+11. react-toastify to display amazing toasts when signing up , logging in , adding Brands, Editing brands and ...
+12. swiper for making beatuiful slider
+13. sweetalert to display **beautiful alerts** for warning when deleting post or when there is a problem in authentication.
+14. axios for the use of data fetching and linking with backend
 
-### `npm test`
+- with its baseUrl.
+- and interceptor that allow you to tap into the request and response flows.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+15. craco/craco to make use of path alias **@**
+16. gh-pages to activate the **hosting** of github.
