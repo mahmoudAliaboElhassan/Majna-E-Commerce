@@ -7,6 +7,7 @@ import authSlice from "@state/slices/auth";
 import distributorSlice from "@state/slices/distributor";
 import reviewrSlice from "@state/slices/reviewer";
 import activeLinkSlice from "@state/slices/active";
+import products from "@state/slices/products";
 import cart from "@state/slices/cart";
  
 const rootPersistConfig = {
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   distributor: distributorSlice,
   reviewer: reviewrSlice,
   active: activeLinkSlice,
+  products:products,
   cart: persistReducer(cartPersistConfig, cart),
 });
 

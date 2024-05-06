@@ -4,8 +4,6 @@ import { Container, Grid } from "@mui/material";
 
 import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 import Footer from "@components/footer";
 import Swiperslide from "@components/slider";
@@ -20,10 +18,13 @@ import UseThemMode from "@hooks/use-theme";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
 import Image from "../assests/image-1.jpg";
+import { getProducts } from "@state/slices/products";
 
-function IndexElement() {
+function Home() {
   const [page, setPage] = useState(1);
   const { items } = useSelector((state) => state.cart);
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   const changePage = useCallback((e, value) => {
     setPage(value);
   }, []);
@@ -118,15 +119,13 @@ function IndexElement() {
     { title: "Product one", image: Image, id: 88 },
     { title: "Product one", image: Image, id: 99 },
   ];
-  const productInfo = data.map((el) => ({ ...el, quantity: items[el.id] }));
+  const productInfo = products?.map((el) => ({
+    ...el,
+    quantity: items[el.id],
+  }));
   useEffect(() => {
-    AOS.init({
-      disable: "phone",
-      duration: 700,
-      easing: "ease-out-cubic",
-    });
+    dispatch(getProducts());
   }, []);
-
   return (
     <>
       {/* <ProjectsForm /> */}
@@ -168,4 +167,4 @@ function IndexElement() {
   );
 }
 
-export default IndexElement;
+export default Home;

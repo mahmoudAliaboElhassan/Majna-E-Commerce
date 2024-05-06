@@ -103,7 +103,7 @@ function Header() {
         <Toolbar>
           {isMatch ? (
             <>
-              <IconButton>
+              <IconButton component={Link} to="shooping-cart">
                 <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
                 <CartNumber className={quantityStyle}>
                   {qunatityNumbers}
@@ -135,7 +135,7 @@ function Header() {
                   {t("website-title")}
                 </AppbarHeader>
               </motion.div>
-              <IconButton>
+              <IconButton component={Link} to="shooping-cart">
                 <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
                 <CartNumber className={quantityStyle}>
                   {qunatityNumbers}

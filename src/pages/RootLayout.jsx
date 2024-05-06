@@ -20,12 +20,13 @@ import { Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import ScrollToTopButton from "@components/scroll";
 import Header from "@components/header";
 import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
-import PdfViewer from "@components/pdfFile";
 import { logOut } from "@state/slices/auth";
 
 // Configure JSS
@@ -51,7 +52,11 @@ function RootLayout() {
   const { expireToken, token, role } = useSelector((state) => state.auth);
   useEffect(() => {
     document.title = t("website-title");
-
+    AOS.init({
+      disable: "phone",
+      duration: 700,
+      easing: "ease-out-cubic",
+    });
     const value = "mahmoud";
 
     const expired = new Date(expireToken).getTime();

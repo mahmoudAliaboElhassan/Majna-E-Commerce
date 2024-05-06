@@ -4,9 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Loader from "@components/loader/index.jsx";
 import ErrorPage from "@pages/errorPage.jsx";
-import IndexElement from "@pages/indexElement.jsx";
+import Home from "@pages/home.jsx";
 import RootLayout from "@pages/RootLayout.jsx";
 import ProtectedRoute from "@components/protectedRoute.jsx";
+
 const RootProductList = React.lazy(() =>
   import("@pages/productList/rootProductList.jsx")
 );
@@ -80,7 +81,7 @@ const Profile = React.lazy(() => import("@pages/reviewer/profile.jsx"));
 const BrnadApplication = React.lazy(() =>
   import("@pages/reviewer/brnadApplication.jsx")
 );
-
+const ShoppingCart = React.lazy(() => import("@pages/shoppingCart"));
 const router = createBrowserRouter([
   {
     path: "/",
@@ -91,7 +92,7 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <Suspense fallback={<Loader />}>
-            <IndexElement />{" "}
+            <Home />{" "}
           </Suspense>
         ),
       },
@@ -293,6 +294,14 @@ const router = createBrowserRouter([
             ),
           },
         ],
+      },
+      {
+        path: "shooping-cart",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ShoppingCart />
+          </Suspense>
+        ),
       },
     ],
   },
