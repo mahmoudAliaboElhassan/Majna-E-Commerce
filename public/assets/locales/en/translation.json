@@ -115,5 +115,8 @@
   "loading-singlesingleStoreData": "Wait Until Your previous Store  Data be Loaded",
   "loading-stores": "Wait Until All Your Stores is Loaded",
   "no-stores": "No Stores is Added Until Now",
-  "store-edited": "Your Store Has been Edited Successfully"
+  "store-edited": "Your Store Has been Edited Successfully",
+  "product_title": "Product Title",
+  "product_price": "Product Price",
+  "sub_category": "SubCategory"
 }

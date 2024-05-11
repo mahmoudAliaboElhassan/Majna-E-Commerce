@@ -169,10 +169,32 @@ function UseFormValidation() {
     ),
   });
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
+    approvedBrands: Yup.string().required("Product Brand is Required"),
+    productTitle: Yup.string().required("Product Title is Required"),
+    productPrice: Yup.number().required("Product Price is Required "),
+    subcategory: Yup.string().required("Product SubCategory is Required"),
+    productDescription: Yup.string().required(
+      "Product Description is Required"
+    ),
     StoresAndQuantities: Yup.array().of(
       Yup.object().shape({
         store: Yup.string().required("Required Store Name"),
         quantity: Yup.string().required("Required quantity"),
+      })
+    ),
+    imgs: Yup.array().of(
+      Yup.object().shape({
+        img: Yup.mixed()
+          .required("Image is required")
+          .test("fileFormat", "Only PNG and JPG files are allowed", (value) => {
+            if (value) {
+              const supportedFormats = ["png", "jpg"];
+              const fileExtension = value.name.split(".").pop().toLowerCase();
+              return supportedFormats.includes(fileExtension);
+            }
+            return true;
+          }),
+        isCover: Yup.boolean().required("isCover is required"),
       })
     ),
   });

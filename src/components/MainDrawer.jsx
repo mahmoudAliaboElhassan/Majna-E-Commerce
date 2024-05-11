@@ -36,7 +36,7 @@ function MainDrawer({ open, handleClose, elements }) {
 
   const [activeLink, setActiveLink] = useState(result || "");
   console.log(location.pathname);
-  const handleClick = (to) => setActiveLink(to||"");
+  const handleClick = (to) => setActiveLink(to || "");
   const DrawerTheme = createTheme({
     components: {
       MuiDrawer: {
@@ -48,7 +48,7 @@ function MainDrawer({ open, handleClose, elements }) {
             maxWidth: "100%",
             backgroundColor:
               themeMode === "dark" ? Colors.lightblack : Colors.primary,
-            height: "100vh",
+            height: "100%",
             zIndex: 2,
           },
         },
@@ -62,7 +62,7 @@ function MainDrawer({ open, handleClose, elements }) {
           sx={{
             backgroundColor:
               themeMode === "dark" ? Colors.lightblack : Colors.primary,
-            height: "100vh",
+            height: "100%",
             zIndex: 2,
           }}
         >

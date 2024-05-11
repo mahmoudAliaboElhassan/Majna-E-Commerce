@@ -2,14 +2,14 @@
 
 // function AddProduct() {
 //   return <div>AddProduct</div>;
-//   // Brand
+//   // Brand_id
 //   // title
-//   // description
+//   // album => list => [file={file}&cover={true||false}]
+//   // description  max 1000
 //   // pricre
-//   // album
-//   // Category
 //   // SubCategory
-//   // Store  // Quantity
+//   // Store
+// Quantity
 
 //   // ===============
 //   // Store
@@ -45,10 +45,18 @@ import UseFormValidation from "@formValidation/use-form-validation";
 import UseInitialValues from "@utils/use-initial-values";
 import SelectComp from "@components/formui/Select";
 import FileInput from "@components/formui/file";
-import { addBrand, fetchPrands, getStores } from "@state/slices/distributor";
+import {
+  cleanUpStores,
+  getStores,
+  getAtuthorizedBrands,
+  cleanUpAuthorizedBrands,
+} from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
 import LoadingFetching from "@components/loadingFetching";
 import MultipleSelect from "@components/formui/multipleSelect";
+import TextFieldWrapper from "@components/formui/textField";
+import TextAreaWrapper from "@components/formui/textarea";
+import ImageUploader from "../../components/formui/multipleImages";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -75,6 +83,17 @@ function AddProduct() {
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
   const [count, setCount] = useState(1);
   const { Uid } = useSelector((state) => state.auth);
+  const { approvedBrands, loadingAuthorized, stores, loadingStores } =
+    useSelector((state) => state.distributor);
+
+  useEffect(() => {
+    dispatch(getAtuthorizedBrands({ Uid }));
+    dispatch(getStores({ Uid }));
+    return () => {
+      dispatch(cleanUpAuthorizedBrands());
+      dispatch(cleanUpStores());
+    };
+  }, [dispatch]);
 
   const handleAddClick = () => {
     setCount(count + 1); // Increment count
@@ -103,12 +122,13 @@ function AddProduct() {
                   onSubmit={(values) => {
                     console.log({ ...values });
                     console.log(values.StoresAndQuantities);
+                    console.log(values.imgs);
                     // dispatch(
-                    addBrand({
-                      authorization_doc: values.authorizeDocument,
-                      identity_doc: values.IdDistributor,
-                      Uid: values.productType,
-                    });
+                    // addBrand({
+                    //   authorization_doc: values.authorizeDocument,
+                    //   identity_doc: values.IdDistributor,
+                    //   Uid: values.productType,
+                    // });
                     // )
                     //   .unwrap()
                     //   .then(() => {
@@ -163,11 +183,49 @@ function AddProduct() {
                           <AppbarHeader>{t("add-product-now")}</AppbarHeader>
                         </Typography>
                       </Grid>{" "}
+                      <Grid item xs={12}>
+                        <TextFieldWrapper
+                          name="productTitle"
+                          label={t("product_title")}
+                          autocomplete="off"
+                        />
+                      </Grid>
+                      <ImageUploader />
+                      <Grid item xs={12}>
+                        <TextFieldWrapper
+                          name="subcategory"
+                          label={t("sub_category")}
+                          autocomplete="off"
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <TextAreaWrapper
+                          name="productDescription"
+                          textarea={3}
+                          label={t("description")}
+                          autocomplete="off"
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <SelectComp
+                          name="approvedBrands"
+                          label={t("approved_brands")}
+                          options={approvedBrands}
+                        />
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <TextFieldWrapper
+                          name="productPrice"
+                          label={t("product_price")}
+                          type="number"
+                        />
+                      </Grid>{" "}
                       {[...Array(count)].map((_, index) => (
                         <Grid item xs={12} key={index}>
                           <MultipleSelect
                             nameStore={`StoresAndQuantities.${index}.store`}
                             nameQuantity={`StoresAndQuantities.${index}.quantity`}
+                            options={stores}
                             label={`${t("quantity")} ${index + 1}`}
                           />
                         </Grid>

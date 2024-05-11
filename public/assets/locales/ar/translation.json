@@ -97,7 +97,7 @@
   "product_app": "المنتجات المرقوعه",
   "c_panel": "لوحة التحكم",
   "search_product": "إبحث عن المنتجات",
-  "approved_brands": "العلامات التجارية المقبولة",
+
   "all_brands_applications": "كل الطلبات المرفوعة",
   "all_stores": "كل متاجرك",
   "add-product": "أضف منتج",
@@ -117,5 +117,8 @@
   "loading-singlesingleStoreData": "إنتظر حتى يتم تحميل بيانات متجرك السابقة",
   "loading-stores": "إنتظر حتى يتم تحميل جميع متاجرك",
   "no-stores": "لا توجد متاجر تمت إضافتها حتى الآن",
-  "store-edited": "تم تعديل متجرك بنجاح"
+  "store-edited": "تم تعديل متجرك بنجاح",
+  "product_title": "نوع المنتج",
+  "product_price": "سعر المنتج",
+  "sub_category": "التصنيف فرعي"
 }

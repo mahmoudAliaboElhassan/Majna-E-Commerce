@@ -4,10 +4,10 @@ import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { TextField, Typography } from "@mui/material";
 
 import { Colors } from "@styles/theme";
-import {helperStyle} from '@styles/error';
+import { helperStyle } from "@styles/error";
 import UseThemMode from "@hooks/use-theme";
 
-function MultipleSelect({ nameStore, nameQuantity, ...otherProps }) {
+function MultipleSelect({ nameStore, nameQuantity, options, ...otherProps }) {
   const [formData, setFormData] = useState({
     quantity: "",
     store: "",
@@ -36,6 +36,7 @@ function MultipleSelect({ nameStore, nameQuantity, ...otherProps }) {
       [name]: value,
     };
     setFormData(updatedFormData);
+    console.log(formData);
     if (value) {
       formik?.setFieldValue(name, value);
     }
@@ -65,7 +66,7 @@ function MultipleSelect({ nameStore, nameQuantity, ...otherProps }) {
     configStoreName.error = true;
     configStoreName.helperText = metaStoreName.error;
   }
- 
+
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <FormControl fullWidth variant="outlined" {...configStoreName}>
@@ -89,10 +90,11 @@ function MultipleSelect({ nameStore, nameQuantity, ...otherProps }) {
           name={nameStore}
           onChange={handleInputChange}
         >
-          <MenuItem value="John">John</MenuItem>
-          <MenuItem value="Jane">Jane</MenuItem>
-          <MenuItem value="Alice">Alice</MenuItem>
-          <MenuItem value="Bob">Bob</MenuItem>
+          {options?.map((option) => (
+            <MenuItem key={option.id} value={option.id}>
+              {option.name}
+            </MenuItem>
+          ))}
         </Select>
         <Typography component="div" sx={helperStyle}>
           {configStoreName.helperText}

@@ -19,7 +19,7 @@ import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
 import Image from "../assests/image-1.jpg";
 import { getProducts } from "@state/slices/products";
-
+import ImageUploader from "@components/formui/multipleImages";
 function Home() {
   const [page, setPage] = useState(1);
   const { items } = useSelector((state) => state.cart);
@@ -128,8 +128,7 @@ function Home() {
   }, []);
   return (
     <>
-      {/* <ProjectsForm /> */}
-      <SearchParamsComponent />
+      <ImageUploader /> <SearchParamsComponent />
       <Swiperslide />
       <WhileView />
       <Container maxWidth="lg">

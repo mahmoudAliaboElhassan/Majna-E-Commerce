@@ -28,9 +28,25 @@ function AprovedBrands() {
       {loadingAuthorized ? (
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       ) : approvedBrands.length ? (
-        approvedBrands.map((brand) => brand.name)
+        approvedBrands.map((brand, idx) => (
+          <>
+            <div data-aos="fade-up" data-aos-duration={`${3000 * idx}`}>
+              {brand.name}
+            </div>
+            {/* <div data-aos="fade-up">Mahmoud Ali hassan</div> */}
+          </>
+        ))
       ) : (
-        <Typography style={{ fontSize: "18px" }}>{t("no_brands")}</Typography>
+        <>
+          <div
+            data-aos="fade-up"
+            // data-aos-duration="3000"
+            // style={{ fontSize: "18px" }}
+          >
+            {t("no_brands")}
+          </div>
+          <div data-aos="fade-up">Mahmoud Ali hassan</div>
+        </>
       )}
     </>
   );

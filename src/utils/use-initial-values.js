@@ -24,7 +24,7 @@ function UseInitialValues(props) {
     password: "",
   };
   const INITIAL_FORM_STATE_ADD_BRAND = {
-    productType: "",
+    productType: null,
     IdDistributor: null,
     authorizeDocument: null,
   };
@@ -41,7 +41,13 @@ function UseInitialValues(props) {
     singleStoreCity: props?.city_id,
   };
   const INITIAL_FORM_STATE_ADD_PRODUCT = {
-    StoresAndQuantities: [{}],
+    StoresAndQuantities: [{ store: null, quantity: null }],
+    imgs: [{ img: null, isCover: false }],
+    productTitle: null,
+    approvedBrands: null,
+    productPrice: null,
+    productDescription: null,
+    subcategory: null,
   };
   return {
     INITIAL_FORM_STATE_Login,
