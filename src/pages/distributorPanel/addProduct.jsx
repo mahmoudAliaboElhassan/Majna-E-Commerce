@@ -98,9 +98,7 @@ function AddProduct() {
   const handleAddClick = () => {
     setCount(count + 1); // Increment count
   };
-  useEffect(() => {
-    // dispatch(getStores({ Uid }));
-  });
+
   return (
     <>
       <Container maxWidth="sm">
@@ -121,8 +119,8 @@ function AddProduct() {
                   validationSchema={FORM_VALIDATION_SCHEMA_Add_PRODUCT}
                   onSubmit={(values) => {
                     console.log({ ...values });
-                    console.log(values.StoresAndQuantities);
-                    console.log(values.imgs);
+                    // console.log(values.StoresAndQuantities);
+                    // console.log(values.imgs);
                     // dispatch(
                     // addBrand({
                     //   authorization_doc: values.authorizeDocument,
@@ -190,7 +188,9 @@ function AddProduct() {
                           autocomplete="off"
                         />
                       </Grid>
-                      <ImageUploader />
+                      <Grid item xs={12}>
+                        <ImageUploader />
+                      </Grid>
                       <Grid item xs={12}>
                         <TextFieldWrapper
                           name="subcategory"

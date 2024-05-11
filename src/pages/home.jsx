@@ -128,7 +128,8 @@ function Home() {
   }, []);
   return (
     <>
-      <ImageUploader /> <SearchParamsComponent />
+      {/* <ImageUploader /> */}
+       <SearchParamsComponent />
       <Swiperslide />
       <WhileView />
       <Container maxWidth="lg">

@@ -133,7 +133,12 @@ function UseFormValidation() {
         return true;
       }),
       isCover: Yup["boolean"]().required("isCover is required")
-    }))
+    })).test("atLeastOneCover", "At least one image must be marked as cover", function (value) {
+      var atLeastOneCover = value.some(function (image) {
+        return image.isCover === true;
+      });
+      return atLeastOneCover;
+    })
   });
   return {
     FORM_VALIDATION_SCHEMA_SignUp: FORM_VALIDATION_SCHEMA_SignUp,

@@ -182,21 +182,37 @@ function UseFormValidation() {
         quantity: Yup.string().required("Required quantity"),
       })
     ),
-    imgs: Yup.array().of(
-      Yup.object().shape({
-        img: Yup.mixed()
-          .required("Image is required")
-          .test("fileFormat", "Only PNG and JPG files are allowed", (value) => {
-            if (value) {
-              const supportedFormats = ["png", "jpg"];
-              const fileExtension = value.name.split(".").pop().toLowerCase();
-              return supportedFormats.includes(fileExtension);
-            }
-            return true;
-          }),
-        isCover: Yup.boolean().required("isCover is required"),
-      })
-    ),
+    imgs: Yup.array()
+      .of(
+        Yup.object().shape({
+          img: Yup.mixed()
+            .required("Image is required")
+            .test(
+              "fileFormat",
+              "Only PNG and JPG files are allowed",
+              (value) => {
+                if (value) {
+                  const supportedFormats = ["png", "jpg"];
+                  const fileExtension = value.name
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
+                  return supportedFormats.includes(fileExtension);
+                }
+                return true;
+              }
+            ),
+          isCover: Yup.boolean().required("isCover is required"),
+        })
+      )
+      .test(
+        "atLeastOneCover",
+        "At least one image must be marked as cover",
+        function (value) {
+          const atLeastOneCover = value.some((image) => image.isCover === true);
+          return atLeastOneCover;
+        }
+      ),
   });
 
   return {
