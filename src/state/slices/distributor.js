@@ -1,8 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "@hooks/use-initial-state";
-import {addBrand,fetchPrands,fetchGovernance,getAllBrandsApplication,getAtuthorizedBrands,addStore,editStore,getStores,getStore} from "@state/act/actDistributor";
- 
+import {
+  addBrand,
+  fetchPrands,
+  fetchGovernance,
+  getAllBrandsApplication,
+  getAtuthorizedBrands,
+  addStore,
+  editStore,
+  getStores,
+  getStore,
+  addProduct,
+} from "@state/act/actDistributor";
+
 const { initialStateDistributor } = UseInitialStates();
 
 export const distributorSlice = createSlice({
@@ -217,5 +228,6 @@ export {
   addStore,
   editStore,
   getStores,
-  getStore
-}
+  getStore,
+  addProduct,
+};

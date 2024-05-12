@@ -21,7 +21,7 @@ export default function TextAreaWrapper({ name, label, ...otherProps }) {
     <Textarea
       {...configTextFieldArea}
       aria-label="minimum height"
-      // minRows={3}
+      minRows={3}
       placeholder="Minimum 3 rows"
     />
   );

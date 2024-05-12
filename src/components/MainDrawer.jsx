@@ -62,7 +62,7 @@ function MainDrawer({ open, handleClose, elements }) {
           sx={{
             backgroundColor:
               themeMode === "dark" ? Colors.lightblack : Colors.primary,
-            height: "100%",
+            height: "100vh",
             zIndex: 2,
           }}
         >

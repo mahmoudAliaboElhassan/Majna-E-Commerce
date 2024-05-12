@@ -17,6 +17,7 @@ import { Colors } from "@styles/theme";
 const ImageUploader = () => {
   const formik = useFormikContext();
   const [field, meta] = useField("imgs");
+  const [moreFour, setMoreFour] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   // console.log(meta);
   // console.log(meta.error);
@@ -25,14 +26,28 @@ const ImageUploader = () => {
 
   const { themeMode } = UseThemMode();
   const { Direction } = UseDirection();
+  const [oneIsCover, setOneIsCover] = useState(false);
   const handleImageChange = (e) => {
     const files = e.target.files;
     const imagesArray = Array.from(files);
+
+    // Check if the number of selected files exceeds 4
+    if (imagesArray.length > 4) {
+      // Prevent further processing
+      e.preventDefault();
+      setMoreFour(true);
+      // Inform the user that only 4 files are allowed
+      // alert("You can only select up to 4 files.");
+      return;
+    }
+
     imagesArray.forEach((img, idx) => {
+      setMoreFour(false);
       formik?.setFieldValue(`imgs.${idx}.img`, img);
     });
     setSelectedImages(imagesArray);
   };
+
   const inputFileRef = useRef(null);
 
   const handleIconClick = () => {
@@ -41,10 +56,12 @@ const ImageUploader = () => {
   const handleIsCover = (index) => {
     selectedImages.forEach((img, idx) => {
       formik?.setFieldValue(`imgs.${idx}.isCover`, idx === index);
+      setOneIsCover(true);
     });
   };
   console.log("error is ");
   console.log(formik?.errors["imgs.[0]?.img"]);
+  console.log(formik?.errors["imgs"]);
   console.log(formik.errors["imgs.[0]"]);
   console.log(formik.errors["imgs.0"]);
   console.log(formik.errors["imgs[0]"]);
@@ -85,20 +102,30 @@ const ImageUploader = () => {
           style={{ display: "none" }}
           fullWidth={true}
         />
-        <FormHelperText>{meta.error?.[0]?.img} </FormHelperText>
+        <FormHelperText>
+          {moreFour
+            ? "You can not select more than 4 images"
+            : !selectedImages.length && meta.error?.[0]?.img}
+        </FormHelperText>
       </FormControl>
       {/* <input type="file" multiple onChange={handleImageChange} /> */}
-      <div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         {selectedImages.map((image, index) => (
           <div key={index}>
             <input
               type="radio"
               name="cover"
-              // value={URL.createObjectURL(image.img)}
               onChange={() => handleIsCover(index)}
               id={`id${index}`}
             />
-            <label htmlFor={`id${index}`}>
+            <label htmlFor={`id${index}`} style={{ cursor: "pointer" }}>
               <img
                 src={URL.createObjectURL(image)}
                 alt={`Image ${index}`}
@@ -106,12 +133,19 @@ const ImageUploader = () => {
                 onClick={(e) => console.log(e.target)}
               />
             </label>
+            <div>{formik.errors?.imgs && formik.errors.imgs[index]?.img}</div>
+            <div>
+              {formik.errors?.imgs && formik.errors.imgs[index]?.isCover}
+            </div>
           </div>
         ))}
       </div>
-      {/* <Typography component="div" sx={helperStyle}>
-        {meta.error?.[0]?.img}
-      </Typography> */}
+
+      <FormHelperText>
+        {selectedImages.length && !oneIsCover
+          ? "One Image is Required to be the Cover"
+          : null}
+      </FormHelperText>
     </div>
   );
 };

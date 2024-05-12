@@ -171,7 +171,7 @@ function UseFormValidation() {
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     approvedBrands: Yup.string().required("Product Brand is Required"),
     productTitle: Yup.string().required("Product Title is Required"),
-    productPrice: Yup.number().required("Product Price is Required "),
+    productPrice: Yup.number("Price Should be Number").required("Product Price is Required "),
     subcategory: Yup.string().required("Product SubCategory is Required"),
     productDescription: Yup.string().required(
       "Product Description is Required"
@@ -212,7 +212,8 @@ function UseFormValidation() {
           const atLeastOneCover = value.some((image) => image.isCover === true);
           return atLeastOneCover;
         }
-      ),
+      )
+      .max(4, "You can select only up to two tags.")
   });
 
   return {
