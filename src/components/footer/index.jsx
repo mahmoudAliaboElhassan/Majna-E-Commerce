@@ -5,22 +5,23 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import UseHeaderElements from "@hooks/use-header-elements";
+import UseToggle from "@hooks/use-toggle";
 import { AppbarHeader } from "@styles/appbar";
 import { CardFooter, StyledLinkItem } from "@styles/footer";
 import ModalSignup from "@components/Modal";
 
 function Footer() {
-  const [open_modal, setOpenModal] = useState(false);
+  const [open_modal, toggle] = UseToggle(false);
   const { t } = useTranslation();
   const date = new Date();
   const year = date.getFullYear();
   const { allElements } = UseHeaderElements();
   const { token } = useSelector((state) => state.auth);
-  const closeModal = useCallback(() => setOpenModal(false), []);
+  const closeModal = useCallback(() => toggle(false), []);
   const handleShow = (element, index, array) => {
     index === array.length - 1 && token
       ? element?.click()
-      : setOpenModal(!open_modal);
+      : toggle();
   };
 
   return (

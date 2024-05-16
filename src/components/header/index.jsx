@@ -29,6 +29,8 @@ import { AppbarHeader, CartNumber, TabsElementsList } from "@styles/appbar";
 import useHeaderElements from "@hooks/use-header-elements";
 import UseDirection from "@hooks/use-direction";
 import UseLanguages from "@hooks/use-languages";
+import UseDebounce from "@hooks/use-debounce";
+import UseToggle from "@hooks/use-toggle";
 import { Colors } from "@styles/theme";
 import LanguageSelection from "@components/languages";
 import Mode from "@components/mode";
@@ -41,7 +43,6 @@ import styles from "@components/header/style.module.css";
 function Header() {
   const [showSearch, setShowSearch] = useState(false);
   const [value, setValue] = useState(null);
-  const location = useLocation();
   const firstRef = useRef();
   const theme = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -49,8 +50,6 @@ function Header() {
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const { allElements, allTabsElements, authElements } = useHeaderElements();
-  const { Direction } = UseDirection();
-  const [showSearchRe, setShowSearcRe] = useState(false);
   const [anchorElSign, setAnchorElSign] = useState(null);
   const openSign = Boolean(anchorElSign);
   const handleClickSign = (event) => {
@@ -59,7 +58,7 @@ function Header() {
   const handleCloseSign = () => {
     setAnchorElSign(null);
   };
-  const [open_modal, setOpenModal] = useState(false);
+  const [open_modal, toggle] = UseToggle( );
 
   const [searchValue, setSearchValue] = useState("");
 
@@ -71,31 +70,17 @@ function Header() {
   };
   const dispatch = useDispatch();
   const { activeLink } = useSelector((state) => state.active);
-
   const { token, role } = useSelector((state) => state.auth);
   const qunatityNumbers = useSelector(getTotalQuantities);
 
   const handleClickAuth = (authel, index) => {
     handleCloseSign();
-    index === 1 && (token ? authel.click?.() : setOpenModal(!open_modal));
+    index === 1 && (token ? authel.click?.() : toggle());
   };
   const setSearchFn = () => setShowSearch(false);
-  const closeModal = () => setOpenModal(false);
-  const [isAnimate, setIsAnimate] = useState(false);
-  useEffect(() => {
-    if (!qunatityNumbers) {
-      return;
-    }
-    setIsAnimate(true);
-    const debounce = setTimeout(() => {
-      setIsAnimate(false);
-    }, 300);
+  const closeModal = () => toggle(false);
+  const [isAnimate, setIsAnimate] = UseDebounce(500);
 
-    return () => {
-      clearTimeout(debounce);
-      console.log("return from effect");
-    };
-  }, [qunatityNumbers]);
   const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`;
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>

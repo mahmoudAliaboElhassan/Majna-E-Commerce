@@ -25,6 +25,7 @@ import ModalSignup from "@components/Modal";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
+import UseToggle from "@hooks/use-toggle";
 import { activate } from "@state/slices/active";
 import { CartNumber, DrawerCloseIcon } from "@styles/appbar";
 
@@ -32,12 +33,12 @@ function DrawerComponent({ drawerElements }) {
   const [active, setActive] = useState(false);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [open_modal, setOpenModal] = useState(false);
+  const [open_modal, toggle] = UseToggle(false);
   const { t } = useTranslation();
   const { Direction } = UseDirection();
   const { themeMode } = UseThemMode();
   const { token } = useSelector((state) => state.auth);
-  const closeModal = useCallback(() => setOpenModal(false), []);
+  const closeModal = useCallback(() => toggle(false), []);
   const closeSearch = useCallback(() => setShowSearch(false), []);
   const dispatch = useDispatch();
   const handleClick = (element, index, array) => {
@@ -48,7 +49,7 @@ function DrawerComponent({ drawerElements }) {
       if (token) {
         element.click?.();
       } else {
-        setOpenModal((open_modal) => !open_modal);
+        toggle();
       }
     }
   };

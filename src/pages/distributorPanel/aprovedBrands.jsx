@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
+import { Card } from "@mui/material";
 
 import {
   getAtuthorizedBrands,
@@ -30,9 +31,9 @@ function AprovedBrands() {
       ) : approvedBrands.length ? (
         approvedBrands.map((brand, idx) => (
           <>
-            <div data-aos="fade-up" data-aos-duration={`${3000 * idx}`}>
+            <Card data-aos="fade-up" data-aos-duration={`${3000 * idx}`}>
               {brand.name}
-            </div>
+            </Card>
             {/* <div data-aos="fade-up">Mahmoud Ali hassan</div> */}
           </>
         ))
