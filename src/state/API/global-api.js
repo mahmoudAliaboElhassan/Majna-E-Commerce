@@ -59,10 +59,10 @@ function createAxiosInstance(baseURL, contentType) {
 
 // Create Axios instances for API and Files
 export const majnAPI = createAxiosInstance(
-  "https://majna.onrender.com/",
+  process.env.REACT_APP_API_URL,
   "application/json"
 );
 export const majnaFiles = createAxiosInstance(
-  "https://majna.onrender.com/",
+  process.env.REACT_APP_API_URL,
   'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
 );

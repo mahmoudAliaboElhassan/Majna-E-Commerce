@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,6 +46,7 @@ function AddBrand() {
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
+
   useEffect(() => {
     if (brands.length === 0) {
       dispatch(fetchPrands());
@@ -139,7 +139,7 @@ function AddBrand() {
                         </Grid>{" "}
                         <Grid item xs={12}>
                           <SelectComp
-                            name="approvedBrands"
+                            name="productType"
                             label={t("label_type")}
                             options={brands}
                           />

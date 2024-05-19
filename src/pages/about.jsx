@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Motion2 from "@components/motion2";
 
 function About() {
+  console.log(process.env.REACT_APP_API_URL);
   return (
     <Container>
       <motion.div
