@@ -49,6 +49,7 @@
     "yup": "^1.2.0"
   },
   "scripts": {
+    "prebuild": "npm install --force",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
