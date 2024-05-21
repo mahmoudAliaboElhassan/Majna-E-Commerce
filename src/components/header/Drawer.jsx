@@ -79,8 +79,8 @@ function DrawerComponent({ drawerElements }) {
     <ThemeProvider theme={DrawerTheme}>
       <AnimatePresence initial={false}>
         {!openDrawer && (
-          <IconButton sx={{ color: "white" }}>
-            <MenuIcon onClick={() => setOpenDrawer(true)} />
+          <IconButton sx={{ color: "white" }} onClick={() => setOpenDrawer(true)}>
+            <MenuIcon  />
           </IconButton>
         )}
 

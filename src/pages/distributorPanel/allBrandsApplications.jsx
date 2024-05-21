@@ -58,7 +58,7 @@ function AllBrandsApplications() {
           rows={rows}
           columns={columns}
           pageSize={12}
-          pagination={false}
+          // pagination={false}
         />
       ) : (
         <Typography style={{ fontSize: "18px" }}>{t("no_brands")}</Typography>

@@ -78,7 +78,7 @@ function MainDrawer({ open, handleClose, elements }) {
           <Divider />
           {elements?.map((el, index) => (
             <ListItem
-              key={el.to}
+              key={el.label}
               disablePadding
               onClick={() => handleClick(el.to)}
             >

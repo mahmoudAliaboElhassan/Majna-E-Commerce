@@ -18,6 +18,7 @@ function SlideSearch({ show, close, dir }) {
           options={skills || []}
           fullWidth
           color="secondary"
+          freeSolo
           renderInput={(params) => (
             <SerarchField
               {...params}
@@ -25,7 +26,6 @@ function SlideSearch({ show, close, dir }) {
               placeholder={t("search_product")}
             />
           )}
-          freesolo
         />
         <IconButton>
           <SearchIcon

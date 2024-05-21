@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Cookies from "js-cookie";
 import { IconButton, Divider, MenuItem, Menu } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -46,43 +45,25 @@ function LanguageSelection() {
         <LanguageIcon style={{ color: Colors.white }} />
         <ArrowDropDownIcon fontSize="small" sx={{ color: Colors.white }} />
       </IconButton>
-      {/* <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        animate={open ? { y: 100, opacity: 1 } : { y: -50, opacity: 0 }}
-        transition={{ duration: 100 }}
-        style={{
-          border: `1px solid ${
-            themeMode === "dark" ? Colors.light_gray : Colors.shaft
-          }`,
-          borderRadius: "12px",
-        }}
-      > */}
-        <Menu
-          open={open}
-          anchorEl={clickedElement}
-          onClose={handleClose}
-          style={{ borderRadius: "10px" }}
-        >
-          {Languages.map((lang) => (
-            <>
-            <div key={lang.country_code}>
-
-              <MenuItemElement
-                onClick={() => changeLang(lang)}
-                disabled={currLanguageCode == lang.code}
-           
-              >
-                <i
-                  className={`flag flag-${lang.country_code} larger-icon mx-1`}
-                ></i>{" "}
-                {lang.name}
-              </MenuItemElement>
-              <Divider />
-              </div>
-            </>
-          ))}
-        </Menu>
-      {/* </motion.div> */}
+      <Menu
+        open={open}
+        anchorEl={clickedElement}
+        onClose={handleClose}
+        style={{ borderRadius: "10px" }}
+      >
+        {Languages.map((lang) => (
+          <div key={lang.country_code}>
+            <MenuItemElement
+              onClick={() => changeLang(lang)}
+              disabled={currLanguageCode === lang.code}
+            >
+              <i className={`flag flag-${lang.country_code} larger-icon mx-1`}></i>{" "}
+              {lang.name}
+            </MenuItemElement>
+            <Divider />
+          </div>
+        ))}
+      </Menu>
     </>
   );
 }

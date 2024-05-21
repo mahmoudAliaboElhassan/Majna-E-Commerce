@@ -58,7 +58,7 @@ function IndexReviewer() {
                   rows={rows}
                   columns={columns}
                   pageSize={12}
-                  pagination={false}
+                  // pagination={false}
                 />
               </div>
 

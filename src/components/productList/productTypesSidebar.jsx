@@ -38,7 +38,7 @@ function ProductTypesSidebar() {
         >
           {productTypes &&
             productTypes.map((product, index) => (
-              <>
+              <div key={product.to}>
                 <h3
                   style={{ color: "white", cursor: "pointer", padding: "5px" }}
                   sx={{ fontSize: { md: "12px", lg: "16px" } }}
@@ -66,7 +66,7 @@ function ProductTypesSidebar() {
                       <p key={innerIndex}>{nestedType.label}</p>
                     ))}
                 </motion.div>
-              </>
+              </div>
             ))}
           {/* <div key={index}>
             <h1 onClick={() => setActive(index)}>{product.label}</h1>

@@ -60,11 +60,11 @@ import "./loader.css";
 
 function Loader() {
   return (
-    <div class="loader">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    <div className="loader">
+      <div className="circle"></div>
+      <div className="circle"></div>
+      <div className="circle"></div>
+      <div className="circle"></div>
     </div>
   );
 }

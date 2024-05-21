@@ -31,7 +31,11 @@ function AprovedBrands() {
       ) : approvedBrands.length ? (
         approvedBrands.map((brand, idx) => (
           <>
-            <Card data-aos="fade-up" data-aos-duration={`${3000 * idx}`}>
+            <Card
+              data-aos="fade-up"
+              data-aos-duration={`${3000 * idx}`}
+              key={idx}
+            >
               {brand.name}
             </Card>
             {/* <div data-aos="fade-up">Mahmoud Ali hassan</div> */}

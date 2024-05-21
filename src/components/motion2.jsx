@@ -33,7 +33,7 @@ function Motion2() {
       <div>
         <ul>
           {Persons.map((pers) => (
-            <li>
+            <li key={pers.id}>
               <div
                 key={pers.id}
                 onClick={() => handleClick(pers)}
