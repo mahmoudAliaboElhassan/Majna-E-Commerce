@@ -118,8 +118,7 @@ function SignUp() {
                   />{" "}
                 </Grid>{" "}
                 <Grid item xs={6}>
-                  <PhoneNumber
-                  />{" "}
+                  {/* <PhoneNumber />{" "} */}
                 </Grid>{" "}
                 <Grid item xs={12}>
                   <ButtonWrapper>{t("signup")}</ButtonWrapper>{" "}

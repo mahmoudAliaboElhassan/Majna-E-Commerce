@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import Cookies from "js-cookie";
 import { IconButton, Divider, MenuItem, Menu } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
@@ -57,7 +58,9 @@ function LanguageSelection() {
               onClick={() => changeLang(lang)}
               disabled={currLanguageCode === lang.code}
             >
-              <i className={`flag flag-${lang.country_code} larger-icon mx-1`}></i>{" "}
+              <i
+                className={`flag flag-${lang.country_code} larger-icon mx-1`}
+              ></i>{" "}
               {lang.name}
             </MenuItemElement>
             <Divider />
