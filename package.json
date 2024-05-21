@@ -50,6 +50,7 @@
   },
   "scripts": {
     "prebuild": "npm install --force",
+    "preinstall": "npm install --force",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
