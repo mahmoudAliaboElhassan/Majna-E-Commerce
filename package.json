@@ -49,7 +49,7 @@
     "yup": "^1.2.0"
   },
   "scripts": {
-    "preinstall": "npm install --legacy-peer-deps",
+    "preinstall": "npm i -f",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
