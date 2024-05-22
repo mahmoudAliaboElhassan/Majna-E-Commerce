@@ -17,6 +17,8 @@ import {
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import UseMediaQueryHook from "@hooks/use-media-query";
+
 function ModalSignup({ open_modal, close }) {
   const [type, setType] = useState("customer");
 
@@ -28,18 +30,20 @@ function ModalSignup({ open_modal, close }) {
     setTypeLabel(t(event.target.value));
   };
   localStorage.setItem("type", type);
+  const { isMatch } = UseMediaQueryHook();
 
   const style = {
     position: "absolute",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: "80%",
-    // height: "80%",
+    width: isMatch ? "auto" : "80%",
+    height: isMatch ? "auto" : "80%",
+
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
-    p: 4,
+    p: 2,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -69,7 +73,10 @@ function ModalSignup({ open_modal, close }) {
             >
               <Grid container spacing={2}>
                 <Grid item xs={12} md={6} lg={6}>
-                  <Card raised sx={{ p: 4, height: "150px" }}>
+                  <Card
+                    raised
+                    sx={{ p: 3, height: "150px", overflowY: "scroll" }}
+                  >
                     <FormControlLabel
                       value="distributor"
                       control={<Radio />}
@@ -81,7 +88,10 @@ function ModalSignup({ open_modal, close }) {
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={6} lg={6}>
-                  <Card raised sx={{ p: 4, height: "150px" }}>
+                  <Card
+                    raised
+                    sx={{ p: 3, height: "150px", overflowY: "scroll" }}
+                  >
                     <FormControlLabel
                       value="customer"
                       control={<Radio />}
