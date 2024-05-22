@@ -75,7 +75,11 @@ function ModalSignup({ open_modal, close }) {
                 <Grid item xs={12} md={6} lg={6}>
                   <Card
                     raised
-                    sx={{ p: 3, height: "150px", overflowY: "scroll" }}
+                    sx={{
+                      p: 3,
+                      height: isMatch ? "120px" : "auto",
+                      overflowY: "scroll",
+                    }}
                   >
                     <FormControlLabel
                       value="distributor"
@@ -90,7 +94,11 @@ function ModalSignup({ open_modal, close }) {
                 <Grid item xs={12} md={6} lg={6}>
                   <Card
                     raised
-                    sx={{ p: 3, height: "150px", overflowY: "scroll" }}
+                    sx={{
+                      p: 3,
+                      height: isMatch ? "120px" : "auto",
+                      overflowY: "scroll",
+                    }}
                   >
                     <FormControlLabel
                       value="customer"
