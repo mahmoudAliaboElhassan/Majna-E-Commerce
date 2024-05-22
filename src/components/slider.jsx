@@ -15,8 +15,9 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
-import image from "../image";
 import { Box } from "@mui/material";
+
+import image from "../image";
 
 const Swiperslide = () => {
   return (
@@ -30,22 +31,26 @@ const Swiperslide = () => {
           EffectFade,
           Autoplay,
         ]}
-        effect="fade"
+        // effect="fade"
         spaceBetween={50}
         autoplay={{ delay: 3000 }}
-        slidesPerView={1}
+        slidesPerView={3}
         navigation
         pagination={{ clickable: true }}
-        scrollbar={{ draggable: true }}
-        style={{ height: "350px" }}
+        // scrollbar={{ draggable: true }}
+        style={{ height: "350px", width: "100%" }}
       >
-        {image.map((img) => {
+        {image.map((img, index) => {
           return (
-            <SwiperSlide key={img}>
+            <SwiperSlide key={index}>
               <img
                 src={img}
-                alt={img}
-                style={{ width: "100%", height: "100vh" }}
+                alt={`slide-${index}`}
+                // style={{
+                //   width: "100%",
+                //   height: "100%",
+                //   objectFit: "cover",
+                // }}
               />
             </SwiperSlide>
           );
