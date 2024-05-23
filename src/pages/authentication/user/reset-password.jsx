@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     color:
-      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
+      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",    backgroundColor: "transparent !important",
+
   },
   containerWrapper: {
     position: "absolute",

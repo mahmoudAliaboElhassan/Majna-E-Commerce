@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     color:
       theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
+    backgroundColor: "transparent !important",
   },
 }));
 const { INITIAL_FORM_STATE_SignUp } = UseInitialValues();
