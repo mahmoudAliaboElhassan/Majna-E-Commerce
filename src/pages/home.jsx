@@ -11,8 +11,8 @@ import SidebarPrices from "@components/Sidebar";
 import Product from "@components/productUi";
 import ShowProducts from "@components/productUi/showProducts";
 import PaginationComponent from "@components/pagination";
-import DateComponent from "@components/momentDate.jsx";
-import WhileView from "@components/formui/whileView.jsx";
+// import DateComponent from "@components/momentDate.jsx";
+// import WhileView from "@components/formui/whileView.jsx";
 import UseThemMode from "@hooks/use-theme";
 // import MyComponent from "@searchandSelect.jsx";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
@@ -129,9 +129,9 @@ function Home() {
   return (
     <>
       {/* <ImageUploader /> */}
-       <SearchParamsComponent />
+      {/* <SearchParamsComponent /> */}
       <Swiperslide />
-      <WhileView />
+      {/* <WhileView /> */}
       <Container maxWidth="lg">
         <Grid container spacing={1.5} style={{ width: "100%" }}>
           <Grid item sm={1} xs={1} md={1}>
@@ -155,13 +155,14 @@ function Home() {
           </Grid>
         </Grid>
       </Container>{" "}
-      <WhileView />
+      {/* <WhileView /> */}
       <div data-aos="fade-up" data-aos-anchor-placement="top-center">
         hello i am mahmoud hello i am mahmoud hello i am mahmoud hello i am
         mahmoud hello i am mahmoud hello i am mahmoud hello i am mahmoud hello i
         am mahmoud hello i am mahmoud
       </div>
-      <DateComponent /> <WhileView />
+      {/* <DateComponent /> */}
+      {/* <WhileView /> */}
       <Footer />
     </>
   );

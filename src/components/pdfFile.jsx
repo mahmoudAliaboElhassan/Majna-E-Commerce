@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-import { Worker, Viewer } from "@react-pdf-viewer/core";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import { pdfjs } from "react-pdf";
+// import { Worker, Viewer } from "@react-pdf-viewer/core";
+// import "@react-pdf-viewer/core/lib/styles/index.css";
+// import { pdfjs } from "react-pdf";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useTranslation } from "react-i18next";
@@ -47,11 +47,11 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
       </Button>
       {view && (
         <PdfContainer>
-          <Worker
-            workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
+          // <Worker
+            // // workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
           >
             <Viewer fileUrl={file} />
-          </Worker>
+          // </Worker>
         </PdfContainer>
       )}
       <ImageUploader /> */}

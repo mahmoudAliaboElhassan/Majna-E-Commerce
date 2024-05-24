@@ -33,12 +33,6 @@ import { logOut } from "@state/slices/auth";
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
-const useStyles = makeStyles({
-  el: {
-    backgroundColor: "red",
-  },
-  bl: { color: "blue" },
-});
 
 function RootLayout() {
   const [darkMode, setDarkMode] = useState(
@@ -105,7 +99,7 @@ function RootLayout() {
       },
     },
   });
-  const classes = useStyles();
+  // const classes = useStyles();
   const Item = styled("div")({
     color: "blue",
     minHeight: 100,
@@ -125,10 +119,9 @@ function RootLayout() {
     <StylesProvider jss={jss}>
       <ThemeProvider theme={thema}>
         <CssBaseline />
-        <Header />{" "}
-        <>
-          <Outlet />
-          {/* <Container maxWidth="sm"> 
+        <Header /> <div style={{ height: "20px" }}></div>
+        <Outlet />
+        {/* <Container maxWidth="sm"> 
             <Paper square={false} elevation={24}>
               <MenuList>
                 <MenuItem>
@@ -217,7 +210,7 @@ function RootLayout() {
               go
             </MuiLink>
           </Container>*/}
-          {/* <Grid
+        {/* <Grid
             container
             justifyContent="center"
             align-items="center"
@@ -228,9 +221,9 @@ function RootLayout() {
             </Grid>
           </Grid>{" "}
           <Motion2 /> */}
-          {/* <GetProducts /> */}
-          {/* <BasicModal /> */}
-          {/* <Switch
+        {/* <GetProducts /> */}
+        {/* <BasicModal /> */}
+        {/* <Switch
             checked={localStorage.getItem("mode") === "true" ? true : false}
             onChange={() => {
               localStorage.setItem(
@@ -242,12 +235,12 @@ function RootLayout() {
               );
             }}
           /> */}
-          {/* <MotionComp /> */}
-          {/* <div style={{ color: "textSecondary" }}>helloo </div> */}
-          {/* <FormPropsTextFields /> */}
-          {/* <Loader /> */}
-          {/* <div>{t("about")}</div> */}
-        </>
+        {/* <MotionComp /> */}
+        {/* <div style={{ color: "textSecondary" }}>helloo </div> */}
+        {/* <FormPropsTextFields /> */}
+        {/* <Loader /> */}
+        {/* <div>{t("about")}</div> */}
+        {/* </> */}
         {/* <FormAuth theme={thema} /> */}
         {/* {
           (window.onscroll = () => {
