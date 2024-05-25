@@ -1,0 +1,13 @@
+/* Adjust ToastContainer styles for mobile */
+
+@media (max-width: 600px) {
+  .Toastify__toast {
+    width: 90% !important;
+    font-size: 14px;
+    z-index: 99999;
+  }
+  .Toastify__toast-body {
+    padding: 10px;
+    z-index: 99999;
+  }
+}

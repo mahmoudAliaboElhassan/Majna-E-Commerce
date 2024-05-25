@@ -20,6 +20,7 @@
 - **_DRY Components and Hooks_**: Apply the "Don't Repeat Yourself" principle for cleaner code.
 - **_Optional Chaining and Nullish Coalescing_**: Increase code clarity and handle null or undefined values effectively.
 - **_Custom Hooks_**: Enhance code efficiency with custom hooks, Website uses the principle of **custom hooks** to shorten The code and make it more **efficient**.
+- **_Environmental Variables** to  Securely manage sensitive information and configuration settings.
 - **_Organized Folder Structure_**: Maintain code organization with separate folders for pages, components, hooks, styles, form validation, and translation.
 
 ## Libraries and Dependencies

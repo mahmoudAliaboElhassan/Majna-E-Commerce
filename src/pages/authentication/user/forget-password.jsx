@@ -17,6 +17,7 @@ import UseThemMode from "@hooks/use-theme";
 import UseInitialValues from "@utils/use-initial-values";
 import { forgetPassword } from "@state/slices/auth";
 import { AppbarHeader } from "@styles/appbar";
+import "./toasts.css";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
