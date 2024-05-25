@@ -35,7 +35,6 @@ const jss = create({
 });
 
 function RootLayout() {
- 
   const { t } = useTranslation();
   const { Direction } = UseDirection();
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ function RootLayout() {
   useEffect(() => {
     document.title = t("website-title");
     AOS.init({
-      disable: "phone",
+      // disable: "phone",
       duration: 700,
       easing: "ease-out-cubic",
     });
