@@ -2,8 +2,8 @@ import React, { Suspense } from "react";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Loader from "@components/loader/index.jsx";
-import ErrorPage from "@pages/errorPage.jsx";
+import Loader from "@components/loader";
+import ErrorPage from "@pages/errorPage/index.jsx";
 import Home from "@pages/home.jsx";
 import RootLayout from "@pages/RootLayout.jsx";
 import ProtectedRoute from "@components/protectedRoute.jsx";
@@ -22,7 +22,7 @@ const Activation = React.lazy(() =>
   import("@pages/authentication/activation/index.jsx")
 );
 
-const AboutUsPage = React.lazy(() => import("@pages/about.jsx"));
+const AboutUsPage = React.lazy(() => import("@pages/about"));
 
 const SignUpPage = React.lazy(() =>
   import("@pages/authentication/user/signUp.jsx")
@@ -32,7 +32,7 @@ const LoginPage = React.lazy(() =>
   import("@pages/authentication/user/login.jsx")
 );
 
-const ContactUsPage = React.lazy(() => import("@pages/contacts.jsx"));
+const ContactUsPage = React.lazy(() => import("@pages/contacts"));
 
 const ChangePassword = React.lazy(() =>
   import("@pages/authentication/user/change-password.jsx")

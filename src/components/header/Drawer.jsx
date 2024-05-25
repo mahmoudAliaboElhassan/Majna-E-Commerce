@@ -20,8 +20,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import SlideSearch from "@components/Slide";
-import ModalSignup from "@components/Modal";
+import SlideSearch from "@components/slide";
+import ModalSignup from "@components/modal";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
@@ -79,8 +79,11 @@ function DrawerComponent({ drawerElements }) {
     <ThemeProvider theme={DrawerTheme}>
       <AnimatePresence initial={false}>
         {!openDrawer && (
-          <IconButton sx={{ color: "white" }} onClick={() => setOpenDrawer(true)}>
-            <MenuIcon  />
+          <IconButton
+            sx={{ color: "white" }}
+            onClick={() => setOpenDrawer(true)}
+          >
+            <MenuIcon />
           </IconButton>
         )}
 

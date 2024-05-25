@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 
 import { logOut } from "@state/slices/auth";
-import ModalSignup from "@components/Modal";
+import ModalSignup from "@components/modal";
 
 function UseHeaderElements() {
   const { t } = useTranslation();

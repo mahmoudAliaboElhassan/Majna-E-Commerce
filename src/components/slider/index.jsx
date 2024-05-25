@@ -9,7 +9,7 @@ import {
   Autoplay,
   EffectFade,
 } from "swiper/modules";
-import "../../node_modules/swiper/swiper-bundle.min.css";
+import "../../../node_modules/swiper/swiper-bundle.min.css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
@@ -17,7 +17,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import { Box } from "@mui/material";
 
-import image from "../image";
+import image from "../../image";
 
 const Swiperslide = () => {
   return (

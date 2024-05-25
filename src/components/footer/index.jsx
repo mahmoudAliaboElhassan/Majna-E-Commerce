@@ -8,7 +8,7 @@ import UseHeaderElements from "@hooks/use-header-elements";
 import UseToggle from "@hooks/use-toggle";
 import { AppbarHeader } from "@styles/appbar";
 import { CardFooter, StyledLinkItem } from "@styles/footer";
-import ModalSignup from "@components/Modal";
+import ModalSignup from "@components/modal";
 
 function Footer() {
   const [open_modal, toggle] = UseToggle(false);

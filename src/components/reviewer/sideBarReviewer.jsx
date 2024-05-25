@@ -11,7 +11,7 @@ import { AppBarReviwer } from "@styles/reviewer";
 import UseDirection from "@hooks/use-direction";
 import Mode from "@components/mode";
 import LanguageSelection from "@components/languages";
-import MainDrawer from "@components/MainDrawer";
+import MainDrawer from "@components/shared/mainDrawer";
 
 function SideBarReviewer({ open, handleOpen, handleClose }) {
   const { ReviewerElements } = UseReviewerElements();

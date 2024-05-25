@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import TextFieldWrapper from "@components/formui/textField";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import PasswordField from "@components/formui/passwordField";
-import ModalSignup from "@components/Modal";
+import ModalSignup from "@components/modal";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseThemMode from "@hooks/use-theme";
 import UseInitialValues from "@utils/use-initial-values";

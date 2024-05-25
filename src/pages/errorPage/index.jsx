@@ -7,8 +7,8 @@ import ImageListItem from "@mui/material/ImageListItem";
 import { useTranslation } from "react-i18next";
 import { Link, useRouteError } from "react-router-dom";
 
-import image from "../image";
-import errorImage from "../assests/error2.svg";
+import image from "../../image";
+import errorImage from "../../assests/error2.svg";
 import { ErrorContainer } from "@styles/error";
 
 const ErrorPage = () => {

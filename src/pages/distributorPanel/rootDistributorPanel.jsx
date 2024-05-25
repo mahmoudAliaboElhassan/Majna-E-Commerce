@@ -9,7 +9,7 @@ import { useTheme } from "@emotion/react";
 
 import withGuard from "@utils/withGuard";
 import { MainBody } from "@styles/reviewer";
-import MainDrawer from "@components/MainDrawer";
+import MainDrawer from "@components/shared/mainDrawer";
 import { DrawerButton } from "@styles/products";
 import UseDistributorElements from "@hooks/use-distributor-elements";
 
