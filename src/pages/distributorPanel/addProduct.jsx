@@ -101,7 +101,8 @@ function AddProduct() {
   };
 
   return (
-    <>
+    <div style={{ position: "relative", height: "100vh" }}>
+
       <Container maxWidth="sm">
         <ToastContainer />
         <Card raised>
@@ -254,7 +255,7 @@ function AddProduct() {
           </Container>
         </Card>
       </Container>
-    </>
+    </div>
   );
 }
 

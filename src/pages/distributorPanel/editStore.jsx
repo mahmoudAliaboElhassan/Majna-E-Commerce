@@ -72,7 +72,8 @@ function EditStore() {
   });
 
   return (
-    <>
+    <div style={{ position: "relative", height: "100vh" }}>
+
       {!loadingGovernaces && !loadingSingleStoreData ? (
         <Container maxWidth="sm">
           <ToastContainer />
@@ -196,7 +197,7 @@ function EditStore() {
       ) : (
         <LoadingFetching>{t("loading-singlesingleStoreData")}</LoadingFetching>
       )}
-    </>
+    </div>
   );
 }
 

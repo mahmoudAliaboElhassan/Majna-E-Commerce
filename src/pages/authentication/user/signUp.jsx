@@ -39,103 +39,107 @@ function SignUp() {
   const { themeMode } = UseThemMode();
 
   return (
-    <Container maxWidth="sm">
-      <ToastContainer />
-      <Grid container>
-        <Grid item={12}>
-          <Formik
-            initialValues={{
-              ...INITIAL_FORM_STATE_SignUp,
-            }}
-            validationSchema={FORM_VALIDATION_SCHEMA_SignUp}
-            onSubmit={(values) => {
-              console.log(values);
-              dispatch(
-                signUp({
-                  username: values.username,
-                  email: values.email,
-                  password: values.password,
-                  role: localStorage.getItem("type"),
-                })
-              )
-                .unwrap()
-                .then(() => {
-                  {
-                    toast.success(t("signup-success"), {
-                      position: "top-right",
-                      autoClose: 1000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: themeMode,
-                    });
-                  }
-                })
-                .catch((error) => {
-                  if (error.response.status === 400) {
-                    Swal.fire({
-                      title: t("error-signup"),
-                      text: t("error-signup-text"),
-                      icon: "error",
-                      confirmButtonText: t("ok"),
-                    });
-                  }
-                });
-            }}
-          >
-            <Form className={classes.formWrapper}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Typography>
-                    <AppbarHeader>{t("create-account")}</AppbarHeader>
-                  </Typography>
+    <div style={{ position: "relative", height: "100vh" }}>
+      <Container maxWidth="sm">
+        <ToastContainer />
+        <Grid container>
+          <Grid item={12}>
+            <Formik
+              initialValues={{
+                ...INITIAL_FORM_STATE_SignUp,
+              }}
+              validationSchema={FORM_VALIDATION_SCHEMA_SignUp}
+              onSubmit={(values) => {
+                console.log(values);
+                dispatch(
+                  signUp({
+                    username: values.username,
+                    email: values.email,
+                    password: values.password,
+                    role: localStorage.getItem("type"),
+                  })
+                )
+                  .unwrap()
+                  .then(() => {
+                    {
+                      toast.success(t("signup-success"), {
+                        position: "top-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: themeMode,
+                      });
+                    }
+                  })
+                  .catch((error) => {
+                    if (error.response.status === 400) {
+                      Swal.fire({
+                        title: t("error-signup"),
+                        text: t("error-signup-text"),
+                        icon: "error",
+                        confirmButtonText: t("ok"),
+                      });
+                    }
+                  });
+              }}
+            >
+              <Form className={classes.formWrapper}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <Typography>
+                      <AppbarHeader>{t("create-account")}</AppbarHeader>
+                    </Typography>
+                  </Grid>{" "}
+                  <Grid item xs={12}>
+                    <TextFieldWrapper
+                      name="username"
+                      type="text"
+                      label={t("username")}
+                    />
+                  </Grid>{" "}
+                  <Grid item xs={12}>
+                    <TextFieldWrapper name="email" label={t("email")} />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <PasswordField name="password" label={t("password")} />
+                  </Grid>{" "}
+                  <Grid item xs={12}>
+                    <PasswordField
+                      name="confirm_password"
+                      label={t("confirm-password")}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <CheckboxWrapper
+                      name="termsOfService"
+                      legend={t("terms-conditions")}
+                      label={t("i-agree")}
+                    />{" "}
+                  </Grid>{" "}
+                  <Grid item xs={6}>
+                    {/* <PhoneNumber />{" "} */}
+                  </Grid>{" "}
+                  <Grid item xs={12}>
+                    <ButtonWrapper>{t("signup")}</ButtonWrapper>{" "}
+                  </Grid>
+                  <Grid item xs={12} style={{ textAlign: "center" }}>
+                    <Typography component="span">
+                      {t("have-account")}
+                    </Typography>{" "}
+                    <Typography component={Link} to="/login">
+                      {t("login")}
+                    </Typography>{" "}
+                  </Grid>
                 </Grid>{" "}
-                <Grid item xs={12}>
-                  <TextFieldWrapper
-                    name="username"
-                    type="text"
-                    label={t("username")}
-                  />
-                </Grid>{" "}
-                <Grid item xs={12}>
-                  <TextFieldWrapper name="email" label={t("email")} />
-                </Grid>
-                <Grid item xs={12}>
-                  <PasswordField name="password" label={t("password")} />
-                </Grid>{" "}
-                <Grid item xs={12}>
-                  <PasswordField
-                    name="confirm_password"
-                    label={t("confirm-password")}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <CheckboxWrapper
-                    name="termsOfService"
-                    legend={t("terms-conditions")}
-                    label={t("i-agree")}
-                  />{" "}
-                </Grid>{" "}
-                <Grid item xs={6}>
-                  {/* <PhoneNumber />{" "} */}
-                </Grid>{" "}
-                <Grid item xs={12}>
-                  <ButtonWrapper>{t("signup")}</ButtonWrapper>{" "}
-                </Grid>
-                <Grid item xs={12} style={{ textAlign: "center" }}>
-                  <Typography component="span">{t("have-account")}</Typography>{" "}
-                  <Typography component={Link} to="/login">
-                    {t("login")}
-                  </Typography>{" "}
-                </Grid>
-              </Grid>{" "}
-            </Form>
-          </Formik>
+              </Form>
+            </Formik>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </div>
   );
 }
 

@@ -28,8 +28,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     color:
-      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",    backgroundColor: "transparent !important",
-
+      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
+    backgroundColor: "transparent !important",
   },
   containerWrapper: {
     position: "absolute",
@@ -58,7 +58,7 @@ function AddBrand() {
   }, [dispatch]);
 
   return (
-    <>
+    <div style={{ position: "relative", height: "100vh" }}>
       {!loadingFetch ? (
         <Container maxWidth="sm">
           <ToastContainer />
@@ -171,7 +171,7 @@ function AddBrand() {
       ) : (
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       )}
-    </>
+    </div>
   );
 }
 

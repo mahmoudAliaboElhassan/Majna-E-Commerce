@@ -45,114 +45,116 @@ function ChangePassword() {
   const { themeMode } = UseThemMode();
 
   return (
-    <Container maxWidth="sm" className={classes.containerWrapper}>
-      <ToastContainer />
-      <Card raised>
-        <Container maxWidth="md">
-          <Grid container>
-            <Grid item={12}>
-              <Formik
-                initialValues={{
-                  ...INITIAL_FORM_STATE_CHANGE_PASSWORD,
-                }}
-                validationSchema={FORM_VALIDATION_SCHEMA_CHANGE_PASSWORD}
-                onSubmit={(values) => {
-                  dispatch(
-                    changePassword({
-                      userId: Uid,
-                      current_password: values.currentPassword,
-                      new_password: values.newPassword,
-                      re_new_password: values.confirm_newPassword,
-                    })
-                  )
-                    .unwrap()
-                    .then(() => {
-                      {
-                        toast.success(t("change-password-success"), {
-                          position: "top-right",
-                          autoClose: 1000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: themeMode,
-                        });
-                        setTimeout(() => {
-                          console.log("hello");
-                          navigate("/");
-                        }, 1000);
-                      }
-                    })
-                    .catch((error) => {
-                      if (error.response.status === 400) {
-                        Swal.fire({
-                          title: t("error-change-password"),
-                          text: t("error-change-password-text"),
-                          icon: "error",
-                          confirmButtonText: t("ok"),
-                        });
-                      }
-                      if (error.response.status === 404) {
-                        Swal.fire({
-                          title: t("error-change-password"),
-                          text: t("error-change-password-not-user-text"),
-                          icon: "error",
-                          confirmButtonText: t("ok"),
-                        });
-                      }
-                    });
-                }}
-              >
-                <Form className={classes.formWrapper}>
-                  <Grid container spacing={2} alignItems="center">
-                    <Grid item xs={12}>
-                      <Typography>
-                        <AppbarHeader>
-                          {t("change-password-heading")}
-                        </AppbarHeader>
-                      </Typography>
+    <div style={{ position: "relative", height: "100vh" }}>
+      <Container maxWidth="sm" className={classes.containerWrapper}>
+        <ToastContainer />
+        <Card raised>
+          <Container maxWidth="md">
+            <Grid container>
+              <Grid item={12}>
+                <Formik
+                  initialValues={{
+                    ...INITIAL_FORM_STATE_CHANGE_PASSWORD,
+                  }}
+                  validationSchema={FORM_VALIDATION_SCHEMA_CHANGE_PASSWORD}
+                  onSubmit={(values) => {
+                    dispatch(
+                      changePassword({
+                        userId: Uid,
+                        current_password: values.currentPassword,
+                        new_password: values.newPassword,
+                        re_new_password: values.confirm_newPassword,
+                      })
+                    )
+                      .unwrap()
+                      .then(() => {
+                        {
+                          toast.success(t("change-password-success"), {
+                            position: "top-right",
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: themeMode,
+                          });
+                          setTimeout(() => {
+                            console.log("hello");
+                            navigate("/");
+                          }, 1000);
+                        }
+                      })
+                      .catch((error) => {
+                        if (error.response.status === 400) {
+                          Swal.fire({
+                            title: t("error-change-password"),
+                            text: t("error-change-password-text"),
+                            icon: "error",
+                            confirmButtonText: t("ok"),
+                          });
+                        }
+                        if (error.response.status === 404) {
+                          Swal.fire({
+                            title: t("error-change-password"),
+                            text: t("error-change-password-not-user-text"),
+                            icon: "error",
+                            confirmButtonText: t("ok"),
+                          });
+                        }
+                      });
+                  }}
+                >
+                  <Form className={classes.formWrapper}>
+                    <Grid container spacing={2} alignItems="center">
+                      <Grid item xs={12}>
+                        <Typography>
+                          <AppbarHeader>
+                            {t("change-password-heading")}
+                          </AppbarHeader>
+                        </Typography>
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <PasswordField
+                          name="currentPassword"
+                          label={t("current-password")}
+                          autocomplete="off"
+                        />
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <PasswordField
+                          name="newPassword"
+                          label={t("new-password")}
+                          autocomplete="off"
+                        />
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <PasswordField
+                          name="confirm_newPassword"
+                          label={t("confirm-new-password")}
+                          autocomplete="off"
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <ButtonWrapper>{t("change-password")}</ButtonWrapper>{" "}
+                      </Grid>
+                      <Grid item xs={12} style={{ textAlign: "center" }}>
+                        <Typography
+                          component={Link}
+                          onClick={() => dispatch(logOut())}
+                        >
+                          {t("logout")}
+                        </Typography>{" "}
+                      </Grid>
                     </Grid>{" "}
-                    <Grid item xs={12}>
-                      <PasswordField
-                        name="currentPassword"
-                        label={t("current-password")}
-                        autocomplete="off"
-                      />
-                    </Grid>{" "}
-                    <Grid item xs={12}>
-                      <PasswordField
-                        name="newPassword"
-                        label={t("new-password")}
-                        autocomplete="off"
-                      />
-                    </Grid>{" "}
-                    <Grid item xs={12}>
-                      <PasswordField
-                        name="confirm_newPassword"
-                        label={t("confirm-new-password")}
-                        autocomplete="off"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <ButtonWrapper>{t("change-password")}</ButtonWrapper>{" "}
-                    </Grid>
-                    <Grid item xs={12} style={{ textAlign: "center" }}>
-                      <Typography
-                        component={Link}
-                        onClick={() => dispatch(logOut())}
-                      >
-                        {t("logout")}
-                      </Typography>{" "}
-                    </Grid>
-                  </Grid>{" "}
-                </Form>
-              </Formik>
+                  </Form>
+                </Formik>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </Card>
-    </Container>
+          </Container>
+        </Card>
+      </Container>
+    </div>
   );
 }
 

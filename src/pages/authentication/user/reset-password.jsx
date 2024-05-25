@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     color:
-      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",    backgroundColor: "transparent !important",
-
+      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
+    backgroundColor: "transparent !important",
   },
   containerWrapper: {
     position: "absolute",
@@ -43,83 +43,85 @@ function ResetPassword() {
   const { uid, token } = useParams();
   const { themeMode } = UseThemMode();
   return (
-    <Container maxWidth="sm" className={classes.containerWrapper}>
-      <ToastContainer />
-      <Card raised>
-        <Container maxWidth="md">
-          <Grid container>
-            <Grid item={12}>
-              <Formik
-                initialValues={{
-                  ...INITIAL_FORM_STATE_RESET_PASSWORD,
-                }}
-                validationSchema={FORM_VALIDATION_SCHEMA_RESET_PASSWORD}
-                onSubmit={(values) => {
-                  console.log({ ...values });
-                  dispatch(
-                    resetPassword({
-                      password: values.password,
-                      uid,
-                      token,
-                    })
-                  )
-                    .unwrap()
-                    .then(() => {
-                      {
-                        toast.success(t("reset-success"), {
-                          position: "top-right",
-                          autoClose: 1000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: themeMode,
-                        });
-                      }
-                      setTimeout(() => {
-                        console.log("hello");
-                        navigate("/login");
-                      }, 1000);
-                    })
+    <div style={{ position: "relative", height: "100vh" }}>
+      <Container maxWidth="sm" className={classes.containerWrapper}>
+        <ToastContainer />
+        <Card raised>
+          <Container maxWidth="md">
+            <Grid container>
+              <Grid item={12}>
+                <Formik
+                  initialValues={{
+                    ...INITIAL_FORM_STATE_RESET_PASSWORD,
+                  }}
+                  validationSchema={FORM_VALIDATION_SCHEMA_RESET_PASSWORD}
+                  onSubmit={(values) => {
+                    console.log({ ...values });
+                    dispatch(
+                      resetPassword({
+                        password: values.password,
+                        uid,
+                        token,
+                      })
+                    )
+                      .unwrap()
+                      .then(() => {
+                        {
+                          toast.success(t("reset-success"), {
+                            position: "top-right",
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: themeMode,
+                          });
+                        }
+                        setTimeout(() => {
+                          console.log("hello");
+                          navigate("/login");
+                        }, 1000);
+                      })
 
-                    .catch((error) => {
-                      console.log(error);
-                      Swal.fire({
-                        title: t("error-reset"),
-                        text: t("error-reset-text"),
-                        icon: "error",
-                        confirmButtonColor: "#3085d6",
-                        confirmButtonText: t("ok"),
+                      .catch((error) => {
+                        console.log(error);
+                        Swal.fire({
+                          title: t("error-reset"),
+                          text: t("error-reset-text"),
+                          icon: "error",
+                          confirmButtonColor: "#3085d6",
+                          confirmButtonText: t("ok"),
+                        });
                       });
-                    });
-                }}
-              >
-                <Form className={classes.formWrapper}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography>
-                        <AppbarHeader>{t("reset-password")}</AppbarHeader>
-                      </Typography>
+                  }}
+                >
+                  <Form className={classes.formWrapper}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Typography>
+                          <AppbarHeader>{t("reset-password")}</AppbarHeader>
+                        </Typography>
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <PasswordField
+                          name="password"
+                          label={t("new-password")}
+                          autocomplete="off"
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <ButtonWrapper>{t("reset")}</ButtonWrapper>{" "}
+                      </Grid>
                     </Grid>{" "}
-                    <Grid item xs={12}>
-                      <PasswordField
-                        name="password"
-                        label={t("new-password")}
-                        autocomplete="off"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <ButtonWrapper>{t("reset")}</ButtonWrapper>{" "}
-                    </Grid>
-                  </Grid>{" "}
-                </Form>
-              </Formik>
+                  </Form>
+                </Formik>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </Card>
-    </Container>
+          </Container>
+        </Card>
+      </Container>
+    </div>
   );
 }
 

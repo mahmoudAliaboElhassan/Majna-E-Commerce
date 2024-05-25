@@ -20,6 +20,7 @@ import SearchParamsComponent from "@components/searchParams";
 import Image from "../assests/image-1.jpg";
 import { getProducts } from "@state/slices/products";
 import ImageUploader from "@components/formui/multipleImages";
+// import Loader from "../components/loader";
 function Home() {
   const [page, setPage] = useState(1);
   const { items } = useSelector((state) => state.cart);
@@ -131,7 +132,7 @@ function Home() {
       {/* <ImageUploader /> */}
       {/* <SearchParamsComponent /> */}
       <Swiperslide />
-      {/* <WhileView /> */}
+      <Loader />
       <Container maxWidth="lg">
         <Grid container spacing={1.5} style={{ width: "100%" }}>
           <Grid item sm={1} xs={1} md={1}>

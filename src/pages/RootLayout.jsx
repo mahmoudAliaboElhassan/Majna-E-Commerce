@@ -35,9 +35,7 @@ const jss = create({
 });
 
 function RootLayout() {
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("mode") === "true" ? true : false
-  );
+ 
   const { t } = useTranslation();
   const { Direction } = UseDirection();
   const navigate = useNavigate();

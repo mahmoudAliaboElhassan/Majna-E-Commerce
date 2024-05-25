@@ -71,7 +71,8 @@ function AddStore() {
   // Now allCities array contains all cities
   console.log(allCities);
   return (
-    <>
+    <div style={{ position: "relative", height: "100vh" }}>
+
       {!loadingGovernaces ? (
         <Container maxWidth="sm">
           <ToastContainer />
@@ -186,7 +187,7 @@ function AddStore() {
       ) : (
         <LoadingFetching>{t("loading-governance")}</LoadingFetching>
       )}
-    </>
+    </div>
   );
 }
 

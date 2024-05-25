@@ -43,80 +43,84 @@ function ForgetPassword() {
   const { themeMode } = UseThemMode();
 
   return (
-    <Container maxWidth="sm" className={classes.containerWrapper}>
-      <ToastContainer />
-      <Card raised>
-        <Container maxWidth="md">
-          <Grid container>
-            <Grid item={12}>
-              <Formik
-                initialValues={{
-                  ...INITIAL_FORM_STATE_FORGET_PASSWORD,
-                }}
-                validationSchema={FORM_VALIDATION_SCHEMA_FORGET_PASSWORD}
-                onSubmit={(values) => {
-                  console.log({ ...values });
-                  dispatch(
-                    forgetPassword({
-                      email: values.email,
-                    })
-                  )
-                    .unwrap()
-                    .then(() => {
-                      {
-                        toast.success(t("check-inbox-reset"), {
-                          position: "top-right",
-                          autoClose: 1000,
-                          hideProgressBar: false,
-                          closeOnClick: true,
-                          pauseOnHover: true,
-                          draggable: true,
-                          progress: undefined,
-                          theme: themeMode,
+    <div style={{ position: "relative", height: "100vh" }}>
+      <Container maxWidth="sm" className={classes.containerWrapper}>
+        <ToastContainer />
+        <Card raised>
+          <Container maxWidth="md">
+            <Grid container>
+              <Grid item={12}>
+                <Formik
+                  initialValues={{
+                    ...INITIAL_FORM_STATE_FORGET_PASSWORD,
+                  }}
+                  validationSchema={FORM_VALIDATION_SCHEMA_FORGET_PASSWORD}
+                  onSubmit={(values) => {
+                    console.log({ ...values });
+                    dispatch(
+                      forgetPassword({
+                        email: values.email,
+                      })
+                    )
+                      .unwrap()
+                      .then(() => {
+                        {
+                          toast.success(t("check-inbox-reset"), {
+                            position: "top-right",
+                            autoClose: 1000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: themeMode,
+                          });
+                        }
+                      })
+                      .catch((error) => {
+                        Swal.fire({
+                          title: t("error-forget-dispatch"),
+                          text: t("error-forget-dispatch-text"),
+                          icon: "error",
                         });
-                      }
-                    })
-                    .catch((error) => {
-                      Swal.fire({
-                        title: t("error-forget-dispatch"),
-                        text: t("error-forget-dispatch-text"),
-                        icon: "error",
                       });
-                    });
-                }}
-              >
-                <Form className={classes.formWrapper}>
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <Typography>
-                        <AppbarHeader>
-                          {t("forget-password-heading")}
-                        </AppbarHeader>
-                      </Typography>
+                  }}
+                >
+                  <Form className={classes.formWrapper}>
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <Typography>
+                          <AppbarHeader>
+                            {t("forget-password-heading")}
+                          </AppbarHeader>
+                        </Typography>
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <TextFieldWrapper
+                          name="email"
+                          label={t("email")}
+                          autocomplete="off"
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <ButtonWrapper>
+                          {t("forget-password-btn")}
+                        </ButtonWrapper>{" "}
+                      </Grid>
+                      <Grid item xs={12} style={{ textAlign: "center" }}>
+                        <Typography component={Link} to={"/"}>
+                          {t("go-back")}
+                        </Typography>{" "}
+                      </Grid>
                     </Grid>{" "}
-                    <Grid item xs={12}>
-                      <TextFieldWrapper
-                        name="email"
-                        label={t("email")}
-                        autocomplete="off"
-                      />
-                    </Grid>
-                    <Grid item xs={12}>
-                      <ButtonWrapper>{t("forget-password-btn")}</ButtonWrapper>{" "}
-                    </Grid>
-                    <Grid item xs={12} style={{ textAlign: "center" }}>
-                      <Typography component={Link} to={"/"}>
-                        {t("go-back")}
-                      </Typography>{" "}
-                    </Grid>
-                  </Grid>{" "}
-                </Form>
-              </Formik>
+                  </Form>
+                </Formik>
+              </Grid>
             </Grid>
-          </Grid>
-        </Container>
-      </Card>
-    </Container>
+          </Container>
+        </Card>
+      </Container>
+    </div>
   );
 }
 
