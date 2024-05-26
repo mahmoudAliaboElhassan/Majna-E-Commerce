@@ -45,6 +45,7 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
               : themeMode == "dark"
               ? Colors.labelDark
               : Colors.labelLight,
+          whiteSpace: "nowrap",
         }}
       >
         {" "}
