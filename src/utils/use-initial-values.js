@@ -41,13 +41,13 @@ function UseInitialValues(props) {
     singleStoreCity: props?.city_id,
   };
   const INITIAL_FORM_STATE_ADD_PRODUCT = {
-    StoresAndQuantities: [{ store: null, quantity: null }],
-    imgs: [{ img: null, isCover: false }],
+    inventory: [{ store_pk: null, quantity: null }],
+    album : [{ image: null, is_cover: "False" }],
     productTitle: null,
-    approvedBrands: null,
+    brand_pk : null,
     productPrice: null,
     productDescription: null,
-    subcategory: null,
+    sub_category_pk: null,
   };
   return {
     INITIAL_FORM_STATE_Login,

@@ -16,7 +16,7 @@ import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
 const ImageUploader = () => {
   const formik = useFormikContext();
-  const [field, meta] = useField("imgs");
+  const [field, meta] = useField("album");
   const [moreFour, setMoreFour] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   // console.log(meta);
@@ -43,7 +43,8 @@ const ImageUploader = () => {
 
     imagesArray.forEach((img, idx) => {
       setMoreFour(false);
-      formik?.setFieldValue(`imgs.${idx}.img`, img);
+      formik?.setFieldValue(`album.${idx}.image`, `image-${idx}`);
+      formik?.setFieldValue(`image-${idx}`, img);
     });
     setSelectedImages(imagesArray);
   };
@@ -55,24 +56,28 @@ const ImageUploader = () => {
   };
   const handleIsCover = (index) => {
     selectedImages.forEach((img, idx) => {
-      formik?.setFieldValue(`imgs.${idx}.isCover`, idx === index);
-      setOneIsCover(true);
+      formik?.setFieldValue(
+        `album.${idx}.is_cover`,
+        idx === index ? "True" : "False"
+      );
     });
+    setOneIsCover(true);
   };
+
   console.log("error is ");
-  console.log(formik?.errors["imgs.[0]?.img"]);
-  console.log(formik?.errors["imgs"]);
-  console.log(formik.errors["imgs.[0]"]);
-  console.log(formik.errors["imgs.0"]);
-  console.log(formik.errors["imgs[0]"]);
-  console.log(formik?.errors["imgs"] !== undefined);
-  console.log(Boolean(formik?.touched["imgs"]));
+  console.log(formik?.errors["album.[0]?.img"]);
+  console.log(formik?.errors["album"]);
+  console.log(formik.errors["album.[0]"]);
+  console.log(formik.errors["album.0"]);
+  console.log(formik.errors["album[0]"]);
+  console.log(formik?.errors["album"] !== undefined);
+  console.log(Boolean(formik?.touched["album"]));
   return (
     <div>
       <FormControl
         error={
-          Boolean(formik?.touched["imgs"]) &&
-          formik?.errors["imgs"] !== undefined
+          Boolean(formik?.touched["album"]) &&
+          formik?.errors["album"] !== undefined
         }
         fullWidth
       >
@@ -83,8 +88,8 @@ const ImageUploader = () => {
           endIcon={<CloudUploadIcon style={{ fontSize: "30px" }} />}
           style={{
             color:
-              Boolean(formik?.touched["imgs"]) &&
-              formik?.errors["imgs"] !== undefined
+              Boolean(formik?.touched["album"]) &&
+              formik?.errors["album"] !== undefined
                 ? Colors.labelError
                 : themeMode === "dark"
                 ? Colors.labelDark
@@ -133,9 +138,9 @@ const ImageUploader = () => {
                 onClick={(e) => console.log(e.target)}
               />
             </label>
-            <div>{formik.errors?.imgs && formik.errors.imgs[index]?.img}</div>
+            <div>{formik.errors?.album && formik.errors.album[index]?.img}</div>
             <div>
-              {formik.errors?.imgs && formik.errors.imgs[index]?.isCover}
+              {formik.errors?.album && formik.errors.album[index]?.is_cover}
             </div>
           </div>
         ))}

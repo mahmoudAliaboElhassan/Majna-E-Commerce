@@ -48,8 +48,10 @@ import FileInput from "@components/formui/file";
 import {
   cleanUpStores,
   getStores,
+  getSubCategory,
   getAtuthorizedBrands,
   cleanUpAuthorizedBrands,
+  cleanUpSubCategories,
 } from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
 import LoadingFetching from "@components/loadingFetching";
@@ -63,8 +65,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     color:
-      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",    backgroundColor: "transparent !important",
-
+      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
+    backgroundColor: "transparent !important",
   },
   containerWrapper: {
     position: "absolute",
@@ -84,15 +86,22 @@ function AddProduct() {
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
   const [count, setCount] = useState(1);
   const { Uid } = useSelector((state) => state.auth);
-  const { approvedBrands, loadingAuthorized, stores, loadingStores } =
-    useSelector((state) => state.distributor);
+  const {
+    approvedBrands,
+    loadingAuthorized,
+    stores,
+    loadingStores,
+    subCategories,
+  } = useSelector((state) => state.distributor);
 
   useEffect(() => {
     dispatch(getAtuthorizedBrands({ Uid }));
     dispatch(getStores({ Uid }));
+    dispatch(getSubCategory());
     return () => {
       dispatch(cleanUpAuthorizedBrands());
       dispatch(cleanUpStores());
+      dispatch(cleanUpSubCategories());
     };
   }, [dispatch]);
 
@@ -102,7 +111,6 @@ function AddProduct() {
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
-
       <Container maxWidth="sm">
         <ToastContainer />
         <Card raised>
@@ -121,7 +129,7 @@ function AddProduct() {
                   validationSchema={FORM_VALIDATION_SCHEMA_Add_PRODUCT}
                   onSubmit={(values) => {
                     console.log({ ...values });
-                    // console.log(values.StoresAndQuantities);
+                    // console.log(values.inventory);
                     // console.log(values.imgs);
                     // dispatch(
                     // addBrand({
@@ -193,13 +201,13 @@ function AddProduct() {
                       <Grid item xs={12}>
                         <ImageUploader />
                       </Grid>
-                      <Grid item xs={12}>
+                      {/* <Grid item xs={12}>
                         <TextFieldWrapper
                           name="subcategory"
                           label={t("sub_category")}
                           autocomplete="off"
                         />
-                      </Grid>
+                      </Grid> */}
                       <Grid item xs={12}>
                         <TextAreaWrapper
                           name="productDescription"
@@ -207,10 +215,17 @@ function AddProduct() {
                           label={t("description")}
                           autocomplete="off"
                         />
-                      </Grid>
+                      </Grid>{" "}
                       <Grid item xs={12}>
                         <SelectComp
-                          name="approvedBrands"
+                          name="sub_category_pk"
+                          label={t("sub-category")}
+                          options={subCategories}
+                        />
+                      </Grid>{" "}
+                      <Grid item xs={12}>
+                        <SelectComp
+                          name="brand_pk"
                           label={t("approved_brands")}
                           options={approvedBrands}
                         />
@@ -225,8 +240,8 @@ function AddProduct() {
                       {[...Array(count)].map((_, index) => (
                         <Grid item xs={12} key={index}>
                           <MultipleSelect
-                            nameStore={`StoresAndQuantities.${index}.store`}
-                            nameQuantity={`StoresAndQuantities.${index}.quantity`}
+                            nameStore={`inventory.${index}.store_pk`}
+                            nameQuantity={`inventory.${index}.quantity`}
                             options={stores}
                             label={`${t("quantity")} ${index + 1}`}
                           />
@@ -239,8 +254,8 @@ function AddProduct() {
                       </Grid>
                       {/* <Grid item xs={12}>
                         <NameAndAgeSelector
-                          nameStore="StoresAndQuantities.0.store"
-                          nameQuantity={"StoresAndQuantities.0.quantity"}
+                          nameStore="inventory.0.store"
+                          nameQuantity={"inventory.0.quantity"}
                           label="quantity"
                         />
                       </Grid> */}
