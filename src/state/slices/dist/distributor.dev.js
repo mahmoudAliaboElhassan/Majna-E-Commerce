@@ -63,13 +63,19 @@ Object.defineProperty(exports, "addProduct", {
     return _actDistributor.addProduct;
   }
 });
+Object.defineProperty(exports, "getCategories", {
+  enumerable: true,
+  get: function get() {
+    return _actDistributor.getCategories;
+  }
+});
 Object.defineProperty(exports, "getSubCategory", {
   enumerable: true,
   get: function get() {
     return _actDistributor.getSubCategory;
   }
 });
-exports.cleanUpSubCategories = exports.cleanUpStores = exports.cleanUpAuthorizedBrands = exports.cleanUpBrandsApplication = exports.cleanUpGovernance = exports.cleanUpBrands = exports["default"] = exports.distributorSlice = void 0;
+exports.cleanUpSubCategories = exports.cleanUpCategories = exports.cleanUpStores = exports.cleanUpAuthorizedBrands = exports.cleanUpBrandsApplication = exports.cleanUpGovernance = exports.cleanUpBrands = exports["default"] = exports.distributorSlice = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
@@ -100,6 +106,9 @@ var distributorSlice = (0, _toolkit.createSlice)({
     },
     cleanUpStores: function cleanUpStores(state) {
       state.stores = [];
+    },
+    cleanUpCategories: function cleanUpCategories(state) {
+      state.categories = [];
     },
     cleanUpSubCategories: function cleanUpSubCategories(state) {
       state.subCategories = [];
@@ -231,6 +240,14 @@ var distributorSlice = (0, _toolkit.createSlice)({
       state.loadingSubCategory = false;
     }).addCase(_actDistributor.getSubCategory.rejected, function (state, action) {
       state.loadingSubCategory = false;
+    }).addCase(_actDistributor.getCategories.pending, function (state, action) {
+      state.loadingCategories = true;
+    }).addCase(_actDistributor.getCategories.fulfilled, function (state, action) {
+      console.log(action.payload);
+      state.categories = action.payload.categories;
+      state.loadingCategories = false;
+    }).addCase(_actDistributor.getCategories.rejected, function (state, action) {
+      state.loadingCategories = false;
     }).addCase(_actDistributor.getStore.pending, function (state, action) {
       state.loadingSingleStoreData = true;
     }).addCase(_actDistributor.getStore.fulfilled, function (state, action) {
@@ -260,8 +277,10 @@ var _distributorSlice$act = distributorSlice.actions,
     cleanUpBrandsApplication = _distributorSlice$act.cleanUpBrandsApplication,
     cleanUpAuthorizedBrands = _distributorSlice$act.cleanUpAuthorizedBrands,
     cleanUpStores = _distributorSlice$act.cleanUpStores,
+    cleanUpCategories = _distributorSlice$act.cleanUpCategories,
     cleanUpSubCategories = _distributorSlice$act.cleanUpSubCategories;
 exports.cleanUpSubCategories = cleanUpSubCategories;
+exports.cleanUpCategories = cleanUpCategories;
 exports.cleanUpStores = cleanUpStores;
 exports.cleanUpAuthorizedBrands = cleanUpAuthorizedBrands;
 exports.cleanUpBrandsApplication = cleanUpBrandsApplication;

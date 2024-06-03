@@ -12,6 +12,7 @@ import {
   getStores,
   getStore,
   addProduct,
+  getCategories,
   getSubCategory,
 } from "@state/act/actDistributor";
 
@@ -35,6 +36,9 @@ export const distributorSlice = createSlice({
     },
     cleanUpStores: (state) => {
       state.stores = [];
+    },
+    cleanUpCategories: (state) => {
+      state.categories = [];
     },
     cleanUpSubCategories: (state) => {
       state.subCategories = [];
@@ -198,6 +202,17 @@ export const distributorSlice = createSlice({
       .addCase(getSubCategory.rejected, (state, action) => {
         state.loadingSubCategory = false;
       })
+      .addCase(getCategories.pending, (state, action) => {
+        state.loadingCategories = true;
+      })
+      .addCase(getCategories.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.categories = action.payload.categories;
+        state.loadingCategories = false;
+      })
+      .addCase(getCategories.rejected, (state, action) => {
+        state.loadingCategories = false;
+      })
       .addCase(getStore.pending, (state, action) => {
         state.loadingSingleStoreData = true;
       })
@@ -233,6 +248,7 @@ export const {
   cleanUpBrandsApplication,
   cleanUpAuthorizedBrands,
   cleanUpStores,
+  cleanUpCategories,
   cleanUpSubCategories,
 } = distributorSlice.actions;
 export {
@@ -246,5 +262,6 @@ export {
   getStores,
   getStore,
   addProduct,
+  getCategories,
   getSubCategory,
 };

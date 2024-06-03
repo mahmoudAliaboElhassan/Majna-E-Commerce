@@ -170,14 +170,13 @@ function UseFormValidation() {
   });
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     brand_pk: Yup.string().required("Product Brand is Required"),
-    productTitle: Yup.string().required("Product Title is Required"),
-    productPrice: Yup.number("Price Should be Number").required(
+    title: Yup.string().required("Product Title is Required"),
+    price: Yup.number("Price Should be Number").required(
       "Product Price is Required "
     ),
     sub_category_pk: Yup.string().required("Product SubCategory is Required"),
-    productDescription: Yup.string().required(
-      "Product Description is Required"
-    ),
+    categories: Yup.string().required("Product Category is Required"),
+    description: Yup.string().required("Product Description is Required"),
     inventory: Yup.array().of(
       Yup.object().shape({
         store_pk: Yup.string().required("Required Store Name"),
@@ -187,7 +186,8 @@ function UseFormValidation() {
     album: Yup.array()
       .of(
         Yup.object().shape({
-          image: Yup.mixed().required("Image is required"),
+          image: Yup.mixed()
+          .required("Image is required"),
           // .test(
           //   "fileFormat",
           //   "Only PNG and JPG files are allowed",

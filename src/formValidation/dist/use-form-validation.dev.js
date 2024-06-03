@@ -114,10 +114,11 @@ function UseFormValidation() {
   });
   var FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     brand_pk: Yup.string().required("Product Brand is Required"),
-    productTitle: Yup.string().required("Product Title is Required"),
-    productPrice: Yup.number("Price Should be Number").required("Product Price is Required "),
-    subcategory: Yup.string().required("Product SubCategory is Required"),
-    productDescription: Yup.string().required("Product Description is Required"),
+    title: Yup.string().required("Product Title is Required"),
+    price: Yup.number("Price Should be Number").required("Product Price is Required "),
+    sub_category_pk: Yup.string().required("Product SubCategory is Required"),
+    categories: Yup.string().required("Product Category is Required"),
+    description: Yup.string().required("Product Description is Required"),
     inventory: Yup.array().of(Yup.object().shape({
       store_pk: Yup.string().required("Required Store Name"),
       quantity: Yup.string().required("Required quantity")

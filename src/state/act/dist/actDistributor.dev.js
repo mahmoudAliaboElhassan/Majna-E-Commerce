@@ -3,11 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addProduct = exports.getSubCategory = exports.getStore = exports.getStores = exports.editStore = exports.addStore = exports.getAtuthorizedBrands = exports.getAllBrandsApplication = exports.fetchGovernance = exports.fetchPrands = exports.addBrand = void 0;
+exports.addProduct = exports.getCategories = exports.getSubCategory = exports.getStore = exports.getStores = exports.editStore = exports.addStore = exports.getAtuthorizedBrands = exports.getAllBrandsApplication = exports.fetchGovernance = exports.fetchPrands = exports.addBrand = void 0;
 
 var _toolkit = require("@reduxjs/toolkit");
 
 var _globalApi = require("@state/API/global-api");
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
 
@@ -426,27 +432,26 @@ var getSubCategory = (0, _toolkit.createAsyncThunk)("distributorSlice/getSubCate
   }, null, null, [[1, 10]]);
 });
 exports.getSubCategory = getSubCategory;
-var addProduct = (0, _toolkit.createAsyncThunk)("distributorSlice/addProduct", function _callee11(_ref8, thunkAPI) {
-  var Uid, storeId, rejectWithValue, res;
+var getCategories = (0, _toolkit.createAsyncThunk)("distributorSlice/getCategories", function _callee11(_, thunkAPI) {
+  var rejectWithValue, res;
   return regeneratorRuntime.async(function _callee11$(_context11) {
     while (1) {
       switch (_context11.prev = _context11.next) {
         case 0:
-          Uid = _ref8.Uid, storeId = _ref8.storeId;
           rejectWithValue = thunkAPI.rejectWithValue;
-          _context11.prev = 2;
-          _context11.next = 5;
-          return regeneratorRuntime.awrap(_globalApi.majnAPI.get("api/distributors/".concat(Uid, "/stores/").concat(storeId)));
+          _context11.prev = 1;
+          _context11.next = 4;
+          return regeneratorRuntime.awrap(_globalApi.majnAPI.get("api/products/categories"));
 
-        case 5:
+        case 4:
           res = _context11.sent;
           console.log("from slice res is");
           console.log(res);
           return _context11.abrupt("return", res);
 
-        case 11:
-          _context11.prev = 11;
-          _context11.t0 = _context11["catch"](2);
+        case 10:
+          _context11.prev = 10;
+          _context11.t0 = _context11["catch"](1);
 
           if (_context11.t0.response && _context11.t0.response.status === 400) {
             // Handle 403 error here
@@ -456,9 +461,47 @@ var addProduct = (0, _toolkit.createAsyncThunk)("distributorSlice/addProduct", f
 
           return _context11.abrupt("return", rejectWithValue(_context11.t0));
 
-        case 15:
+        case 14:
         case "end":
           return _context11.stop();
+      }
+    }
+  }, null, null, [[1, 10]]);
+});
+exports.getCategories = getCategories;
+var addProduct = (0, _toolkit.createAsyncThunk)("distributorSlice/addProduct", function _callee12(productData, thunkAPI) {
+  var rejectWithValue, res;
+  return regeneratorRuntime.async(function _callee12$(_context12) {
+    while (1) {
+      switch (_context12.prev = _context12.next) {
+        case 0:
+          console.log(_objectSpread({}, productData));
+          rejectWithValue = thunkAPI.rejectWithValue;
+          _context12.prev = 2;
+          _context12.next = 5;
+          return regeneratorRuntime.awrap(_globalApi.majnaFiles.post("api/products", productData));
+
+        case 5:
+          res = _context12.sent;
+          console.log("from slice res is");
+          console.log(res);
+          return _context12.abrupt("return", res);
+
+        case 11:
+          _context12.prev = 11;
+          _context12.t0 = _context12["catch"](2);
+
+          if (_context12.t0.response && _context12.t0.response.status === 400) {
+            // Handle 403 error here
+            // Example: setConfirmed(true);
+            console.log("400 Forbidden - User not authorized from slice");
+          }
+
+          return _context12.abrupt("return", rejectWithValue(_context12.t0));
+
+        case 15:
+        case "end":
+          return _context12.stop();
       }
     }
   }, null, null, [[2, 11]]);

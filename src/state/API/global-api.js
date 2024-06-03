@@ -66,3 +66,7 @@ export const majnaFiles = createAxiosInstance(
   process.env.REACT_APP_API_URL,
   'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
 );
+export const majnaAddProduct = createAxiosInstance(
+  process.env.REACT_APP_API_URL,
+  ""
+);

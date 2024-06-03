@@ -53,7 +53,7 @@ function SelectComp({ name, label, options, ...otherProps }) {
       </InputLabel>
       <Select {...configSelect}>
         {options?.map((option) => (
-          <MenuItem key={option.id} value={option.id}>
+          <MenuItem key={option.id} value={option.category_id||option.id}>
             {option.name}
           </MenuItem>
         ))}

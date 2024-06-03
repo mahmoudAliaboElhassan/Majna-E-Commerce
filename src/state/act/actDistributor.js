@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { majnAPI, majnaFiles } from "@state/API/global-api";
+import { majnAPI, majnaFiles, majnaAddProduct } from "@state/API/global-api";
 
 export const addBrand = createAsyncThunk(
   "distributorSlice/addBrand",
@@ -243,14 +243,32 @@ export const getSubCategory = createAsyncThunk(
     }
   }
 );
-export const addProduct = createAsyncThunk(
-  "distributorSlice/addProduct",
-  async ({ Uid, storeId }, thunkAPI) => {
+export const getCategories = createAsyncThunk(
+  "distributorSlice/getCategories",
+  async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get(
-        `api/distributors/${Uid}/stores/${storeId}`
-      );
+      const res = await majnAPI.get(`api/products/categories`);
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const addProduct = createAsyncThunk(
+  "distributorSlice/addProduct",
+  async (productData, thunkAPI) => {
+    console.log({ ...productData });
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnaFiles.post(`api/products`, productData);
       console.log("from slice res is");
       console.log(res);
       return res;

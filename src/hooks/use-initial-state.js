@@ -37,8 +37,10 @@ function UseInitialStates() {
     singleStoreData: null,
     loadingSingleStoreData: false,
     loadingEdit: false,
-    loadingSubCategory:false,
-    subCategories:[]
+    loadingSubCategory: false,
+    loadingCategories: false,
+    categories: [],
+    subCategories: [],
   };
 
   const initialStateReviewer = {

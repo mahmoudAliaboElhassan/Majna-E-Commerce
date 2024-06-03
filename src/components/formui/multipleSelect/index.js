@@ -38,7 +38,7 @@ function MultipleSelect({ nameStore, nameQuantity, options, ...otherProps }) {
     setFormData(updatedFormData);
     console.log(formData);
     if (value) {
-      formik?.setFieldValue(name, value);
+      formik?.setFieldValue(name, +value);
     }
   };
   console.log("metaQuantity.touched");

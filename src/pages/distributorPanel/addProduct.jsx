@@ -1,28 +1,4 @@
-// import React from "react";
-
-// function AddProduct() {
-//   return <div>AddProduct</div>;
-//   // Brand_id
-//   // title
-//   // album => list => [file={file}&cover={true||false}]
-//   // description  max 1000
-//   // pricre
-//   // SubCategory
-//   // Store
-// Quantity
-
-//   // ===============
-//   // Store
-//   // name
-//   // Governance
-//   // city
-//   // street
-//   // phone
-// }
-
-// export default AddProduct;
 import React, { useEffect, useState } from "react";
-
 import {
   Container,
   Grid,
@@ -33,11 +9,10 @@ import {
 import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormikContext } from "formik";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import UseThemMode from "@hooks/use-theme";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import { AppbarHeader } from "@styles/appbar";
@@ -46,12 +21,15 @@ import UseInitialValues from "@utils/use-initial-values";
 import SelectComp from "@components/formui/Select";
 import FileInput from "@components/formui/file";
 import {
-  cleanUpStores,
   getStores,
-  getSubCategory,
   getAtuthorizedBrands,
+  getCategories,
+  getSubCategory,
+  cleanUpStores,
   cleanUpAuthorizedBrands,
+  cleanUpCategories,
   cleanUpSubCategories,
+  addProduct,
 } from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
 import LoadingFetching from "@components/loadingFetching";
@@ -77,6 +55,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 const { INITIAL_FORM_STATE_ADD_PRODUCT } = UseInitialValues();
 
+const quoteKeys = (obj) => {
+  return Object.keys(obj).reduce((acc, key) => {
+    acc[`"${key}"`] = obj[key];
+    return acc;
+  }, {});
+};
+
+const processAlbumArray = (albumArray) => {
+  return albumArray.map((item) => quoteKeys(item));
+};
+
+function SubCategorySelect({ subCategories }) {
+  const { values } = useFormikContext();
+  const selectedCategory = values.categories;
+
+  const filteredSubCategories = subCategories.filter(
+    (subcat) => subcat.id == selectedCategory
+  );
+
+  return (
+    <SelectComp
+      name="sub_category_pk"
+      label="Sub Categories"
+      options={filteredSubCategories}
+    />
+  );
+}
+
 function AddProduct() {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -92,15 +98,18 @@ function AddProduct() {
     stores,
     loadingStores,
     subCategories,
+    categories,
   } = useSelector((state) => state.distributor);
 
   useEffect(() => {
     dispatch(getAtuthorizedBrands({ Uid }));
     dispatch(getStores({ Uid }));
     dispatch(getSubCategory());
+    dispatch(getCategories());
     return () => {
       dispatch(cleanUpAuthorizedBrands());
       dispatch(cleanUpStores());
+      dispatch(cleanUpCategories());
       dispatch(cleanUpSubCategories());
     };
   }, [dispatch]);
@@ -129,59 +138,17 @@ function AddProduct() {
                   validationSchema={FORM_VALIDATION_SCHEMA_Add_PRODUCT}
                   onSubmit={(values) => {
                     console.log({ ...values });
-                    // console.log(values.inventory);
-                    // console.log(values.imgs);
-                    // dispatch(
-                    // addBrand({
-                    //   authorization_doc: values.authorizeDocument,
-                    //   identity_doc: values.IdDistributor,
-                    //   Uid: values.productType,
-                    // });
-                    // )
-                    //   .unwrap()
-                    //   .then(() => {
-                    //     {
-                    //       toast.success(t("brand-added"), {
-                    //         position: "top-right",
-                    //         autoClose: 1000,
-                    //         hideProgressBar: false,
-                    //         closeOnClick: true,
-                    //         pauseOnHover: true,
-                    //         draggable: true,
-                    //         progress: undefined,
-                    //         theme: themeMode,
-                    //       });
-                    //     }
-                    //   })
-
-                    //   .catch((error) => {
-                    //     if (error.response.status === 409) {
-                    //       Swal.fire({
-                    //         title: t("error-add"),
-                    //         text: t("error-wait-text"),
-                    //         icon: "error",
-                    //         confirmButtonColor: "#3085d6",
-                    //         confirmButtonText: t("ok"),
-                    //       });
-                    //     } else if (error.response.status === 401) {
-                    //       Swal.fire({
-                    //         title: t("unauthorize"),
-                    //         text: t("unauthorized-txt"),
-                    //         icon: "error",
-                    //         confirmButtonColor: "#3085d6",
-                    //         confirmButtonText: t("ok"),
-                    //       });
-                    //     } else if (error.response.status === 403) {
-                    //       Swal.fire({
-                    //         title: t("forbidden"),
-                    //         text: t("forbidden-txt"),
-                    //         icon: "error",
-                    //         confirmButtonColor: "#3085d6",
-                    //         confirmButtonText: t("ok"),
-                    //       });
-                    //     }
-                    //     console.log(error);
-                    //   });
+                    const { categories, ...productData } = values;
+                    const processedAlbum = processAlbumArray(productData.album);
+                    const processedInventory = processAlbumArray(
+                      productData.inventory
+                    );
+                    const productDataWithQuotedKeys = {
+                      ...productData,
+                      album: processedAlbum,
+                      inventory: processedInventory,
+                    };
+                    dispatch(addProduct(productDataWithQuotedKeys));
                   }}
                 >
                   <Form className={classes.formWrapper}>
@@ -190,10 +157,10 @@ function AddProduct() {
                         <Typography>
                           <AppbarHeader>{t("add-product-now")}</AppbarHeader>
                         </Typography>
-                      </Grid>{" "}
+                      </Grid>
                       <Grid item xs={12}>
                         <TextFieldWrapper
-                          name="productTitle"
+                          name="title"
                           label={t("product_title")}
                           autocomplete="off"
                         />
@@ -201,42 +168,38 @@ function AddProduct() {
                       <Grid item xs={12}>
                         <ImageUploader />
                       </Grid>
-                      {/* <Grid item xs={12}>
-                        <TextFieldWrapper
-                          name="subcategory"
-                          label={t("sub_category")}
-                          autocomplete="off"
-                        />
-                      </Grid> */}
                       <Grid item xs={12}>
                         <TextAreaWrapper
-                          name="productDescription"
+                          name="description"
                           textarea={3}
                           label={t("description")}
                           autocomplete="off"
                         />
-                      </Grid>{" "}
+                      </Grid>
                       <Grid item xs={12}>
                         <SelectComp
-                          name="sub_category_pk"
-                          label={t("sub-category")}
-                          options={subCategories}
+                          name="categories"
+                          label={t("categories")}
+                          options={categories}
                         />
-                      </Grid>{" "}
+                      </Grid>
+                      <Grid item xs={12}>
+                        <SubCategorySelect subCategories={subCategories} />
+                      </Grid>
                       <Grid item xs={12}>
                         <SelectComp
                           name="brand_pk"
                           label={t("approved_brands")}
                           options={approvedBrands}
                         />
-                      </Grid>{" "}
+                      </Grid>
                       <Grid item xs={12}>
                         <TextFieldWrapper
-                          name="productPrice"
+                          name="price"
                           label={t("product_price")}
                           type="number"
                         />
-                      </Grid>{" "}
+                      </Grid>
                       {[...Array(count)].map((_, index) => (
                         <Grid item xs={12} key={index}>
                           <MultipleSelect
@@ -252,17 +215,10 @@ function AddProduct() {
                           +
                         </Button>
                       </Grid>
-                      {/* <Grid item xs={12}>
-                        <NameAndAgeSelector
-                          nameStore="inventory.0.store"
-                          nameQuantity={"inventory.0.quantity"}
-                          label="quantity"
-                        />
-                      </Grid> */}
                       <Grid item xs={12}>
-                        <ButtonWrapper>{t("add-product")}</ButtonWrapper>{" "}
+                        <ButtonWrapper>{t("add-product")}</ButtonWrapper>
                       </Grid>
-                    </Grid>{" "}
+                    </Grid>
                   </Form>
                 </Formik>
               </Grid>

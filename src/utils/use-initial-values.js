@@ -42,11 +42,12 @@ function UseInitialValues(props) {
   };
   const INITIAL_FORM_STATE_ADD_PRODUCT = {
     inventory: [{ store_pk: null, quantity: null }],
-    album : [{ image: null, is_cover: "False" }],
-    productTitle: null,
-    brand_pk : null,
-    productPrice: null,
-    productDescription: null,
+    album: [{ image: null, is_cover: "False" }],
+    title: null,
+    brand_pk: null,
+    price: null,
+    description: null,
+    categories: null,
     sub_category_pk: null,
   };
   return {
@@ -63,3 +64,4 @@ function UseInitialValues(props) {
 }
 
 export default UseInitialValues;
+// "{"inventory":[{"store_pk":1,"quantity":"44"}],"album":[{"image":"image-0","is_cover":"True"},{"image":"image-1","is_cover":"False"},{"image":"image-2","is_cover":"False"}],"title":"aaaaaaa","brand_pk":1,"price":44,"description":"dddddddddddddddddddddd","sub_category_pk":1,"image-0":{},"image-1":{},"image-2":{}}"
