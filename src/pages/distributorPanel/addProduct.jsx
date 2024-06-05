@@ -21,8 +21,7 @@ import { AppbarHeader } from "@styles/appbar";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseInitialValues from "@utils/use-initial-values";
 import SelectComp from "@components/formui/Select";
-import FileInput from "@components/formui/file";
-import {
+ import {
   getStores,
   getAtuthorizedBrands,
   getCategories,
@@ -35,11 +34,12 @@ import {
 } from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
 import LoadingFetching from "@components/loadingFetching";
-import MultipleSelect from "@components/formui/multipleSelect";
 import TextFieldWrapper from "@components/formui/textField";
 import TextAreaWrapper from "@components/formui/textarea";
 import ImageUploader from "@components/formui/multipleImages";
 import { helperStyle } from "@styles/error";
+import InventoryComp from "@components/inventory"
+import SubCategorySelect from "@components/subCateogry"
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -69,78 +69,7 @@ const { INITIAL_FORM_STATE_ADD_PRODUCT } = UseInitialValues();
 //   return albumArray.map((item) => quoteKeys(item));
 // };
 
-const InventoryComp = () => {
-  const {values}=useFormikContext()
-  const { stores } = useSelector((state) => state.distributor);
-  const [count, setCount] = useState(1);
-const {t}=useTranslation()
-  const selectedStoreIds = values.inventory.map((invent) => invent.store_pk);
-  console.log("selectedStoreIds");
-  console.log(selectedStoreIds);
-  const optionsStores = stores.filter((store) => {
-    return !selectedStoreIds.includes(store.id);
-  });
-  console.log("optionsStores");
-  console.log(optionsStores);
-  const handleAddClick = () => {
-    setCount(count + 1); // Increment count
-  };
-  return (
-    <>
-    {[...Array(count)].map((_, index) => (
-      <Grid item xs={12} key={index}>
-       <MultipleSelect
-      nameStore={`inventory.${index}.store_pk`}
-      nameQuantity={`inventory.${index}.quantity`}
-      options={optionsStores}
-      labelQuantity={`${t("quantity")}`}
-      labelStore={t("store-name")}
-    />
-      </Grid>
-    ))}
-    <Grid item xs={12}>
-      <Button
-        variant="contained"
-        onClick={handleAddClick}
-      >
-        +
-      </Button>
-    </Grid>
-</>
-  );
-};
 
-function SubCategorySelect({ subCategories }) {
-  const { values } = useFormikContext();
-  const selectedCategory = values.categories;
-  const { t } = useTranslation();
-  const filteredSubCategories = subCategories.filter(
-    (subcat) => subcat.id == selectedCategory
-  );
-
-  return (
-    <>
-      {selectedCategory ? (
-        <SelectComp
-          name="sub_category_pk"
-          label={t("sub-category")}
-          options={filteredSubCategories}
-        />
-      ) : (
-        <>
-          <SelectComp
-            name="sub_category_pk"
-            label={t("sub-category")}
-            options={filteredSubCategories}
-          />
-          <Typography component="div" sx={helperStyle}>
-            {t("category-first")}
-          </Typography>
-        </>
-      )}
-    </>
-  );
-}
 
 function AddProduct() {
   const classes = useStyles();
@@ -177,8 +106,6 @@ function AddProduct() {
       dispatch(cleanUpSubCategories());
     };
   }, [dispatch]);
-
-
 
   return (
     <div>
@@ -272,7 +199,7 @@ function AddProduct() {
                               type="number"
                             />
                           </Grid>
-                          <InventoryComp/>
+                          <InventoryComp />
                           <Grid item xs={12}>
                             <ButtonWrapper>{t("add-product")}</ButtonWrapper>
                           </Grid>
