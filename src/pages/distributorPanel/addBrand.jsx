@@ -141,7 +141,7 @@ function AddBrand() {
                         <Grid item xs={12}>
                           <SelectComp
                             name="productType"
-                            label={t("label_type")}
+                            label={t("brand")}
                             options={brands}
                           />
                         </Grid>

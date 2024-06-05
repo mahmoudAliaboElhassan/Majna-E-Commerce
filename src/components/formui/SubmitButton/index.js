@@ -9,7 +9,7 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
   const { t } = useTranslation();
   const { submitForm } = useFormikContext();
   const { loading } = useSelector((state) => state.auth);
-  const { loadingProducts, loadingStore, loadingEdit } = useSelector(
+  const { loadingProducts, loadingStore, loadingEdit,loadingAddProduct } = useSelector(
     (state) => state.distributor
   );
   const handleSubmit = (e) => {
@@ -22,7 +22,7 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
     color: "primary",
     fullWidth: true,
     type: "submit",
-    disabled: loading || loadingProducts || loadingStore || loadingEdit,
+    disabled: loading || loadingProducts || loadingStore || loadingEdit||loadingAddProduct,
     onClick: handleSubmit,
   };
   console.log(loading);

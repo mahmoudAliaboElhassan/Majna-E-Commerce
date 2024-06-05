@@ -154,11 +154,12 @@ var distributorSlice = (0, _toolkit.createSlice)({
 
       console.log(action.payload);
       state.loadingDistributorApplications = false;
-    }).addCase(_actDistributor.getAtuthorizedBrands.rejected, function (state, action) {// state.loadingProducts = false;
+    }).addCase(_actDistributor.getAtuthorizedBrands.rejected, function (state, action) {
+      // state.loadingProducts = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
-      // state.loadingDistributorApplications = false;
+      state.loadingDistributorApplications = false;
     }).addCase(_actDistributor.getAtuthorizedBrands.pending, function (state, action) {
       // state.loadingProducts = false;
       // state.error = action.payload;
@@ -264,6 +265,14 @@ var distributorSlice = (0, _toolkit.createSlice)({
       state.loadingEdit = false; // localStorage.setItem(storeId,action.payload.)
       // state.storeId=localStorage.getItem("storeId")
     }).addCase(_actDistributor.editStore.rejected, function (state, action) {
+      state.loadingAddProduct = false;
+    }).addCase(_actDistributor.addProduct.pending, function (state, action) {
+      state.loadingAddProduct = true;
+    }).addCase(_actDistributor.addProduct.fulfilled, function (state, action) {
+      console.log(action.payload);
+      state.loadingAddProduct = false; // localStorage.setItem(storeId,action.payload.)
+      // state.storeId=localStorage.getItem("storeId")
+    }).addCase(_actDistributor.addProduct.rejected, function (state, action) {
       state.loadingEdit = false;
     });
   }

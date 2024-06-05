@@ -14,8 +14,10 @@ import InputLabel from "@mui/material/InputLabel";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
+import { useTranslation } from "react-i18next";
 const ImageUploader = () => {
   const formik = useFormikContext();
+  const { t } = useTranslation();
   const [field, meta] = useField("album");
   const [moreFour, setMoreFour] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -81,7 +83,7 @@ const ImageUploader = () => {
         }
         fullWidth
       >
-        <InputLabel htmlFor="myFile">Choose Your Images</InputLabel>
+        <InputLabel htmlFor="myFile">{t("choose-img")}</InputLabel>
         <Button
           variant="outlined"
           onClick={handleIconClick}

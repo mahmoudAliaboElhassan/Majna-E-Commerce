@@ -104,7 +104,7 @@ export const distributorSlice = createSlice({
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
-        // state.loadingDistributorApplications = false;
+        state.loadingDistributorApplications = false;
       })
       .addCase(getAtuthorizedBrands.pending, (state, action) => {
         // state.loadingProducts = false;
@@ -236,8 +236,20 @@ export const distributorSlice = createSlice({
         // state.storeId=localStorage.getItem("storeId")
       })
       .addCase(editStore.rejected, (state, action) => {
+        state.loadingAddProduct = false;
+      })
+      .addCase(addProduct.pending, (state, action) => {
+        state.loadingAddProduct = true;
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.loadingAddProduct = false;
+        // localStorage.setItem(storeId,action.payload.)
+        // state.storeId=localStorage.getItem("storeId")
+      })
+      .addCase(addProduct.rejected, (state, action) => {
         state.loadingEdit = false;
-      });
+      })
   },
 });
 

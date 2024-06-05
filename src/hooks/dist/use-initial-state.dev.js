@@ -45,7 +45,8 @@ function UseInitialStates() {
     loadingSubCategory: false,
     loadingCategories: false,
     categories: [],
-    subCategories: []
+    subCategories: [],
+    loadingAddProduct: false
   };
   var initialStateReviewer = {
     allBrans: [],

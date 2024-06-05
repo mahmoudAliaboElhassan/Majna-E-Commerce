@@ -7,7 +7,14 @@ import { Colors } from "@styles/theme";
 import { helperStyle } from "@styles/error";
 import UseThemMode from "@hooks/use-theme";
 
-function MultipleSelect({ nameStore, nameQuantity, options, ...otherProps }) {
+function MultipleSelect({
+  nameStore,
+  nameQuantity,
+  labelQuantity,
+  labelStore,
+  options,
+  ...otherProps
+}) {
   const [formData, setFormData] = useState({
     quantity: "",
     store: "",
@@ -18,13 +25,14 @@ function MultipleSelect({ nameStore, nameQuantity, options, ...otherProps }) {
   const configStoreName = {
     fullWidth: true,
     variant: "outlined",
+    label: labelStore,
     ...fieldStoreName,
   };
   const configQuantity = {
     fullWidth: true,
     variant: "outlined",
+    label: labelQuantity,
     ...fieldQuantity,
-    ...otherProps,
   };
   const formik = useFormikContext();
   const { themeMode } = UseThemMode();
@@ -82,7 +90,7 @@ function MultipleSelect({ nameStore, nameQuantity, options, ...otherProps }) {
             marginTop: "5px",
           }}
         >
-          Store Name
+          {labelStore}
         </InputLabel>
         <Select
           {...configStoreName}

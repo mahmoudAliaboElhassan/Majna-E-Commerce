@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.majnaAddProduct = exports.majnaFiles = exports.majnAPI = void 0;
+exports.majnaFiles = exports.majnAPI = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -63,5 +63,3 @@ var majnAPI = createAxiosInstance(process.env.REACT_APP_API_URL, "application/js
 exports.majnAPI = majnAPI;
 var majnaFiles = createAxiosInstance(process.env.REACT_APP_API_URL, 'multipart/form-data; charset=utf-8; boundary="another cool boundary";');
 exports.majnaFiles = majnaFiles;
-var majnaAddProduct = createAxiosInstance(process.env.REACT_APP_API_URL, "");
-exports.majnaAddProduct = majnaAddProduct;

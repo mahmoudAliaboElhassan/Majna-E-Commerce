@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Container } from "@material-ui/core";
 
-import {Colors} from '../theme'
+import { Colors } from "../theme";
 export const ErrorContainer = styled(Container)(() => ({
   display: "flex",
   justifyContent: "center",

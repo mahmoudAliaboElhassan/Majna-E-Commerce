@@ -60,7 +60,7 @@
   "error-forget-dispatch-text": "هذا البريد الإلكتروني غير موجود",
   "error-activate-true": "هذا الحساب مفعل بالفعل",
   "made-with": "تمت برمجته بكل الحب عن طريق محمد و محمود",
-  "label_type": "إختر نوع العلامة التجارية",
+  "brand": "إختر نوع العلامة التجارية",
   "authorizeDocument": "توكيل المنتج",
   "idDocument": "البطاقة الشخصية",
   "brand-added": "تمت إضافة العلامة التجارية بنجاح",
@@ -120,5 +120,11 @@
   "store-edited": "تم تعديل متجرك بنجاح",
   "product_title": "نوع المنتج",
   "product_price": "سعر المنتج",
-  "sub_category": "التصنيف فرعي"
+  "sub_category": "التصنيف فرعي",
+  "wait-data": "إنتظر حتى يتم تحميل جميع البيانات ...",
+  "category-first": "يجب إختيار النوع أولاً",
+  "choose-img": "إختر الصور للمنتج",
+  "categories": "النوع الرئيسي",
+  "sub-category": "النوع الفرعي",
+  "store-name": "إسم المتجر"
 }

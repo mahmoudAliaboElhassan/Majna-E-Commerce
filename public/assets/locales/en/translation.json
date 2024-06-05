@@ -59,7 +59,7 @@
   "error-forget-dispatch-text": "This Email is Not existed",
   "error-activate-true": "This Email is Already Activated",
   "made-with": "Made with Love by Mohammed and Mahmoud",
-  "label_type": "Select Type of the Brand",
+  "brand": "Select Type of the Brand",
   "authorizeDocument": "Authorize Document",
   "idDocument": "ID card",
   "brand-added": "Brand has Been Added Successfully",
@@ -118,5 +118,11 @@
   "store-edited": "Your Store Has been Edited Successfully",
   "product_title": "Product Title",
   "product_price": "Product Price",
-  "sub_category": "SubCategory"
+  "sub_category": "SubCategory",
+  "wait-data": "Wait for All Data to Load ...",
+  "category-first": "you should select category first ",
+  "choose-img": "Choose Images for the Product",
+  "categories": "Categories",
+  "sub-category": "SubCategory",
+  "store-name": "Store Name"
 }
