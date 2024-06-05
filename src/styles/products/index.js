@@ -20,11 +20,10 @@ export const ProducDetailInfoWrapper = styled(Box)(() => ({
 export const DrawerButton = styled("button")(() => {
   const { themeMode } = UseThemMode();
   return {
-    height: "calc(100vh - 64px)",
+    height: "220vh",
     backgroundColor: themeMode === "dark" ? Colors.lightblack : Colors.primary,
     color: Colors.white,
     position: "relative",
-    top: "-2px",
-    width: "5%",
+    top: "-22px",
   };
 });

@@ -3,9 +3,9 @@ import MuiAppBar from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
 import { Card } from "@mui/material";
 
-import UseDirection from "../../hooks/use-direction";
-import UseThemMode from "../../hooks/use-theme";
-import { Colors } from "../theme";
+import UseDirection from "@hooks/use-direction";
+import UseThemMode from "@hooks/use-theme";
+import { Colors } from "@styles/theme";
 
 const drawerWidth = 240;
 

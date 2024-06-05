@@ -21,7 +21,7 @@ import { AppbarHeader } from "@styles/appbar";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseInitialValues from "@utils/use-initial-values";
 import SelectComp from "@components/formui/Select";
- import {
+import {
   getStores,
   getAtuthorizedBrands,
   getCategories,
@@ -38,8 +38,8 @@ import TextFieldWrapper from "@components/formui/textField";
 import TextAreaWrapper from "@components/formui/textarea";
 import ImageUploader from "@components/formui/multipleImages";
 import { helperStyle } from "@styles/error";
-import InventoryComp from "@components/inventory"
-import SubCategorySelect from "@components/subCateogry"
+import InventoryComp from "@components/inventory";
+import SubCategorySelect from "@components/subCateogry";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -68,8 +68,6 @@ const { INITIAL_FORM_STATE_ADD_PRODUCT } = UseInitialValues();
 // const processAlbumArray = (albumArray) => {
 //   return albumArray.map((item) => quoteKeys(item));
 // };
-
-
 
 function AddProduct() {
   const classes = useStyles();
@@ -106,7 +104,6 @@ function AddProduct() {
       dispatch(cleanUpSubCategories());
     };
   }, [dispatch]);
-
   return (
     <div>
       {loadingState ? (
@@ -145,7 +142,50 @@ function AddProduct() {
                           album: JSON.stringify(productData.album),
                           inventory: JSON.stringify(productData.inventory),
                         };
-                        dispatch(addProduct(productDataWithQuotedKeys));
+                        dispatch(addProduct(productDataWithQuotedKeys))
+                          .unwrap()
+                          .then(() => {
+                            {
+                              toast.success(t("product-added"), {
+                                position: "top-right",
+                                autoClose: 1000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: themeMode,
+                              });
+                            }
+                          })
+                          .catch((error) => {
+                            if (error.response.status === 400) {
+                              Swal.fire({
+                                title: t("error-add-product"),
+                                text: t("error-bad-data"),
+                                icon: "error",
+                                confirmButtonColor: "#3085d6",
+                                confirmButtonText: t("ok"),
+                              });
+                            } else if (error.response.status === 401) {
+                              Swal.fire({
+                                title: t("unauthorize"),
+                                text: t("unauthorized-txt"),
+                                icon: "error",
+                                confirmButtonColor: "#3085d6",
+                                confirmButtonText: t("ok"),
+                              });
+                            } else if (error.response.status === 403) {
+                              Swal.fire({
+                                title: t("forbidden"),
+                                text: t("forbidden-txt-distributor"),
+                                icon: "error",
+                                confirmButtonColor: "#3085d6",
+                                confirmButtonText: t("ok"),
+                              });
+                            }
+                            console.log(error);
+                          });
                       }}
                     >
                       <Form className={classes.formWrapper}>

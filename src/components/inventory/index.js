@@ -1,16 +1,11 @@
-import {useState}from "react"
+import { useState } from "react";
 
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import {
-     
-    Grid, Button
-   
-  } from "@material-ui/core";
+import { Grid, Button } from "@material-ui/core";
 
 import MultipleSelect from "@components/formui/multipleSelect";
-
 
 const InventoryComp = () => {
   const { values } = useFormikContext();
@@ -42,11 +37,15 @@ const InventoryComp = () => {
         </Grid>
       ))}
       <Grid item xs={12}>
-        <Button variant="contained" onClick={handleAddClick}>
+        <Button
+          variant="contained"
+          onClick={handleAddClick}
+          disabled={!optionsStores.length}
+        >
           +
         </Button>
       </Grid>
     </>
   );
 };
-export default InventoryComp
+export default InventoryComp;

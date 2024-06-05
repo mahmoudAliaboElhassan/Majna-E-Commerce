@@ -124,5 +124,9 @@
   "choose-img": "Choose Images for the Product",
   "categories": "Categories",
   "sub-category": "SubCategory",
-  "store-name": "Store Name"
+  "store-name": "Store Name",
+  "product-added": "Product Added Successfully",
+  "error-add-product": "Error in Adding This Product",
+  "error-bad-data": "Data Sent is InValid revsie it !",
+  "forbidden-txt-distributor": "Forbidden to this Buyer or Reviewer to add Product Create Account as distributor First "
 }

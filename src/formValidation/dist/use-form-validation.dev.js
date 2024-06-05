@@ -115,7 +115,7 @@ function UseFormValidation() {
   var FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     brand_pk: Yup.string().required("Product Brand is Required"),
     title: Yup.string().required("Product Title is Required"),
-    price: Yup.number("Price Should be Number").required("Product Price is Required "),
+    price: Yup.number("Price Should be Number").required("Product Price is Required ").min(1, "Price can not be zero or negative"),
     sub_category_pk: Yup.string().required("Product SubCategory is Required"),
     categories: Yup.string().required("Product Category is Required"),
     description: Yup.string().required("Product Description is Required"),
@@ -146,7 +146,7 @@ function UseFormValidation() {
         return image.is_cover === "True";
       });
       return atLeastOneCover;
-    }).max(4, "You can select only up to two tags.")
+    }).max(3, "You can select only up to three images .")
   });
   return {
     FORM_VALIDATION_SCHEMA_SignUp: FORM_VALIDATION_SCHEMA_SignUp,

@@ -126,5 +126,9 @@
   "choose-img": "إختر الصور للمنتج",
   "categories": "النوع الرئيسي",
   "sub-category": "النوع الفرعي",
-  "store-name": "إسم المتجر"
+  "store-name": "إسم المتجر",
+  "product-added": "تم إضافة المنتج بنجاح",
+  "error-add-product": "خطأ في إضافة المنتج",
+  "error-bad-data": "البيانات المدخلة غير صالحه راجعها !",
+  "forbidden-txt-distributor": "ممنوع للمشتري أن يضيف منتج أنشئ حساب كبائع ثم أضف المنتج"
 }
