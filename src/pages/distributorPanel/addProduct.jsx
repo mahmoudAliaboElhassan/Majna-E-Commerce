@@ -143,10 +143,14 @@ function AddProduct() {
                     const processedInventory = processAlbumArray(
                       productData.inventory
                     );
+                    console.log(JSON.stringify(processedAlbum));
+                    console.log(typeof JSON.stringify(processedAlbum));
+                    console.log(JSON.stringify(processedInventory));
+                    console.log(typeof JSON.stringify(processedInventory));
                     const productDataWithQuotedKeys = {
                       ...productData,
-                      album: processedAlbum,
-                      inventory: processedInventory,
+                      album: JSON.stringify(productData.album),
+                      inventory: JSON.stringify(productData.inventory),
                     };
                     dispatch(addProduct(productDataWithQuotedKeys));
                   }}
@@ -231,3 +235,4 @@ function AddProduct() {
 }
 
 export default withGuard(AddProduct);
+// https://www.youtube.com/shorts/tydbyfOu9zU

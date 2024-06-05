@@ -495,6 +495,8 @@ var addProduct = (0, _toolkit.createAsyncThunk)("distributorSlice/addProduct", f
             // Handle 403 error here
             // Example: setConfirmed(true);
             console.log("400 Forbidden - User not authorized from slice");
+          } else if (_context12.t0.response && _context12.t0.response.status === 500) {
+            console.log(_context12.t0.message);
           }
 
           return _context12.abrupt("return", rejectWithValue(_context12.t0));

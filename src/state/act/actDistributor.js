@@ -277,6 +277,8 @@ export const addProduct = createAsyncThunk(
         // Handle 403 error here
         // Example: setConfirmed(true);
         console.log("400 Forbidden - User not authorized from slice");
+      } else if (error.response && error.response.status === 500) {
+        console.log(error.message);
       }
       return rejectWithValue(error);
     }
