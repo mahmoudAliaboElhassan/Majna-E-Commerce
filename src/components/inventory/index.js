@@ -1,28 +1,39 @@
 import { useState } from "react";
-
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Grid, Button } from "@material-ui/core";
-
 import MultipleSelect from "@components/formui/multipleSelect";
 
 const InventoryComp = () => {
-  const { values } = useFormikContext();
+  const { values, setFieldValue } = useFormikContext();
   const { stores } = useSelector((state) => state.distributor);
   const [count, setCount] = useState(1);
   const { t } = useTranslation();
+
+  // Initialize selectedStoreIds with the current form values
   const selectedStoreIds = values.inventory.map((invent) => invent.store_pk);
-  console.log("selectedStoreIds");
-  console.log(selectedStoreIds);
-  const optionsStores = stores.filter((store) => {
-    return !selectedStoreIds.includes(store.id);
-  });
-  console.log("optionsStores");
-  console.log(optionsStores);
-  const handleAddClick = () => {
-    setCount(count + 1); // Increment count
+
+  // Filter options for each select element
+  const getFilteredOptions = (currentIndex) => {
+    return stores.filter((store) => {
+      const isSelected = selectedStoreIds.includes(store.id);
+      const isCurrentValue =
+        store.id === values.inventory[currentIndex]?.store_pk;
+      console.log(!isSelected);
+      console.log(!isSelected);
+      return !isSelected || isCurrentValue;
+    });
   };
+
+  console.log(getFilteredOptions(2));
+
+  // Handle add click to add new select element
+  const handleAddClick = () => {
+    setCount(count + 1);
+    // setFieldValue(`inventory.${count}`, { store_pk: "", quantity: "" });
+  };
+
   return (
     <>
       {[...Array(count)].map((_, index) => (
@@ -30,7 +41,7 @@ const InventoryComp = () => {
           <MultipleSelect
             nameStore={`inventory.${index}.store_pk`}
             nameQuantity={`inventory.${index}.quantity`}
-            options={optionsStores}
+            options={getFilteredOptions(index)}
             labelQuantity={`${t("quantity")}`}
             labelStore={t("store-name")}
           />
@@ -40,7 +51,7 @@ const InventoryComp = () => {
         <Button
           variant="contained"
           onClick={handleAddClick}
-          disabled={!optionsStores.length}
+          disabled={!stores.length || count >= stores.length}
         >
           +
         </Button>
@@ -48,4 +59,5 @@ const InventoryComp = () => {
     </>
   );
 };
+
 export default InventoryComp;
