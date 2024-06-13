@@ -22,6 +22,7 @@ function MultipleSelect({
 
   const [fieldStoreName, metaStoreName] = useField(nameStore);
   const [fieldQuantity, metaQuantity] = useField(nameQuantity);
+  const { values } = useFormikContext();
   const configStoreName = {
     fullWidth: true,
     variant: "outlined",
@@ -74,6 +75,10 @@ function MultipleSelect({
     configStoreName.error = true;
     configStoreName.helperText = metaStoreName.error;
   }
+  const getOptionDisabledStatus = (value) => {
+    console.log(values.inventory.some((item) => item.store_pk === value));
+    return values.inventory.some((item) => item.store_pk === value);
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -99,7 +104,11 @@ function MultipleSelect({
           onChange={handleInputChange}
         >
           {options?.map((option) => (
-            <MenuItem key={option.id} value={option.id}>
+            <MenuItem
+              key={option.id}
+              value={option.id}
+              disabled={getOptionDisabledStatus(option.id)}
+            >
               {option.name}
             </MenuItem>
           ))}

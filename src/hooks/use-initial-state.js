@@ -4,7 +4,7 @@ function UseInitialStates() {
     mymode: "light",
   };
   const initialStateActiveLinks = {
-    activeLink: localStorage.getItem("activeLink"),
+    activeLink: sessionStorage.getItem("activeLink")||"",
     // mymode: null,
   };
 

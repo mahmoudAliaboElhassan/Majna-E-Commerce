@@ -144,6 +144,7 @@ function Header() {
                         color: activeLink === el.to ? "bold" : "normal",
                         borderBottom:
                           activeLink === el.to ? "2px solid white" : "none",
+                          lineHeight:"32px"
                       }}
                     />
                   ))}

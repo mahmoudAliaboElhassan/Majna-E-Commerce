@@ -9,8 +9,8 @@ export const activeLinkSlice = createSlice({
   initialState: initialStateActiveLinks,
   reducers: {
     activate: (state, action) => {
-      localStorage.setItem("activeLink", action.payload);
-      state.activeLink = localStorage.getItem("activeLink") || "";
+      sessionStorage.setItem("activeLink", action.payload);
+      state.activeLink = sessionStorage.getItem("activeLink")  ;
     },
   },
 });

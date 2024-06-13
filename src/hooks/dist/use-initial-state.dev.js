@@ -11,7 +11,7 @@ function UseInitialStates() {
     mymode: "light"
   };
   var initialStateActiveLinks = {
-    activeLink: localStorage.getItem("activeLink") // mymode: null,
+    activeLink: sessionStorage.getItem("activeLink") || "" // mymode: null,
 
   };
   var initialStateAuth = {

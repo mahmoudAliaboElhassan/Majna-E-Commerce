@@ -41,7 +41,8 @@ const InventoryComp = () => {
           <MultipleSelect
             nameStore={`inventory.${index}.store_pk`}
             nameQuantity={`inventory.${index}.quantity`}
-            options={getFilteredOptions(index)}
+            // options={getFilteredOptions(index)}
+            options={stores}
             labelQuantity={`${t("quantity")}`}
             labelStore={t("store-name")}
           />

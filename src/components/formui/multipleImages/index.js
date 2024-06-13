@@ -34,7 +34,7 @@ const ImageUploader = () => {
     const imagesArray = Array.from(files);
 
     // Check if the number of selected files exceeds 4
-    if (imagesArray.length > 4) {
+    if (imagesArray.length > 3) {
       // Prevent further processing
       e.preventDefault();
       setMoreFour(true);
