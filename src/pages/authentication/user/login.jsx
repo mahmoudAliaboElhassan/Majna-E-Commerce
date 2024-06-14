@@ -51,8 +51,7 @@ function Login() {
   const { themeMode } = UseThemMode();
   const handleCloseModal = useCallback(() => setOpenModal(false), []);
   return (
-    <div style={{    position: "relative",
-      height: "100vh"}}>
+    <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm" className={classes.containerWrapper}>
         <ToastContainer />
         <Card raised>
@@ -73,7 +72,9 @@ function Login() {
                       })
                     )
                       .unwrap()
-                      .then(() => {
+                      .then((data) => {
+                        console.log("data in login page");
+                        console.log(data);
                         {
                           toast.success(t("login-success"), {
                             position: "top-right",

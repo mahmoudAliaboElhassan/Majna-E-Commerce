@@ -134,7 +134,7 @@ function Home() {
       <Swiperslide />
       {/* <Loader /> */}
       <Container maxWidth="lg">
-        <Grid container spacing={1.5} style={{ width: "100%" }}>
+        <Grid container spacing={1} style={{ width: "100%" }}>
           <Grid item sm={1} xs={1} md={1}>
             <SidebarPrices />
           </Grid>
