@@ -44,6 +44,7 @@ function Header() {
   const firstRef = useRef();
   const theme = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
   const { pumpCartQuantity } = styles;
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
@@ -80,6 +81,11 @@ function Header() {
   const [isAnimate, setIsAnimate] = UseDebounce(500);
 
   const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`;
+
+  console.log(location.pathname.split("/"));
+  const locationPath = location.pathname.split("/")[1];
+  console.log("locationPath");
+  console.log(locationPath);
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -135,16 +141,16 @@ function Header() {
                     <Tab
                       key={el.to}
                       component={Link}
-                      onClick={() => dispatch(activate(el.to))}
+                      // onClick={() => dispatch(activate(el.to))}
                       {...el}
                       sx={{
                         fontSize: { md: "12px", lg: "16px" },
                         display: "inline",
                         textAlign: "center",
-                        color: activeLink === el.to ? "bold" : "normal",
+                        color: locationPath === el.to ? "bold" : "normal",
                         borderBottom:
-                          activeLink === el.to ? "2px solid white" : "none",
-                          lineHeight:"32px"
+                          locationPath === el.to ? "2px solid white" : "none",
+                        lineHeight: "32px",
                       }}
                     />
                   ))}

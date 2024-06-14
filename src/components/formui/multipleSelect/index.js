@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useField, useFormikContext } from "formik";
 import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 import { TextField, Typography } from "@mui/material";
+import { Grid } from "@material-ui/core";
 
 import { Colors } from "@styles/theme";
 import { helperStyle } from "@styles/error";
@@ -27,11 +28,13 @@ function MultipleSelect({
     fullWidth: true,
     variant: "outlined",
     label: labelStore,
+    // style: { width: "40%" },
     ...fieldStoreName,
   };
   const configQuantity = {
     fullWidth: true,
     variant: "outlined",
+    // style: { width: "40%" },
     label: labelQuantity,
     ...fieldQuantity,
   };
@@ -81,54 +84,59 @@ function MultipleSelect({
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <FormControl fullWidth variant="outlined" {...configStoreName}>
-        <InputLabel
-          style={{
-            color:
-              Boolean(metaStoreName.error) ||
-              (metaStoreName.touched && Boolean(metaStoreName.error))
-                ? Colors.labelError
-                : themeMode === "dark"
-                ? Colors.labelDark
-                : Colors.labelLight,
-            marginTop: "5px",
-          }}
-        >
-          {labelStore}
-        </InputLabel>
-        <Select
-          {...configStoreName}
-          id="nameSelect"
-          name={nameStore}
-          onChange={handleInputChange}
-        >
-          {options?.map((option) => (
-            <MenuItem
-              key={option.id}
-              value={option.id}
-              disabled={getOptionDisabledStatus(option.id)}
-            >
-              {option.name}
-            </MenuItem>
-          ))}
-        </Select>
-        <Typography component="div" sx={helperStyle}>
-          {configStoreName.helperText}
-        </Typography>
-      </FormControl>
-      <FormControl fullWidth variant="outlined">
-        <TextField
-          {...configQuantity}
-          name={nameQuantity}
-          onChange={handleInputChange}
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-      </FormControl>
-    </div>
+    <Grid container spacing={2} justifyContent="center" alignItems="center">
+      {" "}
+      <Grid item xs={6}>
+        <FormControl fullWidth variant="outlined" {...configStoreName}>
+          <InputLabel
+            style={{
+              color:
+                Boolean(metaStoreName.error) ||
+                (metaStoreName.touched && Boolean(metaStoreName.error))
+                  ? Colors.labelError
+                  : themeMode === "dark"
+                  ? Colors.labelDark
+                  : Colors.labelLight,
+              marginTop: "5px",
+            }}
+          >
+            {labelStore}
+          </InputLabel>
+          <Select
+            {...configStoreName}
+            id="nameSelect"
+            name={nameStore}
+            onChange={handleInputChange}
+          >
+            {options?.map((option) => (
+              <MenuItem
+                key={option.id}
+                value={option.id}
+                disabled={getOptionDisabledStatus(option.id)}
+              >
+                {option.name}
+              </MenuItem>
+            ))}
+          </Select>
+          <Typography component="div" sx={helperStyle}>
+            {configStoreName.helperText}
+          </Typography>
+        </FormControl>
+      </Grid>
+      <Grid item xs={6}>
+        <FormControl fullWidth variant="outlined">
+          <TextField
+            {...configQuantity}
+            name={nameQuantity}
+            onChange={handleInputChange}
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </FormControl>
+      </Grid>
+    </Grid>
   );
 }
 

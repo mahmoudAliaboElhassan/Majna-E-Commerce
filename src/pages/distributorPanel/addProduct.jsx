@@ -253,7 +253,7 @@ function AddProduct() {
           </Container>
         </div>
       ) : (
-        <div>no brands approved to add products</div>
+        <div>{t("no-brands")}</div>
       )}
     </div>
   );

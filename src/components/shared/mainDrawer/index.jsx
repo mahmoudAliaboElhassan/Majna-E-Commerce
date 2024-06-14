@@ -36,7 +36,10 @@ function MainDrawer({ open, handleClose, elements }) {
 
   const [activeLink, setActiveLink] = useState(result || "");
   console.log(location.pathname);
-  const handleClick = (to) => setActiveLink(to || "");
+  // const handleClick = (to) => setActiveLink(to || "");
+ 
+  const locationPath=location.pathname.split("/")[2];
+  console.log(locationPath)
   const DrawerTheme = createTheme({
     components: {
       MuiDrawer: {
@@ -80,7 +83,7 @@ function MainDrawer({ open, handleClose, elements }) {
             <ListItem
               key={el.label}
               disablePadding
-              onClick={() => handleClick(el.to)}
+              // onClick={() => handleClick(el.to)}
             >
               <ListItemButton {...el} component={Link}>
                 <ListItemIcon>
@@ -89,9 +92,9 @@ function MainDrawer({ open, handleClose, elements }) {
                 <ListItemText
                   primary={el.label}
                   style={{
-                    color: activeLink === el.to ? "bold" : "normal",
+                    color: locationPath === el.to ? "bold" : "normal",
                     borderBottom:
-                      activeLink === el.to ? "2px solid white" : "none",
+                      locationPath === el.to ? "2px solid white" : "none",
                   }}
                 />
               </ListItemButton>

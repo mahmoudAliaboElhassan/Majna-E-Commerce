@@ -128,5 +128,8 @@
   "product-added": "Product Added Successfully",
   "error-add-product": "Error in Adding This Product",
   "error-bad-data": "Data Sent is InValid revsie it !",
-  "forbidden-txt-distributor": "Forbidden to this Buyer or Reviewer to add Product Create Account as distributor First "
+  "forbidden-txt-distributor": "Forbidden to this Buyer or Reviewer to add Product Create Account as distributor First ",
+  "no-brands": "No Brands Approved Yet Wait for it be reviewed .",
+  "description-txt": "Write Accurate Description for Your Product",
+  "email-txt": "Write Email"
 }

@@ -1,28 +1,36 @@
 import * as React from "react";
-
 import { useField } from "formik";
-
-import { Textarea } from "@styles/addProductTextArea";
+import { TextField } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export default function TextAreaWrapper({ name, label, ...otherProps }) {
-  const [field, mata] = useField(name);
+  const [field, meta] = useField(name);
   const configTextFieldArea = {
     fullWidth: true,
     variant: "outlined",
+    multiline: true,
+    minRows: 3,
+    maxRows: 10,
     ...field,
     ...otherProps,
   };
-
-  if (mata && mata.touched && mata.error) {
+  const { t } = useTranslation();
+  if (meta && meta.touched && meta.error) {
     configTextFieldArea.error = true;
-    configTextFieldArea.helperText = mata.error;
+    configTextFieldArea.helperText = meta.error;
   }
+
   return (
-    <Textarea
+    <TextField
       {...configTextFieldArea}
-      aria-label="minimum height"
-      minRows={3}
-      placeholder="Minimum 3 rows"
+      aria-label="textarea"
+      style={{
+        width: "100%",
+        background: "inherit",
+        color: "white",
+        padding: "5px",
+      }}
+      placeholder={t("description-txt")}
     />
   );
 }

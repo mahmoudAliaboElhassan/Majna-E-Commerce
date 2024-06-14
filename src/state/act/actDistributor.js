@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { majnAPI, majnaFiles} from "@state/API/global-api";
+import { majnAPI, majnaFiles } from "@state/API/global-api";
 
 export const addBrand = createAsyncThunk(
   "distributorSlice/addBrand",
