@@ -4,7 +4,7 @@ function UseInitialStates() {
     mymode: "light",
   };
   const initialStateActiveLinks = {
-    activeLink: sessionStorage.getItem("activeLink")||"",
+    activeLink: sessionStorage.getItem("activeLink") || "",
     // mymode: null,
   };
 
@@ -22,7 +22,7 @@ function UseInitialStates() {
 
   const initialStateDistributor = {
     brands: [],
-    loadingProducts: false,
+    loadingAddBrand: false,
     loadingFetch: false,
     distributorBrands: [],
     approvedBrands: [],
@@ -41,7 +41,7 @@ function UseInitialStates() {
     loadingCategories: false,
     categories: [],
     subCategories: [],
-    loadingAddProduct:false
+    loadingAddProduct: false,
   };
 
   const initialStateReviewer = {

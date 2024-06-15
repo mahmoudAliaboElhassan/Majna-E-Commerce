@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import ButtonWrapper from "@components/formui/SubmitButton";
 import PasswordField from "@components/formui/passwordField";
+import AuthLink from "@components/formui/authLink";
 import UseThemMode from "@hooks/use-theme";
 import UseInitialValues from "@utils/use-initial-values";
 import UseFormValidation from "@formValidation/use-form-validation";
@@ -139,12 +140,14 @@ function ChangePassword() {
                         <ButtonWrapper>{t("change-password")}</ButtonWrapper>{" "}
                       </Grid>
                       <Grid item xs={12} style={{ textAlign: "center" }}>
+                        <AuthLink>
                         <Typography
                           component={Link}
                           onClick={() => dispatch(logOut())}
                         >
                           {t("logout")}
                         </Typography>{" "}
+                        </AuthLink>
                       </Grid>
                     </Grid>{" "}
                   </Form>
@@ -158,4 +161,4 @@ function ChangePassword() {
   );
 }
 
-export default withGuard(ChangePassword);
+export default   (ChangePassword);

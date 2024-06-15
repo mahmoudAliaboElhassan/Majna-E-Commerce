@@ -65,32 +65,32 @@ export const distributorSlice = createSlice({
         // state.Uid = null;
       })
       .addCase(addBrand.pending, (state, action) => {
-        state.loadingProducts = true;
+        state.loadingAddBrand = true;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
       })
       .addCase(addBrand.fulfilled, (state, action) => {
-        state.loadingProducts = false;
+        state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
       })
       .addCase(addBrand.rejected, (state, action) => {
-        state.loadingProducts = false;
+        state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
       })
       .addCase(getAllBrandsApplication.pending, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingDistributorApplications = true;
       })
       .addCase(getAllBrandsApplication.fulfilled, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
@@ -100,21 +100,21 @@ export const distributorSlice = createSlice({
         state.loadingDistributorApplications = false;
       })
       .addCase(getAtuthorizedBrands.rejected, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingDistributorApplications = false;
       })
       .addCase(getAtuthorizedBrands.pending, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingAuthorized = true;
       })
       .addCase(getAtuthorizedBrands.fulfilled, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
@@ -124,21 +124,21 @@ export const distributorSlice = createSlice({
         state.loadingAuthorized = false;
       })
       .addCase(getAllBrandsApplication.rejected, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingAuthorized = false;
       })
       .addCase(addStore.pending, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingStore = true;
       })
       .addCase(addStore.fulfilled, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
@@ -148,21 +148,21 @@ export const distributorSlice = createSlice({
         state.loadingStore = false;
       })
       .addCase(addStore.rejected, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingStore = false;
       })
       .addCase(fetchGovernance.pending, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
         state.loadingGovernaces = true;
       })
       .addCase(fetchGovernance.fulfilled, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;
@@ -174,7 +174,7 @@ export const distributorSlice = createSlice({
         console.log(state.governance);
       })
       .addCase(fetchGovernance.rejected, (state, action) => {
-        // state.loadingProducts = false;
+        // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
         // state.Uid = null;

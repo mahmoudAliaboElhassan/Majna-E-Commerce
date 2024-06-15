@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import TextFieldWrapper from "@components/formui/textField";
 import PasswordField from "@components/formui/passwordField";
 import CheckboxWrapper from "@components/formui/CheckBox";
+import AuthLink from "@components/formui/authLink";
 import PhoneNumber from "@components/formui/phone";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import UseFormValidation from "@formValidation/use-form-validation";
@@ -129,9 +130,11 @@ function SignUp() {
                     <Typography component="span">
                       {t("have-account")}
                     </Typography>{" "}
+                    <AuthLink>
                     <Typography component={Link} to="/login">
                       {t("login")}
                     </Typography>{" "}
+                    </AuthLink>
                   </Grid>
                 </Grid>{" "}
               </Form>

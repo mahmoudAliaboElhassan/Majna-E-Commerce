@@ -132,6 +132,10 @@ function DrawerComponent({ drawerElements }) {
             {drawerElements?.map((el, idx, array) => (
               <ListItemButton
                 {...el}
+                data-aos={`fade-${Direction.right}`}
+                data-aos-easing="linear"
+                data-aos-duration={idx * 180}
+                data-aos-delay={idx * 350}
                 key={idx}
                 component={Link}
                 onClick={() => handleClick(el, idx, array)}

@@ -128,25 +128,25 @@ var distributorSlice = (0, _toolkit.createSlice)({
       // state.loading = false;
       // state.Uid = null;
     }).addCase(_actDistributor.addBrand.pending, function (state, action) {
-      state.loadingProducts = true; // state.error = action.payload;
+      state.loadingAddBrand = true; // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
     }).addCase(_actDistributor.addBrand.fulfilled, function (state, action) {
-      state.loadingProducts = false; // state.error = action.payload;
+      state.loadingAddBrand = false; // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
     }).addCase(_actDistributor.addBrand.rejected, function (state, action) {
-      state.loadingProducts = false; // state.error = action.payload;
+      state.loadingAddBrand = false; // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
     }).addCase(_actDistributor.getAllBrandsApplication.pending, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingDistributorApplications = true;
     }).addCase(_actDistributor.getAllBrandsApplication.fulfilled, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
@@ -155,19 +155,19 @@ var distributorSlice = (0, _toolkit.createSlice)({
       console.log(action.payload);
       state.loadingDistributorApplications = false;
     }).addCase(_actDistributor.getAtuthorizedBrands.rejected, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingDistributorApplications = false;
     }).addCase(_actDistributor.getAtuthorizedBrands.pending, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingAuthorized = true;
     }).addCase(_actDistributor.getAtuthorizedBrands.fulfilled, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
@@ -176,19 +176,19 @@ var distributorSlice = (0, _toolkit.createSlice)({
       console.log(action.payload);
       state.loadingAuthorized = false;
     }).addCase(_actDistributor.getAllBrandsApplication.rejected, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingAuthorized = false;
     }).addCase(_actDistributor.addStore.pending, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingStore = true;
     }).addCase(_actDistributor.addStore.fulfilled, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
@@ -197,19 +197,19 @@ var distributorSlice = (0, _toolkit.createSlice)({
       console.log(action.payload);
       state.loadingStore = false;
     }).addCase(_actDistributor.addStore.rejected, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingStore = false;
     }).addCase(_actDistributor.fetchGovernance.pending, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
       state.loadingGovernaces = true;
     }).addCase(_actDistributor.fetchGovernance.fulfilled, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;
@@ -220,7 +220,7 @@ var distributorSlice = (0, _toolkit.createSlice)({
       state.governance = action.payload.governorates;
       console.log(state.governance);
     }).addCase(_actDistributor.fetchGovernance.rejected, function (state, action) {
-      // state.loadingProducts = false;
+      // state.loadingAddBrand = false;
       // state.error = action.payload;
       // state.loading = false;
       // state.Uid = null;

@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import TextFieldWrapper from "@components/formui/textField";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import PasswordField from "@components/formui/passwordField";
+import AuthLink from "@components/formui/authLink";
 import ModalSignup from "@components/modal";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseThemMode from "@hooks/use-theme";
@@ -50,6 +51,7 @@ function Login() {
   const [email, setEmail] = useState(null);
   const { themeMode } = UseThemMode();
   const handleCloseModal = useCallback(() => setOpenModal(false), []);
+
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm" className={classes.containerWrapper}>
@@ -182,17 +184,21 @@ function Login() {
                         <Typography component="span">
                           {t("have-account")}
                         </Typography>{" "}
-                        <Typography
-                          component={Link}
-                          onClick={() => setOpenModal(!open_modal)}
-                        >
-                          {t("signup")}
-                        </Typography>{" "}
+                        <AuthLink>
+                          <Typography
+                            component={Link}
+                            onClick={() => setOpenModal(!open_modal)}
+                          >
+                            {t("signup")}
+                          </Typography>{" "}
+                        </AuthLink>
                       </Grid>
                       <Grid item xs={12} style={{ textAlign: "center" }}>
-                        <Typography component={Link} to={"/forget-password"}>
-                          {t("forget-password")}
-                        </Typography>{" "}
+                        <AuthLink>
+                          <Typography component={Link} to={"/forget-password"}>
+                            {t("forget-password")}
+                          </Typography>{" "}
+                        </AuthLink>
                       </Grid>
                     </Grid>{" "}
                   </Form>

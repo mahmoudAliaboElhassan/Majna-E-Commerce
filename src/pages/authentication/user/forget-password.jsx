@@ -12,12 +12,14 @@ import Swal from "sweetalert2";
 
 import TextFieldWrapper from "@components/formui/textField";
 import ButtonWrapper from "@components/formui/SubmitButton";
+import AuthLink from "@components/formui/authLink";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseThemMode from "@hooks/use-theme";
 import UseInitialValues from "@utils/use-initial-values";
 import { forgetPassword } from "@state/slices/auth";
 import { AppbarHeader } from "@styles/appbar";
 import "./toasts.css";
+import UseLoadingStatus from "@hooks/use-loading-satatus";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -41,6 +43,7 @@ function ForgetPassword() {
   const { FORM_VALIDATION_SCHEMA_FORGET_PASSWORD } = UseFormValidation();
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
+  const loadingStatus = UseLoadingStatus();
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
@@ -108,9 +111,12 @@ function ForgetPassword() {
                         </ButtonWrapper>{" "}
                       </Grid>
                       <Grid item xs={12} style={{ textAlign: "center" }}>
-                        <Typography component={Link} to={"/"}>
-                          {t("go-back")}
-                        </Typography>{" "}
+                        <AuthLink
+                        >
+                          <Typography component={Link} to={"/"}>
+                            {t("go-back")}
+                          </Typography>{" "}
+                        </AuthLink>
                       </Grid>
                     </Grid>{" "}
                   </Form>

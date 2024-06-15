@@ -51,7 +51,7 @@ const InventoryComp = () => {
           />
         </Grid>
       ))}
-      <Grid item xs={12} style={{display:"flex",justifyContent:"center"}}>
+      <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
         <Button
           variant="contained"
           onClick={handleAddClick}
@@ -65,6 +65,7 @@ const InventoryComp = () => {
             width: "fit-content",
             boxShadow: "0px 0px 6px 1px #7f4949",
             fontWeight: "700",
+            opacity: !stores.length || count >= stores.length ? "0.3" : "1",
           }}
         >
           <ControlPointIcon />
