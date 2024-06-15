@@ -12,6 +12,10 @@ function UseReviewerElements() {
       label: t("product_app"),
       to: "product_app",
     },
+    {
+      label: t("Profile"),
+      to: "profile",
+    },
   ];
   return { ReviewerElements };
 }

@@ -28,7 +28,7 @@ function SubCategorySelect({ subCategories }) {
             label={t("sub-category")}
             options={filteredSubCategories}
           />
-          <Typography component="div" sx={helperStyle}>
+          <Typography component="div" style={helperStyle}>
             {t("category-first")}
           </Typography>
         </>

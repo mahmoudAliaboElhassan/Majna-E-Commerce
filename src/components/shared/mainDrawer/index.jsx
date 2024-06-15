@@ -37,9 +37,12 @@ function MainDrawer({ open, handleClose, elements }) {
   const [activeLink, setActiveLink] = useState(result || "");
   console.log(location.pathname);
   // const handleClick = (to) => setActiveLink(to || "");
- 
-  const locationPath=location.pathname.split("/")[2];
-  console.log(locationPath)
+  const locationPathArray = location.pathname.split("/");
+  const locationPath =
+    locationPathArray.length === 3 ? location.pathname.split("/")[2] : "";
+
+  console.log("locationPath");
+  console.log(location.pathname.split("/"));
   const DrawerTheme = createTheme({
     components: {
       MuiDrawer: {
