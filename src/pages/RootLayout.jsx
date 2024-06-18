@@ -84,7 +84,7 @@ function RootLayout() {
       },
       mode: mymode,
       background: {
-        default: mymode === "dark" ? "#272727" : "#FFFFFF", // Brown color in dark mode, white in light mode
+        default: mymode === "dark" ? "#272727" : "#FFFFFF",
       },
     },
     components: {

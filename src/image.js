@@ -8,6 +8,7 @@ import image7 from "./assests/image-7.jpg";
 import image8 from "./assests/image-8.jpg";
 import image9 from "./assests/image-9.jpg";
 import image10 from "./assests/image-10.jpg";
+import image11 from "./assests/announcement.png";
 export default [
   image1,
   image2,
@@ -19,4 +20,5 @@ export default [
   image8,
   image9,
   image10,
+  image11,
 ];

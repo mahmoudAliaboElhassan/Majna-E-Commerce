@@ -1,0 +1,23 @@
+/* Style for custom pagination bullets */
+.swiper-pagination {
+  display: flex; /* Ensure pagination bullets are displayed horizontally */
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* Add space between bullets */
+}
+
+.swiper-pagination-bullet.custom-bullet {
+  background: #007bff; /* Change this to your desired color */
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.swiper-pagination-bullet.custom-bullet.swiper-pagination-bullet-active {
+  background: #0056b3; /* Change this to your desired active color */
+}

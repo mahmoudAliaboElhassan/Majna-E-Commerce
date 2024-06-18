@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Navigation,
@@ -16,12 +15,17 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import { Box } from "@mui/material";
-
 import image from "../../image";
+import "./SwiperCustom.css"; // Import custom CSS file
 
 const Swiperslide = () => {
   return (
-    <Box sx={{ mb: 2, pb: 3, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)" }}>
+    <Box
+      sx={{
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+        mt: -2.5,
+      }}
+    >
       <Swiper
         modules={[
           Navigation,
@@ -31,28 +35,24 @@ const Swiperslide = () => {
           EffectFade,
           Autoplay,
         ]}
-        // effect="fade"
         spaceBetween={50}
         autoplay={{ delay: 3000 }}
-        slidesPerView={3}
+        slidesPerView={2}
         navigation
-        pagination={{ clickable: true }}
-        // scrollbar={{ draggable: true }}
+        pagination={{
+          clickable: true,
+          renderBullet: (index, className) => {
+            return `<span class="${className} custom-bullet">${
+              index + 1
+            }</span>`;
+          },
+        }}
         style={{ height: "350px", width: "100%" }}
       >
         {image.map((img, index) => {
           return (
             <SwiperSlide key={index}>
-              <img
-                src={img}
-                alt={`slide-${index}`}
-                loading="lazy"
-                // style={{
-                //   width: "100%",
-                //   height: "100%",
-                //   objectFit: "cover",
-                // }}
-              />
+              <img src={img} alt={`slide-${index}`} loading="lazy" />
             </SwiperSlide>
           );
         })}
