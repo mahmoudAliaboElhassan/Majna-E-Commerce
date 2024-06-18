@@ -132,7 +132,7 @@ function Home() {
       {/* <ImageUploader /> */}
       {/* <SearchParamsComponent /> */}
       <Swiperslide />
-      <Introductory/>
+      <Introductory />
       {/* <Container maxWidth="lg">
         <Grid container spacing={1} style={{ width: "100%" }}>
           <Grid item sm={1} xs={1} md={1}>
@@ -158,11 +158,11 @@ function Home() {
       </Container>{" "} */}
 
       {/* <WhileView /> */}
-      <div data-aos="fade-up" data-aos-anchor-placement="top-center">
+      {/* <div data-aos="fade-up" data-aos-anchor-placement="top-center">
         hello i am mahmoud hello i am mahmoud hello i am mahmoud hello i am
         mahmoud hello i am mahmoud hello i am mahmoud hello i am mahmoud hello i
         am mahmoud hello i am mahmoud
-      </div>
+      </div> */}
       {/* <DateComponent /> */}
       {/* <WhileView /> */}
       <Footer />
