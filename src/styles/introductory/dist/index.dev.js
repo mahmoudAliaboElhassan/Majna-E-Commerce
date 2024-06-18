@@ -9,6 +9,8 @@ var _styled = _interopRequireDefault(require("@emotion/styled"));
 
 var _material = require("@mui/material");
 
+var _react = require("@emotion/react");
+
 var _theme = require("@styles/theme");
 
 var _useTheme = _interopRequireDefault(require("@hooks/use-theme"));
@@ -19,6 +21,7 @@ var IntroudctoryButton = (0, _styled["default"])(_material.Button)(function () {
   var _UseThemMode = (0, _useTheme["default"])(),
       themeMode = _UseThemMode.themeMode;
 
+  var theme = (0, _react.useTheme)();
   return {
     display: "inline-flex",
     padding: "0.5rem 1rem",
@@ -27,13 +30,13 @@ var IntroudctoryButton = (0, _styled["default"])(_material.Button)(function () {
     marginTop: "1rem",
     backgroundColor: themeMode === "dark" ? "#f5f5f5" : "#333",
     color: themeMode === "dark" ? "#333" : "#fff",
-    transition: "0.3s",
+    transition: "background-color 0.3s, color 0.3s",
     "&:hover": {
       backgroundColor: themeMode === "dark" ? "#ddd" : "#2b1f1f",
       color: themeMode === "dark" ? "#333" : "#fff"
     },
-    "&:hover $icon": {
-      transform: "translateX(3px)"
+    "&:hover .icon": {
+      transform: theme.direction === "ltr" ? "translateX(3px)" : "translateX(-3px)"
     }
   };
 });
