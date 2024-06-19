@@ -1,6 +1,10 @@
 .hero {
   padding: 20px 0;
   background: linear-gradient(135deg, #bebebe, #d9d9d9);
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero.dark {

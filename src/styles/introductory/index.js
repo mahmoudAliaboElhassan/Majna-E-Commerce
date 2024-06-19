@@ -14,6 +14,7 @@ export const IntroudctoryButton = styled(Button)(() => {
     borderRadius: "8px",
     cursor: "pointer",
     marginTop: "1rem",
+    marginBottom: "1rem",
     backgroundColor: themeMode === "dark" ? "#f5f5f5" : "#333",
     color: themeMode === "dark" ? "#333" : "#fff",
     transition: "background-color 0.3s, color 0.3s",
