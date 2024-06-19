@@ -20,8 +20,9 @@ import Image from "../../assests/image-1.jpg";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 import { addToCart } from "@state/slices/cart";
+import "./item.css";
 
-const Product = ({ id, title, image, max, quantity }) => {
+const Product = ({ id, title, img, max, quantity, prevPrice, newPrice }) => {
   const dispatch = useDispatch();
 
   const currentRemaining = max - (quantity ?? 0);
@@ -45,24 +46,24 @@ const Product = ({ id, title, image, max, quantity }) => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
+    <Grid item xs={12} sm={6} md={4} key={id}>
       <motion.div
         ref={ref}
         initial={{ x: 50, opacity: 0 }}
         transition={{ duration: 0.5 }}
         whileInView={{ x: 0, opacity: 1 }}
-        style={{
-          border: `1px solid ${
-            themeMode === "dark" ? Colors.light_gray : Colors.shaft
-          }`,
-          borderRadius: "12px",
-          width: "100%",
-          maxWidth: isSmallScreen ? "300px" : "initial",
-          // height: isSmallScreen ? "120px" : "180px"
-          margin: "auto",
-        }}
+        // style={{
+        //   border: `1px solid ${
+        //     themeMode === "dark" ? Colors.light_gray : Colors.shaft
+        //   }`,
+        //   borderRadius: "12px",
+        //   width: "100%",
+        //   maxWidth: isSmallScreen ? "300px" : "initial",
+        //   // height: isSmallScreen ? "120px" : "180px"
+        //   margin: "auto",
+        // }}
       >
-        <Box>
+        {/* <Box>
           <Card raised>
             <CardMedia
               image={image}
@@ -103,7 +104,22 @@ const Product = ({ id, title, image, max, quantity }) => {
             <p> quantity taken is {quantity}</p>
             <p> remaining is {currentRemaining}</p>
           </Card>
-        </Box>
+        </Box> */}
+        <div className="item">
+          <div className="item-product">
+            <img
+              src={img}
+              alt={title}
+              // style={{ width: "350px", height: "350px" }}
+              loading="lazy"
+            />
+          </div>
+          <p>{title}</p>
+          <div className="item-prices">
+            <div className="item-price-new">{newPrice}$</div>
+            <div className="item-price-old">{prevPrice}$</div>
+          </div>
+        </div>
       </motion.div>{" "}
     </Grid>
   );

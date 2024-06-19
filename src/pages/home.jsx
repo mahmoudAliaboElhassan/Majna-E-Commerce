@@ -21,6 +21,8 @@ import Image from "../assests/image-1.jpg";
 import { getProducts } from "@state/slices/products";
 import ImageUploader from "@components/formui/multipleImages";
 import Introductory from "@components/introductory";
+import ProductTypesSidebar from "@components/productList/productTypesSidebar";
+import { DisplaySettings } from "@mui/icons-material";
 function Home() {
   const [page, setPage] = useState(1);
   const { items } = useSelector((state) => state.cart);
@@ -133,30 +135,107 @@ function Home() {
       {/* <SearchParamsComponent /> */}
       <Swiperslide />
       <Introductory />
-      {/* <Container maxWidth="lg">
-        <Grid container spacing={1} style={{ width: "100%" }}>
-          <Grid item sm={1} xs={1} md={1}>
-            <SidebarPrices />
-          </Grid>
+      <Container>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+          <div
+            style={{
+              borderRadius: "50%",
+              backgroundColor: "green",
+              color: "white",
+            }}
+          >
+            electronics
+          </div>
+        </div>
+      </Container>
 
-          <Grid container item xs={11} md={11} sm={11} spacing={1.5}>
-            <ShowProducts
-              records={productInfo}
-              renderProducts={(product) => <Product {...product} />}
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={12}>
-            {" "}
-            <PaginationComponent
-              page={page}
-              count={35}
-              changePage={changePage}
-            />
-          </Grid>
+      <Grid container spacing={1} style={{ width: "100%" }}>
+        <Grid item sm={2} xs={2} md={2}>
+          <ProductTypesSidebar />
         </Grid>
-      </Container>{" "} */}
+        {/* <Container> */}
+        <Grid container item xs={10} md={10} sm={10} spacing={1.5}>
+          <ShowProducts
+            records={productInfo}
+            renderProducts={(product) => <Product {...product} />}
+          />
+        </Grid>
+        {/* </Container> */}
 
+        <Grid item xs={12} sm={12} md={12}>
+          {" "}
+          <PaginationComponent page={page} count={35} changePage={changePage} />
+        </Grid>
+      </Grid>
       {/* <WhileView /> */}
       {/* <div data-aos="fade-up" data-aos-anchor-placement="top-center">
         hello i am mahmoud hello i am mahmoud hello i am mahmoud hello i am
