@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Footer from "@components/footer";
 import Swiperslide from "@components/slider";
-import SidebarPrices from "@components/Sidebar";
+// import SidebarPrices from "@components/Sidebar";
 import Product from "@components/productUi";
 import ShowProducts from "@components/productUi/showProducts";
 import PaginationComponent from "@components/pagination";
@@ -22,7 +22,9 @@ import { getProducts } from "@state/slices/products";
 import ImageUploader from "@components/formui/multipleImages";
 import Introductory from "@components/introductory";
 import ProductTypesSidebar from "@components/productList/productTypesSidebar";
-import { DisplaySettings } from "@mui/icons-material";
+// import { DisplaySettings } from "@mui/icons-material";
+// import SidebarFiltering from "@components/sidebarFiltering";
+
 function Home() {
   const [page, setPage] = useState(1);
   const { items } = useSelector((state) => state.cart);
@@ -129,6 +131,23 @@ function Home() {
   useEffect(() => {
     dispatch(getProducts());
   }, []);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  // ----------- Input Filter -----------
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const filteredItems = products.filter(
+    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  );
+
+  // ----------- Radio Filtering -----------
+  const handleChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
   return (
     <>
       {/* <ImageUploader /> */}
@@ -219,11 +238,12 @@ function Home() {
       </Container>
 
       <Grid container spacing={1} style={{ width: "100%" }}>
-        <Grid item sm={2} xs={2} md={2}>
+        <Grid item sm={2.5} xs={2.5} md={2.5}>
           <ProductTypesSidebar />
+          {/* <SidebarFiltering handleChange={handleChange} /> */}
         </Grid>
         {/* <Container> */}
-        <Grid container item xs={10} md={10} sm={10} spacing={1.5}>
+        <Grid container item xs={9} md={9} sm={9} spacing={1.5}>
           <ShowProducts
             records={productInfo}
             renderProducts={(product) => <Product {...product} />}
