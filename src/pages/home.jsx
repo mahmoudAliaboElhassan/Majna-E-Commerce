@@ -154,7 +154,7 @@ function Home() {
       {/* <SearchParamsComponent /> */}
       <Swiperslide />
       <Introductory />
-      <Container>
+      {/* <Container>
         <div
           style={{
             display: "flex",
@@ -235,7 +235,7 @@ function Home() {
             electronics
           </div>
         </div>
-      </Container>
+      </Container> */}
 
       <Grid container spacing={1} style={{ width: "100%" }}>
         <Grid item sm={2.5} xs={2.5} md={2.5}>

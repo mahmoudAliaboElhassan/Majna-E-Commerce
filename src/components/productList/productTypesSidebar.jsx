@@ -17,6 +17,7 @@ import { Colors } from "@styles/theme";
 import UseProductTypes from "@hooks/use-product-types";
 import UseDirection from "@hooks/use-direction";
 import UseThemMode from "@hooks/use-theme";
+import Category from "@components/category";
 
 const blue = {
   100: "#DAECFF",
@@ -63,7 +64,7 @@ function ProductTypesSidebar() {
       <List
         sx={{
           zIndex: 2,
-          color: "white",
+          // color: "white",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
@@ -77,7 +78,7 @@ function ProductTypesSidebar() {
           productTypes.map((product, index) => (
             <div key={product.to}>
               <h3
-                style={{ color: "white", cursor: "pointer", padding: "5px" }}
+                style={{ cursor: "pointer", padding: "5px" }}
                 sx={{ fontSize: { md: "12px", lg: "16px" } }}
                 onClick={() => setActive(index)}
                 component={Link}
@@ -127,6 +128,7 @@ function ProductTypesSidebar() {
             </motion.div>
           </div>
           ))} */}
+        <Category />
       </List>
     </div>
   );

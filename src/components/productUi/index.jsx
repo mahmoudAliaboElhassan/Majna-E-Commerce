@@ -46,7 +46,7 @@ const Product = ({ id, title, img, max, quantity, prevPrice, newPrice }) => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
-    <Grid item xs={12} sm={6} md={4} key={id}>
+    <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
       <motion.div
         ref={ref}
         initial={{ x: 50, opacity: 0 }}
