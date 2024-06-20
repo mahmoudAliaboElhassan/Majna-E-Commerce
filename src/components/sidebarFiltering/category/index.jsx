@@ -1,44 +1,38 @@
 import "./category.css";
-import Input from "@components/input"
+import Input from "@components/sidebarFiltering/input";
 
-function Category() {
-  // {
-  //     handleChange
-  //   }
+function Category({ handleChange }) {
   return (
     <div>
       <h2 className="sidebar-title">Category</h2>
 
       <div>
         <label className="sidebar-label-container">
-          <input
-            //   onChange={handleChange}
-            type="radio"
-            value=""
-            name="test"
+          <input onChange={handleChange} type="radio" value="" name="test"
+          // checked={true} 
           />
           <span className="checkmark"></span>All
         </label>
         <Input
-          //   handleChange={handleChange}
+          handleChange={handleChange}
           value="sneakers"
           title="Sneakers"
           name="test"
         />
         <Input
-          // //   handleChange={handleChange}
+          handleChange={handleChange}
           value="flats"
           title="Flats"
           name="test"
         />
         <Input
-          // //   handleChange={handleChange}
+          handleChange={handleChange}
           value="sandals"
           title="Sandals"
           name="test"
         />
         <Input
-          // //   handleChange={handleChange}
+          handleChange={handleChange}
           value="heels"
           title="Heels"
           name="test"

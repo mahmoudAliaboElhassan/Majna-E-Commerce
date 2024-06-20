@@ -21,7 +21,7 @@ import Image from "../assests/image-1.jpg";
 import { getProducts } from "@state/slices/products";
 import ImageUploader from "@components/formui/multipleImages";
 import Introductory from "@components/introductory";
-import ProductTypesSidebar from "@components/productList/productTypesSidebar";
+import ProductTypesSidebar from "@components/sidebarFiltering";
 // import { DisplaySettings } from "@mui/icons-material";
 // import SidebarFiltering from "@components/sidebarFiltering";
 
@@ -134,19 +134,30 @@ function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   // ----------- Input Filter -----------
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
 
-  const handleInputChange = (event) => {
-    setQuery(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setQuery(event.target.value);
+  // };
 
-  const filteredItems = products.filter(
-    (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
-  );
+  // const filteredItems = products.filter(
+  //   (product) => product.title.toLowerCase().indexOf(query.toLowerCase()) !== -1
+  // );
 
   // ----------- Radio Filtering -----------
   const handleChange = (event) => {
     setSelectedCategory(event.target.value);
+    console.log(event.target.value);
+  };
+  const [price, setPrice] = useState("");
+  const handleChangePrice = (event) => {
+    setPrice(event.target.value);
+    console.log(event.target.value);
+  };
+  const [color, setColor] = useState("");
+  const handleChangeColor = (event) => {
+    setColor(event.target.value);
+    console.log(event.target.value);
   };
   return (
     <>
@@ -239,7 +250,13 @@ function Home() {
 
       <Grid container spacing={1} style={{ width: "100%" }}>
         <Grid item sm={2.5} xs={2.5} md={2.5}>
-          <ProductTypesSidebar />
+          <ProductTypesSidebar
+            handleChange={handleChange}
+            handleChangePrice={handleChangePrice}
+            price={price}
+            color={color}
+             handleChangeColor={handleChangeColor}
+          />
           {/* <SidebarFiltering handleChange={handleChange} /> */}
         </Grid>
         {/* <Container> */}

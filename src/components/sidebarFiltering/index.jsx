@@ -17,7 +17,9 @@ import { Colors } from "@styles/theme";
 import UseProductTypes from "@hooks/use-product-types";
 import UseDirection from "@hooks/use-direction";
 import UseThemMode from "@hooks/use-theme";
-import Category from "@components/category";
+import Category from "@components/sidebarFiltering/category";
+import Price from "@components/sidebarFiltering/price";
+import Color from "@components/sidebarFiltering/colors";
 
 const blue = {
   100: "#DAECFF",
@@ -41,9 +43,15 @@ const grey = {
   900: "#1C2025",
 };
 
-function ProductTypesSidebar() {
+function ProductTypesSidebar({
+  handleChange,
+  handleChangePrice,
+  price,
+  color,
+  handleChangeColor,
+}) {
   const { productTypes } = UseProductTypes();
-  const [active, setActive] = useState(null);
+  const [active, setActive] = useState(0);
   const { themeMode } = UseThemMode();
   const { Direction } = UseDirection();
 
@@ -128,7 +136,10 @@ function ProductTypesSidebar() {
             </motion.div>
           </div>
           ))} */}
-        <Category />
+        <Category handleChange={handleChange} />
+        <Price handleChangePrice={handleChangePrice} price={price} />
+
+        <Color handleChangeColor={handleChangeColor} color={color} />
       </List>
     </div>
   );

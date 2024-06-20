@@ -16,8 +16,7 @@ import {
   FormLabel,
 } from "@mui/material";
 
-
-import ProductTypesSidebar from "@components/productList/productTypesSidebar";
+import ProductTypesSidebar from "@components/sidebarFiltering";
 function RootProductList() {
   return (
     <div>
