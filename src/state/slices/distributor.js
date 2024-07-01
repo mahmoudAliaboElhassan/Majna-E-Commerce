@@ -249,7 +249,7 @@ export const distributorSlice = createSlice({
       })
       .addCase(addProduct.rejected, (state, action) => {
         state.loadingEdit = false;
-      })
+      });
   },
 });
 

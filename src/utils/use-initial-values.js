@@ -50,6 +50,10 @@ function UseInitialValues(props) {
     categories: null,
     sub_category_pk: null,
   };
+  const INITIAL_FORM_STATE_PRICES = {
+    priceFrom: null,
+    priceTo: null,
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -60,6 +64,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_EDIT_STORE,
     INITIAL_FORM_STATE_ADD_STORE,
     INITIAL_FORM_STATE_ADD_PRODUCT,
+    INITIAL_FORM_STATE_PRICES,
   };
 }
 

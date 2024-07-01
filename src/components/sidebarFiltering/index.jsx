@@ -45,7 +45,9 @@ const grey = {
 
 function ProductTypesSidebar({
   handleChange,
-  handleChangePrice,
+  handlePriceChange,
+  priceFromTo,
+  handleClickPrice,
   price,
   color,
   handleChangeColor,
@@ -137,8 +139,12 @@ function ProductTypesSidebar({
           </div>
           ))} */}
         <Category handleChange={handleChange} />
-        <Price handleChangePrice={handleChangePrice} price={price} />
-
+        <Price
+          handlePriceChange={handlePriceChange}
+          price={price}
+          handleClickPrice={handleClickPrice}
+          priceFromTo={priceFromTo}
+        />
         <Color handleChangeColor={handleChangeColor} color={color} />
       </List>
     </div>

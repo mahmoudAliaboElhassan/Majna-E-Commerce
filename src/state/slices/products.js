@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 import UseInitialStates from "@hooks/use-initial-state";
 import axios from "axios";
+import { majnAPI, majnaFiles } from "@state/API/global-api";
 
 const initialState = {
   products: [],
@@ -9,24 +9,33 @@ const initialState = {
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
-  async (userData, thunkAPI) => {
+  async (query, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
+    const entriesArray = Object.entries(query);
+    console.log("entriesArray");
+    console.log(entriesArray);
+    const queryParameters = entriesArray
+      .map(([key, value]) => (value ? `${key}=${value}` : null))
+      .filter(Boolean)
+      .join("&");
 
     try {
-      const { data } = await axios.get("http://localhost:30001/products");
+      const { data } = await majnAPI.get(
+        `http://localhost:30001/products?${queryParameters}`
+      );
       return data;
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        // Handle 403 error here
-        // Example: setConfirmed(true);
-        console.log("400 Forbidden - User not authorized from slice");
+        // Handle 400 error here
+        console.log("400 Bad Request - Error in the request");
       }
       return rejectWithValue(error);
     }
   }
 );
+
 export const products = createSlice({
-  name: "producs",
+  name: "products",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

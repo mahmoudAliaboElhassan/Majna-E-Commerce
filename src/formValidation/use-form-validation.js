@@ -218,6 +218,22 @@ function UseFormValidation() {
       .max(3, "You can select only up to three images ."),
   });
 
+  const FORM_VALIDATION_SCHEMA_PRICES = Yup.object().shape({
+    priceFrom: Yup.number("Price From should be a number")
+      .required("Price From is required")
+      .min(0, "Price From cannot be negative"),
+    priceTo: Yup.number("Price To should be a number")
+      .required("Price To is required")
+      .min(Yup.ref('priceFrom'), "Price To must be greater than Price From")
+      .test(
+        "is-greater",
+        "Price To must be greater than Price From by at least 1",
+        function (value) {
+          const { priceFrom } = this.parent;
+          return value > priceFrom;
+        }
+      ),
+  });
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
     FORM_VALIDATION_SCHEMA_Login,
@@ -228,6 +244,8 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_Add_STORE,
     FORM_VALIDATION_SCHEMA_EDIT_STORE,
     FORM_VALIDATION_SCHEMA_Add_PRODUCT,
+    FORM_VALIDATION_SCHEMA_PRICES,
+    
   };
 }
 

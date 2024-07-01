@@ -12,7 +12,14 @@ function ShoppingCart() {
   const { productFullInfo } = useSelector((state) => state.cart);
   console.log(productFullInfo);
   useEffect(() => {
-    dispatch(actGetCategoriesByItems());
+    dispatch(
+      actGetCategoriesByItems({
+        title: "Mahmoud",
+        description: "descriptionoftext",
+        price: null,
+        cat: "",
+      })
+    );
   }, [dispatch]);
   return (
     <Box sx={{ p: 2 }}>
