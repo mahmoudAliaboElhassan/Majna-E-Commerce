@@ -74,7 +74,6 @@ function ProductTypesSidebar({
       <List
         sx={{
           zIndex: 2,
-          // color: "white",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

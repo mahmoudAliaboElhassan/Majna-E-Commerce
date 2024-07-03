@@ -69,7 +69,7 @@ function Home() {
       <Swiperslide />
       <Introductory />
       <Grid container spacing={1} style={{ width: "100%" }}>
-        <Grid item sm={2.5} xs={2.5} md={2.5}>
+        <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
             handleChange={handleChange}
             handlePriceChange={handlePriceChange}
@@ -80,7 +80,7 @@ function Home() {
             handleChangeColor={handleChangeColor}
           />
         </Grid>
-        <Grid container item xs={9} md={9} sm={9} spacing={1.5}>
+        <Grid container item xs={9} md={9} sm={7} spacing={1.5}>
           <ShowProducts
             records={productInfo}
             renderProducts={(product) => <Product {...product} />}

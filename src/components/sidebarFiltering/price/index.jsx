@@ -1,17 +1,22 @@
 import React from "react";
-import { TextField } from "@mui/material";
+
+import { TextField, Button } from "@mui/material";
+import { Form, Formik } from "formik";
+import { useTranslation } from "react-i18next";
+
 import UseInitialValues from "@utils/use-initial-values";
 import UseFormValidation from "@formValidation/use-form-validation";
-import { Form, Formik } from "formik";
+import UseThemeMode from "@hooks/use-theme";
 
 const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
   const { INITIAL_FORM_STATE_PRICES } = UseInitialValues();
   const { FORM_VALIDATION_SCHEMA_PRICES } = UseFormValidation();
-
+  const { t } = useTranslation();
+  const { themeMode } = UseThemeMode();
   return (
-    <div style={{ marginLeft: "20px" }}>
+    <div style={{ marginLeft: "10px", marginRight: "10px" }}>
       <h2 className="sidebar-title price-title" style={{ marginTop: "20px" }}>
-        Price
+        {t("price")}
       </h2>
       <Formik
         initialValues={{
@@ -27,7 +32,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
             <TextField
               type="number"
               name="priceFrom"
-              placeholder="Price From"
+              placeholder={t("price-from")}
               value={values.priceFrom || ""}
               onChange={(e) => {
                 handlePriceChange(0, e.target.value);
@@ -35,11 +40,14 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
               }}
               error={touched.priceFrom && Boolean(errors.priceFrom)}
               helperText={touched.priceFrom && errors.priceFrom}
+              variant="outlined"
+              margin="normal"
+              fullWidth
             />
             <TextField
               name="priceTo"
               type="number"
-              placeholder="Price To"
+              placeholder={t("price-to")}
               min={values.priceFrom ? parseInt(values.priceFrom, 10) + 1 : ""}
               value={values.priceTo || ""}
               onChange={(e) => {
@@ -48,8 +56,13 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
               }}
               error={touched.priceTo && Boolean(errors.priceTo)}
               helperText={touched.priceTo && errors.priceTo}
+              variant="outlined"
+              margin="normal"
+              fullWidth
             />
-            <button type="submit">Search</button>
+            <Button type="submit" variant={themeMode==="dark"?"contained":"outlined"} fullWidth>
+              {t("search")}
+            </Button>
           </Form>
         )}
       </Formik>

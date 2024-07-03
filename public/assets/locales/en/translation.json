@@ -131,5 +131,8 @@
   "forbidden-txt-distributor": "Forbidden to this Buyer or Reviewer to add Product Create Account as distributor First ",
   "no-brands": "No Brands Approved Yet Wait for it be reviewed .",
   "description-txt": "Write Accurate Description for Your Product",
-  "email-txt": "Write Email"
+  "email-txt": "Write Email",
+  "price": "Price Range",
+  "price-to": "To",
+  "price-from": "From"
 }
