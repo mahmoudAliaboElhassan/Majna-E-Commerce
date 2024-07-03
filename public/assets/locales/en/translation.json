@@ -134,5 +134,8 @@
   "email-txt": "Write Email",
   "price": "Price Range",
   "price-to": "To",
-  "price-from": "From"
+  "price-from": "From",
+  "ascending": "Ascending",
+  "descending": "Descending",
+  "ordering": "Ordering"
 }

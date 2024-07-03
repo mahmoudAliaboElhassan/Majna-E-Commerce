@@ -20,9 +20,7 @@ export const getProducts = createAsyncThunk(
       .join("&");
 
     try {
-      const { data } = await majnAPI.get(
-        `http://localhost:30001/products?${queryParameters}`
-      );
+      const { data } = await majnAPI.get(`api/products?${queryParameters}`);
       return data;
     } catch (error) {
       if (error.response && error.response.status === 400) {

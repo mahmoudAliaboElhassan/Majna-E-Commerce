@@ -14,7 +14,14 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
   const { t } = useTranslation();
   const { themeMode } = UseThemeMode();
   return (
-    <div style={{ marginLeft: "10px", marginRight: "10px" }}>
+    <div
+      style={{
+        marginTop: "20px",
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "70%",
+      }}
+    >
       <h2 className="sidebar-title price-title" style={{ marginTop: "20px" }}>
         {t("price")}
       </h2>
@@ -60,7 +67,11 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
               margin="normal"
               fullWidth
             />
-            <Button type="submit" variant={themeMode==="dark"?"contained":"outlined"} fullWidth>
+            <Button
+              type="submit"
+              variant={themeMode === "dark" ? "contained" : "outlined"}
+              fullWidth
+            >
               {t("search")}
             </Button>
           </Form>

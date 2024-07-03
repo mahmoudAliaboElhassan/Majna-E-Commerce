@@ -136,5 +136,8 @@
   "approved_brands": "العلامات التجارية الموثقه",
   "price": "متوسط السعر",
   "price-to": "إلى",
-  "price-from": "من"
+  "price-from": "من",
+  "ascending": "تصاعدي",
+  "descending": "تنازلي",
+  "ordering": "ترتيب"
 }

@@ -12,6 +12,8 @@ import {
 } from "@mui/material";
 import { Toolbar } from "@mui/material";
 import { Link } from "react-router-dom";
+import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
+import { useTranslation } from "react-i18next";
 
 import { Colors } from "@styles/theme";
 import UseProductTypes from "@hooks/use-product-types";
@@ -20,6 +22,7 @@ import UseThemMode from "@hooks/use-theme";
 import Category from "@components/sidebarFiltering/category";
 import Price from "@components/sidebarFiltering/price";
 import Color from "@components/sidebarFiltering/colors";
+import Ordering from "@components/sidebarFiltering/ordering";
 
 const blue = {
   100: "#DAECFF",
@@ -51,71 +54,75 @@ function ProductTypesSidebar({
   price,
   color,
   handleChangeColor,
+  handleOrdering,
 }) {
   const { productTypes } = UseProductTypes();
   const [active, setActive] = useState(0);
   const { themeMode } = UseThemMode();
   const { Direction } = UseDirection();
-
+  const { t } = useTranslation();
   return (
-    <div
-      open={true}
-      variant="persistent"
-      anchor={Direction.left}
-      style={{
-        height: "100%",
-        backgroundColor: themeMode === "light" ? "#ddd" : "#2b1f1f",
-        [Direction.borderRight]: `2px solid ${
-          themeMode == "dark" ? Colors.light_gray : Colors.shaft
-        }`,
-        boxShadow: `0 0 0 3px ${themeMode === "dark" ? blue[600] : blue[200]}`,
-      }}
-    >
-      <List
-        sx={{
-          zIndex: 2,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
+    <>
+      <div
+        open={true}
+        variant="persistent"
+        anchor={Direction.left}
+        style={{
+          height: "100%",
+          backgroundColor: themeMode === "light" ? "#ddd" : "#2b1f1f",
+          [Direction.borderRight]: `2px solid ${
+            themeMode == "dark" ? Colors.light_gray : Colors.shaft
+          }`,
+          boxShadow: `0 0 0 3px ${
+            themeMode === "dark" ? blue[600] : blue[200]
+          }`,
         }}
       >
-        <div>
-          <h1 style={{ marginTop: "1.3rem" }}>🛒</h1>
-        </div>
-        {productTypes &&
-          productTypes.map((product, index) => (
-            <div key={product.to}>
-              <h3
-                style={{ cursor: "pointer", padding: "5px" }}
-                sx={{ fontSize: { md: "12px", lg: "16px" } }}
-                onClick={() => setActive(index)}
-                component={Link}
-                {...product}
-              >
-                {product.label}
-              </h3>
-              <motion.div
-                initial={{ height: 0 }}
-                transition={{
-                  type: "keyframes",
-                  ease: "easeInOut",
-                  duration: 1.3,
-                  delay: 0.7,
-                }}
-                animate={{
-                  opacity: active === index ? 1 : 0,
-                  height: active === index ? "auto" : 0,
-                }}
-              >
-                {product.nestedTypes &&
-                  product.nestedTypes.map((nestedType, innerIndex) => (
-                    <p key={innerIndex}>{nestedType.label}</p>
-                  ))}
-              </motion.div>
-            </div>
-          ))}
-        {/* <div key={index}>
+        <List
+          sx={{
+            zIndex: 2,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+          }}
+        >
+          <div>
+            <h1 style={{ marginTop: "1.3rem" }}>🛒</h1>
+          </div>
+          {productTypes &&
+            productTypes.map((product, index) => (
+              <div key={product.to}>
+                <h3
+                  style={{ cursor: "pointer", padding: "5px" }}
+                  sx={{ fontSize: { md: "12px", lg: "16px" } }}
+                  onClick={() => setActive(index)}
+                  component={Link}
+                  {...product}
+                >
+                  {product.label}
+                </h3>
+                <motion.div
+                  initial={{ height: 0 }}
+                  transition={{
+                    type: "keyframes",
+                    ease: "easeInOut",
+                    duration: 1.3,
+                    delay: 0.7,
+                  }}
+                  animate={{
+                    opacity: active === index ? 1 : 0,
+                    height: active === index ? "auto" : 0,
+                  }}
+                >
+                  {product.nestedTypes &&
+                    product.nestedTypes.map((nestedType, innerIndex) => (
+                      <p key={innerIndex}>{nestedType.label}</p>
+                    ))}
+                </motion.div>
+              </div>
+            ))}
+          {/* <div key={index}>
             <h1 onClick={() => setActive(index)}>{product.label}</h1>
             <motion.div
               initial={{ opacity: 0, height: 0 }}
@@ -137,16 +144,18 @@ function ProductTypesSidebar({
             </motion.div>
           </div>
           ))} */}
-        <Category handleChange={handleChange} />
-        <Price
-          handlePriceChange={handlePriceChange}
-          price={price}
-          handleClickPrice={handleClickPrice}
-          priceFromTo={priceFromTo}
-        />
-        <Color handleChangeColor={handleChangeColor} color={color} />
-      </List>
-    </div>
+          <Ordering handleOrdering={handleOrdering} />
+          <Category handleChange={handleChange} />
+          <Price
+            handlePriceChange={handlePriceChange}
+            price={price}
+            handleClickPrice={handleClickPrice}
+            priceFromTo={priceFromTo}
+          />
+          <Color handleChangeColor={handleChangeColor} color={color} />
+        </List>
+      </div>
+    </>
   );
 }
 

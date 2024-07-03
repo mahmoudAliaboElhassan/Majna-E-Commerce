@@ -48,26 +48,28 @@ function Home() {
     setColor(event.target.value);
     console.log(event.target.value);
   };
-
+  const [ordering, setOrdering] = useState(null);
   useEffect(() => {
     dispatch(
       getProducts({
-        price: price,
+        price_range: price,
         selectedCategory: selectedCategory,
         color: color,
+        ordering,
       })
     );
-  }, [selectedCategory, price, color]);
+  }, [selectedCategory, price, color, ordering]);
 
   const productInfo = products?.map((el) => ({
     ...el,
     quantity: items[el.id],
   }));
-
+  const handleOrdering = (e) => setOrdering(e.target.value);
   return (
     <>
       <Swiperslide />
       <Introductory />
+
       <Grid container spacing={1} style={{ width: "100%" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
@@ -78,6 +80,7 @@ function Home() {
             price={price}
             color={color}
             handleChangeColor={handleChangeColor}
+            handleOrdering={handleOrdering}
           />
         </Grid>
         <Grid container item xs={9} md={9} sm={7} spacing={1.5}>
