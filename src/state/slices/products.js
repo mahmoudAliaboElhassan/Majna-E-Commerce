@@ -29,7 +29,22 @@ export const productsSlice = createSlice({
       })
       .addCase(getProducts.rejected, (state) => {
         state.loadingProducts = false;
-      });
+      })
+      .addCase(getProductsByCategory.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(getProductsByCategory.fulfilled, (state, action) => {
+        state.productsArray = action.payload.results;
+        state.countOfProducts = action.payload.count;
+        console.log("State");
+        console.log(state.productsArray);
+        console.log("Products");
+        console.log(action.payload);
+        state.loadingProducts = false;
+      })
+      .addCase(getProductsByCategory.rejected, (state) => {
+        state.loadingProducts = false;
+      })
   },
 });
 

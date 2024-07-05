@@ -24,7 +24,7 @@ import Price from "@components/sidebarFiltering/price";
 import Color from "@components/sidebarFiltering/colors";
 import Ordering from "@components/sidebarFiltering/ordering";
 import { useDispatch } from "react-redux";
-import { getProductsByCategory } from "@state/slices/products";
+import CategoryProducts from "@components/sidebarFiltering/categoryProducts";
 
 const blue = {
   100: "#DAECFF",
@@ -57,6 +57,7 @@ function ProductTypesSidebar({
   color,
   handleChangeColor,
   handleOrdering,
+  handleProductsByCategory,
 }) {
   const { productTypes } = UseProductTypes();
   const [active, setActive] = useState(0);
@@ -101,13 +102,6 @@ function ProductTypesSidebar({
                   sx={{ fontSize: { md: "12px", lg: "16px" } }}
                   onClick={() => {
                     setActive(index);
-                    dispatch(
-                      getProductsByCategory({
-                        id: 5,
-                        ordering: "-price",
-                        search: "Adidas",
-                      })
-                    );
                   }}
                   component={Link}
                   {...product}
@@ -156,8 +150,11 @@ function ProductTypesSidebar({
             </motion.div>
           </div>
           ))} */}
+          {/* <CategoryProducts
+            handleProductsByCategory={handleProductsByCategory}
+          /> */}
           <Ordering handleOrdering={handleOrdering} />
-          <Category handleChange={handleChange} />
+          <Category handleProductsByCategory={handleProductsByCategory} />
           <Price
             handlePriceChange={handlePriceChange}
             price={price}

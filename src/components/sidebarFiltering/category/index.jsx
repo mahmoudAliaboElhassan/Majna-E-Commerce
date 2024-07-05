@@ -1,42 +1,37 @@
-import "./category.css";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Input from "@components/sidebarFiltering/input";
+import { getCategories } from "@state/slices/distributor";
+import "./category.css";
+import { useTranslation } from "react-i18next";
 
-function Category({ handleChange }) {
+function Category({ handleProductsByCategory }) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  const { categories } = useSelector((state) => state.distributor);
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h2 className="sidebar-title">Category</h2>
-
+      <h2 className="sidebar-title">{t('categories')}</h2>
       <div>
         <label className="sidebar-label-container">
-          <input onChange={handleChange} type="radio" value="" name="test"
-          // checked={true} 
-          />
-          <span className="checkmark"></span>All
+          <div>
+            {categories.map(({ id, name }) => (
+              <Input
+                key={id}
+                handleChange={() => handleProductsByCategory(id)}
+                value={id}
+                title={name}
+                name="test"
+              />
+            ))}
+          </div>
         </label>
-        <Input
-          handleChange={handleChange}
-          value="sneakers"
-          title="Sneakers"
-          name="test"
-        />
-        <Input
-          handleChange={handleChange}
-          value="flats"
-          title="Flats"
-          name="test"
-        />
-        <Input
-          handleChange={handleChange}
-          value="sandals"
-          title="Sandals"
-          name="test"
-        />
-        <Input
-          handleChange={handleChange}
-          value="heels"
-          title="Heels"
-          name="test"
-        />
       </div>
     </div>
   );

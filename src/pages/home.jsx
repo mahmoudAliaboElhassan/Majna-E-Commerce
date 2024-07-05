@@ -1,6 +1,8 @@
 import React, { useCallback, useState, useEffect } from "react";
+
 import { Container, Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
+import { t } from "i18next";
 
 import Footer from "@components/footer";
 import Swiperslide from "@components/slider";
@@ -15,7 +17,7 @@ import { getProducts } from "@state/slices/products";
 import Introductory from "@components/introductory";
 import ProductTypesSidebar from "@components/sidebarFiltering";
 import LoadingFetching from "@components/loadingFetching";
-import { t } from "i18next";
+import { getProductsByCategory } from "@state/slices/products";
 
 function Home() {
   const [page, setPage] = useState(1);
@@ -55,21 +57,46 @@ function Home() {
   };
   const [ordering, setOrdering] = useState(null);
   useEffect(() => {
-    dispatch(
-      getProducts({
-        price__range: price,
-        selectedCategory: selectedCategory,
-        color: color,
-        ordering,
-        page,
-      })
-    );
+    selectedCategory
+      ? dispatch(
+          getProductsByCategory({
+            id: selectedCategory,
+            price__range: price,
+            color: color,
+            ordering,
+            page,
+            // search: "Hello Mahmoud Ali",
+          })
+        )
+      : dispatch(
+          getProducts({
+            price__range: price,
+            color: color,
+            ordering,
+            page,
+          })
+        );
   }, [selectedCategory, price, color, ordering, page]);
   // const productInfo = products?.map((el) => ({
   //   ...el,
   //   quantity: items[el.id],
   // }));
   const handleOrdering = (e) => setOrdering(e.target.value);
+
+  const [productId, setProductId] = useState(null);
+  const handleProductsByCategory = (id) => {
+    setSelectedCategory(id);
+    dispatch(
+      getProductsByCategory({
+        id: id,
+        price__range: price,
+        color: color,
+        ordering,
+        page,
+        // search: "Hello Mahmoud Ali",
+      })
+    );
+  };
   return (
     <>
       <Swiperslide />
@@ -78,7 +105,6 @@ function Home() {
       <Grid container>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
-            handleChange={handleChange}
             handlePriceChange={handlePriceChange}
             priceFromTo={priceFromTo}
             handleClickPrice={handleClickPrice}
@@ -86,6 +112,7 @@ function Home() {
             color={color}
             handleChangeColor={handleChangeColor}
             handleOrdering={handleOrdering}
+            handleProductsByCategory={handleProductsByCategory}
           />
         </Grid>
         <Grid
