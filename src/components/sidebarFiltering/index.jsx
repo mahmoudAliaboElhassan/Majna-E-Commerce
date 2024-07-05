@@ -24,7 +24,6 @@ import Price from "@components/sidebarFiltering/price";
 import Color from "@components/sidebarFiltering/colors";
 import Ordering from "@components/sidebarFiltering/ordering";
 import { useDispatch } from "react-redux";
-import CategoryProducts from "@components/sidebarFiltering/categoryProducts";
 
 const blue = {
   100: "#DAECFF",
@@ -150,9 +149,7 @@ function ProductTypesSidebar({
             </motion.div>
           </div>
           ))} */}
-          {/* <CategoryProducts
-            handleProductsByCategory={handleProductsByCategory}
-          /> */}
+
           <Ordering handleOrdering={handleOrdering} />
           <Category handleProductsByCategory={handleProductsByCategory} />
           <Price

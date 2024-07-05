@@ -86,16 +86,25 @@ function Home() {
   const [productId, setProductId] = useState(null);
   const handleProductsByCategory = (id) => {
     setSelectedCategory(id);
-    dispatch(
-      getProductsByCategory({
-        id: id,
-        price__range: price,
-        color: color,
-        ordering,
-        page,
-        // search: "Hello Mahmoud Ali",
-      })
-    );
+    id
+      ? dispatch(
+          getProductsByCategory({
+            id: id,
+            price__range: price,
+            color: color,
+            ordering,
+            page,
+            // search: "Hello Mahmoud Ali",
+          })
+        )
+      : dispatch(
+          getProducts({
+            price__range: price,
+            color: color,
+            ordering,
+            page,
+          })
+        );
   };
   return (
     <>

@@ -22,9 +22,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
         width: "70%",
       }}
     >
-      <h2 className="sidebar-title price-title" style={{ marginTop: "20px" }}>
-        {t("price")}
-      </h2>
+      <h2 className="sidebar-title price-title">{t("price")}</h2>
       <Formik
         initialValues={{
           ...INITIAL_FORM_STATE_PRICES,

@@ -17,10 +17,17 @@ function Category({ handleProductsByCategory }) {
 
   return (
     <div>
-      <h2 className="sidebar-title">{t('categories')}</h2>
+      <h2 className="sidebar-title">{t("categories")}</h2>
       <div>
         <label className="sidebar-label-container">
           <div>
+          <Input
+              key={"all"}
+              handleChange={() => handleProductsByCategory(null)}
+              value={null}
+              title={t("all")}
+              name="test"
+            />
             {categories.map(({ id, name }) => (
               <Input
                 key={id}
@@ -30,6 +37,7 @@ function Category({ handleProductsByCategory }) {
                 name="test"
               />
             ))}
+
           </div>
         </label>
       </div>

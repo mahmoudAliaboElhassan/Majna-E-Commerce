@@ -15,7 +15,7 @@ export const getCarts = createAsyncThunk(
   //       .join("&");
 
   //     try {
-  //       const data = await majnAPI.get(`api/products?${queryParameters}`);
+  //       const data = await majnAPI.get(`api/customers/${id}/cart-items`);
   //       return data;
   //     } catch (error) {
   //       if (error.response && error.response.status === 400) {
@@ -40,7 +40,7 @@ export const getCartItem = createAsyncThunk(
 
   //     try {
   //       const data = await majnAPI.get(
-  //         `api/products/categories/${id}?${queryParameters}`
+  //       const data = await majnAPI.get(`api/customers/${id}/cart-items/${cartId}`);
   //       );
   //       return data;
   //     } catch (error) {
@@ -65,9 +65,8 @@ export const updateQuantity = createAsyncThunk(
   //       .join("&");
 
   //     try {
-  //       const data = await majnAPI.get(
-  //         `api/products/categories/${id}?${queryParameters}`
-  //       );
+  //  const data = await majnAPI.patch(`api/customers/${id}/cart-items/${cartId}`);
+
   //       return data;
   //     } catch (error) {
   //       if (error.response && error.response.status === 400) {
@@ -91,9 +90,8 @@ export const postCarts = createAsyncThunk(
   //       .join("&");
 
   //     try {
-  //       const data = await majnAPI.get(
-  //         `api/products/categories/${id}?${queryParameters}`
-  //       );
+  //       const data = await majnAPI.get(`api/customers/${id}/cart-items`);
+
   //       return data;
   //     } catch (error) {
   //       if (error.response && error.response.status === 400) {
@@ -117,9 +115,8 @@ export const deleteCartItem = createAsyncThunk(
   //       .join("&");
 
   //     try {
-  //       const data = await majnAPI.get(
-  //         `api/products/categories/${id}?${queryParameters}`
-  //       );
+  //       const data = await majnAPI.delete(`api/customers/${id}/cart-items/${cartId}`);
+
   //       return data;
   //     } catch (error) {
   //       if (error.response && error.response.status === 400) {
