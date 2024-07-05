@@ -14,11 +14,16 @@ import Image from "../assests/image-1.jpg";
 import { getProducts } from "@state/slices/products";
 import Introductory from "@components/introductory";
 import ProductTypesSidebar from "@components/sidebarFiltering";
+import LoadingFetching from "@components/loadingFetching";
+import { t } from "i18next";
 
 function Home() {
   const [page, setPage] = useState(1);
   const { items } = useSelector((state) => state.cart);
-  const { products } = useSelector((state) => state.products);
+  const { productsArray, loadingProducts, countOfProducts } = useSelector(
+    (state) => state.products
+  );
+  const productsCount = Math.ceil(countOfProducts / 12);
   const dispatch = useDispatch();
   const changePage = useCallback((e, value) => {
     setPage(value);
@@ -52,25 +57,25 @@ function Home() {
   useEffect(() => {
     dispatch(
       getProducts({
-        price_range: price,
+        price__range: price,
         selectedCategory: selectedCategory,
         color: color,
         ordering,
+        page,
       })
     );
-  }, [selectedCategory, price, color, ordering]);
-
-  const productInfo = products?.map((el) => ({
-    ...el,
-    quantity: items[el.id],
-  }));
+  }, [selectedCategory, price, color, ordering, page]);
+  // const productInfo = products?.map((el) => ({
+  //   ...el,
+  //   quantity: items[el.id],
+  // }));
   const handleOrdering = (e) => setOrdering(e.target.value);
   return (
     <>
       <Swiperslide />
       <Introductory />
 
-      <Grid container spacing={1} style={{ width: "100%" }}>
+      <Grid container>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
             handleChange={handleChange}
@@ -83,14 +88,49 @@ function Home() {
             handleOrdering={handleOrdering}
           />
         </Grid>
-        <Grid container item xs={9} md={9} sm={7} spacing={1.5}>
-          <ShowProducts
-            records={productInfo}
-            renderProducts={(product) => <Product {...product} />}
-          />
+        <Grid
+          container
+          item
+          xs={8}
+          md={9.5}
+          sm={9.5}
+          spacing={1.5}
+          style={{ overflowX: "hidden", maxWidth: "100%" }}
+          sx={{
+            overflowX: "hidden",
+            padding: { xs: 2, sm: 3 },
+            // margin: "auto",
+            maxWidth: { sm: "calc(100% - 40px)", md: "calc(100% - 48px)" },
+          }}
+        >
+          {loadingProducts ? (
+            <LoadingFetching>{t("load-products")}</LoadingFetching>
+          ) : countOfProducts ? (
+            <ShowProducts
+              records={productsArray}
+              renderProducts={(product) => <Product {...product} />}
+            />
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100%",
+                fontSize: "19px",
+                textAlign: "center",
+              }}
+            >
+              {t("no-product")}
+            </div>
+          )}
         </Grid>
         <Grid item xs={12} sm={12} md={12}>
-          <PaginationComponent page={page} count={35} changePage={changePage} />
+          <PaginationComponent
+            page={page}
+            count={productsCount}
+            changePage={changePage}
+          />
         </Grid>
       </Grid>
       <Footer />

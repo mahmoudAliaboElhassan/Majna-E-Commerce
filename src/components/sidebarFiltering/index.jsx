@@ -23,6 +23,8 @@ import Category from "@components/sidebarFiltering/category";
 import Price from "@components/sidebarFiltering/price";
 import Color from "@components/sidebarFiltering/colors";
 import Ordering from "@components/sidebarFiltering/ordering";
+import { useDispatch } from "react-redux";
+import { getProductsByCategory } from "@state/slices/products";
 
 const blue = {
   100: "#DAECFF",
@@ -61,6 +63,7 @@ function ProductTypesSidebar({
   const { themeMode } = UseThemMode();
   const { Direction } = UseDirection();
   const { t } = useTranslation();
+  const dispatch = useDispatch();
   return (
     <>
       <div
@@ -73,9 +76,9 @@ function ProductTypesSidebar({
           [Direction.borderRight]: `2px solid ${
             themeMode == "dark" ? Colors.light_gray : Colors.shaft
           }`,
-          boxShadow: `0 0 0 3px ${
-            themeMode === "dark" ? blue[600] : blue[200]
-          }`,
+          // boxShadow: `0 0 0 3px ${
+          //   themeMode === "dark" ? blue[600] : blue[200]
+          // }`,
         }}
       >
         <List
@@ -96,7 +99,16 @@ function ProductTypesSidebar({
                 <h3
                   style={{ cursor: "pointer", padding: "5px" }}
                   sx={{ fontSize: { md: "12px", lg: "16px" } }}
-                  onClick={() => setActive(index)}
+                  onClick={() => {
+                    setActive(index);
+                    dispatch(
+                      getProductsByCategory({
+                        id: 5,
+                        ordering: "-price",
+                        search: "Adidas",
+                      })
+                    );
+                  }}
                   component={Link}
                   {...product}
                 >

@@ -55,6 +55,11 @@ function UseInitialStates() {
     loadingSpecificBrand: false,
     countOfBrands: 0,
   };
+  const initialStateProducts = {
+    countOfProducts: 0,
+    productsArray: [],
+    loadingProducts: false,
+  };
 
   return {
     initialStateMode,
@@ -62,6 +67,7 @@ function UseInitialStates() {
     initialStateDistributor,
     initialStateReviewer,
     initialStateActiveLinks,
+    initialStateProducts,
   };
 }
 

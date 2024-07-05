@@ -56,7 +56,7 @@ function createAxiosInstance(baseURL, contentType) {
 
   return instance;
 }
-  
+
 // Create Axios instances for API and Files
 export const majnAPI = createAxiosInstance(
   process.env.REACT_APP_API_URL,

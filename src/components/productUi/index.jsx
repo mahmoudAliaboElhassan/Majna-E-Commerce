@@ -21,22 +21,29 @@ import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 import { addToCart } from "@state/slices/cart";
 import "./item.css";
+import { useTranslation } from "react-i18next";
 
-const Product = ({ id, title, img, max, quantity, prevPrice, newPrice }) => {
+const Product = ({
+  id,
+  name,
+  cover_image,
+  price,
+  brand,
+  prevPrice,
+  newPrice,
+}) => {
   const dispatch = useDispatch();
-
-  const currentRemaining = max - (quantity ?? 0);
-  const disabledBtn = currentRemaining <= 0 ? true : false;
   const { themeMode } = UseThemMode();
   const { ref, inView } = useInView({ triggerOnce: false });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+
   const handleBtnClick = (id) => {
     dispatch(addToCart(id));
     setIsBtnDisabled(true);
   };
+
   useEffect(() => {
     if (!isBtnDisabled) return;
-    setIsBtnDisabled(true);
     const debounce = setTimeout(() => {
       setIsBtnDisabled(false);
     }, 300);
@@ -44,7 +51,7 @@ const Product = ({ id, title, img, max, quantity, prevPrice, newPrice }) => {
   }, [isBtnDisabled]);
 
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-
+  const { t } = useTranslation();
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
       <motion.div
@@ -52,76 +59,52 @@ const Product = ({ id, title, img, max, quantity, prevPrice, newPrice }) => {
         initial={{ x: 50, opacity: 0 }}
         transition={{ duration: 0.5 }}
         whileInView={{ x: 0, opacity: 1 }}
-        // style={{
-        //   border: `1px solid ${
-        //     themeMode === "dark" ? Colors.light_gray : Colors.shaft
-        //   }`,
-        //   borderRadius: "12px",
-        //   width: "100%",
-        //   maxWidth: isSmallScreen ? "300px" : "initial",
-        //   // height: isSmallScreen ? "120px" : "180px"
-        //   margin: "auto",
-        // }}
       >
-        {/* <Box>
-          <Card raised>
-            <CardMedia
-              image={image}
-              title="Random Image"
-              style={{
-                height: isSmallScreen ? "120px" : "180px",
-                borderRadius: "12px",
-              }}
-              component="img"
-              loading="lazy"
-              alt="Random Image"
-            />
-            <CardContent>
-              <Typography variant="h4">Heading</Typography>{" "}
-              <Typography variant="subtitle1">{title} </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-              <Button
-                variant="success"
-                size="small"
-                component={Link}
-                to={{
-                  pathname: "/product/3",
-                }}
-              >
-                View
-              </Button>{" "}
-              <Button
-                variant="success"
-                size="small"
-                onClick={() => handleBtnClick(id)}
-                disabled={isBtnDisabled || disabledBtn}
-              >
-                {isBtnDisabled ? "loading" : "add to cart"}
-              </Button>
-            </CardActions>
-            <p> Maximum Number is {max}</p>
-            <p> quantity taken is {quantity}</p>
-            <p> remaining is {currentRemaining}</p>
-          </Card>
-        </Box> */}
-        <div className="item">
-          <div className="item-product">
-            <img
-              src={img}
-              alt={title}
-              // style={{ width: "350px", height: "350px" }}
-              loading="lazy"
-            />
+        <Box
+          sx={{
+            border: `1px solid ${
+              themeMode === "dark" ? Colors.light : Colors.dark
+            }`,
+            borderRadius: "8px",
+            transition: "0.4s",
+            // padding: "16px",
+            "&:hover": {
+              boxShadow: "3px 4px 8px rgba(0, 0, 0, 0.2)",
+            },
+          }}
+        >
+          <div className="item">
+            <div className="item-product">
+              <img src={cover_image} alt={name} loading="lazy" />
+            </div>
+            <div className="product-info">
+              <Typography variant="h6" component="p" gutterBottom>
+                {name.slice(0, 10)}
+              </Typography>
+              <Typography variant="h6" component="p" gutterBottom>
+                {brand}
+              </Typography>
+            </div>
+            <div className="item-prices">
+              <Typography variant="body1" component="div" color="textPrimary">
+                {price}$
+              </Typography>
+            </div>
+            <Button
+              variant={themeMode === "dark" ? "contained" : "outlined"}
+              color="primary"
+              onClick={() => handleBtnClick(id)}
+              disabled={isBtnDisabled}
+              sx={{ marginTop: "8px" }}
+              fullWidth
+            >
+              {t("add-to-cart")}
+            </Button>
           </div>
-          <p>{title}</p>
-          <div className="item-prices">
-            <div className="item-price-new">{newPrice}$</div>
-            <div className="item-price-old">{prevPrice}$</div>
-          </div>
-        </div>
-      </motion.div>{" "}
+        </Box>
+      </motion.div>
     </Grid>
   );
 };
+
 export default Product;

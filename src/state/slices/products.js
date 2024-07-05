@@ -1,47 +1,37 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+
 import UseInitialStates from "@hooks/use-initial-state";
-import axios from "axios";
-import { majnAPI, majnaFiles } from "@state/API/global-api";
+import { getProducts, getProductsByCategory } from "@state/act/actProducts";
 
 const initialState = {
   products: [],
+  countOfProducts: 0,
 };
+const { initialStateProducts } = UseInitialStates();
 
-export const getProducts = createAsyncThunk(
-  "products/getProducts",
-  async (query, thunkAPI) => {
-    const { rejectWithValue } = thunkAPI;
-    const entriesArray = Object.entries(query);
-    console.log("entriesArray");
-    console.log(entriesArray);
-    const queryParameters = entriesArray
-      .map(([key, value]) => (value ? `${key}=${value}` : null))
-      .filter(Boolean)
-      .join("&");
-
-    try {
-      const { data } = await majnAPI.get(`api/products?${queryParameters}`);
-      return data;
-    } catch (error) {
-      if (error.response && error.response.status === 400) {
-        // Handle 400 error here
-        console.log("400 Bad Request - Error in the request");
-      }
-      return rejectWithValue(error);
-    }
-  }
-);
-
-export const products = createSlice({
+export const productsSlice = createSlice({
   name: "products",
-  initialState,
+  initialState: initialStateProducts,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getProducts.fulfilled, (state, action) => {
-      state.products = action.payload;
-      console.log(state.products);
-    });
+    builder
+      .addCase(getProducts.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(getProducts.fulfilled, (state, action) => {
+        state.productsArray = action.payload.results;
+        state.countOfProducts = action.payload.count;
+        console.log("State");
+        console.log(state.productsArray);
+        console.log("Products");
+        console.log(action.payload);
+        state.loadingProducts = false;
+      })
+      .addCase(getProducts.rejected, (state) => {
+        state.loadingProducts = false;
+      });
   },
 });
 
-export default products.reducer;
+export default productsSlice.reducer;
+export { getProducts, getProductsByCategory };

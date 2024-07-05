@@ -137,5 +137,8 @@
   "price-from": "From",
   "ascending": "Ascending",
   "descending": "Descending",
-  "ordering": "Ordering"
+  "ordering": "Ordering",
+  "load-products": "Wait For Products to Load ...",
+  "no-product": "No Products For Your Filteration Change it !",
+  "add-to-cart": "Add To Cart"
 }
