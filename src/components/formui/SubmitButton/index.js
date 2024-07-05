@@ -25,7 +25,6 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
     fullWidth: true,
     type: "submit",
     disabled: loadinStatus,
-    style: { color: "white" },
     onClick: handleSubmit,
     variant: themeMode === "dark" ? "contained" : "outlined",
   };
