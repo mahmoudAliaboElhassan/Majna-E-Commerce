@@ -46,6 +46,7 @@ const cart = createSlice({
       .addCase(getCarts.fulfilled, (state, action) => {
         state.loadingCarts = false;
         state.cartItems = action.payload.cart_items;
+        state.countOfCartItems = action.payload.cart_items.length;
       })
       .addCase(getCarts.rejected, (state, action) => {
         state.loadingCarts = false;
@@ -59,6 +60,9 @@ const cart = createSlice({
       })
       .addCase(getCartItem.rejected, (state, action) => {
         state.loadingCart = false;
+      })
+      .addCase(deleteCartItem.fulfilled, (state, action) => {
+        state.countOfCartItems--;
       });
   },
 });

@@ -14,7 +14,7 @@
   /* padding: 5px 10px; */
 }
 
-.product {
+.productItem {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

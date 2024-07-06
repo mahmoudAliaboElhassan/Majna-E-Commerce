@@ -82,6 +82,9 @@ const BrnadApplication = React.lazy(() =>
   import("@pages/reviewer/brnadApplication.jsx")
 );
 const ShoppingCart = React.lazy(() => import("@pages/shoppingCart"));
+const SpecificCartItem = React.lazy(() =>
+  import("@pages/shoppingCart/specifcCart")
+);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -300,6 +303,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <ShoppingCart />
+          </Suspense>
+        ),
+      },
+      {
+        path: "cart-item/:cartId",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SpecificCartItem />
           </Suspense>
         ),
       },

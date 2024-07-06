@@ -62,10 +62,10 @@ function UseInitialStates() {
   };
   const initialStateCart = {
     cartItems: [],
-    loadingCarts:false,
+    loadingCarts: false,
+    countOfCartItems: null,
     cartItem: null,
-    loadingCart:false,
-    
+    loadingCart: false,
   };
 
   return {
