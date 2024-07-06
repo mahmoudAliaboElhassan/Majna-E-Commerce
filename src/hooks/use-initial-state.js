@@ -60,6 +60,13 @@ function UseInitialStates() {
     productsArray: [],
     loadingProducts: false,
   };
+  const initialStateCart = {
+    cartItems: [],
+    loadingCarts:false,
+    cartItem: null,
+    loadingCart:false,
+    
+  };
 
   return {
     initialStateMode,
@@ -68,6 +75,7 @@ function UseInitialStates() {
     initialStateReviewer,
     initialStateActiveLinks,
     initialStateProducts,
+    initialStateCart,
   };
 }
 

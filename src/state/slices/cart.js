@@ -1,6 +1,7 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import actGetCategoriesByItems from "@state/act/actGetCategoryByItems";
 import { getTotalQuantities } from "@state/slices/selectors";
+import UseInitialStates from "@hooks/use-initial-state";
 import {
   getCarts,
   getCartItem,
@@ -8,29 +9,57 @@ import {
   postCarts,
   deleteCartItem,
 } from "@state/act/actCarts";
-const initialState = {
-  items: {}, //  1 :1  1 for id and 1 for quantity
-  productFullInfo: [],
-};
+// const initialState = {
+//   items: {}, //  1 :1  1 for id and 1 for quantity
+//   productFullInfo: [],
+// };
+const { initialStateCart } = UseInitialStates();
 const cart = createSlice({
   name: "cart",
-  initialState,
+  initialState: initialStateCart,
   reducers: {
-    addToCart: (state, action) => {
-      const id = action.payload;
-      if (state.items[id]) {
-        state.items[id]++;
-      } else {
-        state.items[id] = 1;
-      }
+    // addToCart: (state, action) => {
+    //   const id = action.payload;
+    //   if (state.items[id]) {
+    //     state.items[id]++;
+    //   } else {
+    //     state.items[id] = 1;
+    //   }
+    // },
+    cleanUpCartItems: (state) => {
+      state.cartItems = [];
+    },
+    cleanUpCartItem: (state) => {
+      state.cartItem = null;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(actGetCategoriesByItems.fulfilled, (state, action) => {
-      state.productFullInfo = action.payload;
-      console.log(state.productFullInfo);
-      // state.error = false;
-    });
+    builder
+      .addCase(actGetCategoriesByItems.fulfilled, (state, action) => {
+        state.productFullInfo = action.payload;
+        console.log(state.productFullInfo);
+        // state.error = false;
+      })
+      .addCase(getCarts.pending, (state, action) => {
+        state.loadingCarts = true;
+      })
+      .addCase(getCarts.fulfilled, (state, action) => {
+        state.loadingCarts = false;
+        state.cartItems = action.payload.cart_items;
+      })
+      .addCase(getCarts.rejected, (state, action) => {
+        state.loadingCarts = false;
+      })
+      .addCase(getCartItem.pending, (state, action) => {
+        state.loadingCart = true;
+      })
+      .addCase(getCartItem.fulfilled, (state, action) => {
+        state.loadingCart = false;
+        state.cartItem = action.payload.cart_item;
+      })
+      .addCase(getCartItem.rejected, (state, action) => {
+        state.loadingCart = false;
+      });
   },
 });
 
@@ -45,3 +74,4 @@ export {
   postCarts,
   deleteCartItem,
 };
+export const { cleanUpCartItems, cleanUpCartItem } = cart.actions;
