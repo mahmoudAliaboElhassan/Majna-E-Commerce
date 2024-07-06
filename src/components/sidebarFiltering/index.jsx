@@ -57,6 +57,7 @@ function ProductTypesSidebar({
   handleChangeColor,
   handleOrdering,
   handleProductsByCategory,
+  selectedCategory,
 }) {
   const { productTypes } = UseProductTypes();
   const [active, setActive] = useState(0);
@@ -151,7 +152,10 @@ function ProductTypesSidebar({
           ))} */}
 
           <Ordering handleOrdering={handleOrdering} />
-          <Category handleProductsByCategory={handleProductsByCategory} />
+          <Category
+            handleProductsByCategory={handleProductsByCategory}
+            selectedCategory={selectedCategory}
+          />
           <Price
             handlePriceChange={handlePriceChange}
             price={price}

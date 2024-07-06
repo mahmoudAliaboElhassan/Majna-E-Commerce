@@ -5,7 +5,7 @@ import { getCategories } from "@state/slices/distributor";
 import "./category.css";
 import { useTranslation } from "react-i18next";
 
-function Category({ handleProductsByCategory }) {
+function Category({ handleProductsByCategory, selectedCategory }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,12 +21,13 @@ function Category({ handleProductsByCategory }) {
       <div>
         <label className="sidebar-label-container">
           <div>
-          <Input
+            <Input
               key={"all"}
               handleChange={() => handleProductsByCategory(null)}
               value={null}
               title={t("all")}
               name="test"
+              isCheck={selectedCategory === null}
             />
             {categories.map(({ id, name }) => (
               <Input
@@ -37,7 +38,6 @@ function Category({ handleProductsByCategory }) {
                 name="test"
               />
             ))}
-
           </div>
         </label>
       </div>

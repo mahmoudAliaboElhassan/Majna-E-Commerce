@@ -3,16 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 import UseInitialStates from "@hooks/use-initial-state";
 import { getProducts, getProductsByCategory } from "@state/act/actProducts";
 
-const initialState = {
-  products: [],
-  countOfProducts: 0,
-};
 const { initialStateProducts } = UseInitialStates();
 
 export const productsSlice = createSlice({
   name: "products",
   initialState: initialStateProducts,
-  reducers: {},
+  reducers: {
+    cleanUpGetProducts: (state) => {
+      state.productsArray = [];
+    },
+    cleanUpgetProductsByCategory: (state) => {
+      state.productsArray = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProducts.pending, (state) => {
@@ -44,9 +47,11 @@ export const productsSlice = createSlice({
       })
       .addCase(getProductsByCategory.rejected, (state) => {
         state.loadingProducts = false;
-      })
+      });
   },
 });
 
 export default productsSlice.reducer;
 export { getProducts, getProductsByCategory };
+export const { cleanUpgetProductsByCategory, cleanUpGetProducts } =
+  productsSlice.actions;

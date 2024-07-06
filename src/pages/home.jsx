@@ -13,11 +13,16 @@ import UseThemMode from "@hooks/use-theme";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
 import Image from "../assests/image-1.jpg";
-import { getProducts } from "@state/slices/products";
+import {
+  getProducts,
+  getProductsByCategory,
+  cleanUpGetProducts,
+  cleanUpgetProductsByCategory,
+} from "@state/slices/products";
 import Introductory from "@components/introductory";
 import ProductTypesSidebar from "@components/sidebarFiltering";
 import LoadingFetching from "@components/loadingFetching";
-import { getProductsByCategory } from "@state/slices/products";
+import Search from "@components/search";
 
 function Home() {
   const [page, setPage] = useState(1);
@@ -49,6 +54,13 @@ function Home() {
   const handleClickPrice = () => {
     setPrice(priceFromTo.join(","));
   };
+  const [searchValue, setSearchValue] = useState(null);
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value.split(" ").join("+"));
+    console.log(searchValue);
+    // setSearchParams({ queryformMahmoud: searchValue });
+    // console.log(searchParams);
+  };
 
   const [color, setColor] = useState("");
   const handleChangeColor = (event) => {
@@ -65,7 +77,7 @@ function Home() {
             color: color,
             ordering,
             page,
-            // search: "Hello Mahmoud Ali",
+            search: searchValue,
           })
         )
       : dispatch(
@@ -74,9 +86,14 @@ function Home() {
             color: color,
             ordering,
             page,
+            search: searchValue,
           })
         );
-  }, [selectedCategory, price, color, ordering, page]);
+    return () => {
+      dispatch(cleanUpGetProducts());
+      dispatch(cleanUpgetProductsByCategory());
+    };
+  }, [selectedCategory, price, color, ordering, page, searchValue]);
   // const productInfo = products?.map((el) => ({
   //   ...el,
   //   quantity: items[el.id],
@@ -94,7 +111,7 @@ function Home() {
             color: color,
             ordering,
             page,
-            // search: "Hello Mahmoud Ali",
+            search: searchValue,
           })
         )
       : dispatch(
@@ -103,13 +120,16 @@ function Home() {
             color: color,
             ordering,
             page,
+            search: searchValue,
           })
         );
   };
+
   return (
     <>
       <Swiperslide />
       <Introductory />
+      <Search onChange={handleSearchChange} />
 
       <Grid container>
         <Grid item sm={2.5} xs={4} md={2.5}>
@@ -122,6 +142,7 @@ function Home() {
             handleChangeColor={handleChangeColor}
             handleOrdering={handleOrdering}
             handleProductsByCategory={handleProductsByCategory}
+            selectedCategory={selectedCategory}
           />
         </Grid>
         <Grid

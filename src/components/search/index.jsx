@@ -47,7 +47,7 @@ const Search = (props) => {
       }}
     >
       <SearchIconWrapper>
-        <SearchIcon />
+        <SearchIcon onClick={props.onChange} />
       </SearchIconWrapper>
       {/* //   <Autocomplete
     //     freeSolo
@@ -56,6 +56,7 @@ const Search = (props) => {
     // renderInput={(params) => (   */}
       <TextField
         onChange={props.onChange}
+        fullWidth
         InputProps={{
           sx: {
             fontSize: { md: "12px", lg: "16px" },
@@ -67,6 +68,7 @@ const Search = (props) => {
       />
       {/* )}
      /> */}
+      {/* <button onClick={props.onChange}>search</button> */}
     </Box>
     // </div>
   );
