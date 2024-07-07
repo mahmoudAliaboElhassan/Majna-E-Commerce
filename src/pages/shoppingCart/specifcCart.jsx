@@ -9,7 +9,7 @@ function SpecificCartItem() {
   const { cartId } = useParams();
   const dispatch = useDispatch();
   const { Uid } = useSelector((state) => state.auth);
-  const{cartItem}=useSelector((state)=>state.cart)
+  const { cartItem } = useSelector((state) => state.cart);
   useEffect(() => {
     dispatch(
       getCartItem({
@@ -22,8 +22,7 @@ function SpecificCartItem() {
     <>
       <div>specific cart item</div>
       <div>{cartId}</div>
-      <img src={cartItem?.product?.cover_image}/>
-
+      <img src={cartItem?.product?.cover_image} />
     </>
   );
 }

@@ -236,7 +236,7 @@ export const distributorSlice = createSlice({
         // state.storeId=localStorage.getItem("storeId")
       })
       .addCase(editStore.rejected, (state, action) => {
-        state.loadingAddProduct = false;
+        state.loadingEdit = false;
       })
       .addCase(addProduct.pending, (state, action) => {
         state.loadingAddProduct = true;
@@ -248,7 +248,7 @@ export const distributorSlice = createSlice({
         // state.storeId=localStorage.getItem("storeId")
       })
       .addCase(addProduct.rejected, (state, action) => {
-        state.loadingEdit = false;
+        state.loadingAddProduct = false;
       });
   },
 });

@@ -50,6 +50,7 @@ const cart = createSlice({
       })
       .addCase(getCarts.rejected, (state, action) => {
         state.loadingCarts = false;
+        state.countOfCartItems = 0;
       })
       .addCase(getCartItem.pending, (state, action) => {
         state.loadingCart = true;
