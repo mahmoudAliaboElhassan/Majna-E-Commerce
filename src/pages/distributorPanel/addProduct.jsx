@@ -199,7 +199,7 @@ function AddProduct() {
                           </Grid>
                           <Grid item xs={12}>
                             <TextFieldWrapper
-                              name="title"
+                              name="name"
                               label={t("product_title")}
                               autocomplete="off"
                             />

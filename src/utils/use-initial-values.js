@@ -43,7 +43,7 @@ function UseInitialValues(props) {
   const INITIAL_FORM_STATE_ADD_PRODUCT = {
     inventory: [{ store_pk: null, quantity: null }],
     album: [{ image: null, is_cover: "False" }],
-    title: null,
+    name: null,
     brand_pk: null,
     price: null,
     description: null,

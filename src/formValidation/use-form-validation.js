@@ -170,7 +170,7 @@ function UseFormValidation() {
   });
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
     brand_pk: Yup.string().required("Product Brand is Required"),
-    title: Yup.string().required("Product Title is Required"),
+    name: Yup.string().required("Product Title is Required"),
     price: Yup.number("Price Should be Number")
       .required("Product Price is Required ")
       .min(1, "Price can not be zero or negative"),
@@ -224,7 +224,7 @@ function UseFormValidation() {
       .min(0, "Price From cannot be negative"),
     priceTo: Yup.number("Price To should be a number")
       .required("Price To is required")
-      .min(Yup.ref('priceFrom'), "Price To must be greater than Price From")
+      .min(Yup.ref("priceFrom"), "Price To must be greater than Price From")
       .test(
         "is-greater",
         "Price To must be greater than Price From by at least 1",
@@ -245,7 +245,6 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_EDIT_STORE,
     FORM_VALIDATION_SCHEMA_Add_PRODUCT,
     FORM_VALIDATION_SCHEMA_PRICES,
-    
   };
 }
 
