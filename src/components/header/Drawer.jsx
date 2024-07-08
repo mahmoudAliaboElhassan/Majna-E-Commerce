@@ -37,7 +37,9 @@ function DrawerComponent({ drawerElements }) {
   const { t } = useTranslation();
   const { Direction } = UseDirection();
   const { themeMode } = UseThemMode();
-  const { token } = useSelector((state) => state.auth);
+  const { token, role } = useSelector((state) => state.auth);
+  const { countOfCartItems } = useSelector((state) => state.cart);
+
   const closeModal = useCallback(() => toggle(false), []);
   const closeSearch = useCallback(() => setShowSearch(false), []);
   const dispatch = useDispatch();
@@ -107,20 +109,26 @@ function DrawerComponent({ drawerElements }) {
             }}
           >
             {" "}
-            <ListItemButton
-              onClick={() => setOpenDrawer(false)}
-              sx={{ [Direction.marginRight]: "50px" }}
-            >
-              <IconButton>
-                <ShoppingCartIcon
-                  sx={{
-                    fontSize: "2rem",
-                    color: "white",
-                  }}
-                />
-                <CartNumber>1</CartNumber>
-              </IconButton>{" "}
-            </ListItemButton>{" "}
+            {role == "customer" && (
+              <ListItemButton
+                component={Link}
+                to="shooping-cart"
+                onClick={() => setOpenDrawer(false)}
+                sx={{
+                  [Direction.marginRight]: "50px",
+                }}
+              >
+                <IconButton>
+                  <ShoppingCartIcon
+                    sx={{
+                      fontSize: "2rem",
+                      color: "white",
+                    }}
+                  />
+                  <CartNumber>{countOfCartItems}</CartNumber>
+                </IconButton>{" "}
+              </ListItemButton>
+            )}
             <ListItemButton onClick={handleSearchButton}>
               <ListItemIcon>
                 <ListItemText sx={{ color: "white" }}>

@@ -149,7 +149,7 @@
   "cancel-delete-cart": "لا إبقي الطلب موجود",
   "deleting-cart": "تم حذف الطلب بنجاح !",
   "keeping-cart": "طلبك لا يزال موجود",
-  "loading-carts": "إنتظر حتى يتم تحميل جميع بطاقاتك !",
+  "loading-carts": "إنتظر حتى يتم تحميل جميع بطاقاتك ...",
   "no-carts": "لا توجد منتجات حتى الآن",
   "cart-id": "رقم الطلب",
   "product-name": "إسم المنتج",
@@ -160,6 +160,7 @@
   "product-quantity": "كميه المنتج",
   "view-cart": "عرض الطلب",
   "delete-cart": "حذف الطلب",
+  "edit-quantity": "تعديل الكميه",
   "view": "عرض",
   "delete": "حذف"
 }

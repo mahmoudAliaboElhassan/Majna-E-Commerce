@@ -32,6 +32,7 @@ export const productsSlice = createSlice({
       })
       .addCase(getProducts.rejected, (state) => {
         state.loadingProducts = false;
+        state.countOfProducts = 0;
       })
       .addCase(getProductsByCategory.pending, (state) => {
         state.loadingProducts = true;

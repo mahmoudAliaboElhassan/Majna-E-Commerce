@@ -21,7 +21,7 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
   const { themeMode } = UseThemMode();
   const loadinStatus = UseLoadingStatus();
   const configButton = {
-    color: "primary",
+    color: "primay",
     fullWidth: true,
     type: "submit",
     disabled: loadinStatus,

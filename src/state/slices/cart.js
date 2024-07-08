@@ -26,6 +26,14 @@ const cart = createSlice({
     //     state.items[id] = 1;
     //   }
     // },
+
+    addToCart: (state, action) => {
+      if (!state.cartArr) {
+        state.cartArr = [];
+      }
+      state.cartArr.push(action.payload);
+      localStorage.setItem("cartArr", JSON.stringify(state.cartArr));
+    },
     cleanUpCartItems: (state) => {
       state.cartItems = [];
     },
@@ -61,6 +69,17 @@ const cart = createSlice({
       })
       .addCase(getCartItem.rejected, (state, action) => {
         state.loadingCart = false;
+      })
+      .addCase(updateQuantity.pending, (state, action) => {
+        state.loadingEditCartQuantity = true;
+      })
+      .addCase(updateQuantity.fulfilled, (state, action) => {
+        state.loadingEditCartQuantity = false;
+        console.log("action?.meta?.arg?.quantity");
+        state.cartQuantity = action?.meta?.arg?.quantity;
+      })
+      .addCase(updateQuantity.rejected, (state, action) => {
+        state.loadingEditCartQuantity = false;
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
         state.countOfCartItems--;

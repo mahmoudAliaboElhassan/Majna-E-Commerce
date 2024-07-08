@@ -71,7 +71,7 @@ function Header() {
   const { activeLink } = useSelector((state) => state.active);
   const { token, role } = useSelector((state) => state.auth);
   const qunatityNumbers = useSelector(getTotalQuantities);
-
+  const { countOfCartItems } = useSelector((state) => state.cart);
   const handleClickAuth = (authel, index) => {
     handleCloseSign();
     index === 1 && (token ? authel.click?.() : toggle());
@@ -92,12 +92,14 @@ function Header() {
         <Toolbar>
           {isMatch ? (
             <>
-              <IconButton component={Link} to="shooping-cart">
-                <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
-                <CartNumber className={quantityStyle}>
-                  {qunatityNumbers}
-                </CartNumber>
-              </IconButton>
+              {role === "customer" && (
+                <IconButton component={Link} to="shooping-cart">
+                  <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
+                  <CartNumber className={quantityStyle}>
+                    {countOfCartItems}
+                  </CartNumber>
+                </IconButton>
+              )}
               <AppbarHeader
                 className="logo"
                 transition={{ delay: 0.7, duration: 1.6 }}
@@ -124,12 +126,14 @@ function Header() {
                   {t("website-title")}
                 </AppbarHeader>
               </motion.div>
-              <IconButton component={Link} to="shooping-cart">
-                <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
-                <CartNumber className={quantityStyle}>
-                  {qunatityNumbers}
-                </CartNumber>
-              </IconButton>
+              {role === "customer" && (
+                <IconButton component={Link} to="shooping-cart">
+                  <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
+                  <CartNumber className={quantityStyle}>
+                    {countOfCartItems}
+                  </CartNumber>
+                </IconButton>
+              )}
               {/* <div>{process.env.REACT_APP_API_URL}</div> */}
               <TabContext value={value}>
                 <TabsElementsList

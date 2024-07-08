@@ -234,6 +234,11 @@ function UseFormValidation() {
         }
       ),
   });
+  const FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY = Yup.object().shape({
+    quantity: Yup.number()
+      .required("Product Quantity is Required")
+      .min(0, "Negative Number is not Allowed"),
+  });
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
     FORM_VALIDATION_SCHEMA_Login,
@@ -245,6 +250,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_EDIT_STORE,
     FORM_VALIDATION_SCHEMA_Add_PRODUCT,
     FORM_VALIDATION_SCHEMA_PRICES,
+    FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY,
   };
 }
 

@@ -62,6 +62,9 @@ function UseInitialStates() {
   };
   const initialStateCart = {
     cartItems: [],
+    cartArr: [],
+    loadingEditCartQuantity: false,
+    cartQuantity: null,
     loadingCarts: false,
     countOfCartItems: null,
     cartItem: null,

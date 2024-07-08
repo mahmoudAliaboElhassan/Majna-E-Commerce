@@ -1,56 +1,49 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
-
-import { Box } from "@mui/material";
+import { Box, Container, TextField, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-
-import { Container, Grid, Card } from "@mui/material";
-
 import Swal from "sweetalert2";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 import CartItem from "@components/cart/carItem";
 import CartListProducts from "@components/cart/cartListProducts";
-import { actGetCategoriesByItems } from "@state/slices/cart";
 import {
   getCarts,
-  getCartItem,
   updateQuantity,
   cleanUpCartItems,
-  cleanUpCartItem,
   deleteCartItem,
 } from "@state/slices/cart";
-
 import LoadingFetching from "@components/loadingFetching";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import "./style.css";
+import UseFormValidation from "@formValidation/use-form-validation";
+import { helperStyle } from "@styles/error";
+import UseThemMode from "@hooks/use-theme";
 
 function ShoppingCart() {
   const dispatch = useDispatch();
-  // const { productFullInfo } = useSelector((state) => state.cart);
-  // console.log(productFullInfo);
   const { Uid } = useSelector((state) => state.auth);
-  const { cartItems, countOfCartItems, loadingCarts } = useSelector(
-    (state) => state.cart
-  );
-  // const
+  const {
+    cartItems,
+    countOfCartItems,
+    loadingCarts,
+    loadingEditCartQuantity,
+    cartQuantity,
+  } = useSelector((state) => state.cart);
+  const { themeMode } = UseThemMode();
   useEffect(() => {
-    // dispatch(
-    // actGetCategoriesByItems({
-    //   title: "Mahmoud",
-    //   description: "descriptionoftext",
-    //   price: null,
-    //   cat: "",
-    // })
     dispatch(getCarts({ id: Uid }));
-    // .unwrap()
-    // .then();
     return () => {
       dispatch(cleanUpCartItems());
     };
-  }, [dispatch, countOfCartItems]);
-  const { t } = useTranslation();
+  }, [dispatch, countOfCartItems, Uid, cartQuantity]);
 
+  const { t } = useTranslation();
+  const { FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY } = UseFormValidation();
+  console.log("loadingEditCartQuantity");
+  console.log(loadingEditCartQuantity);
   const handleDelete = useCallback(
     (cartId) => {
       Swal.fire({
@@ -85,21 +78,12 @@ function ShoppingCart() {
 
   const columns = [
     { field: "id", headerName: t("cart-id"), width: 100 },
-    {
-      field: "name",
-      headerName: t("product-name"),
-      width: 150,
-    },
-
-    {
-      field: "brand",
-      headerName: t("product-brand"),
-      width: 150,
-    },
+    { field: "name", headerName: t("product-name"), width: 150 },
+    { field: "brand", headerName: t("product-brand"), width: 150 },
     {
       field: "image",
       headerName: t("product-img"),
-      width: 300,
+      width: 200,
       renderCell: (params) => (
         <img
           src={params.value}
@@ -108,33 +92,74 @@ function ShoppingCart() {
         />
       ),
     },
-    {
-      field: "price",
-      headerName: t("product-price"),
-      width: 150,
-    },
-    {
-      field: "quantity",
-      headerName: t("product-quantity"),
-      width: 150,
-    },
-    {
-      field: "totalPrice",
-      headerName: t("total-price"),
-      width: 150,
-    },
+    { field: "price", headerName: t("product-price"), width: 100 },
+    { field: "quantity", headerName: t("product-quantity"), width: 100 },
+    { field: "totalPrice", headerName: t("total-price"), width: 150 },
     {
       field: "view",
       headerName: t("view-cart"),
       renderCell: (params) => (
-        <Link to={`/cart-item/${params.row.id}`}>{params.value}</Link>
+        <Link to={`/cart-item/${params.row.id}`}>{t("view")}</Link>
+      ),
+    },
+    {
+      field: "edit",
+      headerName: t("edit-quantity"),
+      width: 200,
+      renderCell: (params) => (
+        <Formik
+          initialValues={{ quantity: params.row.quantity }}
+          validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY}
+          onSubmit={(values) => {
+            dispatch(
+              updateQuantity({
+                customerId: Uid,
+                cartId: params.row.id,
+                quantity: values.quantity,
+              })
+            );
+          }}
+        >
+          {({ handleChange, handleSubmit }) => (
+            <Form style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <Field
+                as={TextField}
+                type="number"
+                name="quantity"
+                onChange={handleChange}
+                style={{ width: "60%" }}
+                size="small"
+                required
+              />
+              <Button
+                onClick={handleSubmit}
+                variant={themeMode === "dark" ? "contained" : "outlined"}
+                color="info"
+                disabled={loadingEditCartQuantity}
+              >
+                {t("edit")}
+              </Button>
+              <ErrorMessage
+                name="quantity"
+                component="div"
+                style={helperStyle}
+              />
+            </Form>
+          )}
+        </Formik>
       ),
     },
     {
       field: "delete",
       headerName: t("delete-cart"),
       renderCell: (params) => (
-        <Link onClick={() => handleDelete(params.row.id)}>{params.value}</Link>
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="error"
+          onClick={() => handleDelete(params.row.id)}
+        >
+          {t("delete")}
+        </Button>
       ),
     },
   ];
@@ -146,28 +171,14 @@ function ShoppingCart() {
     price: cart?.product?.price,
     image: cart?.product?.cover_image,
     quantity: cart?.quantity,
-    totalPrice: cart?.quantity * cart?.product?.price,
+    totalPrice: (cart?.quantity * cart?.product?.price).toFixed(3),
     view: t("view"),
     delete: t("delete"),
+    edit: t("edit"),
   }));
-  console.log("cartItems[0]?.product?.price");
-  console.log(cartItems && cartItems[0]?.product?.price * 2);
-  console.log(cartItems);
   return (
     <Box sx={{ p: 2 }}>
       <div data-aos="fade-up">Products added to Cart</div>
-      {/* <CartListProducts
-        records={cartItems}
-        rendercarts={(cart) => <CartItem {...cart} />}
-      /> */}
-      {/* <button
-        onClick={() =>
-          dispatch(updateQuantity({ customerId: Uid, cartId: 1, quantity: 5 }))
-        }
-      >
-        update
-      </button> */}
-
       <Container>
         {loadingCarts ? (
           <LoadingFetching>{t("loading-carts")}</LoadingFetching>
@@ -176,7 +187,6 @@ function ShoppingCart() {
             rows={rows}
             columns={columns}
             pageSize={3}
-            // checkboxSelection
             rowHeight={150}
             disableSelectionOnClick
           />
@@ -184,14 +194,8 @@ function ShoppingCart() {
           <div>{t("no-carts")}</div>
         )}
       </Container>
-      <button
-        onClick={() =>
-          dispatch(updateQuantity({ customerId: Uid, cartId: 21, quantity: 3 }))
-        }
-      >
-        update
-      </button>
     </Box>
   );
 }
+
 export default ShoppingCart;

@@ -79,7 +79,7 @@ const Product = ({
             </div>
             <div className="product-info">
               <Typography variant="h6" component="p" gutterBottom>
-                {name.slice(0, 10)}
+                {name.slice(0, 50)}
               </Typography>
               <Typography variant="h6" component="p" gutterBottom>
                 {brand}
