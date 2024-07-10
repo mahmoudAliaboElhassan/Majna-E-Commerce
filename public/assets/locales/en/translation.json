@@ -138,7 +138,7 @@
   "ascending": "Ascending",
   "descending": "Descending",
   "ordering": "Ordering",
-  "load-products": "... Wait For Products to Load ",
+  "load-products": "Wait For Products to Load ...  ",
   "no-product": "No Products For Your Filteration Change it !",
   "add-to-cart": "Add To Cart",
   "suring": "Are You Sure",
@@ -160,5 +160,11 @@
   "delete-cart": "Delete Cart",
   "edit-quantity": "Edit Quantity",
   "view": "View",
-  "delete": "Delete"
+  "delete": "Delete",
+  "updated-success": "Cart Quantity Updated Successfully !",
+  "added-success": "Cart Has Been Added Successfully !",
+  "error-adding": "Error in Adding to Cart !",
+  "error-exist-cart": "This Cart Has Already Been Added Before",
+  "error-not-authorized-text": "Login In First then Add to Cart",
+  "error-not-customer-text": "It is Forbidden for Non Customer to Add to Cart Login as Customer and Add To Cart"
 }

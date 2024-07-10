@@ -69,6 +69,7 @@ function UseInitialStates() {
     countOfCartItems: null,
     cartItem: null,
     loadingCart: false,
+    loadingPostCart: false,
   };
 
   return {

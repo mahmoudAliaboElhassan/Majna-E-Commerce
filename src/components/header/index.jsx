@@ -33,7 +33,7 @@ import { Colors } from "@styles/theme";
 import useHeaderElements from "@hooks/use-header-elements";
 import UseDebounce from "@hooks/use-debounce";
 import UseToggle from "@hooks/use-toggle";
-import { getTotalQuantities } from "@state/slices/cart";
+// import { getTotalQuantities } from "@state/slices/cart";
 import { activate } from "@state/slices/active";
 // import MyComponent from "../../searchandSelect.jsx";
 import styles from "@components/header/style.module.css";
@@ -70,7 +70,7 @@ function Header() {
   const dispatch = useDispatch();
   const { activeLink } = useSelector((state) => state.active);
   const { token, role } = useSelector((state) => state.auth);
-  const qunatityNumbers = useSelector(getTotalQuantities);
+  // const qunatityNumbers = useSelector(getTotalQuantities);
   const { countOfCartItems } = useSelector((state) => state.cart);
   const handleClickAuth = (authel, index) => {
     handleCloseSign();
@@ -86,6 +86,7 @@ function Header() {
   const locationPath = location.pathname.split("/")[1];
   console.log("locationPath");
   console.log(locationPath);
+  useEffect(() => {}, [countOfCartItems]);
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>

@@ -59,30 +59,27 @@ export const updateQuantity = createAsyncThunk(
     }
   }
 );
-export const postCarts = createAsyncThunk(
-  "products/postCarts"
-  //   async ({ id, ...query }, thunkAPI) => {
-  //     const { rejectWithValue } = thunkAPI;
-  //     const entriesArray = Object.entries(query);
-  //     console.log("entriesArray");
-  //     console.log(entriesArray);
-  //     const queryParameters = entriesArray
-  //       .map(([key, value]) => (value ? `${key}=${value}` : null))
-  //       .filter(Boolean)
-  //       .join("&");
 
-  //     try {
-  //       const data = await majnAPI.get(`api/customers/${id}/cart-items`);
+export const postCart = createAsyncThunk(
+  "products/postCart",
+  async ({ customerId, product_ids }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
 
-  //       return data;
-  //     } catch (error) {
-  //       if (error.response && error.response.status === 400) {
-  //         // Handle 400 error here
-  //         console.log("400 Bad Request - Error in the request");
-  //       }
-  //       return rejectWithValue(error);
-  //     }
-  //   }
+    try {
+      const data = await majnAPI.post(
+        `api/customers/${customerId}/cart-items`,
+        { product_ids }
+      );
+
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 400 error here
+        console.log("400 Bad Request - Error in the request");
+      }
+      return rejectWithValue(error);
+    }
+  }
 );
 export const deleteCartItem = createAsyncThunk(
   "products/deleteCartItem",

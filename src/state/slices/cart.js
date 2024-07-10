@@ -1,12 +1,12 @@
 import { createSlice, createSelector } from "@reduxjs/toolkit";
 import actGetCategoriesByItems from "@state/act/actGetCategoryByItems";
-import { getTotalQuantities } from "@state/slices/selectors";
+// import { getTotalQuantities } from "@state/slices/selectors";
 import UseInitialStates from "@hooks/use-initial-state";
 import {
   getCarts,
   getCartItem,
   updateQuantity,
-  postCarts,
+  postCart,
   deleteCartItem,
 } from "@state/act/actCarts";
 // const initialState = {
@@ -81,6 +81,16 @@ const cart = createSlice({
       .addCase(updateQuantity.rejected, (state, action) => {
         state.loadingEditCartQuantity = false;
       })
+      .addCase(postCart.pending, (state, action) => {
+        state.loadingPostCart = true;
+      })
+      .addCase(postCart.fulfilled, (state, action) => {
+        state.loadingPostCart = false;
+        console.log("action?.meta?.arg?.quantity");
+      })
+      .addCase(postCart.rejected, (state, action) => {
+        state.loadingPostCart = false;
+      })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
         state.countOfCartItems--;
       });
@@ -90,12 +100,12 @@ const cart = createSlice({
 export default cart.reducer;
 export const { addToCart } = cart.actions;
 export {
-  getTotalQuantities,
+  // getTotalQuantities,
   actGetCategoriesByItems,
   getCarts,
   getCartItem,
   updateQuantity,
-  postCarts,
+  postCart,
   deleteCartItem,
 };
 export const { cleanUpCartItems, cleanUpCartItem } = cart.actions;

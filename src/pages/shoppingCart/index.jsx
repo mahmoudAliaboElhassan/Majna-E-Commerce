@@ -1,9 +1,11 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
+
 import { Box, Container, TextField, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import CartItem from "@components/cart/carItem";
 import CartListProducts from "@components/cart/cartListProducts";
@@ -75,7 +77,7 @@ function ShoppingCart() {
     },
     [dispatch, t, Uid]
   );
-
+  const [idx, setIdx] = useState(null);
   const columns = [
     { field: "id", headerName: t("cart-id"), width: 100 },
     { field: "name", headerName: t("product-name"), width: 150 },
@@ -111,13 +113,29 @@ function ShoppingCart() {
           initialValues={{ quantity: params.row.quantity }}
           validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY}
           onSubmit={(values) => {
+            setIdx(params.row.id);
             dispatch(
               updateQuantity({
                 customerId: Uid,
                 cartId: params.row.id,
                 quantity: values.quantity,
               })
-            );
+            )
+              .unwrap()
+              .then(() => {
+                {
+                  toast.success(t("updated-success"), {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: themeMode,
+                  });
+                }
+              });
           }}
         >
           {({ handleChange, handleSubmit }) => (
@@ -135,7 +153,7 @@ function ShoppingCart() {
                 onClick={handleSubmit}
                 variant={themeMode === "dark" ? "contained" : "outlined"}
                 color="info"
-                disabled={loadingEditCartQuantity}
+                disabled={loadingEditCartQuantity && idx === params.row.id}
               >
                 {t("edit")}
               </Button>
@@ -178,6 +196,7 @@ function ShoppingCart() {
   }));
   return (
     <Box sx={{ p: 2 }}>
+      <ToastContainer />
       <div data-aos="fade-up">Products added to Cart</div>
       <Container>
         {loadingCarts ? (
@@ -186,9 +205,17 @@ function ShoppingCart() {
           <DataGrid
             rows={rows}
             columns={columns}
-            pageSize={3}
-            rowHeight={150}
-            disableSelectionOnClick
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
+              },
+            }}
+            pageSizeOptions={[5, 10, 15, 20]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            rowHeight={120}
           />
         ) : (
           <div>{t("no-carts")}</div>

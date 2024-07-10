@@ -162,5 +162,11 @@
   "delete-cart": "حذف الطلب",
   "edit-quantity": "تعديل الكميه",
   "view": "عرض",
-  "delete": "حذف"
+  "delete": "حذف",
+  "updated-success": "تم تعديل كمية المنتج بنجاح !",
+  "added-success": "تمت إضافة المنتج بنجاح !",
+  "error-adding": "خطأ بإضافة المنتج !",
+  "error-exist-cart": "هذا المنتج تمت إضافته إلى السله مسبقاً",
+  "error-not-authorized-text": "سجل الدخول أولاً قبل الإضافه إلى السله",
+  "error-not-customer-text": "ممنوع لغير الزبائن الإضافه للسله سجل كمشتري ثم أضف إلى السله "
 }

@@ -12,16 +12,19 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 import Image from "../../assests/image-1.jpg";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
-import { addToCart } from "@state/slices/cart";
+import { postCart } from "@state/slices/cart";
 import "./item.css";
-import { useTranslation } from "react-i18next";
 
 const Product = ({
   id,
@@ -36,9 +39,63 @@ const Product = ({
   const { themeMode } = UseThemMode();
   const { ref, inView } = useInView({ triggerOnce: false });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-
+  const { Uid } = useSelector((state) => state.auth);
+  const [idx, setIdx] = useState(null);
   const handleBtnClick = (id) => {
-    dispatch(addToCart(id));
+    setIdx(id);
+    // console.log("idx");
+    // console.log(idx);
+    // console.log("id");
+    // console.log(id);
+    // console.log(idx === id);
+    dispatch(
+      postCart({
+        customerId: Uid,
+        product_ids: [id],
+      })
+    )
+      .unwrap()
+      .then(() => {
+        {
+          toast.success(t("added-success"), {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: themeMode,
+          });
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 409) {
+          Swal.fire({
+            title: t("error-adding"),
+            text: t("error-exist-cart"),
+            icon: "error",
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: t("ok"),
+          });
+        } else if (error.response.status === 401) {
+          console.log("Error:", error.message);
+          Swal.fire({
+            title: t("error-adding"),
+            text: t("error-not-authorized-text"),
+            icon: "error",
+            confirmButtonText: t("ok"),
+          });
+        } else if (error.response.status === 403) {
+          console.log("Error:", error.message);
+          Swal.fire({
+            title: t("error-adding"),
+            text: t("error-not-customer-text"),
+            icon: "error",
+            confirmButtonText: t("ok"),
+          });
+        }
+      });
     setIsBtnDisabled(true);
   };
 
@@ -49,11 +106,12 @@ const Product = ({
     }, 300);
     return () => clearTimeout(debounce);
   }, [isBtnDisabled]);
-
+  const { loadingPostCart } = useSelector((state) => state.cart);
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   const { t } = useTranslation();
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={id}>
+      <ToastContainer />
       <motion.div
         ref={ref}
         initial={{ x: 50, opacity: 0 }}
@@ -94,7 +152,7 @@ const Product = ({
               variant={themeMode === "dark" ? "contained" : "outlined"}
               color="primary"
               onClick={() => handleBtnClick(id)}
-              disabled={isBtnDisabled}
+              disabled={loadingPostCart && idx === id}
               sx={{ marginTop: "8px" }}
               fullWidth
             >
