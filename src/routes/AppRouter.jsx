@@ -85,6 +85,9 @@ const ShoppingCart = React.lazy(() => import("@pages/shoppingCart"));
 const SpecificCartItem = React.lazy(() =>
   import("@pages/shoppingCart/specifcCart")
 );
+const ProductInformation = React.lazy(() =>
+  import("@pages/productInformation")
+);
 const router = createBrowserRouter([
   {
     path: "/",
@@ -96,6 +99,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Home />{" "}
+          </Suspense>
+        ),
+      },
+      {
+        path: "product-data/:productId",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ProductInformation />{" "}
           </Suspense>
         ),
       },

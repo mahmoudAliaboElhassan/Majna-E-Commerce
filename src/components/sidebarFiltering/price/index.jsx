@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import UseInitialValues from "@utils/use-initial-values";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseThemeMode from "@hooks/use-theme";
+import Typography from "@mui/material/Typography";
 
 const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
   const { INITIAL_FORM_STATE_PRICES } = UseInitialValues();
@@ -20,9 +21,16 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
         marginLeft: "auto",
         marginRight: "auto",
         width: "70%",
+        borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
+        paddingBottom: "20px",
       }}
     >
-      <h2 className="sidebar-title price-title">{t("price")}</h2>
+      <Typography
+        sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
+        className="sidebar-title"
+      >
+        {t("price")}
+      </Typography>
       <Formik
         initialValues={{
           ...INITIAL_FORM_STATE_PRICES,

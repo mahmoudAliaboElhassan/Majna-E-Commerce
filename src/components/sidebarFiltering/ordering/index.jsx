@@ -14,7 +14,12 @@ function Ordering({ handleOrdering }) {
   const { themeMode } = UseThemMode();
 
   return (
-    <>
+    <div
+      style={{
+        borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
+        paddingBottom: "20px",
+      }}
+    >
       {/* <FormControl
         // fullWidth
         variant="outlined"
@@ -37,26 +42,27 @@ function Ordering({ handleOrdering }) {
           <MenuItem value={"-price"}>{t("descending")}</MenuItem>
         </Select>
       </FormControl> */}
-      <div>
-        <h2 className="sidebar-title color-title"  >
-          {t("ordering")}
-        </h2>
+      <Typography
+        sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
+        className="sidebar-title"
+      >
+        {t("ordering")}
+      </Typography>
 
-        <Input
-          handleChange={handleOrdering}
-          value="price"
-          title={t("ascending")}
-          name="order"
-        />
+      <Input
+        handleChange={handleOrdering}
+        value="price"
+        title={t("ascending")}
+        name="order"
+      />
 
-        <Input
-          handleChange={handleOrdering}
-          value="-price"
-          title={t("descending")}
-          name="order"
-        />
-      </div>
-    </>
+      <Input
+        handleChange={handleOrdering}
+        value="-price"
+        title={t("descending")}
+        name="order"
+      />
+    </div>
   );
 }
 

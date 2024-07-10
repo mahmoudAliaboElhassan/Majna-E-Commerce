@@ -1,12 +1,17 @@
 import Input from "@components/sidebarFiltering/input";
 
+import Typography from "@mui/material/Typography";
+
 const Colors = ({ handleChangeColor, color }) => {
   return (
     <>
       <div>
-        <h2 className="sidebar-title color-title" style={{ marginTop: "2rem" }}>
-          Colors
-        </h2>
+        <Typography
+          sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
+          className="sidebar-title"
+        >
+          colors
+        </Typography>
         <label className="sidebar-label-container">
           <input
             onChange={handleChangeColor}

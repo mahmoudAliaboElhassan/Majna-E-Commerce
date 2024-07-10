@@ -114,6 +114,8 @@ function ShoppingCart() {
           validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY}
           onSubmit={(values) => {
             setIdx(params.row.id);
+            if(params.row.quantity!==values.quantity)
+            {
             dispatch(
               updateQuantity({
                 customerId: Uid,
@@ -136,6 +138,7 @@ function ShoppingCart() {
                   });
                 }
               });
+            }
           }}
         >
           {({ handleChange, handleSubmit }) => (

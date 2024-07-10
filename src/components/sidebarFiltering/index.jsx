@@ -94,7 +94,7 @@ function ProductTypesSidebar({
           <div>
             <h1 style={{ marginTop: "1.3rem" }}>🛒</h1>
           </div>
-          {productTypes &&
+          {/* {productTypes &&
             productTypes.map((product, index) => (
               <div key={product.to}>
                 <h3
@@ -127,7 +127,8 @@ function ProductTypesSidebar({
                     ))}
                 </motion.div>
               </div>
-            ))}
+            ))} */}
+
           {/* <div key={index}>
             <h1 onClick={() => setActive(index)}>{product.label}</h1>
             <motion.div

@@ -1,8 +1,7 @@
 .sidebar-title {
-  font-size: 22px;
-  font-weight: 500;
+  font-weight: 700 !important;
   width: fit-content;
-  margin: 20px auto;
+  margin: 10px auto !important;
 }
 
 .sidebar-items {

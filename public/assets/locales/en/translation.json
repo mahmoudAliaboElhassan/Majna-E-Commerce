@@ -166,5 +166,6 @@
   "error-adding": "Error in Adding to Cart !",
   "error-exist-cart": "This Cart Has Already Been Added Before",
   "error-not-authorized-text": "Login In First then Add to Cart",
-  "error-not-customer-text": "It is Forbidden for Non Customer to Add to Cart Login as Customer and Add To Cart"
+  "error-not-customer-text": "It is Forbidden for Non Customer to Add to Cart Login as Customer and Add To Cart",
+  "view-product": "View"
 }
