@@ -169,5 +169,12 @@
   "error-exist-cart": "هذا المنتج تمت إضافته إلى السله مسبقاً",
   "error-not-authorized-text": "سجل الدخول أولاً قبل الإضافه إلى السله",
   "error-not-customer-text": "ممنوع لغير الزبائن الإضافه للسله سجل كمشتري ثم أضف إلى السله ",
-  "view-product": "عرض"
+  "view-product": "عرض",
+  "mohammed-abdelaleem": "محمد عبد العليم",
+  "mahmoud-ali": "محمود علي",
+  "people-developed": "المبرمجين الذين قاموا بتطوير هذا الموقع",
+  "faculty-mahmoud": "كلية الحاسبات و المعلومات قسم نظم العلومات جامعة أسيوط",
+  "faculty-mohammed": "كلية الحاسبات و المعلومات قسم علوم الحاسب جامعة أسيوط",
+  "job-mahmoud": "مطور واجهات أماميه (React.js , Next.js , TypeScript )",
+  "job-mohammed": "مطور واجهات خلفيه (Python , Django)"
 }

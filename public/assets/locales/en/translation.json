@@ -167,5 +167,12 @@
   "error-exist-cart": "This Cart Has Already Been Added Before",
   "error-not-authorized-text": "Login In First then Add to Cart",
   "error-not-customer-text": "It is Forbidden for Non Customer to Add to Cart Login as Customer and Add To Cart",
-  "view-product": "View"
+  "view-product": "View",
+  "mohammed-abdelaleem": "Mohammed Abd Elaleem",
+  "mahmoud-ali": "Mahmoud Ali",
+  "people-developed": "Developers Worked On Majna Store Website",
+  "faculty-mahmoud": "Faculty Of Computer and Information Science Information Systems/ Assiut University ",
+  "faculty-mohammed": "Faculty Of Computer and Information Science Computer Science/ Assiut University ",
+  "job-mahmoud": "FrontEnd Developer (React.js , Next.js , TypeScript )",
+  "job-mohammed": "BackEnd Developer (Python , Django)"
 }

@@ -123,6 +123,9 @@ function DrawerComponent({ drawerElements }) {
                     sx={{
                       fontSize: "2rem",
                       color: "white",
+                      "&:hover": {
+                        color: "blue",
+                      },
                     }}
                   />
                   <CartNumber>{countOfCartItems}</CartNumber>

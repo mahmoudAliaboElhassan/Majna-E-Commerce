@@ -14,6 +14,7 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@emotion/react";
 import { motion } from "framer-motion";
@@ -95,12 +96,29 @@ function Header() {
             <>
               {role === "customer" && (
                 <IconButton component={Link} to="shooping-cart">
-                  <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
+                  <ShoppingCartIcon
+                    sx={{
+                      fontSize: "2rem",
+                      "&:hover": {
+                        color: "blue",
+                      },
+                    }}
+                  />
                   <CartNumber className={quantityStyle}>
                     {countOfCartItems}
                   </CartNumber>
                 </IconButton>
               )}
+              <IconButton component={Link} to="favorite">
+                <FavoriteIcon
+                  sx={{
+                    fontSize: "2rem",
+                    "&:hover": {
+                      color: "red",
+                    },
+                  }}
+                />
+              </IconButton>
               <AppbarHeader
                 className="logo"
                 transition={{ delay: 0.7, duration: 1.6 }}
@@ -129,12 +147,30 @@ function Header() {
               </motion.div>
               {role === "customer" && (
                 <IconButton component={Link} to="shooping-cart">
-                  <ShoppingCartIcon sx={{ fontSize: "2rem", color: "white" }} />
+                  <ShoppingCartIcon
+                    sx={{
+                      fontSize: "2rem",
+                      "&:hover": {
+                        color: "blue",
+                      },
+                    }}
+                  />
                   <CartNumber className={quantityStyle}>
                     {countOfCartItems}
                   </CartNumber>
                 </IconButton>
               )}
+              <IconButton component={Link} to="favorite">
+                <FavoriteIcon
+                  sx={{
+                    fontSize: "2rem",
+                    transition: "0.3s",
+                    "&:hover": {
+                      color: "red",
+                    },
+                  }}
+                />
+              </IconButton>
               {/* <div>{process.env.REACT_APP_API_URL}</div> */}
               <TabContext value={value}>
                 <TabsElementsList

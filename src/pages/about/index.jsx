@@ -1,16 +1,35 @@
-import React from "react";
-
-import { Container } from "@mui/material";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import {useLocation} from "react-router-dom";
-import Motion2 from "@components/motion2";
+import { useLocation } from "react-router-dom";
 
+import Motion2 from "@components/motion2";
+import UseMediaQueryHook from "@hooks/use-media-query";
+import { useTranslation } from "react-i18next";
+import { AppbarHeader } from "@styles/appbar";
+import {
+  Typography,
+  Container,
+  Grid,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Button,
+  useMediaQuery,
+  CardActionArea,
+} from "@mui/material";
+import mahmoudImage from "../../assests/mahmoud.jpg";
 function About() {
-  const location=useLocation();
-  console.log(location.pathname)
+  const location = useLocation();
+  console.log(location.pathname);
   console.log(process.env.REACT_APP_API_URL);
+  const { isMatch } = UseMediaQueryHook();
+  const { t } = useTranslation();
+
   return (
-    <Container>
+    <Container maxWidth="md">
+      {/* <div data-aos="fade-right">Mahmoud</div> */}
+      <AppbarHeader>{t("people-developed")}</AppbarHeader>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -22,8 +41,72 @@ function About() {
         }}
       >
         <Motion2 />
-        <div>الحمد لله تم إسترجاع البيانات</div>
       </motion.div>
+      <Grid container spacing={5}>
+        <Grid item xs={12} md={6} data-aos="fade-right">
+          <Card
+            component="div"
+            data-aos={`fade-${isMatch ? "down" : "right"}`}
+            // data-aos="zoom-in"
+            data-aos-easing="linear"
+            data-aos-duration="500"
+            sx={{ maxWidth: "100%" }}
+          >
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="240"
+                image={mahmoudImage}
+                alt={"Mahmoud Ali"}
+                // sx={{ objectFit: "contain" }}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h4" component="div">
+                  {t("mahmoud-ali")}
+                </Typography>
+                <Typography variant="h6" component="p" gutterBottom>
+                  {t("faculty-mahmoud")}
+                </Typography>
+                <Typography variant="body1" component="div" color="textPrimary">
+                  {t("job-mahmoud")}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Card
+            component="div"
+            data-aos={`fade-${isMatch ? "up" : "left"}`}
+            // data-aos="zoom-in"
+            data-aos-easing="linear"
+            data-aos-duration="500"
+            sx={{ maxWidth: "100%" }}
+          >
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                height="240"
+                image={mahmoudImage}
+                // sx={{ objectFit: "contain" }}
+                alt={"Mohammed Abd Elaleem"}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h4" component="div">
+                  {t("mohammed-abdelaleem")}
+                </Typography>
+                <Typography variant="h6" component="p" gutterBottom>
+                  {t("faculty-mohammed")}
+                </Typography>
+                <Typography variant="body1" component="div" color="textPrimary">
+                  {t("job-mohammed")}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+      </Grid>
+      <div>الحمد لله تم إسترجاع البيانات</div>
     </Container>
   );
 }

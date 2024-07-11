@@ -114,30 +114,29 @@ function ShoppingCart() {
           validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY}
           onSubmit={(values) => {
             setIdx(params.row.id);
-            if(params.row.quantity!==values.quantity)
-            {
-            dispatch(
-              updateQuantity({
-                customerId: Uid,
-                cartId: params.row.id,
-                quantity: values.quantity,
-              })
-            )
-              .unwrap()
-              .then(() => {
-                {
-                  toast.success(t("updated-success"), {
-                    position: "top-right",
-                    autoClose: 1000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: themeMode,
-                  });
-                }
-              });
+            if (params.row.quantity !== values.quantity) {
+              dispatch(
+                updateQuantity({
+                  customerId: Uid,
+                  cartId: params.row.id,
+                  quantity: values.quantity,
+                })
+              )
+                .unwrap()
+                .then(() => {
+                  {
+                    toast.success(t("updated-success"), {
+                      position: "top-right",
+                      autoClose: 1000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: themeMode,
+                    });
+                  }
+                });
             }
           }}
         >
