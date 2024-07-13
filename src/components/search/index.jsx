@@ -30,6 +30,7 @@ const Search = (props) => {
     //   <SearchIcon
     //     style={{ [Direction.marginRight]: "5px", cursor: "pointer" }}
     //   />
+
     <Box
       sx={{
         position: "relative",
@@ -68,7 +69,7 @@ const Search = (props) => {
       />
       {/* )}
      /> */}
-      {/* <button onClick={props.onChange}>search</button> */}
+      <button onClick={props.handlSearchClick}>search</button>
     </Box>
     // </div>
   );

@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
+
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
-import Motion2 from "@components/motion2";
-import UseMediaQueryHook from "@hooks/use-media-query";
-import { useTranslation } from "react-i18next";
-import { AppbarHeader } from "@styles/appbar";
 import {
   Typography,
   Container,
@@ -18,7 +15,15 @@ import {
   useMediaQuery,
   CardActionArea,
 } from "@mui/material";
-import mahmoudImage from "../../assests/mahmoud.jpg";
+
+import teamImage from "@assets//team/teamImages";
+import QuestionsAnswers from "@components/faq";
+import UseMediaQueryHook from "@hooks/use-media-query";
+import { useTranslation } from "react-i18next";
+import { AppbarHeader } from "@styles/appbar";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+
 function About() {
   const location = useLocation();
   console.log(location.pathname);
@@ -40,7 +45,7 @@ function About() {
           delay: 0.7,
         }}
       >
-        <Motion2 />
+        <QuestionsAnswers />
       </motion.div>
       <Grid container spacing={5}>
         <Grid item xs={12} md={6} data-aos="fade-right">
@@ -56,7 +61,7 @@ function About() {
               <CardMedia
                 component="img"
                 height="240"
-                image={mahmoudImage}
+                image={teamImage[0]}
                 alt={"Mahmoud Ali"}
                 // sx={{ objectFit: "contain" }}
               />
@@ -70,6 +75,8 @@ function About() {
                 <Typography variant="body1" component="div" color="textPrimary">
                   {t("job-mahmoud")}
                 </Typography>
+                <LinkedInIcon />
+                <GitHubIcon/>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -87,7 +94,7 @@ function About() {
               <CardMedia
                 component="img"
                 height="240"
-                image={mahmoudImage}
+                image={teamImage[1]}
                 // sx={{ objectFit: "contain" }}
                 alt={"Mohammed Abd Elaleem"}
               />

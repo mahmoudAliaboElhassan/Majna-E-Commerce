@@ -99,6 +99,7 @@ function Header() {
                   <ShoppingCartIcon
                     sx={{
                       fontSize: "2rem",
+                      color: "white",
                       "&:hover": {
                         color: "blue",
                       },
@@ -113,6 +114,7 @@ function Header() {
                 <FavoriteIcon
                   sx={{
                     fontSize: "2rem",
+                    color: "white",
                     "&:hover": {
                       color: "red",
                     },
@@ -150,6 +152,7 @@ function Header() {
                   <ShoppingCartIcon
                     sx={{
                       fontSize: "2rem",
+                      color: "white",
                       "&:hover": {
                         color: "blue",
                       },
@@ -164,6 +167,7 @@ function Header() {
                 <FavoriteIcon
                   sx={{
                     fontSize: "2rem",
+                    color: "white",
                     transition: "0.3s",
                     "&:hover": {
                       color: "red",

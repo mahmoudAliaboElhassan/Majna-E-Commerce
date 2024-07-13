@@ -21,7 +21,7 @@
 // import Swal from "sweetalert2";
 // import { useTranslation } from "react-i18next";
 
-// import Image from "../../assests/image-1.jpg";
+// import Image from "../../assets/image-1.jpg";
 // import { Colors } from "@styles/theme";
 // import UseThemMode from "@hooks/use-theme";
 // import { postCart } from "@state/slices/cart";
@@ -332,6 +332,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                 onClick={() => handleBtnClick(id)}
                 disabled={loadingPostCart && idx === id}
                 fullWidth
+                sx={{ whiteSpace: "nowrap" }}
               >
                 {t("add-to-cart")}
               </Button>

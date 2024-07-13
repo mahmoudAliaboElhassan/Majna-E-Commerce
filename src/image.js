@@ -1,16 +1,16 @@
-import image1 from "./assests/image-1.jpg";
-import image2 from "./assests/image-2.jpg";
-import image3 from "./assests/image-3.jpg";
-import image4 from "./assests/image-4.jpg";
-import image5 from "./assests/image-5.jpg";
-import image6 from "./assests/image-6.jpg";
-import image7 from "./assests/image-7.jpg";
-import image8 from "./assests/image-8.jpg";
-import image9 from "./assests/image-9.jpg";
-import image10 from "./assests/image-10.jpg";
-import image11 from "./assests/announcement.png";
-import image12 from "./assests/shoes.jpg";
-import image13 from "./assests/clothes.png";
+import image1 from "@assets/image-1.jpg";
+import image2 from "@assets/image-2.jpg";
+import image3 from "@assets/image-3.jpg";
+import image4 from "@assets/image-4.jpg";
+import image5 from "@assets/image-5.jpg";
+import image6 from "@assets/image-6.jpg";
+import image7 from "@assets/image-7.jpg";
+import image8 from "@assets/image-8.jpg";
+import image9 from "@assets/image-9.jpg";
+import image10 from "@assets/image-10.jpg";
+import image11 from "@assets/announcement.png";
+import image12 from "@assets/shoes.jpg";
+import image13 from "@assets/clothes.png";
 export default [
   image1,
   image2,

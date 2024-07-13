@@ -15,7 +15,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 import { ProducDetailInfoWrapper, ProducDetailWrapper } from "@styles/products";
-import errorImage from "../../assests/error.jpg";
+import errorImage from "@assets/error.jpg";
 import IncDec from "@components/productUi";
 
 function ProductDetails(props) {

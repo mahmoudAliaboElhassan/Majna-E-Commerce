@@ -12,7 +12,7 @@ import PaginationComponent from "@components/pagination";
 import UseThemMode from "@hooks/use-theme";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
-import Image from "../assests/image-1.jpg";
+import Image from "@assets/image-1.jpg";
 import {
   getProducts,
   getProductsByCategory,
@@ -55,11 +55,16 @@ function Home() {
     setPrice(priceFromTo.join(","));
   };
   const [searchValue, setSearchValue] = useState(null);
+  const [searchChange, setSearchChange] = useState(null);
   const handleSearchChange = (event) => {
-    setSearchValue(event.target.value.split(" ").join("+"));
-    console.log(searchValue);
+    setSearchChange(event.target.value);
+    console.log(searchChange);
     // setSearchParams({ queryformMahmoud: searchValue });
     // console.log(searchParams);
+  };
+  const handlSearchClick = () => {
+    setSearchValue(searchChange?.split(" ").join("+"));
+    console.log(searchValue);
   };
 
   const [color, setColor] = useState("");
@@ -129,7 +134,10 @@ function Home() {
     <>
       <Swiperslide />
       <Introductory />
-      <Search onChange={handleSearchChange} />
+      <Search
+        onChange={handleSearchChange}
+        handlSearchClick={handlSearchClick}
+      />
 
       <Grid container>
         <Grid item sm={2.5} xs={4} md={2.5}>

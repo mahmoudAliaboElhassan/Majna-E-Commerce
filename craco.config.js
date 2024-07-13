@@ -10,6 +10,7 @@ module.exports = {
       "@state": path.resolve(__dirname, "src/state/"),
       "@styles": path.resolve(__dirname, "src/styles/"),
       "@translation": path.resolve(__dirname, "src/translation/"),
+      "@assets": path.resolve(__dirname, "src/assets/"),
       "@utils": path.resolve(__dirname, "src/utils/"),
     },
   },

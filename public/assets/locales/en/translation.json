@@ -173,6 +173,13 @@
   "people-developed": "Developers Worked On Majna Store Website",
   "faculty-mahmoud": "Faculty Of Computer and Information Science Information Systems/ Assiut University ",
   "faculty-mohammed": "Faculty Of Computer and Information Science Computer Science/ Assiut University ",
-  "job-mahmoud": "FrontEnd Developer (React.js , Next.js , TypeScript )",
-  "job-mohammed": "BackEnd Developer (Python , Django)"
+  "job-mahmoud": "FrontEnd Developer (React.js, Next.js, TypeScript )",
+  "job-mohammed": "BackEnd Developer (Python, Django)",
+  "contact-us": "Let s Contact How do You Take Your Coffee?",
+  "what-majna": "What is Majn Store ?",
+  "majna-answer": "Majna Store is an Ecommerce Website that facilitate buying and Selling Products Filtering them based on Specific Criteria, add to cart, and Buying them",
+  "who-use": "Who Can Use This Ecommerce ?",
+  "who-use-answer": "You can be Authorized or not, authorization has many merits",
+  "what-authentication-process": "What is Authentication Process ?",
+  "authentication-process-answer": "You Fitst Write Your Email, Password and role (Customer, Distributor, Reviewer) then Wait for activation Link sent in Your Inbox finally you login with your Email and Password"
 }
