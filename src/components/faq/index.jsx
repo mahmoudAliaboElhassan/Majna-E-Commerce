@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import {Container} from "@mui/material"
+import { Container } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -133,7 +133,7 @@ function QuestionsAnswers() {
                 key={id}
                 onClick={() => handleClick(id)}
                 component="div" // data-aos="zoom-in"
-                data-aos={`fade-${id % 2 === 0 ? "right" : "left"}`}
+                data-aos={`flip-${id % 2 === 0 ? "right" : "left"}`}
                 data-aos-duration={id * 600}
                 data-aos-easing="ease-in-sine"
               >
@@ -145,6 +145,7 @@ function QuestionsAnswers() {
                     alignItems: "center",
                     cursor: "pointer",
                     fontSize: "21px",
+                    fontWeight: "500",
                   }}
                 >
                   {title}
