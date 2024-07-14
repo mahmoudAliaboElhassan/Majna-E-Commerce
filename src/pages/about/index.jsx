@@ -33,20 +33,10 @@ function About() {
 
   return (
     <Container maxWidth="md">
-      {/* <div data-aos="fade-right">Mahmoud</div> */}
+      <AppbarHeader>{t("important-questions")}</AppbarHeader>
+
+      <QuestionsAnswers />
       <AppbarHeader>{t("people-developed")}</AppbarHeader>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{
-          type: "keyframes",
-          ease: "easeInOut",
-          duration: 1.3,
-          delay: 0.7,
-        }}
-      >
-        <QuestionsAnswers />
-      </motion.div>
       <Grid container spacing={5}>
         <Grid item xs={12} md={6} data-aos="fade-right">
           <Card
@@ -76,7 +66,7 @@ function About() {
                   {t("job-mahmoud")}
                 </Typography>
                 <LinkedInIcon />
-                <GitHubIcon/>
+                <GitHubIcon />
               </CardContent>
             </CardActionArea>
           </Card>

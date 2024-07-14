@@ -177,9 +177,20 @@
   "job-mohammed": "BackEnd Developer (Python, Django)",
   "contact-us": "Let s Contact How do You Take Your Coffee?",
   "what-majna": "What is Majn Store ?",
-  "majna-answer": "Majna Store is an Ecommerce Website that facilitate buying and Selling Products Filtering them based on Specific Criteria, add to cart, and Buying them",
+  "majna-answer": "Majna Store is a multi-user e-commerce website for customers, distributors and visitors to facilitate the buying and selling of products",
   "who-use": "Who Can Use This Ecommerce ?",
   "who-use-answer": "You can be Authorized or not, authorization has many merits",
   "what-authentication-process": "What is Authentication Process ?",
-  "authentication-process-answer": "You Fitst Write Your Email, Password and role (Customer, Distributor, Reviewer) then Wait for activation Link sent in Your Inbox finally you login with your Email and Password"
+  "authentication-process-answer": "You Fitst Write Your Email, Password and role (Customer, Distributor, Reviewer) then Wait for activation Link sent in Your Inbox finally you login with your Email and Password",
+  "what-customer-do": "What Can Customer Do ?",
+  "customer-do-answer": "Being a Customer gives you the right to view products, filter them based on specific criteria, add them to your cart and purchase them.",
+  "what-distributor-do": "What Can Distributor do ?",
+  "distributor-do-answer": "Being a distributor gives you the right to add brands by adding the type of brand, defining the identity, and authorizing the brand, and waiting until it is reviewed and approved by the reviewer, add your stores from the city, store name, and full store address, finally adding products so that they appear to everyone and can be purchased later.",
+  "important-questions": "Some Important Questions You may Ask About Our Majna-Store",
+  "filter-type": "What are the types of filtering products ?",
+  "filter-type-answer": "The user can filter products based on several factors (Category, SubCategory, Price) and the ordering of products can be simplified and arranged in descending order.",
+  "both-langs": "Does Majna-Store Support many Languags ?",
+  "both-langs-answer": "Of course Majna-Store is a multilingual Website that Supports both languages (Arabic, English)",
+  "both-modes": "Does Majn-Store support dark and light modes?",
+  "both-modes-answer": "Of course Majna-Store supports both modes (dark, light)"
 }

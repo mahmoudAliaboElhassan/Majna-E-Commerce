@@ -27,28 +27,28 @@ function QuestionsAnswers() {
     },
     {
       id: 4,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
+      title: t("what-customer-do"),
+      content: t("customer-do-answer"),
     },
     {
       id: 5,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
+      title: t("filter-type"),
+      content: t("filter-type-answer"),
     },
     {
       id: 6,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
+      title: t("what-distributor-do"),
+      content: t("distributor-do-answer"),
     },
     {
       id: 7,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
+      title: t("both-langs"),
+      content: t("both-langs-answer"),
     },
     {
       id: 8,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
+      title: t("both-modes"),
+      content: t("both-modes-answer"),
     },
     {
       id: 9,
@@ -126,13 +126,13 @@ function QuestionsAnswers() {
         <div style={{ height: "100vh" }}></div>
 
         <ul>
-          {FAQ.map(({ id, title, content }, idx) => (
+          {FAQ.map(({ id, title, content }) => (
             <li
               key={id}
               onClick={() => handleClick(id)}
               component="div" // data-aos="zoom-in"
-              data-aos={`fade-${idx % 2 === 0 ? "right" : "left"}`}
-              data-aos-duration={id * 300}
+              data-aos={`fade-${id % 2 === 0 ? "right" : "left"}`}
+              data-aos-duration={id * 600}
               data-aos-easing="ease-in-sine"
             >
               <div
@@ -142,6 +142,7 @@ function QuestionsAnswers() {
                   justifyContent: "space-between",
                   alignItems: "center",
                   cursor: "pointer",
+                  fontSize: "21px",
                 }}
               >
                 {title}
@@ -158,7 +159,7 @@ function QuestionsAnswers() {
                 }}
                 animate={{ height: active === id ? "auto" : 0 }}
               >
-                <p>{content}</p>
+                <p style={{ fontSize: "18px", maxWidth: "90%" }}>{content}</p>
               </motion.div>
             </li>
           ))}
