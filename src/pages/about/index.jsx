@@ -32,13 +32,13 @@ function About() {
   const { t } = useTranslation();
 
   return (
-    <Container maxWidth="md">
+    <>
       <AppbarHeader>{t("important-questions")}</AppbarHeader>
-
       <QuestionsAnswers />
       <AppbarHeader>{t("people-developed")}</AppbarHeader>
+      <Container maxWidth="md">
       <Grid container spacing={5}>
-        <Grid item xs={12} md={6} data-aos="fade-right">
+      <Grid item xs={12} md={6} data-aos="fade-right">
           <Card
             component="div"
             data-aos={`fade-${isMatch ? "down" : "right"}`}
@@ -103,8 +103,9 @@ function About() {
           </Card>
         </Grid>
       </Grid>
+      </Container>
       <div>الحمد لله تم إسترجاع البيانات</div>
-    </Container>
+    </>
   );
 }
 

@@ -114,7 +114,7 @@ function Header() {
                 <FavoriteIcon
                   sx={{
                     fontSize: "2rem",
-                    color: "white",
+                    color: locationPath === "favorite" ? "red" : "white",
                     "&:hover": {
                       color: "red",
                     },
@@ -127,7 +127,14 @@ function Header() {
                 initial={{ y: "-100vh" }}
                 animate={{ y: 0 }}
                 variant="h5"
-                sx={{ fontSize: "2em" }}
+                sx={{
+                  fontSize: {
+                    xs: "1.5em",
+                    sm: "1.75em",
+                    md: "2em",
+                  },
+                  whiteSpace: "nowrap",
+                }}
               >
                 {t("website-title")}
               </AppbarHeader>
@@ -143,9 +150,7 @@ function Header() {
                 initial={{ y: "-100vh" }}
                 animate={{ y: 0 }}
               >
-                <AppbarHeader sx={{ fontSize: { md: "1.5em", lg: "2em" } }}>
-                  {t("website-title")}
-                </AppbarHeader>
+                <AppbarHeader>{t("website-title")}</AppbarHeader>
               </motion.div>
               {role === "customer" && (
                 <IconButton component={Link} to="shooping-cart">
@@ -167,7 +172,7 @@ function Header() {
                 <FavoriteIcon
                   sx={{
                     fontSize: "2rem",
-                    color: "white",
+                    color: locationPath === "favorite" ? "red" : "white",
                     transition: "0.3s",
                     "&:hover": {
                       color: "red",

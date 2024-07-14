@@ -6,14 +6,14 @@ import { motion } from "framer-motion";
 
 import { Colors } from "../theme";
 
-export const AppbarHeader = styled(motion.div)(() => ({
-  fontSize: "2em",
+export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   padding: "2px",
   flexGrow: 1,
   fontFamily: '"Montez","cursive"',
   color: Colors.seconday,
   textAlign: "center",
   cursor: "pointer",
+  fontSize: "2.25em",
 }));
 export const CartNumber = styled(Typography)(() => ({
   position: "absolute",
