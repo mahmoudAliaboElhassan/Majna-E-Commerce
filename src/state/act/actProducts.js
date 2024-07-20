@@ -52,3 +52,20 @@ export const getProductsByCategory = createAsyncThunk(
     }
   }
 );
+export const getSpecifiedProduct = createAsyncThunk(
+  "products/getSpecifiedProduct",
+  async ({ id }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const data = await majnAPI.get(`api/products/${id}`);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 400 error here
+        console.log("400 Bad Request - Error in the request");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);

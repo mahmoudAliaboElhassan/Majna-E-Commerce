@@ -70,6 +70,9 @@ function UseInitialStates() {
     cartItem: null,
     loadingCart: false,
     loadingPostCart: false,
+    loadingAddtoFavorite: false,
+    loadingGetFavorites: false,
+    countOfFavoritesProducts:null
   };
 
   return {

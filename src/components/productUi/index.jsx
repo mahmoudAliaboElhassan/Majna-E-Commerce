@@ -223,8 +223,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-import { postCart } from "@state/slices/cart";
+import { postCart, postFavorite } from "@state/slices/cart";
 import UseThemMode from "@hooks/use-theme";
 import "./item.css";
 
@@ -237,7 +238,9 @@ const Product = ({ id, name, cover_image, price, brand }) => {
   const [idx, setIdx] = useState(null);
   const { t } = useTranslation();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const { loadingPostCart } = useSelector((state) => state.cart);
+  const { loadingPostCart, loadingAddtoFavorite } = useSelector(
+    (state) => state.cart
+  );
 
   const handleBtnClick = (id) => {
     setIdx(id);
@@ -278,7 +281,43 @@ const Product = ({ id, name, cover_image, price, brand }) => {
       });
     setIsBtnDisabled(true);
   };
+  const handleFavorite = (id) => {
+    setIdx(id);
+    dispatch(
+      postFavorite({
+        customerId: Uid,
+        product_ids: [id],
+      })
+    )
+      .unwrap()
+      .then(() => {
+        toast.success(t("favorite-success"), {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: themeMode,
+        });
+      })
+      .catch((error) => {
+        const errorMessages = {
+          401: t("error-not-authorized-text-favorite"),
+          403: t("error-not-customer-text-favorite"),
+        };
 
+        const errorMessage =
+          errorMessages[error.response.status] || error.message;
+        Swal.fire({
+          title: t("error-adding-favorite"),
+          text: errorMessage,
+          icon: "error",
+          confirmButtonText: t("ok"),
+        });
+      });
+  };
   useEffect(() => {
     if (!isBtnDisabled) return;
     const debounce = setTimeout(() => {
@@ -346,6 +385,18 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                 to={`product-data/${id}`}
               >
                 {t("view-product")}
+              </Button>
+            </Box>
+            <Box sx={{ flex: 1, ml: 1 }}>
+              <Button
+                variant={themeMode === "dark" ? "contained" : "outlined"}
+                color="primary"
+                disabled={loadingAddtoFavorite && idx === id}
+                fullWidth
+                onClick={() => handleFavorite(id)}
+              >
+                {/* {t("add-favorite")} */}
+                <FavoriteIcon />
               </Button>
             </Box>
           </CardActions>

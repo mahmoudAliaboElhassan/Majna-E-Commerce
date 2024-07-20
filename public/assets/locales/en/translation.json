@@ -112,7 +112,7 @@
   "quantity": "Quantity",
   "add-store-now": "Add Your Store Now to add Products in it",
   "edit-store": "Edit Store",
-  "loading-singlesingleStoreData": "Wait Until Your previous Store  Data be Loaded",
+  "loading-singlesingleStoreData": "Wait Until Your previous Store  Data be Loaded ...",
   "loading-stores": "Wait Until All Your Stores is Loaded",
   "no-stores": "No Stores is Added Until Now",
   "store-edited": "Your Store Has been Edited Successfully",
@@ -142,7 +142,8 @@
   "no-product": "No Products For Your Filteration Change it !",
   "add-to-cart": "Add To Cart",
   "suring": "Are You Sure",
-  "info": "Removing this Cart means removing it from your product list",
+  "info": "Removing this Cart means removing it from your Product list",
+  "info-favorite": "Removing this Cart means removing it from your Favorites list",
   "delete-cart-confirm": "Yes, delete it!",
   "cancel-delete-cart": "No Keep it",
   "deleting-cart": "Cart Deleted Successfully !",
@@ -192,5 +193,13 @@
   "both-langs": "Does Majna-Store Support many Languags ?",
   "both-langs-answer": "Of course Majna-Store is a multilingual Website that Supports both languages (Arabic, English)",
   "both-modes": "Does Majn-Store support dark and light modes?",
-  "both-modes-answer": "Of course Majna-Store supports both modes (dark, light)"
+  "both-modes-answer": "Of course Majna-Store supports both modes (dark, light)",
+  "error-adding-favorite": "Error in Adding to Favorite !",
+  "favorite-success": "Product Added to Favorite Successfully !",
+  "error-not-authorized-text-favorite": "Login In First then Add to Favorite",
+  "error-not-customer-text-favorite": "It is Forbidden for Non Customer to Add to Favorite Login as Customer and Add To Favorite",
+  "loading-favorite": "Wait Untill Favorite Products Load ...",
+  "no-favorites": "No Products Added to Favorites Yet",
+  "deleting-favorite": "Product is Deleted from Favorites Successfully !",
+  "keeping-favorite": "Product is Still in Favorites List"
 }

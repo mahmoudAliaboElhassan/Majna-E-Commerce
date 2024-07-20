@@ -8,6 +8,9 @@ import {
   updateQuantity,
   postCart,
   deleteCartItem,
+  postFavorite,
+  getFavorites,
+  deleteFavorite,
 } from "@state/act/actCarts";
 // const initialState = {
 //   items: {}, //  1 :1  1 for id and 1 for quantity
@@ -92,8 +95,31 @@ const cart = createSlice({
       .addCase(postCart.rejected, (state, action) => {
         state.loadingPostCart = false;
       })
+      .addCase(postFavorite.pending, (state, action) => {
+        state.loadingAddtoFavorite = true;
+      })
+      .addCase(postFavorite.fulfilled, (state, action) => {
+        state.loadingAddtoFavorite = false;
+      })
+      .addCase(postFavorite.rejected, (state, action) => {
+        state.loadingAddtoFavorite = false;
+      })
+      .addCase(getFavorites.pending, (state, action) => {
+        state.loadingGetFavorites = true;
+      })
+      .addCase(getFavorites.fulfilled, (state, action) => {
+        state.loadingGetFavorites = false;
+        state.favoritesArray = action.payload.favorite_items;
+        state.countOfFavoritesProducts = action.payload.favorite_items.length;
+      })
+      .addCase(getFavorites.rejected, (state, action) => {
+        state.loadingGetFavorites = false;
+      })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
         state.countOfCartItems--;
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action) => {
+        state.countOfFavoritesProducts--;
       });
   },
 });
@@ -108,5 +134,8 @@ export {
   updateQuantity,
   postCart,
   deleteCartItem,
+  postFavorite,
+  getFavorites,
+  deleteFavorite,
 };
 export const { cleanUpCartItems, cleanUpCartItem } = cart.actions;

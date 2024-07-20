@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "@hooks/use-initial-state";
-import { getProducts, getProductsByCategory } from "@state/act/actProducts";
+import {
+  getProducts,
+  getProductsByCategory,
+  getSpecifiedProduct,
+} from "@state/act/actProducts";
 
 const { initialStateProducts } = UseInitialStates();
 
@@ -53,6 +57,6 @@ export const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
-export { getProducts, getProductsByCategory };
+export { getProducts, getProductsByCategory, getSpecifiedProduct };
 export const { cleanUpgetProductsByCategory, cleanUpGetProducts } =
   productsSlice.actions;
