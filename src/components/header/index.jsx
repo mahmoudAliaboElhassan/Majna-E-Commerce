@@ -46,7 +46,7 @@ function Header() {
   const theme = useTheme();
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
-  const { pumpCartQuantity } = styles;
+  const { pumpCartQuantity, cgBgcolor, sizeFavorite } = styles;
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const { t } = useTranslation();
   const { allElements, allTabsElements, authElements } = useHeaderElements();
@@ -82,6 +82,7 @@ function Header() {
   const [isAnimate, setIsAnimate] = UseDebounce(500);
 
   const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`;
+  const heartStyle = `${isAnimate ? cgBgcolor : ""}`;
 
   console.log(location.pathname.split("/"));
   const locationPath = location.pathname.split("/")[1];
@@ -112,11 +113,12 @@ function Header() {
               )}
               <IconButton component={Link} to="favorite">
                 <FavoriteIcon
+                  className={`${heartStyle}`}
                   sx={{
-                    fontSize: "2rem",
+                    fontSize: "2rem !important",
                     color: locationPath === "favorite" ? "red" : "white",
                     "&:hover": {
-                      color: "red",
+                      color: "red !important",
                     },
                   }}
                 />
@@ -170,12 +172,12 @@ function Header() {
               )}
               <IconButton component={Link} to="favorite">
                 <FavoriteIcon
+                  className={`${heartStyle}`}
                   sx={{
-                    fontSize: "2rem",
+                    fontSize: "2rem !important",
                     color: locationPath === "favorite" ? "red" : "white",
-                    transition: "0.3s",
                     "&:hover": {
-                      color: "red",
+                      color: "red !important",
                     },
                   }}
                 />

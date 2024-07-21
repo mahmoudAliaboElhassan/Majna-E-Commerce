@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 
 const UseDebounce = (timer) => {
   // const qunatityNumbers = useSelector(getTotalQuantities);
-  const { countOfCartItems } = useSelector((state) => state.cart);
+  const { countOfCartItems, countOfFavoritesProducts } = useSelector(
+    (state) => state.cart
+  );
   const [isAnimate, setIsAnimate] = useState(false);
   useEffect(() => {
     if (!countOfCartItems) {
@@ -19,7 +21,7 @@ const UseDebounce = (timer) => {
       clearTimeout(debounce);
       console.log("return from effect");
     };
-  }, [countOfCartItems]);
+  }, [countOfCartItems, countOfFavoritesProducts]);
   return [isAnimate, setIsAnimate];
 };
 export default UseDebounce;

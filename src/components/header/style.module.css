@@ -46,3 +46,26 @@
     transform: scale(1);
   }
 }
+
+@keyframes cgBgcolor {
+  0% {
+    color: #f0f0f0;
+    transform: scale(1);
+  }
+  50% {
+    color: #d43e3e;
+    transform: scale(1.2);
+  }
+  100% {
+    color: #f30808;
+    transform: scale(1);
+  }
+}
+
+.cgBgcolor {
+  animation: cgBgcolor 500ms ease-in-out;
+  -webkit-animation: cgBgcolor 500ms ease-in-out;
+}
+.sizeFavorite {
+  font-size: 2rem;
+}

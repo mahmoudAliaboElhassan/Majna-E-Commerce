@@ -43,6 +43,9 @@ const cart = createSlice({
     cleanUpCartItem: (state) => {
       state.cartItem = null;
     },
+    cleanUpFavorites: (state) => {
+      state.favoritesArray = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -100,6 +103,7 @@ const cart = createSlice({
       })
       .addCase(postFavorite.fulfilled, (state, action) => {
         state.loadingAddtoFavorite = false;
+        state.countOfFavoritesProducts += 1;
       })
       .addCase(postFavorite.rejected, (state, action) => {
         state.loadingAddtoFavorite = false;
@@ -114,6 +118,7 @@ const cart = createSlice({
       })
       .addCase(getFavorites.rejected, (state, action) => {
         state.loadingGetFavorites = false;
+        state.countOfFavoritesProducts = 0;
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
         state.countOfCartItems--;
@@ -138,4 +143,5 @@ export {
   getFavorites,
   deleteFavorite,
 };
-export const { cleanUpCartItems, cleanUpCartItem } = cart.actions;
+export const { cleanUpCartItems, cleanUpCartItem, cleanUpFavorites } =
+  cart.actions;

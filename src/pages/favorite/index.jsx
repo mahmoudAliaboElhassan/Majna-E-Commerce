@@ -1,5 +1,4 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -8,12 +7,17 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import LoadingFetching from "@components/loadingFetching";
-import { getFavorites, deleteFavorite } from "@state/slices/cart";
+import {
+  getFavorites,
+  deleteFavorite,
+  cleanUpFavorites, // Fix typo: cleanUpFavorites instead of cleanUpFavotites
+} from "@state/slices/cart";
 import UseThemeMode from "@hooks/use-theme";
 import "../shoppingCart/style.css";
+
 function Favorite() {
   const { favoritesArray, loadingGetFavorites, countOfFavoritesProducts } =
-    useSelector((state) => state.cart);
+    useSelector((state) => state.cart); // Default to empty array
   const dispatch = useDispatch();
   const { Uid } = useSelector((state) => state.auth);
 
@@ -21,6 +25,9 @@ function Favorite() {
     if (Uid) {
       dispatch(getFavorites({ id: Uid }));
     }
+    return () => {
+      dispatch(cleanUpFavorites());
+    };
   }, [dispatch, Uid, countOfFavoritesProducts]);
 
   const { t } = useTranslation();
@@ -98,15 +105,15 @@ function Favorite() {
       ),
     },
   ];
+
   const rows = favoritesArray?.map((cart) => ({
     id: cart?.id,
     name: cart?.product?.name,
     brand: cart?.product?.brand,
     price: cart?.product?.price,
     image: cart?.product?.cover_image,
-    view: t("view"),
-    delete: t("delete"),
   }));
+
   return (
     <Box sx={{ p: 2 }}>
       <Container>
