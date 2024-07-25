@@ -201,5 +201,8 @@
   "loading-favorite": "Wait Untill Favorite Products Load ...",
   "no-favorites": "No Products Added to Favorites Yet",
   "deleting-favorite": "Product is Deleted from Favorites Successfully !",
-  "keeping-favorite": "Product is Still in Favorites List"
+  "keeping-favorite": "Product is Still in Favorites List",
+  "linkedin": "LinkedIn",
+  "facebook": "FaceBook",
+  "github":"GitHub"
 }

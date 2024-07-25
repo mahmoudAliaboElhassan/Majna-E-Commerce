@@ -46,71 +46,6 @@ function QuestionsAnswers() {
       title: t("both-langs"),
       content: t("both-langs-answer"),
     },
-    {
-      id: 8,
-      title: t("both-modes"),
-      content: t("both-modes-answer"),
-    },
-    {
-      id: 9,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 10,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 11,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 12,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 13,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 14,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 15,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 16,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 17,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 18,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 19,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
-    {
-      id: 20,
-      title: "Jana",
-      content: "Student at the 6rd preperatory School",
-    },
   ];
   const [active, setActive] = useState(null);
   useEffect(() => {
@@ -125,7 +60,7 @@ function QuestionsAnswers() {
     <AnimatePresence initial={false}>
       <Container maxWidth="lg">
         <div>
-          <div style={{ height: "100vh" }}></div>
+          {/* <div style={{ height: "100vh" }}></div> */}
 
           <ul>
             {FAQ.map(({ id, title, content }) => (
