@@ -29,8 +29,8 @@ function LanguageSelection() {
     setClickedElement(null);
     setOpenMenu(false);
   };
-  const changeLang = (lng) => {
-    i18next.changeLanguage(lng.code);
+  const changeLang = (code) => {
+    i18next.changeLanguage(code);
     setClickedElement(null);
   };
   const handleClick = (e, val) => {
@@ -52,16 +52,16 @@ function LanguageSelection() {
         onClose={handleClose}
         style={{ borderRadius: "10px" }}
       >
-        {Languages.map((lang) => (
-          <div key={lang.country_code}>
+        {Languages.map(({ country_code, code, name }) => (
+          <div key={country_code}>
             <MenuItemElement
-              onClick={() => changeLang(lang)}
-              disabled={currLanguageCode === lang.code}
+              onClick={() => changeLang(code)}
+              disabled={currLanguageCode === code}
             >
               <i
-                className={`flag flag-${lang.country_code} larger-icon mx-1`}
+                className={`flag flag-${country_code} larger-icon mx-1`}
               ></i>{" "}
-              {lang.name}
+              {name}
             </MenuItemElement>
             <Divider />
           </div>

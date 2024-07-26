@@ -229,7 +229,7 @@ export const getSubCategory = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get(`api/products/sub-categories`);
+      const res = await majnAPI.get(`api/sub-categories`);
       console.log("from slice res is");
       console.log(res);
       return res;
@@ -248,7 +248,7 @@ export const getCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get(`api/products/categories`);
+      const res = await majnAPI.get(`api/categories`);
       console.log("from slice res is");
       console.log(res);
       return res;
@@ -268,8 +268,8 @@ export const addProduct = createAsyncThunk(
     console.log({ ...productData });
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnaFiles.post(`api/products`, productData);
-      console.log("from slice res is");
+      const res = await majnaFiles.post(`api/products/`, productData);
+      console.log("from slice res is for add product");
       console.log(res);
       return res;
     } catch (error) {

@@ -44,10 +44,10 @@ function AllBrandsApplications() {
   ];
 
   // Transform allBrands data into rows for the DataGrid
-  const rows = distributorBrands?.map((brand) => ({
-    id: brand.id,
-    brand: brand.brand,
-    status: brand.status,
+  const rows = distributorBrands?.map(({ id, brand, status }) => ({
+    id: id,
+    brand: brand,
+    status: status,
   }));
   return (
     <>
@@ -58,7 +58,7 @@ function AllBrandsApplications() {
           rows={rows}
           columns={columns}
           pageSize={12}
-          // pagination={false}
+        // pagination={false}
         />
       ) : (
         <Typography style={{ fontSize: "18px" }}>{t("no_brands")}</Typography>

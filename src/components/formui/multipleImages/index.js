@@ -108,7 +108,7 @@ const ImageUploader = () => {
           ref={inputFileRef}
           style={{ display: "none" }}
           fullWidth={true}
-          accept=".png"
+          // accept=".png"
         />
         <FormHelperText>
           {moreFour

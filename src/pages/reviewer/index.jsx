@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
- 
+
 import PaginationComponent from "@components/pagination";
-import { getBrandsPyPage,cleanUpBrandsByPage } from "@state/slices/reviewer";
+import { getBrandsPyPage, cleanUpBrandsByPage } from "@state/slices/reviewer";
 import LoadingFetching from "@components/loadingFetching";
 
 function IndexReviewer() {
@@ -24,7 +24,7 @@ function IndexReviewer() {
 
   useEffect(() => {
     dispatch(getBrandsPyPage({ page }));
-    return()=>{
+    return () => {
       dispatch(cleanUpBrandsByPage())
     }
   }, [page]);
@@ -41,9 +41,9 @@ function IndexReviewer() {
   ];
 
   // Transform allBrands data into rows for the DataGrid
-  const rows = allBrans.map((brand) => ({
-    id: brand.id,
-    brand: brand.brand,
+  const rows = allBrans.map(({ id, brand }) => ({
+    id: id,
+    brand: brand,
   }));
   return (
     <>
@@ -58,7 +58,7 @@ function IndexReviewer() {
                   rows={rows}
                   columns={columns}
                   pageSize={12}
-                  // pagination={false}
+                // pagination={false}
                 />
               </div>
 
@@ -73,7 +73,7 @@ function IndexReviewer() {
               {t("no_brands")}
             </Typography>
           )}
-          </>
+        </>
       )}
     </>
   );

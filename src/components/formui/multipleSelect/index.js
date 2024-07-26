@@ -108,13 +108,13 @@ function MultipleSelect({
             name={nameStore}
             onChange={handleInputChange}
           >
-            {options?.map((option) => (
+            {options?.map(({id,name}) => (
               <MenuItem
-                key={option.id}
-                value={option.id}
-                disabled={getOptionDisabledStatus(option.id)}
+                key={id}
+                value={id}
+                disabled={getOptionDisabledStatus(id)}
               >
-                {option.name}
+                {name}
               </MenuItem>
             ))}
           </Select>

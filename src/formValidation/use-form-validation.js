@@ -180,7 +180,9 @@ function UseFormValidation() {
     inventory: Yup.array().of(
       Yup.object().shape({
         store_pk: Yup.string().required("Required Store Name"),
-        quantity: Yup.string().required("Required quantity"),
+        quantity: Yup.number()
+          .required("Required quantity")
+          .min(1, "Minimum amount of Product is one"),
       })
     ),
     album: Yup.array()

@@ -29,14 +29,14 @@ function AprovedBrands() {
       {loadingAuthorized ? (
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       ) : approvedBrands.length ? (
-        approvedBrands.map((brand, idx) => (
+        approvedBrands.map(({ name }, idx) => (
           <>
             <Card
               data-aos="fade-up"
               data-aos-duration={`${3000 * idx}`}
               key={idx}
             >
-              {brand.name}
+              {name}
             </Card>
             {/* <div data-aos="fade-up">Mahmoud Ali hassan</div> */}
           </>
@@ -45,8 +45,8 @@ function AprovedBrands() {
         <>
           <div
             data-aos="fade-up"
-            // data-aos-duration="3000"
-            // style={{ fontSize: "18px" }}
+          // data-aos-duration="3000"
+          // style={{ fontSize: "18px" }}
           >
             {t("no_brands")}
           </div>

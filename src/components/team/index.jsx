@@ -173,7 +173,7 @@ function Team() {
                   //  whiteSpace: "nowrap"
                 }}
               >
-                <a href="https://www.linkedin.com/in/mahmoud-ali-a99713237/" target="_blank" style={{ color: "inherit" }} title={t("linkedin")}>
+                <a href="https://www.linkedin.com/in/mohamed-abdelaleem-0505431ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" style={{ color: "inherit" }} title={t("linkedin")}>
                   <LinkedInIcon sx={{
                     fontSize: {
                       xs: "1.5em",
@@ -189,7 +189,7 @@ function Team() {
                 flex: 1,
                 // ml: 1
               }}>
-                <a href="https://github.com/mahmoudAliaboElhassan" target="_blank" style={{ color: "inherit" }} title={t("github")}>
+                <a href="https://github.com/mohamedAbdelaleem" target="_blank" style={{ color: "inherit" }} title={t("github")}>
 
                   <GitHubIcon sx={{
                     fontSize: {

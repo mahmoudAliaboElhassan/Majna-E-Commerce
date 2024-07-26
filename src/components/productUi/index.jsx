@@ -224,6 +224,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddCardIcon from '@mui/icons-material/AddCard';
+import PreviewIcon from '@mui/icons-material/Preview';
 
 import { postCart, postFavorite } from "@state/slices/cart";
 import UseThemMode from "@hooks/use-theme";
@@ -356,49 +358,65 @@ const Product = ({ id, name, cover_image, price, brand }) => {
             </CardContent>
           </CardActionArea>
           <CardActions
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{ textAlign: "center", display: "flex", alignItems: "center" }}
           >
-            <Box
-              sx={{
-                flex: 1,
-                mr: 1,
-                //  whiteSpace: "nowrap"
-              }}
-            >
-              <Button
-                variant={themeMode === "dark" ? "contained" : "outlined"}
-                color="primary"
-                onClick={() => handleBtnClick(id)}
-                disabled={loadingPostCart && idx === id}
-                fullWidth
-                sx={{ whiteSpace: "nowrap" }}
-              >
-                {t("add-to-cart")}
-              </Button>
-            </Box>
-            <Box sx={{ flex: 1, ml: 1 }}>
-              <Button
-                variant={themeMode === "dark" ? "contained" : "outlined"}
-                color="primary"
-                fullWidth
-                component={Link}
-                to={`product-data/${id}`}
-              >
-                {t("view-product")}
-              </Button>
-            </Box>
-            <Box sx={{ flex: 1, ml: 1 }}>
-              <Button
-                variant={themeMode === "dark" ? "contained" : "outlined"}
-                color="primary"
-                disabled={loadingAddtoFavorite && idx === id}
-                fullWidth
-                onClick={() => handleFavorite(id)}
-              >
-                {/* {t("add-favorite")} */}
-                <FavoriteIcon />
-              </Button>
-            </Box>
+            <Grid container spacing={1}>
+              <Grid item xs={6} md={6} lg={4}>
+                <Button
+                  variant={themeMode === "dark" ? "contained" : "outlined"}
+                  color="primary"
+                  onClick={() => handleBtnClick(id)}
+                  disabled={loadingPostCart && idx === id}
+                  fullWidth
+                // sx={{ whiteSpace: "nowrap" }}  
+                >
+                  {/* {t("add-to-cart")} */}
+                  <AddCardIcon sx={{
+                    fontSize: {
+                      xs: "1.5em",
+                      sm: "1.75em",
+                      md: "2em",
+                    }
+                  }} />
+                </Button>
+              </Grid>
+              <Grid item xs={6} md={6} lg={4}>
+                <Button
+                  variant={themeMode === "dark" ? "contained" : "outlined"}
+                  color="primary"
+                  fullWidth
+                  component={Link}
+                  to={`product-data/${id}`}
+                >
+                  {/* {t("view-product")} */}
+                  <PreviewIcon sx={{
+                    fontSize: {
+                      xs: "1.5em",
+                      sm: "1.75em",
+                      md: "2em",
+                    }
+                  }} />
+                </Button>
+              </Grid>
+              <Grid item xs={12} md={12} lg={4}>
+                <Button
+                  variant={themeMode === "dark" ? "contained" : "outlined"}
+                  color="primary"
+                  disabled={loadingAddtoFavorite && idx === id}
+                  fullWidth
+                  onClick={() => handleFavorite(id)}
+                >
+                  {/* {t("add-favorite")} */}
+                  <FavoriteIcon sx={{
+                    fontSize: {
+                      xs: "1.5em",
+                      sm: "1.75em",
+                      md: "2em",
+                    }
+                  }} />
+                </Button>
+              </Grid>
+            </Grid>
           </CardActions>
         </Card>
       </motion.div>

@@ -19,6 +19,9 @@ export const productsSlice = createSlice({
     cleanUpgetProductsByCategory: (state) => {
       state.productsArray = [];
     },
+    cleanUpGetSpecifiedProduct: (state) => {
+      state.productData = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -52,11 +55,26 @@ export const productsSlice = createSlice({
       })
       .addCase(getProductsByCategory.rejected, (state) => {
         state.loadingProducts = false;
+      })
+      .addCase(getSpecifiedProduct.pending, (state) => {
+        state.loadingSpecificProduct = true;
+      })
+      .addCase(getSpecifiedProduct.fulfilled, (state, action) => {
+        state.loadingSpecificProduct = false;
+        state.productData = action.payload;
+        console.log(action.payload);
+        console.log(state.productData);
+      })
+      .addCase(getSpecifiedProduct.rejected, (state) => {
+        state.loadingSpecificProduct = false;
       });
   },
 });
 
 export default productsSlice.reducer;
 export { getProducts, getProductsByCategory, getSpecifiedProduct };
-export const { cleanUpgetProductsByCategory, cleanUpGetProducts } =
-  productsSlice.actions;
+export const {
+  cleanUpgetProductsByCategory,
+  cleanUpGetProducts,
+  cleanUpGetSpecifiedProduct,
+} = productsSlice.actions;

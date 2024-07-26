@@ -50,11 +50,11 @@ function AllStores() {
   ];
 
   // Transform allBrands data into rows for the DataGrid
-  const rows = stores?.map((store) => ({
-    id: store.id,
-    storeName: store.name,
-    governorate: store.governorate,
-    city: store.city,
+  const rows = stores?.map(({ id, name, governorate, city }) => ({
+    id: id,
+    storeName: name,
+    governorate: governorate,
+    city: city,
     edit: t("edit"),
   }));
   return (

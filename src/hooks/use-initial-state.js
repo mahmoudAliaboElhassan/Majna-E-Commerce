@@ -66,13 +66,14 @@ function UseInitialStates() {
     loadingEditCartQuantity: false,
     cartQuantity: null,
     loadingCarts: false,
-    countOfCartItems: null,
+    countOfCartItems: localStorage.getItem("countOfCartItem"),
     cartItem: null,
     loadingCart: false,
     loadingPostCart: false,
     loadingAddtoFavorite: false,
     loadingGetFavorites: false,
-    countOfFavoritesProducts:null
+    countOfFavoritesProducts: null,
+    loadingSpecificProduct: false,
   };
 
   return {

@@ -88,7 +88,7 @@ function Header() {
   const locationPath = location.pathname.split("/")[1];
   console.log("locationPath");
   console.log(locationPath);
-  useEffect(() => {}, [countOfCartItems]);
+  useEffect(() => { }, [countOfCartItems]);
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -96,33 +96,42 @@ function Header() {
           {isMatch ? (
             <>
               {role === "customer" && (
-                <IconButton component={Link} to="shooping-cart">
-                  <ShoppingCartIcon
-                    sx={{
-                      fontSize: "2rem",
-                      color: "white",
-                      "&:hover": {
-                        color: "blue",
-                      },
-                    }}
-                  />
-                  <CartNumber className={quantityStyle}>
-                    {countOfCartItems}
-                  </CartNumber>
-                </IconButton>
+                <>
+                  <IconButton component={Link} to="shooping-cart">
+                    <ShoppingCartIcon
+                      sx={{
+                        fontSize: "2rem",
+                        color: "white",
+                        "&:hover": {
+                          color: "blue",
+                        },
+                      }}
+                    />
+                    <CartNumber className={quantityStyle}>
+                      {countOfCartItems}
+                    </CartNumber>
+                  </IconButton>
+
+                  <IconButton component={Link} to="favorite">
+                    <FavoriteIcon
+                      className={`${heartStyle}`}
+                      sx={{
+                        fontSize: "2rem !important",
+                        color: locationPath === "favorite" ? "red" : "white",
+                        "&:hover": {
+                          color: "red !important",
+                        },
+                      }}
+
+
+                    />
+                  </IconButton>
+
+                </>
               )}
-              <IconButton component={Link} to="favorite">
-                <FavoriteIcon
-                  className={`${heartStyle}`}
-                  sx={{
-                    fontSize: "2rem !important",
-                    color: locationPath === "favorite" ? "red" : "white",
-                    "&:hover": {
-                      color: "red !important",
-                    },
-                  }}
-                />
-              </IconButton>
+
+
+
               <AppbarHeader
                 className="logo"
                 transition={{ delay: 0.7, duration: 1.6 }}
@@ -155,39 +164,42 @@ function Header() {
                 <AppbarHeader>{t("website-title")}</AppbarHeader>
               </motion.div>
               {role === "customer" && (
-                <IconButton component={Link} to="shooping-cart">
-                  <ShoppingCartIcon
-                    sx={{
-                      fontSize: "2rem",
-                      color: "white",
-                      "&:hover": {
-                        color: "blue",
-                      },
-                    }}
-                  />
-                  <CartNumber className={quantityStyle}>
-                    {countOfCartItems}
-                  </CartNumber>
-                </IconButton>
+                <>
+                  <IconButton component={Link} to="shooping-cart">
+                    <ShoppingCartIcon
+                      sx={{
+                        fontSize: "2rem",
+                        color: "white",
+                        "&:hover": {
+                          color: "blue",
+                        },
+                      }}
+                    />
+                    <CartNumber className={quantityStyle}>
+                      {countOfCartItems}
+                    </CartNumber>
+                  </IconButton>
+
+                  <IconButton component={Link} to="favorite">
+                    <FavoriteIcon
+                      className={`${heartStyle}`}
+                      sx={{
+                        fontSize: "2rem !important",
+                        color: locationPath === "favorite" ? "red" : "white",
+                        "&:hover": {
+                          color: "red !important",
+                        },
+                      }}
+                    />
+                  </IconButton>
+                </>
               )}
-              <IconButton component={Link} to="favorite">
-                <FavoriteIcon
-                  className={`${heartStyle}`}
-                  sx={{
-                    fontSize: "2rem !important",
-                    color: locationPath === "favorite" ? "red" : "white",
-                    "&:hover": {
-                      color: "red !important",
-                    },
-                  }}
-                />
-              </IconButton>
               {/* <div>{process.env.REACT_APP_API_URL}</div> */}
               <TabContext value={value}>
                 <TabsElementsList
                   textColor="inherit"
                   indicatorColor="secondary"
-                  // onChange={handleChange}
+                // onChange={handleChange}
                 >
                   {allTabsElements.map((el, idx) => (
                     <Tab
