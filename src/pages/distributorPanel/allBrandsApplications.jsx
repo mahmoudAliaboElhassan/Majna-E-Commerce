@@ -57,7 +57,17 @@ function AllBrandsApplications() {
         <DataGrid
           rows={rows}
           columns={columns}
-          pageSize={12}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          pageSizeOptions={[5, 10, 15, 20]}
+          checkboxSelection
+          disableRowSelectionOnClick
+          rowHeight={120}
         // pagination={false}
         />
       ) : (
