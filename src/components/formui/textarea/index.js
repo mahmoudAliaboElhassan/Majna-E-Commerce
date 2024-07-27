@@ -3,7 +3,12 @@ import { useField } from "formik";
 import { TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-export default function TextAreaWrapper({ name, label, ...otherProps }) {
+export default function TextAreaWrapper({
+  name,
+  label,
+  placeholder,
+  ...otherProps
+}) {
   const [field, meta] = useField(name);
   const configTextFieldArea = {
     fullWidth: true,
@@ -11,6 +16,7 @@ export default function TextAreaWrapper({ name, label, ...otherProps }) {
     multiline: true,
     minRows: 3,
     maxRows: 10,
+    placeholder,
     ...field,
     ...otherProps,
   };
@@ -30,7 +36,7 @@ export default function TextAreaWrapper({ name, label, ...otherProps }) {
         color: "white",
         padding: "5px",
       }}
-      placeholder={t("description-txt")}
+      // placeholder={t("description-txt")}
     />
   );
 }

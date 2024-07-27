@@ -149,7 +149,7 @@ function Login() {
                       role === "reviewer"
                         ? navigate("/reviewer")
                         : (role === "distributor" || role === "customer") &&
-                          navigate("/");
+                        navigate("/");
                     }, 1000)}
                     <Grid container spacing={2}>
                       <Grid item xs={12}>

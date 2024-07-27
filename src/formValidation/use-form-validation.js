@@ -241,6 +241,20 @@ function UseFormValidation() {
       .required("Product Quantity is Required")
       .min(0, "Negative Number is not Allowed"),
   });
+  const FORM_VALIDATION_SCHEMA_CONTACT = Yup.object().shape({
+    yourName: Yup.string()
+      .required("Name is Required")
+      .max(20, "Maximum number of characters is 20"),
+    yourEmail: Yup.string()
+      .required("Email is Required")
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email Should be Valid Email"),
+    yourSubject: Yup.string()
+      .required("Subject is Required")
+      .max(50, "Maximum number of characters is 50"),
+    yourMessage: Yup.string().required("Message is Required"),
+  });
+  
+  
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
     FORM_VALIDATION_SCHEMA_Login,
@@ -253,6 +267,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_Add_PRODUCT,
     FORM_VALIDATION_SCHEMA_PRICES,
     FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY,
+    FORM_VALIDATION_SCHEMA_CONTACT,
   };
 }
 

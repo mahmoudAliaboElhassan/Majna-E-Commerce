@@ -212,6 +212,7 @@ function AddProduct() {
                               name="description"
                               textarea={3}
                               label={t("description")}
+                              placeholder={t("description-txt")}
                               autocomplete="off"
                             />
                           </Grid>

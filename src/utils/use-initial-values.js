@@ -54,6 +54,12 @@ function UseInitialValues(props) {
     priceFrom: null,
     priceTo: null,
   };
+  const INITIAL_FORM_STATE_CONTACT = {
+    yourName: "",
+    yourEmail: "",
+    yourSubject: "",
+    yourMessage: "",
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -65,6 +71,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_ADD_STORE,
     INITIAL_FORM_STATE_ADD_PRODUCT,
     INITIAL_FORM_STATE_PRICES,
+    INITIAL_FORM_STATE_CONTACT,
   };
 }
 

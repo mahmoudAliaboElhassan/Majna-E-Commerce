@@ -61,7 +61,9 @@ function Team() {
                 >
                   {t("faculty-mahmoud")}
                 </Typography>
-                <Typography variant="body1" component="div" color="textPrimary">
+                <Typography variant="body1" component="div" color="textPrimary" sx={{                    whiteSpace: "nowrap",
+                    whiteSpace: "nowrap",
+                  }}>
                   {t("job-mahmoud")}
                 </Typography>
 
@@ -201,23 +203,7 @@ function Team() {
                   }} />
                 </a>
               </Box>
-              <Box sx={{
-                flex: 1,
-                // ml: 1
-              }}>
-                <a href="https://www.facebook.com/profile.php?id=100075492203648" target="_blank" style={{ color: "inherit" }} title={t("facebook")}>
-
-                  <FacebookIcon
-                    sx={{
-                      fontSize: {
-                        xs: "1.5em",
-                        sm: "1.75em",
-                        md: "2em",
-                      },
-                      whiteSpace: "nowrap",
-                    }} />
-                </a>
-              </Box>
+        
             </CardActions>
 
           </Card>
