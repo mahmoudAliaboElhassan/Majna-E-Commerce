@@ -210,5 +210,8 @@
   "subject": "Subject",
   "message": "Message",
   "message-txt": "Write your message here to contact us or to complain",
-  "send-message": "Send Message"
+  "send-message": "Send Message",
+  "sent-success": "Your Message has been sent Successfully",
+  "error-sending-message": "Error Sending this Message",
+  "wait-catogeries": "Wait for all Categories to Load ..."
 }

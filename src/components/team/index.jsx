@@ -19,7 +19,7 @@ import UseMediaQueryHook from "@hooks/use-media-query";
 import { useTranslation } from "react-i18next";
 import UseThemMode from "@hooks/use-theme";
 
-import teamImage from "@assets//team/teamImages";
+import teamImage from "@assets/team";
 import { AppbarHeader } from "@styles/appbar";
 
 function Team() {
@@ -61,9 +61,10 @@ function Team() {
                 >
                   {t("faculty-mahmoud")}
                 </Typography>
-                <Typography variant="body1" component="div" color="textPrimary" sx={{                    whiteSpace: "nowrap",
-                    whiteSpace: "nowrap",
-                  }}>
+                <Typography variant="body1" component="div" color="textPrimary" sx={{
+                  whiteSpace: "nowrap",
+                  whiteSpace: "nowrap",
+                }}>
                   {t("job-mahmoud")}
                 </Typography>
 
@@ -203,7 +204,7 @@ function Team() {
                   }} />
                 </a>
               </Box>
-        
+
             </CardActions>
 
           </Card>

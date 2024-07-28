@@ -15,10 +15,12 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import { Box } from "@mui/material";
-import image from "../../image";
+import defaultSliderImages from "@assets/sliderImages";
 import "./SwiperCustom.css"; // Import custom CSS file
 
-const Swiperslide = () => {
+const Swiperslide = ({ images }) => {
+  const imageArray = images.length ? images : defaultSliderImages;
+
   return (
     <Box
       sx={{
@@ -42,14 +44,13 @@ const Swiperslide = () => {
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
-            return `<span class="${className} custom-bullet">${
-              index + 1
-            }</span>`;
+            return `<span class="${className} custom-bullet">${index + 1
+              }</span>`;
           },
         }}
         style={{ height: "350px", width: "100%" }}
       >
-        {image.map((img, index) => {
+        {imageArray.map((img, index) => {
           return (
             <SwiperSlide key={index}>
               <img src={img} alt={`slide-${index}`} loading="lazy" />

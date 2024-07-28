@@ -35,7 +35,12 @@ function Home() {
   const changePage = useCallback((e, value) => {
     setPage(value);
   }, []);
-
+  let productImages;
+  if (productsArray) {
+    productImages = productsArray.map(({ cover_image }) => cover_image)
+    console.log("productImages")
+    console.log(productImages)
+  }
   const [selectedCategory, setSelectedCategory] = useState(null);
   const handleChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -76,24 +81,24 @@ function Home() {
   useEffect(() => {
     selectedCategory
       ? dispatch(
-          getProductsByCategory({
-            id: selectedCategory,
-            price__range: price,
-            color: color,
-            ordering,
-            page,
-            search: searchValue,
-          })
-        )
+        getProductsByCategory({
+          id: selectedCategory,
+          price__range: price,
+          color: color,
+          ordering,
+          page,
+          search: searchValue,
+        })
+      )
       : dispatch(
-          getProducts({
-            price__range: price,
-            color: color,
-            ordering,
-            page,
-            search: searchValue,
-          })
-        );
+        getProducts({
+          price__range: price,
+          color: color,
+          ordering,
+          page,
+          search: searchValue,
+        })
+      );
     return () => {
       dispatch(cleanUpGetProducts());
       dispatch(cleanUpgetProductsByCategory());
@@ -110,29 +115,29 @@ function Home() {
     setSelectedCategory(id);
     id
       ? dispatch(
-          getProductsByCategory({
-            id: id,
-            price__range: price,
-            color: color,
-            ordering,
-            page,
-            search: searchValue,
-          })
-        )
+        getProductsByCategory({
+          id: id,
+          price__range: price,
+          color: color,
+          ordering,
+          page,
+          search: searchValue,
+        })
+      )
       : dispatch(
-          getProducts({
-            price__range: price,
-            color: color,
-            ordering,
-            page,
-            search: searchValue,
-          })
-        );
+        getProducts({
+          price__range: price,
+          color: color,
+          ordering,
+          page,
+          search: searchValue,
+        })
+      );
   };
 
   return (
     <>
-      <Swiperslide />
+      <Swiperslide images={productImages} />
       <Introductory />
       <Search
         onChange={handleSearchChange}

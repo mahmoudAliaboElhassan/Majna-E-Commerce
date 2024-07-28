@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import Typography from "@mui/material/Typography";
 
 import Input from "@components/sidebarFiltering/input";
 import { getCategories } from "@state/slices/distributor";
-import Typography from "@mui/material/Typography";
 import UseThemMode from "@hooks/use-theme";
 
 import "./category.css";
@@ -46,7 +46,7 @@ function Category({ handleProductsByCategory, selectedCategory }) {
             name="test"
             isCheck={selectedCategory === null}
           />
-          {categories?.map(({ id, name }) => (
+          {categories.length ? categories.map(({ id, name }) => (
             <Input
               key={id}
               handleChange={() => handleProductsByCategory(id)}
@@ -54,7 +54,10 @@ function Category({ handleProductsByCategory, selectedCategory }) {
               title={name}
               name="test"
             />
-          ))}
+          )) : <Typography sx={{
+            textAlign: "center",
+            fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" } 
+          }}>{t('wait-catogeries')}</Typography>}
         </div>
         {/* </label> */}
       </div>
