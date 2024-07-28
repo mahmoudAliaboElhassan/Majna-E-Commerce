@@ -19,7 +19,7 @@ const InventoryComp = () => {
 
   // Filter options for each select element
   const getFilteredOptions = (currentIndex) => {
-    return stores.filter((store) => {
+    return stores?.filter((store) => {
       const isSelected = selectedStoreIds.includes(store.id);
       const isCurrentValue =
         store.id === values.inventory[currentIndex]?.store_pk;
