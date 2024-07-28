@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5),
     color:
-      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",    backgroundColor: "transparent !important",
+      theme.palette.type === "dark" ? theme.palette.common.white : "inherit", backgroundColor: "transparent !important",
 
   },
   containerWrapper: {
@@ -73,7 +73,7 @@ function AddStore() {
   return (
     <div style={{ position: "relative", height: "100vh" }}>
 
-      {!loadingGovernaces ? (
+      {!loadingGovernaces && governance.length ? (
         <Container maxWidth="sm">
           <ToastContainer />
           <Card raised>
@@ -191,4 +191,4 @@ function AddStore() {
   );
 }
 
-export default  (AddStore);
+export default (AddStore);

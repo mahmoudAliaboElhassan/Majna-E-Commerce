@@ -65,7 +65,7 @@ const InventoryComp = () => {
             width: "fit-content",
             boxShadow: "0px 0px 6px 1px #7f4949",
             fontWeight: "700",
-            opacity: !stores.length || count >= stores.length ? "0.3" : "1",
+            opacity: !stores?.length || count >= stores?.length ? "0.3" : "1",
           }}
         >
           <ControlPointIcon />
