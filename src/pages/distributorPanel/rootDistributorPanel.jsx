@@ -23,7 +23,7 @@ function RootProductLayout() {
   const handleDrawerClose = useCallback(() => {
     setOpen(false);
   });
-  useEffect(() => {}, [open]);
+  useEffect(() => { }, [open]);
   const theme = useTheme();
 
   return (
@@ -50,4 +50,4 @@ function RootProductLayout() {
     </Box>
   );
 }
-export default  (RootProductLayout);
+export default (RootProductLayout);

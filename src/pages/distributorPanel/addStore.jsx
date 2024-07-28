@@ -191,4 +191,4 @@ function AddStore() {
   );
 }
 
-export default withGuard(AddStore);
+export default  (AddStore);

@@ -29,7 +29,7 @@ function AprovedBrands() {
       {loadingAuthorized ? (
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       ) : approvedBrands.length ? (
-        approvedBrands.map(({ name }, idx) => (
+        approvedBrands?.map(({ name }, idx) => (
           <>
             <Card
               data-aos="fade-up"

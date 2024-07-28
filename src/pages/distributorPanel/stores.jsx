@@ -61,7 +61,7 @@ function AllStores() {
     <>
       {loadingStores ? (
         <LoadingFetching>{t("loading-stores")}</LoadingFetching>
-      ) : stores.length ? (
+      ) : stores?.length ? (
         <DataGrid
           rows={rows}
           columns={columns}

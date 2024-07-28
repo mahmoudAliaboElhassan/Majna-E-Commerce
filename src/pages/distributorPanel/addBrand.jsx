@@ -175,4 +175,4 @@ function AddBrand() {
   );
 }
 
-export default withGuard(AddBrand);
+export default (AddBrand);

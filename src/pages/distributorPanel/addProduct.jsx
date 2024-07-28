@@ -260,5 +260,5 @@ function AddProduct() {
   );
 }
 
-export default withGuard(AddProduct);
+export default (AddProduct);
 // https://www.youtube.com/shorts/tydbyfOu9zU
