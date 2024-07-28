@@ -19,7 +19,7 @@ import defaultSliderImages from "@assets/sliderImages";
 import "./SwiperCustom.css"; // Import custom CSS file
 
 const Swiperslide = ({ images }) => {
-  const imageArray = images.length ? images : defaultSliderImages;
+  const imageArray = images?.length ? images : defaultSliderImages;
 
   return (
     <Box
