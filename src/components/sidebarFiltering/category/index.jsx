@@ -46,7 +46,7 @@ function Category({ handleProductsByCategory, selectedCategory }) {
             name="test"
             isCheck={selectedCategory === null}
           />
-          {categories.length ? categories.map(({ id, name }) => (
+          {categories?.length ? categories.map(({ id, name }) => (
             <Input
               key={id}
               handleChange={() => handleProductsByCategory(id)}
