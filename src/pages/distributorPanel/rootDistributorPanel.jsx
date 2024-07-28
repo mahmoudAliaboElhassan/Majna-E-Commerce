@@ -50,4 +50,4 @@ function RootProductLayout() {
     </Box>
   );
 }
-export default withGuard(RootProductLayout);
+export default  (RootProductLayout);
