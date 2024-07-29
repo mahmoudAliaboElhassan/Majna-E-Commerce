@@ -109,7 +109,7 @@ function ContactInfo() {
                     },
                     whiteSpace: "nowrap", [Direction.marginRight]: "10px"
                 }} />
-                mohamedabdelaleem305@gmail.com
+                mohamedabdelaleem305<br></br>@gmail.com
             </a>
             <a href="tel:01019663158" target="_blank" style={{ marginBottom: "12px", display: "flex", alignItems: "center" }} title={t("phone")} >
                 <PhoneIcon sx={{
@@ -120,7 +120,7 @@ function ContactInfo() {
                     },
                     whiteSpace: "nowrap", [Direction.marginRight]: "10px"
                 }} />
-                01019663158
+                +201019663158
             </a>
         </Card>
     )
