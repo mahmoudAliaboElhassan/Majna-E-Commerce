@@ -50,7 +50,7 @@
   "error-activate-dispatch": "Error in Activating Your Account",
   "error-activate-dispatch-token": "This message has been Expired You can request new one",
   "error_message": "There is Error",
-  "ops": "Oops",
+  "ops": "Ops",
   "check-inbox-reset": "Check Your Inbox to Reset Your Password !",
   "reset-success": "Password has been reseted Successfully !",
   "error-reset": "Error in Resetting Password",
@@ -213,5 +213,9 @@
   "send-message": "Send Message",
   "sent-success": "Your Message has been sent Successfully",
   "error-sending-message": "Error Sending this Message",
-  "wait-catogeries": "Wait for all Categories to Load ..."
+  "wait-catogeries": "Wait for all Categories to Load ...",
+  "mahmoud-contact": "Mahmoud Contact Info",
+  "mohammed-contact": "Mohammed Contact Info",
+  "phone": "Phone Number",
+  "contact-message": "Fancy working together or just want to say hi? Drop us a message below."
 }

@@ -6,16 +6,17 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import emailjs from 'emailjs-com';
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
 
 import UseThemMode from "@hooks/use-theme";
+import UseDirection from "@hooks/use-direction";
 import { AppbarHeader } from "@styles/appbar";
 import UseInitialValues from "@utils/use-initial-values";
 import TextAreaWrapper from "@components/formui/textarea";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import TextFieldWrapper from "@components/formui/textField";
 import UseFormValidation from "@formValidation/use-form-validation";
+import ContactInfo from "@components/contactInfo";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +40,9 @@ function Contacts() {
   const classes = useStyles();
   const { INITIAL_FORM_STATE_CONTACT } = UseInitialValues();
   const { FORM_VALIDATION_SCHEMA_CONTACT } = UseFormValidation();
+  const { Direction } = UseDirection()
   const { themeMode } = UseThemMode()
+
   const sendEmail = (formValues) => {
     const templateParams = {
       yourName: formValues.yourName,
@@ -76,11 +79,11 @@ function Contacts() {
   return (
     <div>
       <AppbarHeader>{t("contact-us")}</AppbarHeader>
-      <Container maxWidth="md" className={classes.formWrapper}>
+      <Container className={classes.formWrapper}>
         <ToastContainer />
         <Grid container spacing={4}>
           <Grid item xs={12} md={8} lg={8}>
-            <Typography style={{ marginBottom: "8px", textAlign: 'center' }} variant="h5">Fancy working together or just want to say hi? Drop us a message below.</Typography>
+            <Typography style={{ marginBottom: "8px", textAlign: 'center', opacity: "0.8" }} variant="h5">{t('contact-message')}</Typography>
             <Formik
               initialValues={INITIAL_FORM_STATE_CONTACT}
               validationSchema={FORM_VALIDATION_SCHEMA_CONTACT}
@@ -136,9 +139,7 @@ function Contacts() {
             </Formik>
           </Grid>
           <Grid item xs={12} md={4} lg={4}>
-            <div style={{ border: "1px solid #ccc", padding: "16px" }}>
-              <h2>Contacts</h2>
-            </div>
+            <ContactInfo />
           </Grid>
         </Grid>
       </Container>

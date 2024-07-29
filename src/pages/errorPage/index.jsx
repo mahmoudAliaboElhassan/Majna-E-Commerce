@@ -20,11 +20,11 @@ const ErrorPage = () => {
         <Typography variant="h2" sx={{ my: 2 }}>
           {t("ops")}
         </Typography>
-        <Typography variant="h4" sx={{ mb: 2 }}>
+        <Typography variant="h4" sx={{ mb: 2, textAlign: "center" }}>
           {t("error_message")}{" "}
         </Typography>
         <p>
-          <i>{error.statusText || error.message}</i>
+          <i style={{ textAlign: "center" }}> {error.statusText || error.message}</i>
         </p>
         <img
           src={errorImage}
@@ -36,7 +36,7 @@ const ErrorPage = () => {
         <Button component={Link} to="/">
           {t("go-back")}
         </Button>
-      </ErrorContainer>
+      </ErrorContainer >
       {/* <ImageList>
         {image.map((item) => (
           <ImageListItem key={item}>
