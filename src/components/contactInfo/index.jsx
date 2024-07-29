@@ -100,7 +100,7 @@ function ContactInfo() {
                 }} />
                 {t('linkedin')}
             </a>
-            <a href="mailto:" target="_blank" style={{ marginBottom: "12px", display: "flex", alignItems: "center" }} title={t("email")} data-aos="fade-down" data-aos-delay="700">
+            <a href="mailto:mohamedabdelaleem305@gmail.com" target="_blank" style={{ marginBottom: "12px", display: "flex", alignItems: "center" }} title={t("email")} data-aos="fade-down" data-aos-delay="700">
                 <MailIcon sx={{
                     fontSize: {
                         xs: "1.5em",
@@ -109,6 +109,7 @@ function ContactInfo() {
                     },
                     whiteSpace: "nowrap", [Direction.marginRight]: "10px"
                 }} />
+                mohamedabdelaleem305@gmail.com
             </a>
             <a href="tel:01019663158" target="_blank" style={{ marginBottom: "12px", display: "flex", alignItems: "center" }} title={t("phone")} >
                 <PhoneIcon sx={{

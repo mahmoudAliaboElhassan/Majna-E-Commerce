@@ -21,7 +21,7 @@ import ContactInfo from "@components/contactInfo";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(5),
     color:
       theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
