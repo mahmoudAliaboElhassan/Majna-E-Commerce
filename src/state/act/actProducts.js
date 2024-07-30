@@ -40,7 +40,7 @@ export const getProductsByCategory = createAsyncThunk(
 
     try {
       const data = await majnAPI.get(
-        `api/products/categories/${id}?${queryParameters}`
+        `api/categories/${id}/products?${queryParameters}`
       );
       return data;
     } catch (error) {

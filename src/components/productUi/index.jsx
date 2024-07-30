@@ -347,7 +347,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {name.slice(0, 20)} ...
+                {name.slice(0, 30)} ...
               </Typography>
               <Typography variant="h6" component="p" gutterBottom>
                 {brand}

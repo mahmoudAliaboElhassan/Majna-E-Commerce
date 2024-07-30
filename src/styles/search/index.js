@@ -1,8 +1,9 @@
-import { styled } from "@mui/material/styles";
-import { Box } from "@mui/system";
+import { styled, alpha } from "@mui/material/styles";
+import Autocomplete from "@mui/material/Autocomplete";
+import { Box } from "@mui/material";
 import { TextField } from "@mui/material";
 
-import UseThemMode from "../../hooks/use-theme";
+import UseThemMode from "@hooks/use-theme";
 import { Colors } from "../theme";
 
 export const SearchBoxContainer = styled(Box)(() => {
@@ -61,3 +62,39 @@ export const inputBaseStyles = {
     },
   },
 };
+
+export const SearchBox = styled(Box)(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: "auto",
+  marginRight: 1,
+  flex: 1,
+  borderRadius: "3px",
+}));
+
+export const StyledAutocomplete = styled(Autocomplete)(({ theme }) => ({
+  width: "100%",
+  ".MuiInputBase-root": {
+    color: "inherit",
+  },
+}));
+
+export const SearchButton = styled("button")(({ theme }) => ({
+  position: "absolute",
+  right: 0,
+  top: 0,
+  height: "100%",
+  padding: theme.spacing(1, 2),
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.common.white,
+  border: "none",
+  borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
+  cursor: "pointer",
+  "&:hover": {
+    backgroundColor: theme.palette.primary.dark,
+  },
+}));
