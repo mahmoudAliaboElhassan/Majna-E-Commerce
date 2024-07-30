@@ -75,6 +75,10 @@ function UseInitialStates() {
     countOfFavoritesProducts: null,
     loadingSpecificProduct: false,
   };
+  const initialStateSearch = {
+    searchChage: null,
+    searchValue: null,
+  };
 
   return {
     initialStateMode,
@@ -84,6 +88,8 @@ function UseInitialStates() {
     initialStateActiveLinks,
     initialStateProducts,
     initialStateCart,
+
+    initialStateSearch,
   };
 }
 

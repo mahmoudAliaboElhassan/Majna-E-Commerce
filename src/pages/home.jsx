@@ -59,18 +59,19 @@ function Home() {
   const handleClickPrice = () => {
     setPrice(priceFromTo.join(","));
   };
-  const [searchValue, setSearchValue] = useState(null);
+  // const [searchValue, setSearchValue] = useState(null);
   const [searchChange, setSearchChange] = useState(null);
-  const handleSearchChange = (event) => {
-    setSearchChange(event.target.value);
-    console.log(searchChange);
-    // setSearchParams({ queryformMahmoud: searchValue });
-    // console.log(searchParams);
-  };
-  const handlSearchClick = () => {
-    setSearchValue(searchChange?.split(" ").join("+"));
-    console.log(searchValue);
-  };
+  const { searchValue } = useSelector((state) => state.search)
+  // const handleSearchChange = (event) => {
+  //   setSearchChange(event.target.value);
+  //   console.log(searchChange);
+  //   // setSearchParams({ queryformMahmoud: searchValue });
+  //   // console.log(searchParams);
+  // };
+  // const handleSearchClick = () => {
+  //   setSearchValue(searchChange?.split(" ").join("+"));
+  //   console.log(searchValue);
+  // };
 
   const [color, setColor] = useState("");
   const handleChangeColor = (event) => {
@@ -140,8 +141,8 @@ function Home() {
       <Swiperslide images={productImages} />
       <Introductory />
       <Search
-        onChange={handleSearchChange}
-        handlSearchClick={handlSearchClick}
+      // onChange={handleSearchChange}
+      // handleSearchClick={handleSearchClick}
       />
 
       <Grid container>
