@@ -72,11 +72,10 @@ function ProductTypesSidebar({
         variant="persistent"
         anchor={Direction.left}
         style={{
-          height: "100%",
+          height: "calc(100% + 63px)",
           backgroundColor: themeMode === "light" ? "#ddd" : "#2b1f1f",
-          [Direction.borderRight]: `2px solid ${
-            themeMode == "dark" ? Colors.light_gray : Colors.shaft
-          }`,
+          [Direction.borderRight]: `2px solid ${themeMode == "dark" ? Colors.light_gray : Colors.shaft
+            }`,
           // boxShadow: `0 0 0 3px ${
           //   themeMode === "dark" ? blue[600] : blue[200]
           // }`,
