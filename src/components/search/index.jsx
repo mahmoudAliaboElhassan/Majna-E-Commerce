@@ -6,11 +6,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useTranslation } from "react-i18next";
 import { styled, alpha } from "@mui/material/styles";
 import { Box } from "@mui/material";
-import { useTheme } from "@emotion/react";
+import { useTheme } from "@mui/material/styles";
 import UseDirection from "@hooks/use-direction";
 import { useDispatch, useSelector } from "react-redux";
 
-import { handleSearchChange, handleSearchValue } from "@state/slices/search"
+import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 
 const SearchBox = styled(Box)(({ theme }) => ({
   position: "relative",
@@ -56,8 +56,6 @@ const SearchButton = styled('button')(({ theme }) => ({
   '&:hover': {
     backgroundColor: theme.palette.primary.dark,
   },
-  borderRadius: "3px"
-
 }));
 
 const Search = () => {
@@ -66,34 +64,42 @@ const Search = () => {
   const theme = useTheme();
 
   const skills = ["html", "css", "javascript", "typescript"];
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const { searchChage } = useSelector((state) => state.search)
-  const handleSearch = (event) => {
-    dispatch(handleSearchChange(event?.target?.value));
-    console.log(searchChage);
-    // setSearchParams({ queryformMahmoud: searchValue });
-    // console.log(searchParams);
+  const {searchChange} = useSelector((state) => state.search);
+
+  const handleInputChange = (event, value) => {
+    dispatch(handleSearchChange(value || event.target.value));
   };
-  const handleBtnClick = () => {
-    dispatch(handleSearchValue(searchChage))
-  }
+
+  const handleSkillSelect = (event, value) => {
+    if (value) {
+      dispatch(handleSearchChange(value));
+      dispatch(handleSearchValue(value));
+    }
+  };
+
+  const handleSearchClick = () => {
+    dispatch(handleSearchValue(searchChange));
+  };
 
   return (
     <SearchBox>
+
       <StyledAutocomplete
         freeSolo
         options={skills}
+        onInputChange={handleInputChange}
+        onChange={handleSkillSelect}
         renderInput={(params) => (
           <TextField
             {...params}
             fullWidth
-            onChange={handleSearch}
             InputProps={{
               ...params.InputProps,
               sx: {
                 fontSize: { md: "12px", lg: "16px" },
-                pl: `calc(1em + ${theme.spacing(4)})`, // Adjust padding to match the icon
+                pl: `calc(1em + ${theme.spacing(4)})`,
                 transition: theme.transitions.create('width'),
                 width: '100%',
               },
@@ -103,7 +109,7 @@ const Search = () => {
           />
         )}
       />
-      <SearchButton onClick={handleBtnClick}>{t('search')}</SearchButton>
+      <SearchButton onClick={handleSearchClick}>{t('search')}</SearchButton>
     </SearchBox>
   );
 };
