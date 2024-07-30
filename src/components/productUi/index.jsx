@@ -229,6 +229,8 @@ import PreviewIcon from '@mui/icons-material/Preview';
 
 import { postCart, postFavorite } from "@state/slices/cart";
 import UseThemMode from "@hooks/use-theme";
+import UseMediaQueryHook from "@hooks/use-media-query";
+
 import "./item.css";
 
 const Product = ({ id, name, cover_image, price, brand }) => {
@@ -327,6 +329,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
     }, 300);
     return () => clearTimeout(debounce);
   }, [isBtnDisabled]);
+  const { isMatch } = UseMediaQueryHook();
 
   return (
     <Grid item xs={12} sm={6} md={4} key={id}>
@@ -346,8 +349,10 @@ const Product = ({ id, name, cover_image, price, brand }) => {
               alt={name}
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {name.slice(0, 30)} ...
+              <Typography gutterBottom variant="h5" component="div"
+                sx={{ height: isMatch ? "60px" : "70px" }}
+              >
+                {isMatch ? name.slice(0, 20) : name.slice(0, 30)}
               </Typography>
               <Typography variant="h6" component="p" gutterBottom>
                 {brand}

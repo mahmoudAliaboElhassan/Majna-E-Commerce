@@ -1,22 +1,24 @@
 import React from "react";
-import Autocomplete from "@mui/material/Autocomplete";
+
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
-import UseDirection from "@hooks/use-direction";
 import { useDispatch, useSelector } from "react-redux";
 
+import UseThemeMode from "@hooks/use-theme";
 import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
 
 const Search = () => {
-  const { Direction } = UseDirection();
   const { t } = useTranslation();
   const theme = useTheme();
 
   const skills = ["html", "css", "javascript", "typescript"];
   const dispatch = useDispatch();
-
+  const { themeMode } = UseThemeMode()
   const { searchChange } = useSelector((state) => state.search);
 
   const handleInputChange = (event, value) => {
@@ -33,7 +35,9 @@ const Search = () => {
   const handleSearchClick = () => {
     dispatch(handleSearchValue(searchChange));
   };
-
+  const handleClearClick = () => {
+    dispatch(handleSearchChange(""));
+  };
   return (
     <SearchBox>
       <StyledAutocomplete
@@ -47,6 +51,18 @@ const Search = () => {
             fullWidth
             InputProps={{
               ...params.InputProps,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="clear search"
+                    onClick={handleClearClick}
+                    edge="end"
+                    size="small"
+                  >
+                    <ClearIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
               sx: {
                 fontSize: { md: "12px", lg: "16px" },
                 pl: `calc(1em + ${theme.spacing(4)})`,
@@ -59,7 +75,8 @@ const Search = () => {
           />
         )}
       />
-      <SearchButton onClick={handleSearchClick}>{t('search')}</SearchButton>
+      <SearchButton variant={themeMode === "dark" ? "contained" : "outlined"}
+        onClick={handleSearchClick}>{t('search')}</SearchButton>
     </SearchBox>
   );
 };

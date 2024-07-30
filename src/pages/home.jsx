@@ -12,7 +12,6 @@ import PaginationComponent from "@components/pagination";
 import UseThemMode from "@hooks/use-theme";
 import ProjectsForm from "@components/formui/mutlipleCheckBox";
 import SearchParamsComponent from "@components/searchParams";
-import Image from "@assets/image-1.jpg";
 import {
   getProducts,
   getProductsByCategory,

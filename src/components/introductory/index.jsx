@@ -7,7 +7,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 import "./introductory.css";
-import Image from "../../image";
+import Image from "@assets/introductory";
 import UseThemMode from "@hooks/use-theme";
 import UseMediaQueryHook from "@hooks/use-media-query";
 import { IntroudctoryButton } from "@styles/introductory";
@@ -17,7 +17,7 @@ function Introductory() {
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
   const { isMatch } = UseMediaQueryHook();
-  useEffect(() => {}, [theme.direction]);
+  useEffect(() => { }, [theme.direction]);
 
   return (
     <div
@@ -35,7 +35,7 @@ function Introductory() {
       >
         <div className="hero-right">
           <img
-            src={Image[12]}
+            src={Image[0]}
             alt=""
             style={{ width: "350px", height: "350px" }}
             loading="lazy"
@@ -48,7 +48,7 @@ function Introductory() {
             style={{ justifyContent: isMatch ? "center" : "start" }}
           >
             <p>{t("new")}</p>
-            <img src={Image[10]} alt="New Collection Icon" />
+            <img src={Image[1]} alt="New Collection Icon" />
           </div>
           <p>{t("Collections")}</p>
           <p>{t("for everyone")}</p>
