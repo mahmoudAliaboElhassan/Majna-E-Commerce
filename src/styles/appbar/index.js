@@ -32,7 +32,6 @@ export const TabsElementsList = styled(Tabs)(() => ({
 export const DrawerCloseIcon = styled(IconButton)(() => ({
   position: "absolute",
   left: "50%",
-  top: "65%",
   zIndex: "999999",
   transform: "translateX(-50%)",
   fontSize: "15px",

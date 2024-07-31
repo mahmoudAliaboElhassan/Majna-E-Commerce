@@ -284,3 +284,69 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
+export const getUploadedProducts = createAsyncThunk(
+  "getUploadedProducts/addProduct",
+  async (productData, thunkAPI) => {
+    console.log({ ...productData });
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnaFiles.post(`api/products/`, productData);
+      console.log("from slice res is for add product");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      } else if (error.response && error.response.status === 500) {
+        console.log(error.message);
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const updateUploadedProduct = createAsyncThunk(
+  "updateUploadedProduct/addProduct",
+  async (productData, thunkAPI) => {
+    console.log({ ...productData });
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnaFiles.patch(`api/products/`, productData);
+      console.log("from slice res is for add product");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      } else if (error.response && error.response.status === 500) {
+        console.log(error.message);
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const deleteUploadedProduct = createAsyncThunk(
+  "deleteUploadedProduct/addProduct",
+  async (productData, thunkAPI) => {
+    console.log({ ...productData });
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnaFiles.delete(`api/products/`);
+      console.log("from slice res is for add product");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      } else if (error.response && error.response.status === 500) {
+        console.log(error.message);
+      }
+      return rejectWithValue(error);
+    }
+  }
+);

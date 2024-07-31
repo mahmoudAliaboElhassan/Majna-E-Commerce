@@ -68,7 +68,6 @@ function MainDrawer({ open, handleClose, elements }) {
           sx={{
             backgroundColor:
               themeMode === "dark" ? Colors.lightblack : Colors.primary,
-            height: "100vh",
             zIndex: 2,
           }}
         >
@@ -82,18 +81,18 @@ function MainDrawer({ open, handleClose, elements }) {
             </IconButton>
           </DrawerHeader>
           <Divider />
-          {elements?.map((el, index) => (
+          {elements?.map(({ label, ...el }, index) => (
             <ListItem
               key={el.label}
               disablePadding
-              // onClick={() => handleClick(el.to)}
+            // onClick={() => handleClick(el.to)}
             >
               <ListItemButton {...el} component={Link}>
-                <ListItemIcon>
+                {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
+                </ListItemIcon> */}
                 <ListItemText
-                  primary={el.label}
+                  primary={label}
                   style={{
                     color: locationPath === el.to ? "bold" : "normal",
                     borderBottom:

@@ -70,8 +70,6 @@ export const DrawerContainer = styled(Drawer)(() => {
     "& .MuiDrawer-paper": {
       width: drawerWidth,
       boxSizing: "border-box",
-      backgroundColor:
-        themeMode === "dark" ? Colors.lightblack : Colors.primary,
       zIndex: 2,
       color: Colors.white,
       marginTop: "50px",

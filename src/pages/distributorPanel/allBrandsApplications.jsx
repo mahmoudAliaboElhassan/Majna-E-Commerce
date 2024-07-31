@@ -11,6 +11,8 @@ import {
   cleanUpBrandsApplication,
 } from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
+import { DataGridContainer } from "@styles/dataGrid"
+
 
 function AllBrandsApplications() {
   const { t } = useTranslation();
@@ -54,22 +56,25 @@ function AllBrandsApplications() {
       {loadingDistributorApplications ? (
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       ) : distributorBrands.length ? (
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
+        <DataGridContainer>
+
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[5, 10, 15, 20]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          rowHeight={120}
-        // pagination={false}
-        />
+            }}
+            pageSizeOptions={[5, 10, 15, 20]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            rowHeight={120}
+          // pagination={false}
+          />
+        </DataGridContainer>
       ) : (
         <Typography style={{ fontSize: "18px" }}>{t("no_brands")}</Typography>
       )}

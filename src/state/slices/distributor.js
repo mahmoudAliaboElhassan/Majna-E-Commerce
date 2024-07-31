@@ -14,6 +14,9 @@ import {
   addProduct,
   getCategories,
   getSubCategory,
+  getUploadedProducts,
+  updateUploadedProduct,
+  deleteUploadedProduct
 } from "@state/act/actDistributor";
 
 const { initialStateDistributor } = UseInitialStates();
@@ -276,4 +279,7 @@ export {
   addProduct,
   getCategories,
   getSubCategory,
+  getUploadedProducts,
+  updateUploadedProduct,
+  deleteUploadedProduct
 };

@@ -2,13 +2,15 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import PaginationComponent from "@components/pagination";
 import { getBrandsPyPage, cleanUpBrandsByPage } from "@state/slices/reviewer";
 import LoadingFetching from "@components/loadingFetching";
+import { DataGridContainer } from "@styles/dataGrid"
+
 
 function IndexReviewer() {
   const [page, setPage] = useState(1);
@@ -52,38 +54,37 @@ function IndexReviewer() {
       ) : (
         <>
           {countOfBrands ? (
-            <>
-              <div style={{ height: 300, width: "100%" }}>
-                <DataGrid
-                  rows={rows}
-                  columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: {
-                        pageSize: 5,
-                      },
+            <DataGridContainer>
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 5,
                     },
-                  }}
-                  pageSizeOptions={[5, 10, 15, 20]}
-                  checkboxSelection
-                  disableRowSelectionOnClick
-                  rowHeight={120}                // pagination={false}
-                />
-              </div>
+                  },
+                }}
+                pageSizeOptions={[5, 10, 15, 20]}
+                checkboxSelection
+                disableRowSelectionOnClick
+                rowHeight={120}
+              />
 
               <PaginationComponent
                 page={page}
                 count={50}
                 changePage={changePage}
               />
-            </>
+            </DataGridContainer>
           ) : (
             <Typography style={{ fontSize: "18px" }}>
               {t("no_brands")}
             </Typography>
           )}
         </>
-      )}
+      )
+      }
     </>
   );
 }

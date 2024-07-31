@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { DataGrid } from "@mui/x-data-grid";
 
 import CartItem from "@components/cart/carItem";
 import CartListProducts from "@components/cart/cartListProducts";
@@ -18,10 +19,10 @@ import {
 import LoadingFetching from "@components/loadingFetching";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
 import "./style.css";
 import UseFormValidation from "@formValidation/use-form-validation";
 import { helperStyle } from "@styles/error";
+import { DataGridContainer } from "@styles/dataGrid"
 import UseThemMode from "@hooks/use-theme";
 
 function ShoppingCart() {
@@ -204,6 +205,7 @@ function ShoppingCart() {
         {loadingCarts ? (
           <LoadingFetching>{t("loading-carts")}</LoadingFetching>
         ) : countOfCartItems ? (
+
           <DataGrid
             rows={rows}
             columns={columns}

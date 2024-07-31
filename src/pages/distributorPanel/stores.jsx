@@ -4,16 +4,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
-import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
+import { Button } from "@mui/material";
+import { Typography } from "@material-ui/core";
 
+import { DataGridContainer } from "@styles/dataGrid"
 import { cleanUpStores, getStores } from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
+import UseThemMode from "@hooks/use-theme";
+
 
 function AllStores() {
   const { t } = useTranslation();
   const { Uid } = useSelector((state) => state.auth);
   const { stores, loadingStores } = useSelector((state) => state.distributor);
   const dispatch = useDispatch();
+  const { themeMode } = UseThemMode();
+
   useEffect(() => {
     dispatch(getStores({ Uid }));
     return () => {
@@ -25,7 +31,7 @@ function AllStores() {
     {
       field: "storeName",
       headerName: t("storeName"),
-      width: 150,
+      width: 300,
     },
 
     {
@@ -43,7 +49,12 @@ function AllStores() {
       headerName: t("edit"),
       renderCell: (params) => (
         <Link to={`/distributor-control-panel/edit-store/${params.row.id}`}>
-          {params.value}
+          <Button
+            variant={themeMode === "dark" ? "contained" : "outlined"}
+            color="info">
+            {params.value}
+
+          </Button>
         </Link>
       ),
     },
@@ -62,21 +73,23 @@ function AllStores() {
       {loadingStores ? (
         <LoadingFetching>{t("loading-stores")}</LoadingFetching>
       ) : stores?.length ? (
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
+        <DataGridContainer>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: {
+                  pageSize: 5,
+                },
               },
-            },
-          }}
-          pageSizeOptions={[5, 10, 15, 20]}
-          checkboxSelection
-          disableRowSelectionOnClick
-          rowHeight={120}
-        />
+            }}
+            pageSizeOptions={[5, 10, 15, 20]}
+            checkboxSelection
+            disableRowSelectionOnClick
+            rowHeight={120}
+          />
+        </DataGridContainer>
       ) : (
         <Typography style={{ fontSize: "18px" }}>{t("no-stores")}</Typography>
       )}

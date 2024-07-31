@@ -10,9 +10,10 @@ import LoadingFetching from "@components/loadingFetching";
 import {
   getFavorites,
   deleteFavorite,
-  cleanUpFavorites, // Fix typo: cleanUpFavorites instead of cleanUpFavotites
+  cleanUpFavorites,
 } from "@state/slices/cart";
 import UseThemeMode from "@hooks/use-theme";
+import { DataGridContainer } from "@styles/dataGrid"
 import "../shoppingCart/style.css";
 
 function Favorite() {
@@ -120,21 +121,23 @@ function Favorite() {
         {loadingGetFavorites ? (
           <LoadingFetching>{t("loading-favorite")}</LoadingFetching>
         ) : countOfFavoritesProducts ? (
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
+          <DataGridContainer>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
                 },
-              },
-            }}
-            pageSizeOptions={[5, 10, 15, 20]}
-            checkboxSelection
-            disableRowSelectionOnClick
-            rowHeight={120}
-          />
+              }}
+              pageSizeOptions={[5, 10, 15, 20]}
+              checkboxSelection
+              disableRowSelectionOnClick
+              rowHeight={120}
+            />
+          </DataGridContainer>
         ) : (
           <div>{t("no-favorites")}</div>
         )}

@@ -3,83 +3,89 @@ import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Loader from "@components/loader";
-import ErrorPage from "@pages/errorPage/index.jsx";
-import Home from "@pages/home.jsx";
-import RootLayout from "@pages/RootLayout.jsx";
-import ProtectedRoute from "@components/protectedRoute.jsx";
+import ErrorPage from "@pages/errorPage/index";
+import Home from "@pages/home";
+import RootLayout from "@pages/RootLayout";
+import ProtectedRoute from "@components/protectedRoute";
 
 const RootProductList = React.lazy(() =>
-  import("@pages/productList/rootProductList.jsx")
+  import("@pages/productList/rootProductList")
 );
 const ProductType = React.lazy(() =>
-  import("@pages/productList/productType.jsx")
+  import("@pages/productList/productType")
 );
 const ResetPassword = React.lazy(() =>
-  import("@pages/authentication/user/reset-password.jsx")
+  import("@pages/authentication/user/reset-password")
 );
 
 const Activation = React.lazy(() =>
-  import("@pages/authentication/activation/index.jsx")
+  import("@pages/authentication/activation/index")
 );
 
 const AboutUsPage = React.lazy(() => import("@pages/about"));
 
 const SignUpPage = React.lazy(() =>
-  import("@pages/authentication/user/signUp.jsx")
+  import("@pages/authentication/user/signUp")
 );
 
 const LoginPage = React.lazy(() =>
-  import("@pages/authentication/user/login.jsx")
+  import("@pages/authentication/user/login")
 );
 
 const ContactUsPage = React.lazy(() => import("@pages/contacts"));
 
 const ChangePassword = React.lazy(() =>
-  import("@pages/authentication/user/change-password.jsx")
+  import("@pages/authentication/user/change-password")
 );
 
 const ForgetPassword = React.lazy(() =>
-  import("@pages/authentication/user/forget-password.jsx")
+  import("@pages/authentication/user/forget-password")
 );
 
 const RootProductLayout = React.lazy(() =>
-  import("@pages/distributorPanel/rootDistributorPanel.jsx")
+  import("@pages/distributorPanel/rootDistributorPanel")
 );
 const ApprovedBrands = React.lazy(() =>
-  import("@pages/distributorPanel/aprovedBrands.jsx")
+  import("@pages/distributorPanel/aprovedBrands")
 );
 const AllBrandsApplications = React.lazy(() =>
-  import("@pages/distributorPanel/allBrandsApplications.jsx")
+  import("@pages/distributorPanel/allBrandsApplications")
 );
 const AllStores = React.lazy(() => import("@pages/distributorPanel/stores"));
+
+const UploadedProducts = React.lazy(() => import("@pages/distributorPanel/upploadedProducts"));
+
 const AddStore = React.lazy(() =>
-  import("@pages/distributorPanel/addStore.jsx")
+  import("@pages/distributorPanel/addStore")
 );
 const AddBrand = React.lazy(() =>
-  import("@pages/distributorPanel/addBrand.jsx")
+  import("@pages/distributorPanel/addBrand")
 );
 
 const AddProduct = React.lazy(() =>
-  import("@pages/distributorPanel/addProduct.jsx")
+  import("@pages/distributorPanel/addProduct")
 );
 
 const EditStore = React.lazy(() =>
-  import("@pages/distributorPanel/editStore.jsx")
+  import("@pages/distributorPanel/editStore")
+);
+const EditProduct = React.lazy(() =>
+  import("@pages/distributorPanel/editProduct")
 );
 
 const CardProductDetails = React.lazy(() =>
-  import("@pages/distributorPanel/productDetails.jsx")
+  import("@pages/distributorPanel/productDetails")
 );
 
 const RootReviewerLayout = React.lazy(() =>
-  import("@pages/reviewer/rootReviewerLayout.jsx")
+  import("@pages/reviewer/rootReviewerLayout")
 );
 
-const IndexReviewer = React.lazy(() => import("@pages/reviewer/index.jsx"));
+const IndexReviewer = React.lazy(() => import("@pages/reviewer/index"));
 
-const Profile = React.lazy(() => import("@pages/reviewer/profile.jsx"));
+const Profile = React.lazy(() => import("@pages/reviewer/profile"));
 const BrnadApplication = React.lazy(() =>
-  import("@pages/reviewer/brnadApplication.jsx")
+  import("@pages/reviewer/brnadApplication")
 );
 const ShoppingCart = React.lazy(() => import("@pages/shoppingCart"));
 const SpecificCartItem = React.lazy(() =>
@@ -196,6 +202,14 @@ const router = createBrowserRouter([
             ),
           },
           {
+            path: "uploaded-products",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <UploadedProducts />
+              </Suspense>
+            ),
+          },
+          {
             path: "add-brand",
             element: (
               <Suspense fallback={<Loader />}>
@@ -232,6 +246,14 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <EditStore />
+              </Suspense>
+            ),
+          },
+          {
+            path: "edit-product/:productId",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <EditProduct />
               </Suspense>
             ),
           },

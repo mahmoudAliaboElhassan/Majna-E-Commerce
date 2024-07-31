@@ -72,6 +72,8 @@ function DrawerComponent({ drawerElements }) {
             width: 250,
             [Direction.borderTopRightRadius]: "100px",
             [Direction.borderRight]: "1px solid #100e0e",
+            backgroundColor:
+              themeMode === "dark" ? Colors.lightblack : Colors.primary,
           },
         },
       },
@@ -93,18 +95,11 @@ function DrawerComponent({ drawerElements }) {
           open={openDrawer}
           onClose={() => setOpenDrawer(false)}
           anchor={Direction.left}
-          style={{
-            height: "100vh",
-          }}
         >
-          <DrawerCloseIcon onClick={() => setOpenDrawer(false)}>
-            <CloseIcon />
-          </DrawerCloseIcon>
+
           <List
             sx={{
-              backgroundColor:
-                themeMode === "dark" ? Colors.lightblack : Colors.primary,
-              height: "100vh",
+
               zIndex: 2,
             }}
           >
@@ -156,6 +151,9 @@ function DrawerComponent({ drawerElements }) {
                 </ListItemIcon>
               </ListItemButton>
             ))}
+            <DrawerCloseIcon onClick={() => setOpenDrawer(false)}>
+              <CloseIcon />
+            </DrawerCloseIcon>
           </List>
         </Drawer>
         <ModalSignup open_modal={open_modal} close={closeModal} />
