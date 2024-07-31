@@ -4,6 +4,7 @@ import { Box } from "@mui/material";
 import { TextField } from "@mui/material";
 
 import UseThemMode from "@hooks/use-theme";
+import UseDirection from "@hooks/use-direction";
 import { Colors } from "../theme";
 
 export const SearchBoxContainer = styled(Box)(() => {
@@ -83,18 +84,22 @@ export const StyledAutocomplete = styled(Autocomplete)(({ theme }) => ({
   },
 }));
 
-export const SearchButton = styled("button")(({ theme }) => ({
-  position: "absolute",
-  right: 0,
-  top: 0,
-  height: "100%",
-  padding: theme.spacing(1, 2),
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.common.white,
-  border: "none",
-  borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
-  cursor: "pointer",
-  "&:hover": {
-    backgroundColor: theme.palette.primary.dark,
-  },
-}));
+export const SearchButton = styled("button")(({ theme }) => {
+  const { Direction } = UseDirection(); // Use the correct hook
+
+  return {
+    position: "absolute",
+    [Direction.right]: 0, // Use the dynamic property
+    height: "100%",
+    top:0,
+    padding: theme.spacing(1, 2),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    border: "none",
+    borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.dark,
+    },
+  };
+});

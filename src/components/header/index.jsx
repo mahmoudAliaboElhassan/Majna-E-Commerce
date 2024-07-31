@@ -14,6 +14,8 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@emotion/react";
@@ -252,7 +254,10 @@ function Header() {
                       handleClickAuth(authel, index);
                     }}
                   >
-                    {authel.label}
+                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                      <span>{authel.label}</span>
+                      {authel.label === t('logout') ? <LogoutIcon /> : authel.label === t('login') ? <LoginIcon /> : null}
+                    </div>
                   </MenuItem>
                 ))}
               </Menu>

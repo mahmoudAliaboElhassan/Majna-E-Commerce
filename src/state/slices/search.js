@@ -12,7 +12,7 @@ export const searchSlice = createSlice({
       state.searchChage = action.payload;
       console.log(state.searchChage);
     },
-    handleSearchValue: (state, action) => {
+    handleSearchValue: (state) => {
       state.searchValue = state.searchChage?.split(" ")?.join("+");
       console.log(state.searchValue);
     },
