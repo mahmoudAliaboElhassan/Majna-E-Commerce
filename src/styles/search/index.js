@@ -96,7 +96,7 @@ export const SearchButton = styled("button")(({ theme }) => {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     border: "none",
-    transorm: "translateY(1px)",
+    transorm: "translateY(1%)",
     borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
     cursor: "pointer",
     "&:hover": {

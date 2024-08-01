@@ -25,6 +25,7 @@ import "aos/dist/aos.css";
 
 import ScrollToTopButton from "@components/scroll";
 import Header from "@components/header";
+import Footer from "@components/footer";
 import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
 import { logOut } from "@state/slices/auth";
@@ -116,8 +117,11 @@ function RootLayout() {
     <StylesProvider jss={jss}>
       <ThemeProvider theme={thema}>
         <CssBaseline />
-        <Header /> <div style={{ height: "20px" }}></div>
+        <Header />
+        <div style={{ height: "20px" }}></div>
         <Outlet />
+        <Footer />
+
         {/* <Container maxWidth="sm"> 
             <Paper square={false} elevation={24}>
               <MenuList>

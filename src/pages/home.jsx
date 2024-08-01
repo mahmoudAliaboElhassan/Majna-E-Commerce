@@ -4,7 +4,6 @@ import { Container, Grid } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { t } from "i18next";
 
-import Footer from "@components/footer";
 import Swiperslide from "@components/slider";
 import Product from "@components/productUi";
 import ShowProducts from "@components/productUi/showProducts";
@@ -33,6 +32,7 @@ function Home() {
   const dispatch = useDispatch();
   const changePage = useCallback((e, value) => {
     setPage(value);
+    console.log(page)
   }, []);
   let productImages;
   if (productsArray) {
@@ -84,7 +84,6 @@ function Home() {
         getProductsByCategory({
           id: selectedCategory,
           price__range: price,
-          color: color,
           ordering,
           page,
           search: searchValue,
@@ -93,7 +92,6 @@ function Home() {
       : dispatch(
         getProducts({
           price__range: price,
-          color: color,
           ordering,
           page,
           search: searchValue,
@@ -118,7 +116,6 @@ function Home() {
         getProductsByCategory({
           id: id,
           price__range: price,
-          color: color,
           ordering,
           page,
           search: searchValue,
@@ -127,7 +124,6 @@ function Home() {
       : dispatch(
         getProducts({
           price__range: price,
-          color: color,
           ordering,
           page,
           search: searchValue,
@@ -173,39 +169,16 @@ function Home() {
             maxWidth: { sm: "calc(100% - 40px)", md: "calc(100% - 48px)" },
           }}
         >
-          {loadingProducts ? (
-            <LoadingFetching>{t("load-products")}</LoadingFetching>
-          ) : countOfProducts ? (
-            <ShowProducts
-              records={productsArray}
-              renderProducts={(product) => <Product {...product} />}
-            />
-          ) : (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: "100%",
-                fontSize: "19px",
-                textAlign: "center",
-              }}
-            >
-              {t("no-product")}
-            </div>
-          )}
+          <ShowProducts
+            records={productsArray}
+            renderProducts={(product) => <Product {...product} />}
+            page={page}
+            count={productsCount}
+            changePage={changePage}
+          />
         </Grid>
-        {countOfProducts && (
-          <Grid item xs={12} sm={12} md={12}>
-            <PaginationComponent
-              page={page}
-              count={productsCount}
-              changePage={changePage}
-            />
-          </Grid>
-        )}
+
       </Grid>
-      <Footer />
     </>
   );
 }

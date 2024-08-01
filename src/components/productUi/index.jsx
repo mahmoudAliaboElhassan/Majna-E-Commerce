@@ -341,7 +341,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
         whileInView={{ x: 0, opacity: 1 }}
       >
         <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea component={Link} to={`product-data/${id}`}>
+          <CardActionArea component={Link} to={`product-view/${id}`}>
             <CardMedia
               component="img"
               height="140"
@@ -392,7 +392,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   color="primary"
                   fullWidth
                   component={Link}
-                  to={`product-data/${id}`}
+                  to={`product-view/${id}`}
                   title={t('view-product')}
                 >
                   {/* {t("view-product")} */}

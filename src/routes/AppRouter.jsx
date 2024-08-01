@@ -92,8 +92,8 @@ const SpecificCartItem = React.lazy(() =>
   import("@pages/shoppingCart/specifcCart")
 );
 const Favorite = React.lazy(() => import("@pages/favorite"));
-const ProductInformation = React.lazy(() =>
-  import("@pages/productInformation")
+const ProductView = React.lazy(() =>
+  import("@pages/productView")
 );
 const router = createBrowserRouter([
   {
@@ -110,10 +110,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "product-data/:productId",
+        path: "product-view/:productId",
         element: (
           <Suspense fallback={<Loader />}>
-            <ProductInformation />{" "}
+            <ProductView />{" "}
           </Suspense>
         ),
       },

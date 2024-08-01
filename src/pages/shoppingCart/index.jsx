@@ -203,7 +203,7 @@ function ShoppingCart() {
       <ToastContainer />
       <Container>
         {loadingCarts ? (
-          <LoadingFetching>{t("loading-carts")}</LoadingFetching>
+          <LoadingFetching>{t("wait-carts")}</LoadingFetching>
         ) : countOfCartItems ? (
           <>
             <AppbarHeader data-aos="fade-up">{t('product-added-to-cart')}</AppbarHeader>

@@ -77,7 +77,7 @@ const Search = ({ headerColor }) => {
                 transition: theme.transitions.create('width'),
                 width: '100%',
               },
-              placeholder: t("search"),
+              placeholder: t("search-product"),
               "aria-label": "search",
             }}
           />

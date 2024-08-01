@@ -1,4 +1,5 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container, Button } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -119,7 +120,7 @@ function Favorite() {
     <Box sx={{ p: 2 }}>
       <Container>
         {loadingGetFavorites ? (
-          <LoadingFetching>{t("loading-favorite")}</LoadingFetching>
+          <LoadingFetching>{t("wait-favorite")}</LoadingFetching>
         ) : countOfFavoritesProducts ? (
           <>
             <AppbarHeader data-aos="fade-up">{t('product-added-to-favorite')}</AppbarHeader>
