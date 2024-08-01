@@ -136,7 +136,7 @@ function ProductInformation() {
                   image={teamImage[imgNo]}
                   alt={"Product Image"}
                   loading="lazy"
-                  sx={{ width: "100%", height: "auto" }}
+                  sx={{ width: "100%", height: "100%" }}
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
