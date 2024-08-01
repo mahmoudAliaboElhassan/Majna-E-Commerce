@@ -282,7 +282,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           icon: "error",
           confirmButtonText: t("ok"),
         });
-      });
+      }) 
     setIsBtnDisabled(true);
   };
   const handleFavorite = (id) => {

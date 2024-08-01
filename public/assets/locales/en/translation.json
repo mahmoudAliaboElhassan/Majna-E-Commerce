@@ -168,6 +168,7 @@
   "error-exist-cart": "This Cart Has Already Been Added Before",
   "error-not-authorized-text": "Login In First then Add to Cart",
   "error-not-customer-text": "It is Forbidden for Non Customer to Add to Cart Login as Customer and Add To Cart",
+  "add-favorite": "Add to Favorite",
   "view-product": "View",
   "mohammed-abdelaleem": "Mohammed Abd Elaleem",
   "mahmoud-ali": "Mahmoud Ali",
@@ -218,5 +219,5 @@
   "mohammed-contact": "Mohammed Contact Info",
   "phone": "Phone Number",
   "contact-message": "Fancy working together or just want to say hi? Drop us a message below.",
-  "upploaded-products":"Upploaded Products"
+  "upploaded-products": "Upploaded Products"
 }

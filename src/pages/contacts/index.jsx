@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import emailjs from 'emailjs-com';
 
-
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
 import { AppbarHeader } from "@styles/appbar";
@@ -17,7 +16,6 @@ import ButtonWrapper from "@components/formui/SubmitButton";
 import TextFieldWrapper from "@components/formui/textField";
 import UseFormValidation from "@formValidation/use-form-validation";
 import ContactInfo from "@components/contactInfo";
-
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -82,7 +80,7 @@ function Contacts() {
       <Container className={classes.formWrapper}>
         <ToastContainer />
         <Grid container spacing={4}>
-          <Grid item xs={12} md={8} lg={8}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <Typography style={{ marginBottom: "8px", textAlign: 'center', opacity: "0.8" }} variant="h5">{t('contact-message')}</Typography>
             <Formik
               initialValues={INITIAL_FORM_STATE_CONTACT}
@@ -138,7 +136,7 @@ function Contacts() {
               )}
             </Formik>
           </Grid>
-          <Grid item xs={12} md={4} lg={4}>
+          <Grid item xs={12} sm={6} md={6} lg={6}>
             <ContactInfo />
           </Grid>
         </Grid>

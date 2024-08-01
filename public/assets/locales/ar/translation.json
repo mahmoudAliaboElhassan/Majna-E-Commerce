@@ -200,7 +200,7 @@
   "favorite-success": "تمت إضافة هذا المنتج إلى المفضله !",
   "error-not-authorized-text-favorite": "سجل الدخول أولاً قبل الإضافه إلى المفضله",
   "error-not-customer-text-favorite": "ممنوع لغير الزبائن الإضافه للمفضله سجل كمشتري ثم أضف إلى المفضله ",
-  "add-favorite": "",
+  "add-favorite": "أضف إلى المفضله",
   "loading-favorite": "إنتظر حتى يتم تحميل المنتجات المفضله ...",
   "no-favorites": "لا توجد منتجات تمت إضافتها للمفضله بعد",
   "deleting-favorite": "تم حذف المنتج من المفضله بنجاح !",
@@ -221,5 +221,5 @@
   "mohammed-contact": "معلومات تواصل محمد",
   "phone": "رقم التليفون",
   "contact-message": "هل ترغب في العمل معًا أم ترغب فقط في إلقاء التحية؟ أرسل لنا رسالة أدناه.",
-  "upploaded-products":"المنتجات المرفوعه"
+  "upploaded-products": "المنتجات المرفوعه"
 }

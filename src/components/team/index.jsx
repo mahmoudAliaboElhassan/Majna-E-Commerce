@@ -15,10 +15,10 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import FacebookIcon from '@mui/icons-material/Facebook';
-import UseMediaQueryHook from "@hooks/use-media-query";
 import { useTranslation } from "react-i18next";
-import UseThemMode from "@hooks/use-theme";
 
+import UseMediaQueryHook from "@hooks/use-media-query";
+import UseThemMode from "@hooks/use-theme";
 import teamImage from "@assets/team";
 import { AppbarHeader } from "@styles/appbar";
 
@@ -62,7 +62,6 @@ function Team() {
                   {t("faculty-mahmoud")}
                 </Typography>
                 <Typography variant="body1" component="div" color="textPrimary" sx={{
-                  whiteSpace: "nowrap",
                   whiteSpace: "nowrap",
                 }}>
                   {t("job-mahmoud")}

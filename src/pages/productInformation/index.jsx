@@ -1,67 +1,205 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { Container, Grid, Typography } from "@material-ui/core";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  CardActionArea,
+  Button,
+  Box,
+} from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
+
 import { getSpecifiedProduct, cleanUpGetSpecifiedProduct } from "@state/slices/products";
+import { postCart, postFavorite } from "@state/slices/cart";
+import LoadingFetching from "@components/loadingFetching";
+import UseThemMode from "@hooks/use-theme";
+import teamImage from "@assets/team";
 
 function ProductInformation() {
   const dispatch = useDispatch();
   const { productId } = useParams();
+  const { themeMode } = UseThemMode();
+  const { Uid } = useSelector((state) => state.auth);
+  const { loadingPostCart, loadingAddtoFavorite } = useSelector((state) => state.cart);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getSpecifiedProduct({ id: productId }));
     return () => {
-      dispatch(cleanUpGetSpecifiedProduct())
-    }
+      dispatch(cleanUpGetSpecifiedProduct());
+    };
   }, [dispatch, productId]);
 
-  const { productData } = useSelector((state) => state.products);
+  const { productData, loadingSpecificProduct } = useSelector((state) => state.products);
 
   let id, name, brand, price, category, sub_category, description, inventory, added_at, album_items, stores, total_quantity;
 
   if (productData) {
     ({ id, name, brand, price, category, sub_category, description, inventory, added_at, album_items } = productData);
     if (inventory) {
-      // console.log("inventory")
-      // console.log(inventory)
-      ({ stores, total_quantity } = inventory)
+      ({ stores, total_quantity } = inventory);
     }
   }
 
-  console.log(id);
-  console.log(name);
-  console.log(brand);
-  console.log(price);
-  console.log(category);
-  console.log(description);
-  console.log(inventory);
-  console.log(stores);
-  console.log(sub_category);
-  console.log(stores);
-  console.log(album_items);
-  console.log(added_at);
+  const [imgNo, setImgNo] = useState(0);
+  const handleImageChange = ({ target: { value } }) => {
+    setImgNo(value);
+  };
+
+  const handlePostCart = () => {
+    dispatch(postCart({
+      customerId: Uid,
+      product_ids: [id],
+    })).unwrap()
+      .then(() => {
+        toast.success(t("added-success"), {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: themeMode,
+        });
+      })
+      .catch((error) => {
+        const errorMessages = {
+          409: t("error-exist-cart"),
+          401: t("error-not-authorized-text"),
+          403: t("error-not-customer-text"),
+        };
+
+        const errorMessage =
+          errorMessages[error.response.status] || error.message;
+        Swal.fire({
+          title: t("error-adding"),
+          text: errorMessage,
+          icon: "error",
+          confirmButtonText: t("ok"),
+        });
+      });
+  };
+
+  const handlePostFavorite = () => {
+    dispatch(postFavorite({
+      customerId: Uid,
+      product_ids: [id],
+    })).unwrap()
+      .then(() => {
+        toast.success(t("favorite-success"), {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: themeMode,
+        });
+      })
+      .catch((error) => {
+        const errorMessages = {
+          401: t("error-not-authorized-text-favorite"),
+          403: t("error-not-customer-text-favorite"),
+        };
+
+        const errorMessage =
+          errorMessages[error.response.status] || error.message;
+        Swal.fire({
+          title: t("error-adding-favorite"),
+          text: errorMessage,
+          icon: "error",
+          confirmButtonText: t("ok"),
+        });
+      });
+  };
 
   return (
     <>
-      <div>{id}</div>
-      <div>{name}</div>
-      <div>{brand}</div>
-      <div>{price}</div>
-      <div>{category}</div>
-      <div>{sub_category}</div>
-      <div>{description}</div>
-      <div>{added_at}</div>
-      {album_items?.map(({ url, is_cover }) => (
-        <React.Fragment key={url}>
-          <img src={url} alt="Product" />
-          <div>{is_cover ? "true" : "false"}</div>
-        </React.Fragment>
-      ))}
-      {total_quantity}
-      {stores?.map(({ quantity }) => (
-        <React.Fragment key={quantity}>
-          <div>{quantity}</div>
-        </React.Fragment>
-      ))}
+      {loadingSpecificProduct ? (
+        <LoadingFetching>{t("wait-product")}</LoadingFetching>
+      ) : (
+        <Container>
+          <Card raised component="div" sx={{ maxWidth: "100%" }}>
+            <Grid container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <CardMedia
+                  component="img"
+                  image={teamImage[imgNo]}
+                  alt={"Product Image"}
+                  loading="lazy"
+                  sx={{ width: "100%", height: "auto" }}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <ToastContainer />
+                <CardActionArea sx={{ height: "100%" }}>
+                  <CardContent>
+                    <Typography gutterBottom variant="h4" component="div" sx={{
+                      fontSize: { xs: "17px", sm: "19px", md: "21px", lg: "27px" },
+                    }}>
+                      {name}
+                    </Typography>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                      {description}
+                    </Typography>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                      {brand}
+                    </Typography>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                      {category}
+                    </Typography>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                      {sub_category}
+                    </Typography>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                      exists in all stores {total_quantity}
+                    </Typography>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                      {price}$
+                    </Typography>
+                  </CardContent>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+                    {album_items?.map(({ url }, idx) => (
+                      <Box key={idx} sx={{ m: 1 }}>
+                        <input name="image" type="radio" value={idx} id={`image-${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
+                        <label htmlFor={`image-${idx}`} style={{ cursor: "pointer" }}>
+                          <img src={url} alt={`Thumbnail ${idx}`} style={{ width: "100px", height: "100px", margin: "5px" }} />
+                        </label>
+                      </Box>
+                    ))}
+                  </Box>
+                  <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                      onClick={handlePostCart}
+                      disabled={loadingPostCart}
+                      fullWidth
+                    >
+                      {t('add-to-cart')}
+                    </Button>
+                    <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                      onClick={handlePostFavorite}
+                      disabled={loadingAddtoFavorite}
+                      fullWidth
+                      sx={{ mx: 2 }}
+                    >
+                      {t('add-favorite')}
+                    </Button>
+                  </CardActions>
+                </CardActionArea>
+              </Grid>
+            </Grid>
+          </Card>
+        </Container>
+      )}
     </>
   );
 }

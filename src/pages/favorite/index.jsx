@@ -13,12 +13,11 @@ import {
   cleanUpFavorites,
 } from "@state/slices/cart";
 import UseThemeMode from "@hooks/use-theme";
-import { DataGridContainer } from "@styles/dataGrid"
+import { DataGridContainer } from "@styles/dataGrid";
 import "../shoppingCart/style.css";
 
 function Favorite() {
-  const { favoritesArray, loadingGetFavorites, countOfFavoritesProducts } =
-    useSelector((state) => state.cart); // Default to empty array
+  const { favoritesArray = [], loadingGetFavorites, countOfFavoritesProducts } = useSelector((state) => state.cart); // Default to empty array
   const dispatch = useDispatch();
   const { Uid } = useSelector((state) => state.auth);
 
@@ -83,7 +82,6 @@ function Favorite() {
       ),
     },
     { field: "price", headerName: t("product-price"), width: 100 },
-
     {
       field: "view",
       headerName: t("view-cart"),
@@ -113,7 +111,7 @@ function Favorite() {
     brand: cart?.product?.brand,
     price: cart?.product?.price,
     image: cart?.product?.cover_image,
-  }));
+  })) || []; // Ensure rows is an array
 
   return (
     <Box sx={{ p: 2 }}>
