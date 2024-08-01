@@ -223,7 +223,7 @@ function Header() {
                 </TabsElementsList>
               </TabContext>
               {/* <MyComponent onChange={handleSearchChange} /> */}
-              <Search onChange={handleSearchChange} />
+              <Search headerColor="white" />
               <LanguageSelection />
               <Mode />
               <IconButton

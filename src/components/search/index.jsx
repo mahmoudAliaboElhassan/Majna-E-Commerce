@@ -9,8 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import UseThemeMode from "@hooks/use-theme";
 import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
+import { colors } from "@mui/material";
 
-const Search = () => {
+const Search = ({ headerColor }) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const skills = ["html", "css", "javascript", "typescript"];
@@ -66,7 +67,7 @@ const Search = () => {
                     edge="start"
                     size="small"
                   >
-                    <ClearIcon />
+                    <ClearIcon style={{ color: headerColor }} />
                   </IconButton>
                 </InputAdornment>
               ),

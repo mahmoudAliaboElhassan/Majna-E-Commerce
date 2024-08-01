@@ -91,11 +91,12 @@ export const SearchButton = styled("button")(({ theme }) => {
     position: "absolute",
     [Direction.right]: 0, // Use the dynamic property
     height: "100%",
-    top:0,
+    top: 0,
     padding: theme.spacing(1, 2),
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     border: "none",
+    transorm: "translateY(1px)",
     borderRadius: `0 ${theme.shape.borderRadius}px ${theme.shape.borderRadius}px 0`,
     cursor: "pointer",
     "&:hover": {

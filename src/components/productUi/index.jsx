@@ -282,7 +282,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           icon: "error",
           confirmButtonText: t("ok"),
         });
-      }) 
+      })
     setIsBtnDisabled(true);
   };
   const handleFavorite = (id) => {
@@ -373,6 +373,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   onClick={() => handleBtnClick(id)}
                   disabled={loadingPostCart && idx === id}
                   fullWidth
+                  title={t('add-to-cart')}
                 // sx={{ whiteSpace: "nowrap" }}  
                 >
                   {/* {t("add-to-cart")} */}
@@ -392,6 +393,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   fullWidth
                   component={Link}
                   to={`product-data/${id}`}
+                  title={t('view-product')}
                 >
                   {/* {t("view-product")} */}
                   <PreviewIcon sx={{
@@ -410,6 +412,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   disabled={loadingAddtoFavorite && idx === id}
                   fullWidth
                   onClick={() => handleFavorite(id)}
+                  title={t('add-favorite')}
                 >
                   {/* {t("add-favorite")} */}
                   <FavoriteIcon sx={{

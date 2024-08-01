@@ -153,7 +153,7 @@
   "cart-id": "Cart Id",
   "product-name": "Product Name",
   "product-img": "Product Image",
-  "product-price": "Product Price",
+
   "product-brand": "Product Brand",
   "total-price": "Product Total Price ",
   "product-quantity": "Product Quantity",
@@ -169,7 +169,7 @@
   "error-not-authorized-text": "Login In First then Add to Cart",
   "error-not-customer-text": "It is Forbidden for Non Customer to Add to Cart Login as Customer and Add To Cart",
   "add-favorite": "Add to Favorite",
-  "view-product": "View",
+  "view-product": "View Product",
   "mohammed-abdelaleem": "Mohammed Abd Elaleem",
   "mahmoud-ali": "Mahmoud Ali",
   "people-developed": "Developers Worked On Majna Store Website",
@@ -219,5 +219,9 @@
   "mohammed-contact": "Mohammed Contact Info",
   "phone": "Phone Number",
   "contact-message": "Fancy working together or just want to say hi? Drop us a message below.",
-  "upploaded-products": "Upploaded Products"
+  "upploaded-products": "Upploaded Products",
+  "in-store": "Exists in Stores",
+  "product-added-to-cart": "Product Added to Cart",
+  "product-added-to-favorite": "Product Added to Favorites",
+  "wait-product": "Wait for This Product Demo to Load ..."
 }

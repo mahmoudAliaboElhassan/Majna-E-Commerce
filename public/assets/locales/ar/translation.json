@@ -97,7 +97,6 @@
   "product_app": "المنتجات المرقوعه",
   "c_panel": "لوحة التحكم",
   "search_product": "إبحث عن المنتجات",
-
   "all_brands_applications": "كل الطلبات المرفوعة",
   "all_stores": "كل متاجرك",
   "add-product": "أضف منتج",
@@ -170,7 +169,7 @@
   "error-exist-cart": "هذا المنتج تمت إضافته إلى السله مسبقاً",
   "error-not-authorized-text": "سجل الدخول أولاً قبل الإضافه إلى السله",
   "error-not-customer-text": "ممنوع لغير الزبائن الإضافه للسله سجل كمشتري ثم أضف إلى السله ",
-  "view-product": "عرض",
+  "view-product": " عرض المنتج",
   "mohammed-abdelaleem": "محمد عبد العليم",
   "mahmoud-ali": "محمود علي",
   "people-developed": "المبرمجين الذين قاموا بتطوير هذا الموقع",
@@ -221,5 +220,9 @@
   "mohammed-contact": "معلومات تواصل محمد",
   "phone": "رقم التليفون",
   "contact-message": "هل ترغب في العمل معًا أم ترغب فقط في إلقاء التحية؟ أرسل لنا رسالة أدناه.",
-  "upploaded-products": "المنتجات المرفوعه"
+  "upploaded-products": "المنتجات المرفوعه",
+  "in-store": "يوجد في المتاجر",
+  "product-added-to-cart": "المنتجات المضافه للسله",
+  "product-added-to-favorite": "المنتجات المضافه للمفضله",
+  "wait-product": "انتظر حتى يتم تحميل عرض هذا المنتج ..."
 }

@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import UseFormValidation from "@formValidation/use-form-validation";
 import { helperStyle } from "@styles/error";
+import { AppbarHeader } from "@styles/appbar";
 import { DataGridContainer } from "@styles/dataGrid"
 import UseThemMode from "@hooks/use-theme";
 
@@ -200,27 +201,28 @@ function ShoppingCart() {
   return (
     <Box sx={{ p: 2 }}>
       <ToastContainer />
-      <div data-aos="fade-up">Products added to Cart</div>
       <Container>
         {loadingCarts ? (
           <LoadingFetching>{t("loading-carts")}</LoadingFetching>
         ) : countOfCartItems ? (
-
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
+          <>
+            <AppbarHeader data-aos="fade-up">{t('product-added-to-cart')}</AppbarHeader>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
                 },
-              },
-            }}
-            pageSizeOptions={[5, 10, 15, 20]}
-            checkboxSelection
-            disableRowSelectionOnClick
-            rowHeight={120}
-          />
+              }}
+              pageSizeOptions={[5, 10, 15, 20]}
+              checkboxSelection
+              disableRowSelectionOnClick
+              rowHeight={120}
+            />
+          </>
         ) : (
           <div>{t("no-carts")}</div>
         )}

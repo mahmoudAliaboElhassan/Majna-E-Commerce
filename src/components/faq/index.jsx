@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import { Container } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import UseFAQ from "@hooks/use-faq";
@@ -11,13 +11,7 @@ function QuestionsAnswers() {
 
   const { FAQ } = UseFAQ()
   const [active, setActive] = useState(null);
-  useEffect(() => {
-    AOS.init();
-  }, []);
-
-  useEffect(() => {
-    AOS.refresh();
-  }, [FAQ]);
+ 
   const handleClick = (QuestionId) => setActive(QuestionId);
   return (
     <AnimatePresence initial={false}>

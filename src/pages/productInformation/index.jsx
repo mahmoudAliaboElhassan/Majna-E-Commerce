@@ -1,7 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { Container, Grid, Typography } from "@material-ui/core";
+import { Container, Grid, Typography } from "@mui/material"; // Use @mui/material instead of @material-ui/core
 import {
   Card,
   CardMedia,
@@ -144,31 +145,51 @@ function ProductInformation() {
                 <CardActionArea sx={{ height: "100%" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h4" component="div" sx={{
-                      fontSize: { xs: "17px", sm: "19px", md: "21px", lg: "27px" },
+                      // fontSize: { xs: "27px", sm: "19px", md: "21px", lg: "27px" },
+                      fontStyle: "italic",
+                      letterSpacing: "-3px",
+                      textAlign: "center"
                     }}>
                       {name}
                     </Typography>
-                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "23px", sm: "19px", md: "20px", lg: "23px" } }}>
                       {description}
                     </Typography>
-                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                    <Typography variant="h6" component="p" gutterBottom
+                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                    >
+                      <span style={{ fontWeight: "700" }}>{t("product-brand")} </span>
                       {brand}
                     </Typography>
-                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                    <Typography variant="h6" component="p" gutterBottom
+                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                    >
+                      <span style={{ fontWeight: "700" }}>{t("categories")} </span>
                       {category}
                     </Typography>
-                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                    <Typography variant="h6" component="p" gutterBottom
+                    // sx={{ fontSize: { xs: "20px", sm: "15px", md: "18px", lg: "21px" } }}
+                    >
+                      <span style={{ fontWeight: "700" }}>{t("sub_category")} </span>
                       {sub_category}
                     </Typography>
-                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
-                      exists in all stores {total_quantity}
+                    <Typography variant="h6" component="p" gutterBottom
+                    // sx={{
+                    //   fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" },
+                    // }}
+                    >
+                      <span span style={{ fontWeight: "700" }}>{t("in-store")} </span>
+                      {total_quantity}
                     </Typography>
-                    <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "13px", sm: "16px", md: "17px", lg: "23px" } }}>
+                    <Typography variant="h6" component="p" gutterBottom
+                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                    >
+                      <span style={{ fontWeight: "700" }}>{t("product_price")} </span>
                       {price}$
                     </Typography>
                   </CardContent>
                   <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    {album_items?.map(({ url }, idx) => (
+                    {album_items?.length > 1 && album_items?.map(({ url }, idx) => (
                       <Box key={idx} sx={{ m: 1 }}>
                         <input name="image" type="radio" value={idx} id={`image-${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
                         <label htmlFor={`image-${idx}`} style={{ cursor: "pointer" }}>
@@ -197,9 +218,10 @@ function ProductInformation() {
                 </CardActionArea>
               </Grid>
             </Grid>
-          </Card>
-        </Container>
-      )}
+          </Card >
+        </Container >
+      )
+      }
     </>
   );
 }

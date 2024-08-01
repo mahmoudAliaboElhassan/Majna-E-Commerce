@@ -56,7 +56,8 @@ function Category({ handleProductsByCategory, selectedCategory }) {
             />
           )) : <Typography sx={{
             textAlign: "center",
-            fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" } 
+            fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" },
+            maxWidth: "80%", margin: "auto"
           }}>{t('wait-catogeries')}</Typography>}
         </div>
         {/* </label> */}

@@ -15,6 +15,8 @@ import {
 import UseThemeMode from "@hooks/use-theme";
 import { DataGridContainer } from "@styles/dataGrid";
 import "../shoppingCart/style.css";
+import { AppbarHeader } from "@styles/appbar";
+
 
 function Favorite() {
   const { favoritesArray = [], loadingGetFavorites, countOfFavoritesProducts } = useSelector((state) => state.cart); // Default to empty array
@@ -119,23 +121,26 @@ function Favorite() {
         {loadingGetFavorites ? (
           <LoadingFetching>{t("loading-favorite")}</LoadingFetching>
         ) : countOfFavoritesProducts ? (
-          <DataGridContainer>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
+          <>
+            <AppbarHeader data-aos="fade-up">{t('product-added-to-favorite')}</AppbarHeader>
+            <DataGridContainer>
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 5,
+                    },
                   },
-                },
-              }}
-              pageSizeOptions={[5, 10, 15, 20]}
-              checkboxSelection
-              disableRowSelectionOnClick
-              rowHeight={120}
-            />
-          </DataGridContainer>
+                }}
+                pageSizeOptions={[5, 10, 15, 20]}
+                checkboxSelection
+                disableRowSelectionOnClick
+                rowHeight={120}
+              />
+            </DataGridContainer>
+          </>
         ) : (
           <div>{t("no-favorites")}</div>
         )}

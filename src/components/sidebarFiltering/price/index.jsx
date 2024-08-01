@@ -21,7 +21,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
         marginLeft: "auto",
         marginRight: "auto",
         width: "70%",
-        borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
+        // borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
         paddingBottom: "20px",
       }}
     >

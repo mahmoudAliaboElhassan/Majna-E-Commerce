@@ -162,7 +162,7 @@ function ProductTypesSidebar({
             handleClickPrice={handleClickPrice}
             priceFromTo={priceFromTo}
           />
-          <Color handleChangeColor={handleChangeColor} color={color} />
+          {/* <Color handleChangeColor={handleChangeColor} color={color} /> */}
         </List>
       </div>
     </>
