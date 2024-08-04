@@ -253,8 +253,24 @@ function UseFormValidation() {
       .max(50, "Maximum number of characters is 50"),
     yourMessage: Yup.string().required("Message is Required"),
   });
-  
-  
+  const FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT = Yup.object().shape({
+    singleProductName: Yup.string().required("Product Title is Required"),
+    singleProductPrice: Yup.number("Price Should be Number")
+      .required("Product Price is Required ")
+      .min(1, "Price can not be zero or negative"),
+    singleProductDescription: Yup.string().required(
+      "Product Description is Required"
+    ),
+    singleProductInventory: Yup.array().of(
+      Yup.object().shape({
+        store_id: Yup.string().required("Required Store Name"),
+        quantity: Yup.number()
+          .required("Required quantity")
+          .min(1, "Minimum amount of Product is one"),
+      })
+    ),
+  });
+
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
     FORM_VALIDATION_SCHEMA_Login,
@@ -268,6 +284,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_PRICES,
     FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY,
     FORM_VALIDATION_SCHEMA_CONTACT,
+    FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT,
   };
 }
 

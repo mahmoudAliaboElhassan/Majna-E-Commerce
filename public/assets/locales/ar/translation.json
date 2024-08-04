@@ -225,11 +225,15 @@
   "product-added-to-favorite": "المنتجات المضافه للمفضله",
   "wait-product": "انتظر حتى يتم تحميل عرض هذا المنتج ...",
   "wait-uploaded-products": "إنتظر حتى يتم تحميل جميع المنتجات المرفوعه ...",
+  "uploaded-products": "المنتجات المرفوعه",
   "no-product-uploaded": "لا توجد منتجات تم رفعها حتى الآن",
   "info-product": "إزالتك لهذا المنتج يعني حذفه من قائمة المنتجات المرفوعه",
   "delete-confirm": "نعم إحذفه !",
   "cancel-delete": "لا إلغي الحذف",
   "deleting-product": "تم حذف المنتج بنجاح من قائمة منتجاتك المعروضه!",
   "keeping-product": "منتجك لا يزال موجود في قائمة المنتجات المعروضه",
-  "edit-product": "تعديل المنتج"
+  "edit-product": "تعديل المنتج",
+  "edit-product-now": "عدل منتجك الآن",
+  "product-edited": "تم تعديل المنتج بنجاح !",
+  "error-edit-product": "خطأ في تعديل المنتج"
 }

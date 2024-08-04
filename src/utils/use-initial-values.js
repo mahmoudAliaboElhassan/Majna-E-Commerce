@@ -66,7 +66,7 @@ function UseInitialValues(props) {
   };
   const INITIAL_FORM_STATE_EDIT_PRODUCT = {
     singleProductName: props?.name,
-    singleProductInventory: [{ store_pk: null, quantity: null }],
+    // singleProductInventory: [{ store_pk: null, quantity: null }],
     // album: [{ image: null, is_cover: "False" }],
     singleProductPrice: props?.price,
     singleProductDescription: props?.description,

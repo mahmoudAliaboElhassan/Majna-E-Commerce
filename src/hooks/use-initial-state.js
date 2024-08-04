@@ -36,7 +36,7 @@ function UseInitialStates() {
     stores: [],
     singleStoreData: null,
     loadingSingleStoreData: false,
-    loadingEdit: false,
+    loadingEditStore: false,
     loadingSubCategory: false,
     loadingCategories: false,
     categories: [],
@@ -45,6 +45,7 @@ function UseInitialStates() {
     loadingGetUploadedProducts: false,
     uploadedProducts: [],
     countOfUploadedProducts: 0,
+    loadingUpdateProduct: false,
   };
 
   const initialStateReviewer = {

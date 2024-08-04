@@ -233,16 +233,16 @@ export const distributorSlice = createSlice({
         state.loadingSingleStoreData = false;
       })
       .addCase(editStore.pending, (state, action) => {
-        state.loadingEdit = true;
+        state.loadingEditStore = true;
       })
       .addCase(editStore.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.loadingEdit = false;
+        state.loadingEditStore = false;
         // localStorage.setItem(storeId,action.payload.)
         // state.storeId=localStorage.getItem("storeId")
       })
       .addCase(editStore.rejected, (state, action) => {
-        state.loadingEdit = false;
+        state.loadingEditStore = false;
       })
       .addCase(addProduct.pending, (state, action) => {
         state.loadingAddProduct = true;
@@ -272,7 +272,17 @@ export const distributorSlice = createSlice({
       .addCase(deleteUploadedProduct.fulfilled, (state, action) => {
         state.countOfUploadedProducts--;
       })
-      .addCase(deleteUploadedProduct.rejected, (state, action) => {});
+      .addCase(deleteUploadedProduct.rejected, (state, action) => {})
+
+      .addCase(updateUploadedProduct.pending, (state, action) => {
+        state.loadingUpdateProduct = true;
+      })
+      .addCase(updateUploadedProduct.fulfilled, (state, action) => {
+        state.loadingUpdateProduct = false;
+      })
+      .addCase(updateUploadedProduct.rejected, (state, action) => {
+        state.loadingUpdateProduct = false;
+      });
   },
 });
 

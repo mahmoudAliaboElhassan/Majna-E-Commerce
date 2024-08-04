@@ -103,7 +103,13 @@ function ShoppingCart() {
       field: "view",
       headerName: t("view-cart"),
       renderCell: (params) => (
-        <Link to={`/cart-item/${params.row.id}`}>{t("view")}</Link>
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="success"
+          component={Link}
+          to={`/product-view/${params.row.id}`}>
+          {t("view")}
+        </Button>
       ),
     },
     {

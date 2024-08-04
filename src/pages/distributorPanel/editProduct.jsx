@@ -4,33 +4,24 @@ import {
   Grid,
   Typography,
   makeStyles,
-  Button,
 } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Form, Formik, useFormikContext } from "formik";
+import { Form, Formik } from "formik";
 import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FormHelperText } from "@material-ui/core";
 
 import UseThemMode from "@hooks/use-theme";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import { AppbarHeader } from "@styles/appbar";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseInitialValues from "@utils/use-initial-values";
-import SelectComp from "@components/formui/Select";
 import {
   getStores,
-  getAtuthorizedBrands,
-  getCategories,
-  getSubCategory,
   cleanUpStores,
-  cleanUpAuthorizedBrands,
-  cleanUpCategories,
-  cleanUpSubCategories,
   updateUploadedProduct,
 } from "@state/slices/distributor";
 import { getSpecifiedProduct, cleanUpGetSpecifiedProduct } from "@state/slices/products"
@@ -41,7 +32,6 @@ import TextAreaWrapper from "@components/formui/textarea";
 import ImageUploader from "@components/formui/multipleImages";
 import { helperStyle } from "@styles/error";
 import InventoryComp from "@components/inventory";
-import SubCategorySelect from "@components/subCateogry";
 import { Description } from "@mui/icons-material";
 import SingleProductInventory from "@components/singleProductInventory";
 
@@ -61,22 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const quoteKeys = (obj) => {
-//   return Object.keys(obj).reduce((acc, key) => {
-//     acc[`"${key}"`] = obj[key];
-//     return acc;
-//   }, {});
-// };
 
-// const processAlbumArray = (albumArray) => {
-//   return albumArray.map((item) => quoteKeys(item));
-// };
 
 function EditProduct() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { productId } = useParams()
-  const { FORM_VALIDATION_SCHEMA_Add_PRODUCT } = UseFormValidation();
+  const { FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT } = UseFormValidation();
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
   const { productData, loadingSpecificProduct } = useSelector((state) => state.products);
@@ -117,7 +98,7 @@ function EditProduct() {
                       initialValues={{
                         ...INITIAL_FORM_STATE_EDIT_PRODUCT,
                       }}
-                      // validationSchema={FORM_VALIDATION_SCHEMA_Add_PRODUCT}
+                      validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT}
                       onSubmit={(values) => {
                         console.log({ ...values });
                         // const processedAlbum = processAlbumArray(productData.album);
@@ -144,8 +125,8 @@ function EditProduct() {
                             productId,
                             name: values.singleProductName,
                             description: values.singleProductDescription,
-                            price: values.singleProductPrice,
-                            inventory: (updatedInventory)
+                            price: +values.singleProductPrice,
+                            inventory: updatedInventory
                           }
                         ))
                           .unwrap()

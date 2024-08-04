@@ -236,7 +236,7 @@ function AddProduct() {
                           <Grid item xs={12}>
                             <TextFieldWrapper
                               name="price"
-                              label={t("product_price")}
+                              label={t("product-price")}
                               type="number"
                             />
                           </Grid>

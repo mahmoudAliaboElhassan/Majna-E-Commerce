@@ -72,12 +72,31 @@ function UploadedProducts() {
     {
       field: "view",
       headerName: t("view-product"),
-      renderCell: (params) => <Link to={`/product-view/${params.row.id}`}>{t("view")}</Link>,
+      renderCell: (params) =>
+      (
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="success"
+          component={Link}
+          to={`/product-view/${params.row.id}`}
+        >
+          {t("view")}
+        </Button>
+      ),
     },
     {
       field: "edit",
       headerName: t("edit-product"),
-      renderCell: (params) => <Link to={`/distributor-control-panel/edit-product/${params.row.id}`}>{t("edit")}</Link>,
+      renderCell: (params) => (
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="info"
+          component={Link}
+          to={`/distributor-control-panel/edit-product/${params.row.id}`}
+        >
+          {t("edit")}
+        </Button>
+      )
     },
     {
       field: "delete",

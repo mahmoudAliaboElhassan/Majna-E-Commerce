@@ -10,7 +10,7 @@ function SubCategorySelect({ subCategories }) {
   const selectedCategory = values.categories;
   const { t } = useTranslation();
   const filteredSubCategories = subCategories.filter(
-    (subcat) => subcat.id == selectedCategory
+    (subcat) => subcat.category_id == selectedCategory
   );
 
   return (

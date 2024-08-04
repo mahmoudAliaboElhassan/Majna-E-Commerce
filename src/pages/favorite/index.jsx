@@ -90,7 +90,13 @@ function Favorite() {
       headerName: t("view-cart"),
       width: 80,
       renderCell: (params) => (
-        <Link to={`/product-data/${params.row.id}`}>{t("view")}</Link>
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="success"
+          component={Link}
+          to={`/product-view/${params.row.id}`}>
+          {t("view")}
+        </Button>
       ),
     },
     {

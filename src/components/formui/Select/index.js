@@ -51,7 +51,10 @@ function SelectComp({ name, label, options, ...otherProps }) {
       >
         {label}
       </InputLabel>
-      <Select {...configSelect}>
+      <Select
+        {...configSelect}
+        style={{ color: themeMode === "dark" ? "white" : "inherit" }}
+      >
         {options?.map(({ name, id, category_id }) => (
           <MenuItem key={id} value={category_id || id}>
             {name}

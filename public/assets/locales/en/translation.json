@@ -224,11 +224,15 @@
   "product-added-to-favorite": "Product Added to Favorites",
   "wait-product": "Wait for This Product Demo to Load ...",
   "wait-uploaded-products": "Wait for Your Uploaded Products to Load ...",
+  "uploaded-products": "Uploaded Products",
   "no-product-uploaded": "No Products Uploaded Yet",
   "info-product": "Removing this Product means deleting it from your Uploaded Products",
   "delete-confirm": "Yes, delete it!",
   "cancel-delete": "No Keep it",
   "deleting-product": "Product is Deleted Successfully from your Uploaded Products !",
   "keeping-product": "Product still Exists in your Uploaded Products !",
-  "edit-product": "Edit Product"
+  "edit-product": "Edit Product",
+  "edit-product-now": "Edit your Product Now",
+  "product-edited": "Product has been successfully deleted !",
+  "error-edit-product": "Error in Editing This Product"
 }
