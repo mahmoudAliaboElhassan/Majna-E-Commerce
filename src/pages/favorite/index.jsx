@@ -15,7 +15,7 @@ import {
 } from "@state/slices/cart";
 import UseThemeMode from "@hooks/use-theme";
 import { DataGridContainer } from "@styles/dataGrid";
-import "../shoppingCart/style.css";
+import "@pages/shoppingCart/style.css"
 import { AppbarHeader } from "@styles/appbar";
 
 
@@ -43,8 +43,8 @@ function Favorite() {
         text: t("info-favorite"),
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: t("delete-cart-confirm"),
-        cancelButtonText: t("cancel-delete-cart"),
+        confirmButtonText: t("delete-confirm"),
+        cancelButtonText: t("cancel-delete"),
         customClass: {
           confirmButton: "red-confirm-button swal2-confirm",
         },

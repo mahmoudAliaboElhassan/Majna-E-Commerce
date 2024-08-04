@@ -285,12 +285,13 @@ export const addProduct = createAsyncThunk(
   }
 );
 export const getUploadedProducts = createAsyncThunk(
-  "getUploadedProducts/addProduct",
-  async (productData, thunkAPI) => {
-    console.log({ ...productData });
+  "getUploadedProducts/getUploadedProducts",
+  async ({ distributorId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnaFiles.post(`api/products/`, productData);
+      const res = await majnAPI.get(
+        `api/distributors/${distributorId}/products`
+      );
       console.log("from slice res is for add product");
       console.log(res);
       return res;
@@ -308,11 +309,13 @@ export const getUploadedProducts = createAsyncThunk(
 );
 export const updateUploadedProduct = createAsyncThunk(
   "updateUploadedProduct/addProduct",
-  async (productData, thunkAPI) => {
-    console.log({ ...productData });
+  async ({ distributorId, productId, ...productData }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnaFiles.patch(`api/products/`, productData);
+      const res = await majnAPI.patch(
+        `api/distributors/${distributorId}/products/${productId}`,
+        productData
+      );
       console.log("from slice res is for add product");
       console.log(res);
       return res;
@@ -329,12 +332,13 @@ export const updateUploadedProduct = createAsyncThunk(
   }
 );
 export const deleteUploadedProduct = createAsyncThunk(
-  "deleteUploadedProduct/addProduct",
-  async (productData, thunkAPI) => {
-    console.log({ ...productData });
+  "deleteUploadedProduct/deleteUploadedProduct",
+  async ({ distributorId, productId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnaFiles.delete(`api/products/`);
+      const res = await majnAPI.delete(
+        `api/distributors/${distributorId}/products/${productId}`
+      );
       console.log("from slice res is for add product");
       console.log(res);
       return res;

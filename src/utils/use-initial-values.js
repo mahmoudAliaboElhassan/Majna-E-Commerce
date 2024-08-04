@@ -1,6 +1,7 @@
 function UseInitialValues(props) {
   console.log(props?.city);
-
+  console.log(props?.multiple);
+  console.log("props?.multiple");
   const INITIAL_FORM_STATE_Login = {
     email: "",
     password: "",
@@ -60,6 +61,9 @@ function UseInitialValues(props) {
     yourSubject: "",
     yourMessage: "",
   };
+  const INITIAL_FORM_STATE_MULTIPLE = {
+    multiple: props?.multiple,
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -72,6 +76,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_ADD_PRODUCT,
     INITIAL_FORM_STATE_PRICES,
     INITIAL_FORM_STATE_CONTACT,
+    INITIAL_FORM_STATE_MULTIPLE,
   };
 }
 

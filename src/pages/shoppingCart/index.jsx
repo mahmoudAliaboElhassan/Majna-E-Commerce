@@ -1,12 +1,12 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 
 import { Box, Container, TextField, Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DataGrid } from "@mui/x-data-grid";
 
 import CartItem from "@components/cart/carItem";
 import CartListProducts from "@components/cart/cartListProducts";
@@ -19,12 +19,12 @@ import {
 import LoadingFetching from "@components/loadingFetching";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import "./style.css";
 import UseFormValidation from "@formValidation/use-form-validation";
 import { helperStyle } from "@styles/error";
 import { AppbarHeader } from "@styles/appbar";
 import { DataGridContainer } from "@styles/dataGrid"
 import UseThemMode from "@hooks/use-theme";
+import "@pages/shoppingCart/style.css"
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -52,11 +52,11 @@ function ShoppingCart() {
     (cartId) => {
       Swal.fire({
         title: t("suring"),
-        text: t("info"),
+        text: t("info-cart"),
         icon: "warning",
         showCancelButton: true,
-        confirmButtonText: t("delete-cart-confirm"),
-        cancelButtonText: t("cancel-delete-cart"),
+        confirmButtonText: t("delete-confirm"),
+        cancelButtonText: t("cancel-delete"),
         customClass: {
           confirmButton: "red-confirm-button swal2-confirm",
         },

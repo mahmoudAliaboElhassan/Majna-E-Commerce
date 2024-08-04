@@ -27,7 +27,7 @@ function RootProductLayout() {
   const theme = useTheme();
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex",position:"relative" }}>
       <CssBaseline />
       {!open && (
         <DrawerButton onClick={handleDrawerOpen}>

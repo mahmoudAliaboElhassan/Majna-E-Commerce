@@ -42,6 +42,9 @@ function UseInitialStates() {
     categories: [],
     subCategories: [],
     loadingAddProduct: false,
+    loadingGetUploadedProducts: false,
+    uploadedProducts: [],
+    countOfUploadedProducts: 0,
   };
 
   const initialStateReviewer = {

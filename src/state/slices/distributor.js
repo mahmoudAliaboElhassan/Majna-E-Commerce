@@ -16,7 +16,7 @@ import {
   getSubCategory,
   getUploadedProducts,
   updateUploadedProduct,
-  deleteUploadedProduct
+  deleteUploadedProduct,
 } from "@state/act/actDistributor";
 
 const { initialStateDistributor } = UseInitialStates();
@@ -45,6 +45,9 @@ export const distributorSlice = createSlice({
     },
     cleanUpSubCategories: (state) => {
       state.subCategories = [];
+    },
+    cleanUpUploadedProducts: (state) => {
+      state.uploadedProducts = [];
     },
   },
   extraReducers: (builder) => {
@@ -252,7 +255,24 @@ export const distributorSlice = createSlice({
       })
       .addCase(addProduct.rejected, (state, action) => {
         state.loadingAddProduct = false;
-      });
+      })
+      .addCase(getUploadedProducts.pending, (state, action) => {
+        state.loadingGetUploadedProducts = true;
+      })
+      .addCase(getUploadedProducts.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.loadingGetUploadedProducts = false;
+        state.uploadedProducts = action.payload.results;
+        state.countOfUploadedProducts = action.payload.results.length;
+      })
+      .addCase(getUploadedProducts.rejected, (state, action) => {
+        state.loadingGetUploadedProducts = false;
+      })
+      .addCase(deleteUploadedProduct.pending, (state, action) => {})
+      .addCase(deleteUploadedProduct.fulfilled, (state, action) => {
+        state.countOfUploadedProducts--;
+      })
+      .addCase(deleteUploadedProduct.rejected, (state, action) => {});
   },
 });
 
@@ -265,6 +285,7 @@ export const {
   cleanUpStores,
   cleanUpCategories,
   cleanUpSubCategories,
+  cleanUpUploadedProducts,
 } = distributorSlice.actions;
 export {
   addBrand,
@@ -281,5 +302,5 @@ export {
   getSubCategory,
   getUploadedProducts,
   updateUploadedProduct,
-  deleteUploadedProduct
+  deleteUploadedProduct,
 };
