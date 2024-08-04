@@ -75,6 +75,11 @@ function UploadedProducts() {
       renderCell: (params) => <Link to={`/product-view/${params.row.id}`}>{t("view")}</Link>,
     },
     {
+      field: "edit",
+      headerName: t("edit-product"),
+      renderCell: (params) => <Link to={`/distributor-control-panel/edit-product/${params.row.id}`}>{t("edit")}</Link>,
+    },
+    {
       field: "delete",
       headerName: t("delete-product"),
       renderCell: (params) => (
@@ -92,6 +97,7 @@ function UploadedProducts() {
     price: product?.price,
     image: product?.cover_image,
     view: t("view-product"),
+    edit: t('edit'),
     delete: t("delete"),
   }));
 

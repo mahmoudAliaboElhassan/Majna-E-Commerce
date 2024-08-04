@@ -14,6 +14,7 @@ function MultipleSelect({
   labelQuantity,
   labelStore,
   options,
+  mainNameArray,
   ...otherProps
 }) {
   const [formData, setFormData] = useState({
@@ -79,8 +80,16 @@ function MultipleSelect({
     configStoreName.helperText = metaStoreName.error;
   }
   const getOptionDisabledStatus = (value) => {
-    console.log(values.inventory.some((item) => item.store_pk === value));
-    return values.inventory.some((item) => item.store_pk === value);
+    console.log("values?.mainNameArray");
+    console.log(values?.mainNameArray);
+    console.log(values?.mainNameArray?.some((item) => item.store_pk === value));
+    if (mainNameArray === "inventory")
+      return values.inventory?.some((item) => item.store_pk === value);
+    else if (mainNameArray === "singleProductInventory") {
+      return values.singleProductInventory?.some(
+        (item) => item.store_id === value
+      );
+    }
   };
 
   return (
@@ -108,7 +117,7 @@ function MultipleSelect({
             name={nameStore}
             onChange={handleInputChange}
           >
-            {options?.map(({id,name}) => (
+            {options?.map(({ id, name }) => (
               <MenuItem
                 key={id}
                 value={id}

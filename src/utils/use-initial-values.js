@@ -64,6 +64,14 @@ function UseInitialValues(props) {
   const INITIAL_FORM_STATE_MULTIPLE = {
     multiple: props?.multiple,
   };
+  const INITIAL_FORM_STATE_EDIT_PRODUCT = {
+    singleProductName: props?.name,
+    singleProductInventory: [{ store_pk: null, quantity: null }],
+    // album: [{ image: null, is_cover: "False" }],
+    singleProductPrice: props?.price,
+    singleProductDescription: props?.description,
+    singleProductInventory: props?.inventory?.stores,
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -77,6 +85,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_PRICES,
     INITIAL_FORM_STATE_CONTACT,
     INITIAL_FORM_STATE_MULTIPLE,
+    INITIAL_FORM_STATE_EDIT_PRODUCT,
   };
 }
 

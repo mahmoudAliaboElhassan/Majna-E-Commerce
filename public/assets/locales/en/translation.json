@@ -229,5 +229,6 @@
   "delete-confirm": "Yes, delete it!",
   "cancel-delete": "No Keep it",
   "deleting-product": "Product is Deleted Successfully from your Uploaded Products !",
-  "keeping-product": "Product still Exists in your Uploaded Products !"
+  "keeping-product": "Product still Exists in your Uploaded Products !",
+  "edit-product": "Edit Product"
 }

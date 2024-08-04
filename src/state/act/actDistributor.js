@@ -285,7 +285,7 @@ export const addProduct = createAsyncThunk(
   }
 );
 export const getUploadedProducts = createAsyncThunk(
-  "getUploadedProducts/getUploadedProducts",
+  "distributorSlice/getUploadedProducts",
   async ({ distributorId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
@@ -308,7 +308,7 @@ export const getUploadedProducts = createAsyncThunk(
   }
 );
 export const updateUploadedProduct = createAsyncThunk(
-  "updateUploadedProduct/addProduct",
+  "distributorSlice/updateUploadedProduct",
   async ({ distributorId, productId, ...productData }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
@@ -332,7 +332,7 @@ export const updateUploadedProduct = createAsyncThunk(
   }
 );
 export const deleteUploadedProduct = createAsyncThunk(
-  "deleteUploadedProduct/deleteUploadedProduct",
+  "distributorSlice/deleteUploadedProduct",
   async ({ distributorId, productId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
