@@ -185,7 +185,7 @@ function ProductInformation() {
                   <Typography variant="h6" component="p" gutterBottom
                   // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
                   >
-                    <span style={{ fontWeight: "700" }}>{t("product_price")} </span>
+                    <span style={{ fontWeight: "700" }}>{t("product-price")} </span>
                     {price}$
                   </Typography>
                 </CardContent>

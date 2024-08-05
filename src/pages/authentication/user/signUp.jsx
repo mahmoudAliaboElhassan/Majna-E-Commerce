@@ -62,6 +62,7 @@ function SignUp() {
                 )
                   .unwrap()
                   .then(() => {
+                    localStorage.setItem("email", values.email)
                     {
                       toast.success(t("signup-success"), {
                         position: "top-right",
@@ -131,9 +132,9 @@ function SignUp() {
                       {t("have-account")}
                     </Typography>{" "}
                     <AuthLink>
-                    <Typography component={Link} to="/login">
-                      {t("login")}
-                    </Typography>{" "}
+                      <Typography component={Link} to="/login">
+                        {t("login")}
+                      </Typography>{" "}
                     </AuthLink>
                   </Grid>
                 </Grid>{" "}

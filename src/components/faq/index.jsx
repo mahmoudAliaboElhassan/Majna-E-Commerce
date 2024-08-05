@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import { Container } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import UseFAQ from "@hooks/use-faq";
+import UseThemeMode from "@hooks/use-theme";
 
 function QuestionsAnswers() {
 
   const { FAQ } = UseFAQ()
   const [active, setActive] = useState(null);
- 
+  const { themeMode } = UseThemeMode()
   const handleClick = (QuestionId) => setActive(QuestionId);
   return (
     <AnimatePresence initial={false}>
       <Container maxWidth="lg">
         <div>
-          {/* <div style={{ height: "100vh" }}></div> */}
-
           <ul>
             {FAQ.map(({ id, title, content }) => (
               <li
@@ -54,7 +51,11 @@ function QuestionsAnswers() {
                   }}
                   animate={{ height: active === id ? "auto" : 0 }}
                 >
-                  <p style={{ fontSize: "18px", maxWidth: "90%" }}>{content}</p>
+                  <p style={{
+                    fontSize: "18px", maxWidth: "90%",
+                    paddingBottom: "10px",
+                    borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`
+                  }}>{content}</p>
                 </motion.div>
               </li>
             ))}

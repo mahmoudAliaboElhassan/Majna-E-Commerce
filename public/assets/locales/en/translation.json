@@ -234,5 +234,6 @@
   "edit-product": "Edit Product",
   "edit-product-now": "Edit your Product Now",
   "product-edited": "Product has been successfully deleted !",
-  "error-edit-product": "Error in Editing This Product"
+  "error-edit-product": "Error in Editing This Product",
+  "approved-brands":"Here is Your Approved Brands"
 }

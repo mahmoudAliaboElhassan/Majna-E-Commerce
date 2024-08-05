@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { ActivateAccount } from "@state/slices/auth";
+import { ActivateAccount, ResendConfirmation } from "@state/slices/auth";
 import UseThemMode from "@hooks/use-theme";
 import LoadingFetching from "@components/loadingFetching";
 
@@ -50,7 +50,25 @@ function ActivationAccount() {
               confirmButtonText: t("ok"),
             }).then((result) => {
               if (result.isConfirmed) {
-                navigate("/login");
+                dispatch(ResendConfirmation({ email:localStorage.getItem("email") }))
+                  .unwrap()
+                  .then(() => {
+                    {
+                      toast.success(t("check-inbox"), {
+                        position: "top-right",
+                        autoClose: 1000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: themeMode,
+                      });
+                      setTimeout(() => {
+                        console.log("hello");
+                      }, 1000);
+                    }
+                  });
               }
             });
           } else if (error.response.status === 409) {
@@ -68,7 +86,7 @@ function ActivationAccount() {
           }
         });
     }
-  }, [uid, token]);
+  }, []);
 
   return (
     <>
