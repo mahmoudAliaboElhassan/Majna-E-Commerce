@@ -35,7 +35,7 @@ function ApprovedBrands() {
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       ) : approvedBrands.length ? (
         <>
-          <AppbarHeader data-aos="fade-up">{t("approved-brands")}</AppbarHeader>
+          <AppbarHeader >{t("approved-brands")}</AppbarHeader>
           <Box>
             {approvedBrands?.map(({ name }, idx) => (
               <Typography variant="h4"

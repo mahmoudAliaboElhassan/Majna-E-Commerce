@@ -134,8 +134,7 @@ function AddBrand() {
                     <Form className={classes.formWrapper}>
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
-                          <Typography>
-                          </Typography>
+                        <AppbarHeader data-aos="fade-up">{t("add-brand")}</AppbarHeader>
                         </Grid>{" "}
                         <Grid item xs={12}>
                           <SelectComp
