@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     color:
       theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
-          backgroundColor: "transparent !important",
+    backgroundColor: "transparent !important",
 
   },
   containerWrapper: {
@@ -160,7 +160,7 @@ function EditStore() {
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
                           <Typography>
-                            <AppbarHeader>{t("edit-store")}</AppbarHeader>
+                            <AppbarHeader data-aos="fade-up">{t("edit-store")}</AppbarHeader>
                           </Typography>
                         </Grid>{" "}
                         <Grid item xs={12}>

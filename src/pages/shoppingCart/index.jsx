@@ -81,13 +81,33 @@ function ShoppingCart() {
   );
   const [idx, setIdx] = useState(null);
   const columns = [
-    { field: "id", headerName: t("cart-id"), width: 100 },
-    { field: "name", headerName: t("product-name"), width: 150 },
-    { field: "brand", headerName: t("product-brand"), width: 150 },
+    {
+      field: "id",
+      headerName: t("cart-id"),
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "name",
+      headerName: t("product-name"),
+      width: 150,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "brand",
+      headerName: t("product-brand"),
+      width: 150,
+      headerAlign: 'center',
+      align: 'center',
+    },
     {
       field: "image",
       headerName: t("product-img"),
       width: 200,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: (params) => (
         <img
           src={params.value}
@@ -96,12 +116,32 @@ function ShoppingCart() {
         />
       ),
     },
-    { field: "price", headerName: t("product-price"), width: 100 },
-    { field: "quantity", headerName: t("product-quantity"), width: 100 },
-    { field: "totalPrice", headerName: t("total-price"), width: 150 },
+    {
+      field: "price",
+      headerName: t("product-price"),
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "quantity",
+      headerName: t("product-quantity"),
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "totalPrice",
+      headerName: t("total-price"),
+      width: 150,
+      headerAlign: 'center',
+      align: 'center',
+    },
     {
       field: "view",
       headerName: t("view-cart"),
+      headerAlign: 'center',
+      align: 'center',
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -116,6 +156,8 @@ function ShoppingCart() {
       field: "edit",
       headerName: t("edit-quantity"),
       width: 200,
+      headerAlign: 'center',
+      align: 'center',
       renderCell: (params) => (
         <Formik
           initialValues={{ quantity: params.row.quantity }}
@@ -180,6 +222,8 @@ function ShoppingCart() {
     {
       field: "delete",
       headerName: t("delete-cart"),
+      headerAlign: 'center',
+      align: 'center',
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}

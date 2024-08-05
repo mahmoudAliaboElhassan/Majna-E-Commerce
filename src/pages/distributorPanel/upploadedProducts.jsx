@@ -57,21 +57,34 @@ function UploadedProducts() {
   );
 
   const columns = [
-    { field: "id", headerName: t("product-id"), width: 100 },
-    { field: "name", headerName: t("product-name"), width: 150 },
-    { field: "brand", headerName: t("product-brand"), width: 150 },
+    {
+      field: "id",
+      headerName: t("product-id"), width: 100,
+      headerAlign: "center", align: "center",
+    },
+    {
+      field: "name", headerName: t("product-name"), width: 150,
+      headerAlign: "center", align: "center",
+    },
+    {
+      field: "brand", headerName: t("product-brand"), width: 150,
+      headerAlign: "center", align: "center",
+    },
     {
       field: "image",
       headerName: t("product-img"),
-      width: 200,
+      width: 200, headerAlign: "center", align: "center",
       renderCell: (params) => (
         <img src={params.value} alt={params.value} style={{ width: "100%", height: "auto" }} />
       ),
     },
-    { field: "price", headerName: t("product-price"), width: 100 },
     {
-      field: "view",
-      headerName: t("view-product"),
+      field: "price", headerName: t("product-price"),
+      width: 100, headerAlign: "center", align: "center",
+    },
+    {
+      field: "view", headerName: t("view-product"),
+      headerAlign: "center", align: "center", flex: 1,
       renderCell: (params) =>
       (
         <Button
@@ -85,8 +98,8 @@ function UploadedProducts() {
       ),
     },
     {
-      field: "edit",
-      headerName: t("edit-product"),
+      field: "edit", headerName: t("edit-product"),
+      headerAlign: "center", align: "center", flex: 1,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -99,8 +112,8 @@ function UploadedProducts() {
       )
     },
     {
-      field: "delete",
-      headerName: t("delete-product"),
+      field: "delete", headerName: t("delete-product"),
+      headerAlign: "center", align: "center", flex: 1,
       renderCell: (params) => (
         <Button variant={themeMode === "dark" ? "contained" : "outlined"} color="error" onClick={() => handleDelete(params.row.id)}>
           {t("delete")}
@@ -129,7 +142,7 @@ function UploadedProducts() {
           <>
             <AppbarHeader data-aos="fade-up">{t("uploaded-products")}</AppbarHeader>
             <Box sx={{ width: '100%', overflowX: 'auto' }}>
-              <Box sx={{ minWidth: 1000 }}> {/* Adjust minWidth based on the total width of your columns */}
+              <Box sx={{ minWidth: 1000 }}>
                 <DataGrid
                   rows={rows}
                   columns={columns}

@@ -16,7 +16,7 @@ function About() {
 
   return (
     <>
-      <AppbarHeader>{t("important-questions")}</AppbarHeader>
+      <AppbarHeader data-aos="fade-up">{t("important-questions")}</AppbarHeader>
       <QuestionsAnswers />
       <Team />
       <div>الحمد لله تم إسترجاع البيانات</div>

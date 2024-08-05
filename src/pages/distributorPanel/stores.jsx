@@ -11,6 +11,7 @@ import { DataGridContainer } from "@styles/dataGrid"
 import { cleanUpStores, getStores } from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
+import { AppbarHeader } from "@styles/appbar";
 
 
 function AllStores() {
@@ -27,45 +28,68 @@ function AllStores() {
     };
   }, []);
   const columns = [
-    { field: "id", headerName: t("id"), width: 100 },
+    {
+      field: "id",
+      headerName: t("id"),
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+    },
     {
       field: "storeName",
       headerName: t("storeName"),
       width: 300,
+      headerAlign: 'center',
+      align: 'center',
     },
 
     {
       field: "governorate",
       headerName: t("governorate"),
       width: 150,
+      headerAlign: 'center',
+      align: 'center',
     },
     {
       field: "city",
       headerName: t("storeCity"),
       width: 150,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "address",
+      headerName: t("storeAddress"),
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1
     },
     {
       field: "edit",
       headerName: t("edit"),
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
       renderCell: (params) => (
-        <Link to={`/distributor-control-panel/edit-store/${params.row.id}`}>
-          <Button
-            variant={themeMode === "dark" ? "contained" : "outlined"}
-            color="info">
-            {params.value}
-
-          </Button>
-        </Link>
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          component={Link}
+          to={`/distributor-control-panel/edit-store/${params.row.id}`}
+          style={{ width: '30%' }}
+          color="info">
+          {params.value}
+        </Button>
       ),
     },
   ];
 
   // Transform allBrands data into rows for the DataGrid
-  const rows = stores?.map(({ id, name, governorate, city }) => ({
+  const rows = stores?.map(({ id, name, governorate, city, address }) => ({
     id: id,
     storeName: name,
     governorate: governorate,
     city: city,
+    address: address,
     edit: t("edit"),
   }));
   return (
@@ -73,23 +97,26 @@ function AllStores() {
       {loadingStores ? (
         <LoadingFetching>{t("loading-stores")}</LoadingFetching>
       ) : stores?.length ? (
-        <DataGridContainer>
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            initialState={{
-              pagination: {
-                paginationModel: {
-                  pageSize: 5,
+        <>
+          <AppbarHeader data-aos="fade-up">{t("your-stores")}</AppbarHeader>
+          <DataGridContainer>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
                 },
-              },
-            }}
-            pageSizeOptions={[5, 10, 15, 20]}
-            checkboxSelection
-            disableRowSelectionOnClick
-            rowHeight={120}
-          />
-        </DataGridContainer>
+              }}
+              pageSizeOptions={[5, 10, 15, 20]}
+              checkboxSelection
+              disableRowSelectionOnClick
+              rowHeight={120}
+            />
+          </DataGridContainer>
+        </>
       ) : (
         <Typography style={{ fontSize: "18px" }}>{t("no-stores")}</Typography>
       )}

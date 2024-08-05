@@ -135,7 +135,6 @@ function AddBrand() {
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
                           <Typography>
-                            <AppbarHeader>{t("add-brand")}</AppbarHeader>
                           </Typography>
                         </Grid>{" "}
                         <Grid item xs={12}>

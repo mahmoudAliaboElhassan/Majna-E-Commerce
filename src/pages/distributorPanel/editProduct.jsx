@@ -178,7 +178,7 @@ function EditProduct() {
                         <Grid container spacing={2}>
                           <Grid item xs={12}>
                             <Typography>
-                              <AppbarHeader>
+                              <AppbarHeader data-aos="fade-up">
                                 {t("edit-product-now")}
                               </AppbarHeader>
                             </Typography>

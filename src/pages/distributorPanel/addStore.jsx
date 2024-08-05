@@ -150,7 +150,7 @@ function AddStore() {
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
                           <Typography>
-                            <AppbarHeader>{t("add-store-now")}</AppbarHeader>
+                            <AppbarHeader data-aos="fade-up">{t("add-store-now")}</AppbarHeader>
                           </Typography>
                         </Grid>{" "}
                         <Grid item xs={12}>

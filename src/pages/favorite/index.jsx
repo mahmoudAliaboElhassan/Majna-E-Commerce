@@ -18,7 +18,6 @@ import { DataGridContainer } from "@styles/dataGrid";
 import "@pages/shoppingCart/style.css"
 import { AppbarHeader } from "@styles/appbar";
 
-
 function Favorite() {
   const { favoritesArray = [], loadingGetFavorites, countOfFavoritesProducts } = useSelector((state) => state.cart); // Default to empty array
   const dispatch = useDispatch();
@@ -69,13 +68,34 @@ function Favorite() {
   );
 
   const columns = [
-    { field: "id", headerName: t("cart-id"), width: 100 },
-    { field: "name", headerName: t("product-name"), width: 150 },
-    { field: "brand", headerName: t("product-brand"), width: 150 },
+    {
+      field: "id",
+      headerName: t("cart-id"),
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "name",
+      headerName: t("product-name"),
+      width: 150,
+      headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "brand",
+      headerName: t("product-brand"),
+      width: 150,
+      headerAlign: 'center',
+      align: 'center',
+    },
     {
       field: "image",
       headerName: t("product-img"),
       width: 200,
+      headerAlign: 'center',
+      align: 'center',
+
       renderCell: (params) => (
         <img
           src={params.value}
@@ -84,11 +104,19 @@ function Favorite() {
         />
       ),
     },
-    { field: "price", headerName: t("product-price"), width: 100 },
+    {
+      field: "price",
+      headerName: t("product-price"),
+      width: 100,
+      headerAlign: 'center',
+      align: 'center',
+    },
     {
       field: "view",
       headerName: t("view-cart"),
-      width: 80,
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -102,6 +130,9 @@ function Favorite() {
     {
       field: "delete",
       headerName: t("delete-cart"),
+      headerAlign: 'center',
+      align: 'center',
+      flex: 1,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}

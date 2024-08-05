@@ -27,27 +27,35 @@ function RootProductLayout() {
   const theme = useTheme();
 
   return (
-    <Box sx={{ display: "flex" }}>
-      <CssBaseline />
-      {!open && (
-        <DrawerButton onClick={handleDrawerOpen}>
-          {" "}
-          {theme.direction === "rtl" ? (
-            <ChevronLeftIcon />
-          ) : (
-            <ChevronRightIcon />
-          )}
-        </DrawerButton>
-      )}
-      <MainDrawer
-        open={open}
-        handleClose={handleDrawerClose}
-        elements={distributorElements}
-      />
-      <MainBody open={open}>
-        <Outlet />
-      </MainBody>
-    </Box>
+    <div style={{
+      width: "100%",
+      position: "relative",
+      minHeight: "calc(100vh - 64px)",
+      top: "-25px",
+      overflow: "auto hidden"
+    }}>
+      <Box sx={{ display: "flex" }}>
+        <CssBaseline />
+        {!open && (
+          <DrawerButton onClick={handleDrawerOpen}>
+            {" "}
+            {theme.direction === "rtl" ? (
+              <ChevronLeftIcon />
+            ) : (
+              <ChevronRightIcon />
+            )}
+          </DrawerButton>
+        )}
+        <MainDrawer
+          open={open}
+          handleClose={handleDrawerClose}
+          elements={distributorElements}
+        />
+        <MainBody open={open}>
+          <Outlet />
+        </MainBody>
+      </Box>
+    </div>
   );
 }
 export default (RootProductLayout);

@@ -76,7 +76,7 @@ function Contacts() {
 
   return (
     <div>
-      <AppbarHeader>{t("contact-us")}</AppbarHeader>
+      <AppbarHeader data-aos="fade-up">{t("contact-us")}</AppbarHeader>
       <Container className={classes.formWrapper}>
         <ToastContainer />
         <Grid container spacing={4}>

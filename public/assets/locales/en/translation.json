@@ -71,7 +71,7 @@
   "forbidden": "Forbidden",
   "forbidden-txt": "Forbidden to buyer to add Brand, Create Account as Seller to Add",
   "add-brand": "Add Brand",
-  "loading-brands": "Wait for the brands to load...",
+  "loading-brands": "Wait for your Approved Brands to Load...",
   "select-type": "Select Type of Account that You Want to Create",
   "distributor": "Seller",
   "customer": "Buyer",
@@ -235,5 +235,8 @@
   "edit-product-now": "Edit your Product Now",
   "product-edited": "Product has been successfully deleted !",
   "error-edit-product": "Error in Editing This Product",
-  "approved-brands":"Here is Your Approved Brands"
+  "approved-brands": "Here is your Approved Brands",
+  "your-stores": "Here is your Stores",
+  "brand-applications": "Here is your Brand Applications",
+  "data-added": "Added At"
 }
