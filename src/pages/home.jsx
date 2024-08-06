@@ -151,7 +151,7 @@ function Home() {
       // handleSearchClick={handleSearchClick}
       />
 
-      <Grid container>
+      <Grid container style={{ overflow: "hidden" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
             handlePriceChange={handlePriceChange}
@@ -174,9 +174,7 @@ function Home() {
           md={9.5}
           sm={9.5}
           spacing={1.5}
-          style={{ overflowX: "hidden", maxWidth: "100%" }}
           sx={{
-            overflowX: "hidden",
             padding: { xs: 2, sm: 3 },
             // margin: "auto",
             maxWidth: { sm: "calc(100% - 40px)", md: "calc(100% - 48px)" },
