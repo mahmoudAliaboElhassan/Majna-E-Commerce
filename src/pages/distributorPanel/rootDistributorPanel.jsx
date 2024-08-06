@@ -32,7 +32,6 @@ function RootProductLayout() {
       position: "relative",
       minHeight: "calc(100vh - 64px)",
       top: "-25px",
-      overflow: "auto hidden"
     }}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />

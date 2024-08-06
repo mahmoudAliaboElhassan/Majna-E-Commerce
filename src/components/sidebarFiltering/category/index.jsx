@@ -8,7 +8,7 @@ import Input from "@components/sidebarFiltering/input";
 import { getCategories } from "@state/slices/distributor";
 import UseThemMode from "@hooks/use-theme";
 
-import "./category.css";
+import "@components/sidebarFiltering/category/category.css";
 
 function Category({ handleProductsByCategory, selectedCategory }) {
   const dispatch = useDispatch();
@@ -53,6 +53,7 @@ function Category({ handleProductsByCategory, selectedCategory }) {
               value={id}
               title={name}
               name="test"
+              isChecked={selectedCategory === id}
             />
           )) : <Typography sx={{
             textAlign: "center",

@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 import Swal from "sweetalert2";
@@ -65,6 +65,7 @@ function EditProduct() {
   console.log("productData?.inventory?.stores")
   console.log(productData?.inventory?.stores)
   const { Uid } = useSelector((state) => state.auth);
+  const navigate = useNavigate()
   const {
     loadingStores,
   } = useSelector((state) => state.distributor);
@@ -142,6 +143,9 @@ function EditProduct() {
                                 progress: undefined,
                                 theme: themeMode,
                               });
+                              setTimeout(() => {
+                                navigate("/distributor-control-panel/uploaded-products");
+                              }, 1000);
                             }
                           })
                           .catch((error) => {

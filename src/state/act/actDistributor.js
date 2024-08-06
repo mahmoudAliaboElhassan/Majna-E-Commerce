@@ -4,11 +4,11 @@ import { majnAPI, majnaFiles } from "@state/API/global-api";
 
 export const addBrand = createAsyncThunk(
   "distributorSlice/addBrand",
-  async ({ Uid, authorization_doc, identity_doc }, thunkAPI) => {
+  async ({ brandId, authorization_doc, identity_doc }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
       const res = await majnaFiles.post(
-        `api/brands/${Uid}/applications`,
+        `api/brands/${brandId}/applications`,
         { authorization_doc, identity_doc }
         // {
         //   headers: {

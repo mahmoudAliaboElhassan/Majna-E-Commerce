@@ -238,5 +238,6 @@
   "approved-brands": "Here is your Approved Brands",
   "your-stores": "Here is your Stores",
   "brand-applications": "Here is your Brand Applications",
-  "data-added": "Added At"
+  "data-added": "Added At",
+  "role": "User Role"
 }

@@ -122,12 +122,12 @@ function UploadedProducts() {
     },
   ];
 
-  const rows = uploadedProducts?.map((product) => ({
-    id: product?.id,
-    name: product?.name,
-    brand: product?.brand,
-    price: product?.price,
-    image: product?.cover_image,
+  const rows = uploadedProducts?.map(({ id, name, brand, price, cover_image }) => ({
+    id,
+    name,
+    brand,
+    price,
+    image: cover_image,
     view: t("view-product"),
     edit: t('edit'),
     delete: t("delete"),

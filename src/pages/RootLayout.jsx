@@ -54,7 +54,10 @@ function RootLayout() {
     const expired = new Date(expireToken).getTime();
     const interval = setInterval(() => {
       const currentTime = new Date().getTime();
-
+      // console.log("currentTime")
+      // console.log(currentTime)
+      // console.log("expired")
+      // console.log(expired)
       if (token && role) {
         if (currentTime >= expired) {
           console.log("expired");

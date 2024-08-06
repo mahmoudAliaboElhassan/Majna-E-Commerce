@@ -23,6 +23,7 @@ import Category from "@components/sidebarFiltering/category";
 import Price from "@components/sidebarFiltering/price";
 import Color from "@components/sidebarFiltering/colors";
 import Ordering from "@components/sidebarFiltering/ordering";
+import SubCategory from "@components/sidebarFiltering/subCategory";
 import { useDispatch } from "react-redux";
 
 const blue = {
@@ -58,6 +59,8 @@ function ProductTypesSidebar({
   handleOrdering,
   handleProductsByCategory,
   selectedCategory,
+  selectedSubCategory,
+  handleSelectedSubCategory
 }) {
   const { productTypes } = UseProductTypes();
   const [active, setActive] = useState(0);
@@ -94,67 +97,72 @@ function ProductTypesSidebar({
             <h1 style={{ marginTop: "1.3rem" }}>🛒</h1>
           </div>
           {/* {productTypes &&
-            productTypes.map((product, index) => (
-              <div key={product.to}>
-                <h3
-                  style={{ cursor: "pointer", padding: "5px" }}
-                  sx={{ fontSize: { md: "12px", lg: "16px" } }}
-                  onClick={() => {
-                    setActive(index);
-                  }}
-                  component={Link}
-                  {...product}
-                >
-                  {product.label}
-                </h3>
-                <motion.div
-                  initial={{ height: 0 }}
-                  transition={{
-                    type: "keyframes",
-                    ease: "easeInOut",
-                    duration: 1.3,
-                    delay: 0.7,
-                  }}
-                  animate={{
-                    opacity: active === index ? 1 : 0,
-                    height: active === index ? "auto" : 0,
-                  }}
-                >
-                  {product.nestedTypes &&
-                    product.nestedTypes.map((nestedType, innerIndex) => (
-                      <p key={innerIndex}>{nestedType.label}</p>
-                    ))}
-                </motion.div>
-              </div>
-            ))} */}
+              productTypes.map((product, index) => (
+                <div key={product.to}>
+                  <h3
+                    style={{ cursor: "pointer", padding: "5px" }}
+                    sx={{ fontSize: { md: "12px", lg: "16px" } }}
+                    onClick={() => {
+                      setActive(index);
+                    }}
+                    component={Link}
+                    {...product}
+                  >
+                    {product.label}
+                  </h3>
+                  <motion.div
+                    initial={{ height: 0 }}
+                    transition={{
+                      type: "keyframes",
+                      ease: "easeInOut",
+                      duration: 1.3,
+                      delay: 0.7,
+                    }}
+                    animate={{
+                      opacity: active === index ? 1 : 0,
+                      height: active === index ? "auto" : 0,
+                    }}
+                  >
+                    {product.nestedTypes &&
+                      product.nestedTypes.map((nestedType, innerIndex) => (
+                        <p key={innerIndex}>{nestedType.label}</p>
+                      ))}
+                  </motion.div>
+                </div>
+              ))} */}
 
           {/* <div key={index}>
-            <h1 onClick={() => setActive(index)}>{product.label}</h1>
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              transition={{
-                type: "keyframes",
-                ease: "easeInOut",
-                duration: 1.3,
-                delay: 0.7,
-              }}
-              animate={{
-                opacity: active === index ? 1 : 0,
-                height: active === index ? "auto" : 0,
-              }}
-            >
-              {product.nestedTypes &&
-                product.nestedTypes.map((nestedType, innerIndex) => (
-                  <p key={innerIndex}>{nestedType.label}</p>
-                ))}
-            </motion.div>
-          </div>
-          ))} */}
+              <h1 onClick={() => setActive(index)}>{product.label}</h1>
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                transition={{
+                  type: "keyframes",
+                  ease: "easeInOut",
+                  duration: 1.3,
+                  delay: 0.7,
+                }}
+                animate={{
+                  opacity: active === index ? 1 : 0,
+                  height: active === index ? "auto" : 0,
+                }}
+              >
+                {product.nestedTypes &&
+                  product.nestedTypes.map((nestedType, innerIndex) => (
+                    <p key={innerIndex}>{nestedType.label}</p>
+                  ))}
+              </motion.div>
+            </div>
+            ))} */}
 
           <Ordering handleOrdering={handleOrdering} />
           <Category
             handleProductsByCategory={handleProductsByCategory}
             selectedCategory={selectedCategory}
+          />
+          <SubCategory
+            handleSelectedSubCategory={handleSelectedSubCategory}
+            selectedCategory={selectedCategory}
+            selectedSubCategory={selectedSubCategory}
           />
           <Price
             handlePriceChange={handlePriceChange}

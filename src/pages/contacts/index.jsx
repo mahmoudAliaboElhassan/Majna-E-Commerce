@@ -9,13 +9,15 @@ import emailjs from 'emailjs-com';
 
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
+import UseUserRole from "@hooks/use-user-role";
 import { AppbarHeader } from "@styles/appbar";
 import UseInitialValues from "@utils/use-initial-values";
 import TextAreaWrapper from "@components/formui/textarea";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import TextFieldWrapper from "@components/formui/textField";
-import UseFormValidation from "@formValidation/use-form-validation";
+import SelectComp from "@components/formui/Select";
 import ContactInfo from "@components/contactInfo";
+import UseFormValidation from "@formValidation/use-form-validation";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -31,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     transform: "translate(-50%,-50%)",
   },
+  gridItem: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  }
 }));
 
 function Contacts() {
@@ -38,8 +44,9 @@ function Contacts() {
   const classes = useStyles();
   const { INITIAL_FORM_STATE_CONTACT } = UseInitialValues();
   const { FORM_VALIDATION_SCHEMA_CONTACT } = UseFormValidation();
-  const { Direction } = UseDirection()
-  const { themeMode } = UseThemMode()
+  const { Direction } = UseDirection();
+  const { themeMode } = UseThemMode();
+  const { userRoles } = UseUserRole();
 
   const sendEmail = (formValues) => {
     const templateParams = {
@@ -47,14 +54,20 @@ function Contacts() {
       yourEmail: formValues.yourEmail,
       yourSubject: formValues.yourSubject,
       yourMessage: formValues.yourMessage,
+      yourRole: formValues.userRole,
     };
 
+    console.log('Service ID:', process.env.REACT_APP_SERVICE_ID);
+    console.log('Template ID:', process.env.REACT_APP_TEMPLATE_ID);
+    console.log('User ID:', process.env.REACT_APP_USER_ID);
+
     emailjs.send(
-      'service_xhei2bd',
-      'template_1vn3uld',
+      process.env.REACT_APP_SERVICE_ID,
+      process.env.REACT_APP_TEMPLATE_ID,
       templateParams,
-      'Rz-Lj66nsArl2vdf9'
+      process.env.REACT_APP_USER_ID
     ).then((response) => {
+      console.log('Email sent successfully:', response);
       toast.success(t("sent-success"), {
         position: "top-right",
         autoClose: 1000,
@@ -65,12 +78,13 @@ function Contacts() {
         progress: undefined,
         theme: themeMode,
       });
-    }, (error) => {
+    }).catch((error) => {
+      console.error('Error sending email:', error);
       Swal.fire({
         title: t("error-sending-message"),
         icon: "error",
         confirmButtonText: t("ok"),
-      })
+      });
     });
   };
 
@@ -108,14 +122,21 @@ function Contacts() {
                         autocomplete="off"
                       />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={classes.gridItem}>
                       <TextFieldWrapper
                         name="yourSubject"
                         label={t("subject")}
                         autocomplete="off"
                       />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={classes.gridItem}>
+                      <SelectComp
+                        name="userRole"
+                        label={t("role")}
+                        options={userRoles}
+                      />
+                    </Grid>
+                    <Grid item xs={12} className={classes.gridItem}>
                       <TextAreaWrapper
                         name="yourMessage"
                         textarea={3}

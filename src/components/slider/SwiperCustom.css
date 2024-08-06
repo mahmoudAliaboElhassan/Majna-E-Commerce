@@ -21,3 +21,28 @@
 .swiper-pagination-bullet.custom-bullet.swiper-pagination-bullet-active {
   background: #0056b3; /* Change this to your desired active color */
 }
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .swiper-pagination {
+    gap: 5px; /* Reduce space between bullets */
+  }
+
+  .swiper-pagination-bullet.custom-bullet {
+    width: 20px; /* Shrink width */
+    height: 20px; /* Shrink height */
+    font-size: 12px; /* Reduce font size */
+  }
+}
+
+@media (max-width: 480px) {
+  .swiper-pagination {
+    gap: 3px; /* Further reduce space between bullets */
+  }
+
+  .swiper-pagination-bullet.custom-bullet {
+    width: 15px; /* Further shrink width */
+    height: 15px; /* Further shrink height */
+    font-size: 10px; /* Further reduce font size */
+  }
+}

@@ -78,6 +78,7 @@ function Home() {
     console.log(event.target.value);
   };
   const [ordering, setOrdering] = useState(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
   useEffect(() => {
     selectedCategory
       ? dispatch(
@@ -87,6 +88,7 @@ function Home() {
           ordering,
           page,
           search: searchValue,
+          sub_category_id: selectedSubCategory
         })
       )
       : dispatch(
@@ -95,18 +97,24 @@ function Home() {
           ordering,
           page,
           search: searchValue,
+          sub_category_id: selectedSubCategory
         })
       );
     return () => {
       dispatch(cleanUpGetProducts());
       dispatch(cleanUpgetProductsByCategory());
     };
-  }, [selectedCategory, price, color, ordering, page, searchValue]);
+  }, [selectedCategory, price, color, ordering, page, searchValue, selectedSubCategory]);
   // const productInfo = products?.map((el) => ({
   //   ...el,
   //   quantity: items[el.id],
   // }));
   const handleOrdering = (e) => setOrdering(e.target.value);
+  const handleSelectedSubCategory = (value) => {
+    setSelectedSubCategory(value)
+    console.log("selectedSubCategory")
+  };
+  console.log(selectedSubCategory)
 
   const [productId, setProductId] = useState(null);
   const handleProductsByCategory = (id) => {
@@ -119,6 +127,7 @@ function Home() {
           ordering,
           page,
           search: searchValue,
+          sub_category_id: selectedSubCategory
         })
       )
       : dispatch(
@@ -127,6 +136,8 @@ function Home() {
           ordering,
           page,
           search: searchValue,
+          sub_category_id: selectedSubCategory
+
         })
       );
   };
@@ -148,10 +159,12 @@ function Home() {
             handleClickPrice={handleClickPrice}
             price={price}
             color={color}
-            handleChangeColor={handleChangeColor}
+            // handleChangeColor={handleChangeColor}
             handleOrdering={handleOrdering}
             handleProductsByCategory={handleProductsByCategory}
             selectedCategory={selectedCategory}
+            selectedSubCategory={selectedSubCategory}
+            handleSelectedSubCategory={handleSelectedSubCategory}
           />
         </Grid>
         <Grid

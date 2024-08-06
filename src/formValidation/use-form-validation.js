@@ -252,6 +252,7 @@ function UseFormValidation() {
       .required("Subject is Required")
       .max(50, "Maximum number of characters is 50"),
     yourMessage: Yup.string().required("Message is Required"),
+    userRole: Yup.string().required("User Role is Required"),
   });
   const FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT = Yup.object().shape({
     singleProductName: Yup.string().required("Product Title is Required"),

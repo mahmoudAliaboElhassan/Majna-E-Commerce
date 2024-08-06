@@ -82,7 +82,7 @@ function AddBrand() {
                         addBrand({
                           authorization_doc: values.authorizeDocument,
                           identity_doc: values.IdDistributor,
-                          Uid: values.productType,
+                          brandId: values.productType,
                         })
                       )
                         .unwrap()
@@ -134,7 +134,7 @@ function AddBrand() {
                     <Form className={classes.formWrapper}>
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
-                        <AppbarHeader data-aos="fade-up">{t("add-brand")}</AppbarHeader>
+                          <AppbarHeader data-aos="fade-up">{t("add-brand")}</AppbarHeader>
                         </Grid>{" "}
                         <Grid item xs={12}>
                           <SelectComp

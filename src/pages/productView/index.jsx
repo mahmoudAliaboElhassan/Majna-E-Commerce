@@ -153,7 +153,13 @@ function ProductInformation() {
                   }}>
                     {name}
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom sx={{ fontSize: { xs: "23px", sm: "19px", md: "20px", lg: "23px" } }}>
+                  <Typography variant="h6" component="p" gutterBottom sx={{
+                    fontSize: {
+                      xs: "23px", sm: "19px", md: "20px", lg: "23px",
+                    },
+                    borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
+                    py: 2
+                  }}>
                     {description}
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
