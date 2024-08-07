@@ -139,7 +139,7 @@
   "price-from": "From",
   "ascending": "Ascending",
   "descending": "Descending",
-  "ordering": "Ordering",
+  "price-ordering": "Price Ordering",
   "load-products": "Wait For Products to Load ...  ",
   "no-product": "No Products For Your Filteration Change it !",
   "add-to-cart": "Add To Cart",
@@ -239,5 +239,7 @@
   "your-stores": "Here is your Stores",
   "brand-applications": "Here is your Brand Applications",
   "data-added": "Added At",
-  "role": "User Role"
+  "role": "User Role",
+  "product-category": "Product Category",
+  "product-subCategory": "Product Subcategory"
 }

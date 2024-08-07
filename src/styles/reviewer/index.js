@@ -16,6 +16,7 @@ export const MainBody = styled("main", {
 
   return {
     flexGrow: 1,
+    overflow: "auto",
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,

@@ -7,6 +7,7 @@ import { Grid, Button } from "@material-ui/core";
 
 import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import MultipleSelect from "@components/formui/multipleSelect";
+import { StoreAdded } from "@styles/products";
 
 const SingleProductInventory = ({ SingleProductInventory }) => {
   console.log(SingleProductInventory)
@@ -41,25 +42,17 @@ const SingleProductInventory = ({ SingleProductInventory }) => {
         </Grid>
       ))}
       <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
-        <Button
+        <StoreAdded
           variant="contained"
           onClick={handleAddClick}
           disabled={!stores.length || count >= stores.length}
           style={{
-            borderRadius: "8px",
-            background: "#160d203b",
-            color: "white",
-            border: "1px solid white",
-            justifyContent: "center",
-            width: "fit-content",
-            boxShadow: "0px 0px 6px 1px #7f4949",
-            fontWeight: "700",
             opacity: !stores?.length || count >= stores?.length ? "0.3" : "1",
             opacity: !stores?.length || count >= stores?.length ? "0.3" : "1",
           }}
         >
           <ControlPointIcon />
-        </Button>
+        </StoreAdded>
       </Grid>
     </>
   );

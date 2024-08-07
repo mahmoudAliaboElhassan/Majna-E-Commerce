@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import Input from "@components/sidebarFiltering/input";
 import { getCategories } from "@state/slices/distributor";
 import UseThemMode from "@hooks/use-theme";
-
 import "@components/sidebarFiltering/category/category.css";
 
 function Category({ handleProductsByCategory, selectedCategory }) {
@@ -36,32 +35,32 @@ function Category({ handleProductsByCategory, selectedCategory }) {
         {t("categories")}
       </Typography>
       <div>
-        {/* <label className="sidebar-label-container"> */}
-        <div>
-          <Input
-            key={"all"}
-            handleChange={() => handleProductsByCategory(null)}
-            value={null}
-            title={t("all")}
-            name="test"
-            isCheck={selectedCategory === null}
-          />
-          {categories?.length ? categories.map(({ id, name }) => (
+        <label className="sidebar-label-container">
+          <div>
             <Input
-              key={id}
-              handleChange={() => handleProductsByCategory(id)}
-              value={id}
-              title={name}
-              name="test"
-              isChecked={selectedCategory === id}
+              key={"all"}
+              handleChange={() => handleProductsByCategory(null)}
+              value={null}
+              title={t("all")}
+              name="category"
+              isCheck={selectedCategory === null}
             />
-          )) : <Typography sx={{
-            textAlign: "center",
-            fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" },
-            maxWidth: "80%", margin: "auto"
-          }}>{t('wait-catogeries')}</Typography>}
-        </div>
-        {/* </label> */}
+            {categories?.length ? categories.map(({ id, name }) => (
+              <Input
+                key={id}
+                handleChange={() => handleProductsByCategory(id)}
+                value={id}
+                title={name}
+                name="category"
+              // isChecked={selectedCategory === id}
+              />
+            )) : <Typography sx={{
+              textAlign: "center",
+              fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" },
+              maxWidth: "80%", margin: "auto"
+            }}>{t('wait-catogeries')}</Typography>}
+          </div>
+        </label>
       </div>
     </div>
   );

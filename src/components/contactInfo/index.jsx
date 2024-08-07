@@ -16,7 +16,7 @@ function ContactInfo() {
     const { Direction } = UseDirection()
     const { themeMode } = UseThemMode()
     return (
-        <Card style={{ padding: "16px", display: "flex", flexDirection: "column" }}>
+        <Card raised style={{ padding: "16px", display: "flex", flexDirection: "column" }}>
             <Typography style={{
                 textAlign: "center",
                 fontSize: "25px",

@@ -31,7 +31,6 @@ function SubCategory({
             style={{
                 borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
                 paddingBottom: "20px",
-
             }}
         >
             <Typography
@@ -48,7 +47,7 @@ function SubCategory({
                         handleChange={() => handleSelectedSubCategory(null)}
                         value={null}
                         title={t("all")}
-                        name="test"
+                        name="subCategory"
                         isCheck={selectedSubCategory === null}
                     />
                     {filteredSubCategories?.length ? filteredSubCategories.map(({ id, name }) => (
@@ -57,8 +56,7 @@ function SubCategory({
                             handleChange={() => handleSelectedSubCategory(id)}
                             value={id}
                             title={name}
-                            name="test"
-                            isCheck={selectedSubCategory === id}
+                            name="subCategory"
                         />
                     )) : <Typography sx={{
                         textAlign: "center",

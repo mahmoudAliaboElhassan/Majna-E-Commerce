@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
@@ -89,7 +90,7 @@ function Contacts() {
   };
 
   return (
-    <div>
+    <>
       <AppbarHeader data-aos="fade-up">{t("contact-us")}</AppbarHeader>
       <Container className={classes.formWrapper}>
         <ToastContainer />
@@ -162,7 +163,7 @@ function Contacts() {
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </>
   );
 }
 

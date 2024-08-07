@@ -22,6 +22,7 @@ import { postCart, postFavorite } from "@state/slices/cart";
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
 import teamImage from "@assets/team";
+import { Colors } from "@styles/theme";
 
 function ProductInformation() {
   const dispatch = useDispatch();
@@ -149,7 +150,8 @@ function ProductInformation() {
                     // fontSize: { xs: "27px", sm: "19px", md: "21px", lg: "27px" },
                     fontStyle: "italic",
                     letterSpacing: "-3px",
-                    textAlign: "center"
+                    textAlign: "center",
+                    color: Colors.seconday,
                   }}>
                     {name}
                   </Typography>
@@ -163,33 +165,38 @@ function ProductInformation() {
                     {description}
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
                   >
                     <span style={{ fontWeight: "700" }}>{t("product-brand")} </span>
                     {brand}
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
                   >
-                    <span style={{ fontWeight: "700" }}>{t("categories")} </span>
+                    <span style={{ fontWeight: "700" }}>{t("product-category")} </span>
                     {category}
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
-                  // sx={{ fontSize: { xs: "20px", sm: "15px", md: "18px", lg: "21px" } }}
+                    // sx={{ fontSize: { xs: "20px", sm: "15px", md: "18px", lg: "21px" } }}
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    <span style={{ fontWeight: "700" }}>{t("sub_category")} </span>
+                    <span style={{ fontWeight: "700" }}>{t("product-subCategory")} </span>
                     {sub_category}
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
-                  // sx={{
-                  //   fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" },
-                  // }}
+                    // sx={{
+                    //   fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" },
+                    // }}
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <span span style={{ fontWeight: "700" }}>{t("in-store")} </span>
                     {total_quantity}
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
-                  // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <span style={{ fontWeight: "700" }}>{t("product-price")} </span>
                     {price}$
@@ -215,6 +222,7 @@ function ProductInformation() {
                     onClick={handlePostCart}
                     disabled={loadingPostCart}
                     fullWidth
+                    sx={{ whiteSpace: "nowrap" }}
                   >
                     {t('add-to-cart')}
                   </Button>
@@ -222,7 +230,7 @@ function ProductInformation() {
                     onClick={handlePostFavorite}
                     disabled={loadingAddtoFavorite}
                     fullWidth
-                    sx={{ mx: 2 }}
+                    sx={{ mx: 2, whiteSpace: "nowrap" }}
                   >
                     {t('add-favorite')}
                   </Button>

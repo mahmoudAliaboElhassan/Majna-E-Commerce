@@ -46,7 +46,7 @@ function Ordering({ handleOrdering }) {
         sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
         className="sidebar-title"
       >
-        {t("ordering")}
+        {t("price-ordering")}
       </Typography>
 
       <Input

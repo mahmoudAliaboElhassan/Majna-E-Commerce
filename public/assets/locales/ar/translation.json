@@ -137,7 +137,7 @@
   "price-from": "من",
   "ascending": "تصاعدي",
   "descending": "تنازلي",
-  "ordering": "ترتيب",
+  "price-ordering": "ترتيب السعر",
   "load-products": "إنتظر حتى يتم تحميل المنتجات ...",
   "no-product": "لا توجد منتجات للمعايير المطلوبه من سعر و نوع و غيره غير في المعايير لإيجاد منتجات !",
   "add-to-cart": "أضف إلى السله",
@@ -240,5 +240,7 @@
   "your-stores": "ها هي متاجرك",
   "brand-applications": "ها هي كل العلامات التجارية",
   "data-added": "وقت الإضافة",
-  "role": "نوع الحساب"
+  "role": "نوع الحساب",
+  "product-category": "نوع المنتج",
+  "product-subCategory": "نوع المنتج الفرعي"
 }
