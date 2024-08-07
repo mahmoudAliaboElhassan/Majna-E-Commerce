@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
@@ -6,19 +7,23 @@ import ClearIcon from "@mui/icons-material/Clear";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
+import SearchIcon from '@mui/icons-material/Search';
+import { colors } from "@mui/material";
+
 import UseThemeMode from "@hooks/use-theme";
 import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
-import { colors } from "@mui/material";
+import UseProducts from "@hooks/use-products";
 
 const Search = ({ headerColor }) => {
   const { t } = useTranslation();
   const theme = useTheme();
-  const skills = ["html", "css", "javascript", "typescript"];
-  const dispatch = useDispatch();
-  const { themeMode } = UseThemeMode();
   const { searchChange } = useSelector((state) => state.search);
   const [mysearch, setMySearch] = useState(searchChange);
+
+  const dispatch = useDispatch();
+  const { products } = UseProducts()
+  const { themeMode } = UseThemeMode();
 
   const handleInputChange = (event, value) => {
     const inputValue = value || event.target.value;
@@ -49,7 +54,7 @@ const Search = ({ headerColor }) => {
       <StyledAutocomplete
         freeSolo
         disableClearable
-        options={skills}
+        options={products}
         onInputChange={handleInputChange}
         onChange={handleSkillSelect}
         renderInput={(params) => (
@@ -87,7 +92,8 @@ const Search = ({ headerColor }) => {
         variant={themeMode === "dark" ? "contained" : "outlined"}
         onClick={handleSearchClick}
       >
-        {t("search")}
+        {/* {t("search")} */}
+        <SearchIcon />
       </SearchButton>
     </SearchBox>
   );

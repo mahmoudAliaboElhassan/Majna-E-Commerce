@@ -2,6 +2,7 @@ import { styled, alpha } from "@mui/material/styles";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Box } from "@mui/material";
 import { TextField } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
@@ -84,7 +85,7 @@ export const StyledAutocomplete = styled(Autocomplete)(({ theme }) => ({
   },
 }));
 
-export const SearchButton = styled("button")(({ theme }) => {
+export const SearchButton = styled(IconButton)(({ theme }) => {
   const { Direction } = UseDirection(); // Use the correct hook
 
   return {
