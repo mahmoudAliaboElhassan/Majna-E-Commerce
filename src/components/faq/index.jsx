@@ -23,7 +23,7 @@ function QuestionsAnswers() {
                 onClick={() => handleClick(id)}
                 component="div" // data-aos="zoom-in"
                 data-aos={`flip-${id % 2 === 0 ? "up" : "down"}`}
-                data-aos-duration={id * 300}
+                data-aos-duration={300}
                 data-aos-easing="ease-in-sine"
               >
                 <div
