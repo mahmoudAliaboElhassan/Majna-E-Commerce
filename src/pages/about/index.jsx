@@ -19,7 +19,7 @@ function About() {
       <AppbarHeader data-aos="fade-up">{t("important-questions")}</AppbarHeader>
       <QuestionsAnswers />
       <Team />
-      <div>الحمد لله تم إسترجاع البيانات</div>
+      {/* <div>الحمد لله تم إسترجاع البيانات</div> */}
     </>
   );
 }
