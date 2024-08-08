@@ -14,6 +14,7 @@ export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   textAlign: "center",
   cursor: "pointer",
   fontSize: "2.25em",
+  fontStyle: "italic",
 }));
 export const CartNumber = styled(Typography)(() => ({
   position: "absolute",

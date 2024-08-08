@@ -32,14 +32,14 @@ function Team() {
   const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: false });
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" sx={{ overflow: "hidden" }}>
       <AppbarHeader>{t("people-developed")}</AppbarHeader>
       <Grid container spacing={5}>
         <Grid item xs={12} md={6}>
           <motion.div
             ref={ref1}
-            initial={{ y: -50, opacity: 0 }}
-            animate={inView1 ? { y: 0, opacity: 1 } : {}}
+            initial={{ y: isMatch ? -50 : 0, x: isMatch ? 0 : -50, opacity: 0 }}
+            animate={inView1 ? { y: isMatch ? 0 : 0, x: isMatch ? 0 : 0, opacity: 1 } : {}}
             transition={{ duration: 0.5 }}
           >
             <Card sx={{ maxWidth: "100%" }}>
@@ -95,9 +95,9 @@ function Team() {
         <Grid item xs={12} md={6}>
           <motion.div
             ref={ref2}
-            initial={{ y: -50, opacity: 0 }}
-            animate={inView2 ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1 }}
+            initial={{ y: isMatch ? 50 : 0, x: isMatch ? 0 : 50, opacity: 0 }}
+            animate={inView2 ? { y: isMatch ? 0 : 0, x: isMatch ? 0 : 0, opacity: 1 } : {}}
+            transition={{ duration: isMatch ? 1 : 0.5 }}
           >
             <Card sx={{ maxWidth: "100%" }}>
               <CardActionArea>

@@ -149,7 +149,7 @@ function ProductInformation() {
                   <Typography gutterBottom variant="h4" component="div" sx={{
                     // fontSize: { xs: "27px", sm: "19px", md: "21px", lg: "27px" },
                     fontStyle: "italic",
-                    letterSpacing: "-3px",
+                    letterSpacing: "-2px",
                     textAlign: "center",
                     color: Colors.seconday,
                   }}>
@@ -200,6 +200,13 @@ function ProductInformation() {
                   >
                     <span style={{ fontWeight: "700" }}>{t("product-price")} </span>
                     {price}$
+                  </Typography>
+                  <Typography variant="h6" component="p" gutterBottom
+                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <span style={{ fontWeight: "700" }}>{t("data-added")} </span>
+                    {added_at}
                   </Typography>
                 </CardContent>
                 <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
