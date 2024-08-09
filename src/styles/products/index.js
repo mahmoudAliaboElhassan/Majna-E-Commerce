@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 
 import UseThemMode from "../../hooks/use-theme";
 import { Colors } from "../theme";
+import UseMediaQueryHook from "@hooks/use-media-query";
 
 export const ProducDetailWrapper = styled(Box)(({ theme, matches }) => ({
   display: "flex",
@@ -38,9 +39,11 @@ export const DrawerButton = styled("button")(() => {
 });
 export const FilteringBox = styled(Box)(() => {
   const { themeMode } = UseThemMode();
+  const { isMatch } = UseMediaQueryHook();
+
   return {
     padding: "10px 5px",
-    width: "80%",
+    width: isMatch ? "90%" : "80%",
     marginTop: "20px",
     borderRadius: "10% 10% 10% 10% / 10% 10% 10% 10%",
     background: themeMode === "dark" ? "rgb(35 23 23 / 40%)" : "#eee",
