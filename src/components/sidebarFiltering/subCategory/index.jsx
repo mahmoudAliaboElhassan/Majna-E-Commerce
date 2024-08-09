@@ -8,6 +8,8 @@ import Input from "@components/sidebarFiltering/input";
 import { getSubCategory } from "@state/slices/distributor";
 import UseThemMode from "@hooks/use-theme";
 import "@components/sidebarFiltering/category/category.css";
+import { FilteringBox } from "@styles/products";
+
 
 function SubCategory({
     handleSelectedSubCategory, selectedCategory, selectedSubCategory
@@ -24,49 +26,41 @@ function SubCategory({
     const filteredSubCategories = selectedCategory ? subCategories?.filter(
         (subcat) => subcat.category_id == selectedCategory
     ) : subCategories;
-    console.log("filteredSubCategories")
-    console.log(filteredSubCategories)
+
     return (
-        <div
-            style={{
-                borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
-                paddingBottom: "20px",
-            }}
-        >
+        <FilteringBox>
             <Typography
-                sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
+                sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" }, textAlign: "center" }}
                 className="sidebar-title"
             >
                 {t("sub-category")}
             </Typography>
+            {/* <label className="sidebar-label-container"> */}
             <div>
-                {/* <label className="sidebar-label-container"> */}
-                <div>
+                <Input
+                    key={"all"}
+                    handleChange={() => handleSelectedSubCategory(null)}
+                    value={null}
+                    title={t("all")}
+                    name="subCategory"
+                    isCheck={selectedSubCategory === null}
+                />
+                {filteredSubCategories?.length ? filteredSubCategories.map(({ id, name }) => (
                     <Input
-                        key={"all"}
-                        handleChange={() => handleSelectedSubCategory(null)}
-                        value={null}
-                        title={t("all")}
+                        key={id}
+                        handleChange={() => handleSelectedSubCategory(id)}
+                        value={id}
+                        title={name}
                         name="subCategory"
-                        isCheck={selectedSubCategory === null}
                     />
-                    {filteredSubCategories?.length ? filteredSubCategories.map(({ id, name }) => (
-                        <Input
-                            key={id}
-                            handleChange={() => handleSelectedSubCategory(id)}
-                            value={id}
-                            title={name}
-                            name="subCategory"
-                        />
-                    )) : <Typography sx={{
-                        textAlign: "center",
-                        fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" },
-                        maxWidth: "80%", margin: "auto"
-                    }}>{t('wait-sub-categories')}</Typography>}
-                </div>
-                {/* </label> */}
+                )) : <Typography sx={{
+                    textAlign: "center",
+                    fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" },
+                    maxWidth: "80%", margin: "auto"
+                }}>{t('wait-sub-categories')}</Typography>}
             </div>
-        </div>
+            {/* </label> */}
+        </FilteringBox>
     );
 }
 

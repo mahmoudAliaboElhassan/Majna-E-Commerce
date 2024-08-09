@@ -146,6 +146,7 @@ function Header() {
                     sm: "1.75em",
                     md: "2em",
                   },
+                  fontStyle: "normal",
                   whiteSpace: "nowrap",
                 }}
               >
@@ -163,7 +164,9 @@ function Header() {
                 initial={{ y: "-100vh" }}
                 animate={{ y: 0 }}
               >
-                <AppbarHeader>{t("website-title")}</AppbarHeader>
+                <AppbarHeader sx={{
+                  fontStyle: "normal"
+                }}>{t("website-title")}</AppbarHeader>
               </motion.div>
               {role === "customer" && (
                 <>

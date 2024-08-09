@@ -8,6 +8,8 @@ import UseInitialValues from "@utils/use-initial-values";
 import UseFormValidation from "@formValidation/use-form-validation";
 import UseThemeMode from "@hooks/use-theme";
 import Typography from "@mui/material/Typography";
+import { FilteringBox } from "@styles/products";
+
 
 const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
   const { INITIAL_FORM_STATE_PRICES } = UseInitialValues();
@@ -15,18 +17,9 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
   const { t } = useTranslation();
   const { themeMode } = UseThemeMode();
   return (
-    <div
-      style={{
-        marginTop: "20px",
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "70%",
-        // borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
-        paddingBottom: "20px",
-      }}
-    >
+    <FilteringBox>
       <Typography
-        sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
+        sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" }, textAlign: "center" }}
         className="sidebar-title"
       >
         {t("price")}
@@ -55,7 +48,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
               helperText={touched.priceFrom && errors.priceFrom}
               variant="outlined"
               margin="normal"
-              fullWidth
+            // fullWidth
             />
             <TextField
               name="priceTo"
@@ -71,7 +64,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
               helperText={touched.priceTo && errors.priceTo}
               variant="outlined"
               margin="normal"
-              fullWidth
+            // fullWidth
             />
             <Button
               type="submit"
@@ -83,7 +76,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
           </Form>
         )}
       </Formik>
-    </div>
+    </FilteringBox>
   );
 };
 

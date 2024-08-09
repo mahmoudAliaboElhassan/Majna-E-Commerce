@@ -8,18 +8,15 @@ import Input from "@components/sidebarFiltering/input";
 import UseThemMode from "@hooks/use-theme";
 import { helperStyle } from "@styles/error";
 import { Colors } from "@styles/theme";
+import { FilteringBox } from "@styles/products";
+
 
 function Ordering({ handleOrdering }) {
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
 
   return (
-    <div
-      style={{
-        borderBottom: `1px solid ${themeMode === "dark" ? "white" : "black"}`,
-        paddingBottom: "20px",
-      }}
-    >
+    <FilteringBox>
       {/* <FormControl
         // fullWidth
         variant="outlined"
@@ -42,12 +39,12 @@ function Ordering({ handleOrdering }) {
           <MenuItem value={"-price"}>{t("descending")}</MenuItem>
         </Select>
       </FormControl> */}
-      <Typography
-        sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" } }}
+      < Typography
+        sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" }, textAlign: "center" }}
         className="sidebar-title"
       >
         {t("price-ordering")}
-      </Typography>
+      </ Typography>
 
       <Input
         handleChange={handleOrdering}
@@ -62,7 +59,7 @@ function Ordering({ handleOrdering }) {
         title={t("descending")}
         name="order"
       />
-    </div>
+    </FilteringBox >
   );
 }
 
