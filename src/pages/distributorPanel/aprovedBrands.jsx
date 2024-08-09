@@ -32,7 +32,7 @@ function ApprovedBrands() {
   return (
     <>
       {loadingAuthorized ? (
-        <LoadingFetching>{t("loading-brands")}</LoadingFetching>
+        <LoadingFetching>{t("loading-approved-brands")}</LoadingFetching>
       ) : approvedBrands.length ? (
         <>
           <AppbarHeader >{t("approved-brands")}</AppbarHeader>

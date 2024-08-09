@@ -10,7 +10,9 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
-
+import {
+  getCarts,
+} from "@state/slices/cart";
 import TextFieldWrapper from "@components/formui/textField";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import PasswordField from "@components/formui/passwordField";
@@ -43,7 +45,7 @@ const { INITIAL_FORM_STATE_Login } = UseInitialValues();
 function Login() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { role } = useSelector((state) => state.auth);
+  const { token, role, Uid } = useSelector((state) => state.auth);
   const { FORM_VALIDATION_SCHEMA_Login } = UseFormValidation();
   const { t } = useTranslation();
   const [open_modal, setOpenModal] = useState(false);
@@ -77,6 +79,7 @@ function Login() {
                       .then((data) => {
                         console.log("data in login page");
                         console.log(data);
+                        if (Uid) { dispatch(getCarts({ id: data?.user?.id })); }
                         {
                           toast.success(t("login-success"), {
                             position: "top-right",
@@ -146,10 +149,11 @@ function Login() {
                 >
                   <Form className={classes.formWrapper}>
                     {setTimeout(() => {
-                      role === "reviewer"
-                        ? navigate("/reviewer")
-                        : (role === "distributor" || role === "customer") &&
-                        navigate("/");
+                      token &&
+                        (role === "reviewer"
+                          ? navigate("/reviewer")
+                          : (role === "distributor" || role === "customer") &&
+                          navigate("/"))
                     }, 1000)}
                     <Grid container spacing={2}>
                       <Grid item xs={12}>

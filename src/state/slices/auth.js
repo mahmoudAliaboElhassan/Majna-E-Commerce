@@ -103,6 +103,7 @@ export const authSlice = createSlice({
         localStorage.removeItem("role");
         localStorage.removeItem("expired");
         localStorage.removeItem("userId");
+        localStorage.removeItem("countOfCartItem");
         state.token = "";
         state.role = "";
         state.expireToken = "";

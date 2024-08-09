@@ -69,7 +69,8 @@ function DrawerComponent({ drawerElements }) {
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            width: 250,
+            width: 200,
+            // padding: 10 40,
             [Direction.borderTopRightRadius]: "100px",
             [Direction.borderRight]: "1px solid #100e0e",
             backgroundColor:
@@ -104,7 +105,7 @@ function DrawerComponent({ drawerElements }) {
             }}
           >
             {" "}
-            {role == "customer" && (
+            {token && role == "customer" && (
               <ListItemButton
                 component={Link}
                 to="shooping-cart"
@@ -123,7 +124,9 @@ function DrawerComponent({ drawerElements }) {
                       },
                     }}
                   />
-                  <CartNumber>{countOfCartItems}</CartNumber>
+                  <CartNumber>
+                    {localStorage.getItem("countOfCartItem") && localStorage.getItem("countOfCartItem")}
+                  </CartNumber>
                 </IconButton>{" "}
               </ListItemButton>
             )}

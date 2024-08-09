@@ -97,7 +97,7 @@ function Header() {
         <Toolbar>
           {isMatch ? (
             <>
-              {role === "customer" && (
+              {token && role === "customer" && (
                 <>
                   <IconButton component={Link} to="shooping-cart">
                     <ShoppingCartIcon
@@ -110,7 +110,7 @@ function Header() {
                       }}
                     />
                     <CartNumber className={quantityStyle}>
-                      {countOfCartItems}
+                      {localStorage.getItem("countOfCartItem") && localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
 
@@ -168,7 +168,7 @@ function Header() {
                   fontStyle: "normal"
                 }}>{t("website-title")}</AppbarHeader>
               </motion.div>
-              {role === "customer" && (
+              {token && role === "customer" && (
                 <>
                   <IconButton component={Link} to="shooping-cart">
                     <ShoppingCartIcon
@@ -181,7 +181,7 @@ function Header() {
                       }}
                     />
                     <CartNumber className={quantityStyle}>
-                      {countOfCartItems}
+                      {localStorage.getItem("countOfCartItem") && localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
 

@@ -56,6 +56,7 @@ const cart = createSlice({
       })
       .addCase(getCarts.pending, (state, action) => {
         state.loadingCarts = true;
+        // state.countOfCartItems = 0;
       })
       .addCase(getCarts.fulfilled, (state, action) => {
         state.loadingCarts = false;
