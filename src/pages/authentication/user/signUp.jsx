@@ -52,6 +52,7 @@ function SignUp() {
               validationSchema={FORM_VALIDATION_SCHEMA_SignUp}
               onSubmit={(values) => {
                 console.log(values);
+                console.log(localStorage.getItem("type"))
                 dispatch(
                   signUp({
                     username: values.username,

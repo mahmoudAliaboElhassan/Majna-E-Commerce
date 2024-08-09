@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import {
   Typography,
   Button,
@@ -16,7 +15,6 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-
 import UseMediaQueryHook from "@hooks/use-media-query";
 
 function ModalSignup({ open_modal, close }) {
@@ -26,10 +24,16 @@ function ModalSignup({ open_modal, close }) {
   const [typeLabel, setTypeLabel] = useState(t("customer"));
 
   const handleTypeChange = (event) => {
-    setType(event.target.value);
-    setTypeLabel(t(event.target.value));
+    const selectedType = event.target.value;
+    setType(selectedType);
+    setTypeLabel(t(selectedType));
   };
-  localStorage.setItem("type", type);
+
+  useEffect(() => {
+    localStorage.setItem("type", type);
+    console.log(localStorage.getItem("type"))
+  }, [type]);
+
   const { isMatch } = UseMediaQueryHook();
 
   const style = {
@@ -39,7 +43,6 @@ function ModalSignup({ open_modal, close }) {
     transform: "translate(-50%, -50%)",
     width: isMatch ? "auto" : "80%",
     height: isMatch ? "auto" : "80%",
-
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
@@ -48,6 +51,7 @@ function ModalSignup({ open_modal, close }) {
     alignItems: "center",
     justifyContent: "center",
   };
+
   return (
     <Modal
       open={open_modal}
@@ -111,7 +115,6 @@ function ModalSignup({ open_modal, close }) {
                   </Card>
                 </Grid>
                 <Grid item xs={12} md={12} lg={12}>
-                  {" "}
                   <Button
                     variant="contained"
                     color="primary"

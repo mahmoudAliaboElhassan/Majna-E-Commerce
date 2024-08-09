@@ -43,7 +43,8 @@ function ShoppingCart() {
       dispatch(cleanUpCartItems());
     };
   }, [dispatch, countOfCartItems, Uid, cartQuantity]);
-
+  console.log("countOfCartItems")
+  console.log(countOfCartItems !== 0)
   const { t } = useTranslation();
   const { FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY } = UseFormValidation();
   console.log("loadingEditCartQuantity");
@@ -254,7 +255,7 @@ function ShoppingCart() {
       <Container>
         {loadingCarts ? (
           <LoadingFetching>{t("wait-carts")}</LoadingFetching>
-        ) : countOfCartItems ? (
+        ) : countOfCartItems !== "0" ? (
           <>
             <AppbarHeader data-aos="fade-up">{t('product-added-to-cart')}</AppbarHeader>
             <DataGrid

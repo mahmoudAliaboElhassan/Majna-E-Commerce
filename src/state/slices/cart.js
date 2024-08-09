@@ -98,7 +98,11 @@ const cart = createSlice({
       .addCase(postCart.fulfilled, (state, action) => {
         state.loadingPostCart = false;
         console.log("action?.meta?.arg?.quantity");
-        state.countOfCartItems += 1;
+        localStorage.setItem(
+          "countOfCartItem",
+          localStorage.getItem("countOfCartItem") + 1
+        );
+        state.countOfCartItems = localStorage.getItem("countOfCartItem");
       })
       .addCase(postCart.rejected, (state, action) => {
         state.loadingPostCart = false;

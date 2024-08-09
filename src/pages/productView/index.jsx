@@ -220,7 +220,7 @@ function ProductInformation() {
                 <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                   {album_items?.length > 1 && album_items?.map(({ url }, idx) => (
                     <Box key={idx} sx={{ m: 1 }}>
-                      <input name="image" type="radio" value={idx} id={`image- ${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
+                      <input name="image" type="radio" value={idx} id={`image-${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
                       <label htmlFor={`image-${idx}`} style={{ cursor: "pointer" }}>
                         <img src={url} alt={`Thumbnail ${idx}`}
                           style={{
