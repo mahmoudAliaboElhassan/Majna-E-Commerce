@@ -21,6 +21,7 @@ import { getSpecifiedProduct, cleanUpGetSpecifiedProduct } from "@state/slices/p
 import { postCart, postFavorite } from "@state/slices/cart";
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
+import UseDirection from "@hooks/use-direction";
 import teamImage from "@assets/team";
 import { Colors } from "@styles/theme";
 
@@ -28,6 +29,7 @@ function ProductInformation() {
   const dispatch = useDispatch();
   const { productId } = useParams();
   const { themeMode } = UseThemMode();
+  const { Direction } = UseDirection();
   const { Uid } = useSelector((state) => state.auth);
   const { loadingPostCart, loadingAddtoFavorite } = useSelector((state) => state.cart);
   const { t } = useTranslation();
@@ -183,7 +185,11 @@ function ProductInformation() {
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <span style={{ fontWeight: "700" }}>{t("product-subCategory")} </span>
-                    {sub_category}
+                    <span style={{
+                      textAlign: `${[Direction.right]}`
+                    }}>
+                      {sub_category}
+                    </span>
                   </Typography>
                   <Typography variant="h6" component="p" gutterBottom
                     // sx={{
@@ -206,13 +212,15 @@ function ProductInformation() {
                     sx={{ display: "flex", justifyContent: "space-between" }}
                   >
                     <span style={{ fontWeight: "700" }}>{t("data-added")} </span>
-                    {added_at}
+                    <span style={{
+                      textAlign: `${[Direction.right]}`
+                    }}>  {added_at}</span>
                   </Typography>
                 </CardContent>
                 <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
                   {album_items?.length > 1 && album_items?.map(({ url }, idx) => (
                     <Box key={idx} sx={{ m: 1 }}>
-                      <input name="image" type="radio" value={idx} id={`image-${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
+                      <input name="image" type="radio" value={idx} id={`image- ${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
                       <label htmlFor={`image-${idx}`} style={{ cursor: "pointer" }}>
                         <img src={url} alt={`Thumbnail ${idx}`}
                           style={{
