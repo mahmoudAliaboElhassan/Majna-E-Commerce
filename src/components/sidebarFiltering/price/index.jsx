@@ -17,7 +17,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
   const { t } = useTranslation();
   const { themeMode } = UseThemeMode();
   return (
-    <FilteringBox>
+    <FilteringBox style={{ padding: "10px 15px" }}>
       <Typography
         sx={{ fontSize: { xs: "15px", sm: "18px", md: "21px", lg: "24px" }, textAlign: "center" }}
         className="sidebar-title"
@@ -76,7 +76,7 @@ const Price = ({ handlePriceChange, priceFromTo, handleClickPrice }) => {
           </Form>
         )}
       </Formik>
-    </FilteringBox>
+    </FilteringBox >
   );
 };
 
