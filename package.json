@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^7.1.0",
-    "@cyntler/react-doc-viewer": "^1.14.1",
+    "@cyntler/react-doc-viewer": "^1.16.6",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/montez": "^5.0.17",

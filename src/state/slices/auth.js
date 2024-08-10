@@ -92,11 +92,11 @@ export const authSlice = createSlice({
       })
 
       .addCase(logOut.pending, (state, action) => {
-        state.loading = true; // Fix the typo here
+        state.loadingLogOut = true; // Fix the typo here
         state.error = false;
       })
       .addCase(logOut.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loadingLogOut = false;
         state.error = false;
         localStorage.removeItem("token");
         localStorage.removeItem("type");
@@ -111,7 +111,7 @@ export const authSlice = createSlice({
       })
       .addCase(logOut.rejected, (state, action) => {
         state.error = action.payload;
-        state.loading = false;
+        state.loadingLogOut = false;
       })
       .addCase(changePassword.pending, (state, action) => {
         state.loading = true;

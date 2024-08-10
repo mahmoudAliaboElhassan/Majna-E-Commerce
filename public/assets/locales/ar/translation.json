@@ -243,5 +243,7 @@
   "data-added": "وقت الإضافة",
   "role": "نوع الحساب",
   "product-category": "نوع المنتج",
-  "product-subCategory": "نوع المنتج الفرعي"
+  "product-subCategory": "نوع المنتج الفرعي",
+  "view-brand":"عرض العلامه التجاريه",
+  "request-date":"وقت إضافة العلامه"
 }

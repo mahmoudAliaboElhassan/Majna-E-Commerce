@@ -2,13 +2,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 import { majnAPI } from "@state/API/global-api";
 
-export const getBrandsPyPage = createAsyncThunk(
-  "reviewrSlice/getBrandsPyPage",
-  async ({ page }, thunkAPI) => {
+export const getBrandsReviewer = createAsyncThunk(
+  "reviewrSlice/getBrandsReviewer",
+  async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
       const res = await majnAPI.get(
-        `api/brands-applications?page=${page}`
+        `api/brands-applications`
         // {
         // headers: {
         //   "Content-Type": "application/json",

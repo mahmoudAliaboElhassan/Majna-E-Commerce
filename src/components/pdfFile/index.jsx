@@ -12,6 +12,8 @@ import { PdfContainer } from "@styles/reviewer";
 import UseThemMode from "@hooks/use-theme";
 import { Colors } from "@styles/theme";
 import ImageUploader from "@components/formui/multipleImages";
+import jadwalPdf from './jadwal.pdf';
+
 
 const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
   const { t } = useTranslation();
@@ -22,7 +24,7 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
   const docs = [
     { uri: fileAuthorize, fileType: "pdf", fileName: t("authorizeDocument") }, // Remote file
     { uri: fileIdntity, fileType: "pdf", fileName: t("idDocument") }, // Remote file
-    // { uri: require("./files/jadwal.pdf"), fileType: "pdf" }, // Local File}
+    { uri: jadwalPdf, fileType: "pdf" }, // Local File}
     // {
     //   uri: require("./files/mahmoud.pdf"),
     //   fileType: "pdf",
@@ -57,7 +59,7 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
       <ImageUploader /> */}
       <DocViewer
         documents={docs}
-        // initialActiveDocument={initialActiveDocument}
+        initialActiveDocument={docs[0]}
         pluginRenderers={DocViewerRenderers}
         stye={{ height: "100vh" }}
       />

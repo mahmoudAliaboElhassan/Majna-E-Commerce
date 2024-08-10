@@ -40,7 +40,7 @@ function Team() {
             ref={ref1}
             initial={{ y: isMatch ? -50 : 0, x: isMatch ? 0 : -50, opacity: 0 }}
             animate={inView1 ? { y: isMatch ? 0 : 0, x: isMatch ? 0 : 0, opacity: 1 } : {}}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: isMatch ? 1 : 1.5 }}
           >
             <Card sx={{ maxWidth: "100%" }}>
               <CardActionArea>
@@ -97,7 +97,7 @@ function Team() {
             ref={ref2}
             initial={{ y: isMatch ? 50 : 0, x: isMatch ? 0 : 50, opacity: 0 }}
             animate={inView2 ? { y: isMatch ? 0 : 0, x: isMatch ? 0 : 0, opacity: 1 } : {}}
-            transition={{ duration: isMatch ? 1 : 0.5 }}
+            transition={{ duration: isMatch ? 2 : 1.5 }}
           >
             <Card sx={{ maxWidth: "100%" }}>
               <CardActionArea>

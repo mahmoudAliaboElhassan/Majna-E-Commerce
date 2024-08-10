@@ -3,21 +3,20 @@ import React, { useCallback, useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@material-ui/core";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import PaginationComponent from "@components/pagination";
-import { getBrandsPyPage, cleanUpBrandsByPage } from "@state/slices/reviewer";
+import { getBrandsReviewer, cleanUpBrandsReviewer } from "@state/slices/reviewer";
 import LoadingFetching from "@components/loadingFetching";
 import { DataGridContainer } from "@styles/dataGrid"
+import UseThemeMode from "@hooks/use-theme";
+
 
 
 function IndexReviewer() {
-  const [page, setPage] = useState(1);
+  const { themeMode } = UseThemeMode();
   const { t } = useTranslation();
-  const changePage = useCallback((e, value) => {
-    setPage(value);
-  }, []);
   const dispatch = useDispatch();
 
   const { allBrans, loadingReviewer, countOfBrands } = useSelector(
@@ -25,27 +24,51 @@ function IndexReviewer() {
   );
 
   useEffect(() => {
-    dispatch(getBrandsPyPage({ page }));
+    dispatch(getBrandsReviewer());
     return () => {
-      dispatch(cleanUpBrandsByPage())
+      dispatch(cleanUpBrandsReviewer())
     }
-  }, [page]);
+  }, []);
   const columns = [
-    { field: "id", headerName: t("id"), width: 100 },
+    {
+      field: "id", headerName: t("id"), width: 100, headerAlign: 'center',
+      align: 'center',
+    },
     {
       field: "brand",
       headerName: t("brand_name"),
-      width: 150,
+      width: 150, headerAlign: 'center',
+      align: 'center',
+    },
+    {
+      field: "requestDate",
+      headerName: t("request-date"),
+      width: 150, headerAlign: 'center',
+      align: 'center',
+      flex: 1
+    },
+    {
+      field: "view",
+      headerName: t("view-brand"),
+      width: 150, headerAlign: 'center',
+      align: 'center',
+      flex: 1,
       renderCell: (params) => (
-        <Link to={`brand/${params.row.id}`}>{params.value}</Link>
+        <Button component={Link}
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="success"
+          to={`brand/${params.row.id}`}>{params.value}
+        </Button>
       ),
     },
   ];
 
   // Transform allBrands data into rows for the DataGrid
-  const rows = allBrans.map(({ id, brand }) => ({
+  const rows = allBrans.map(({ id, brand, request_date }) => ({
     id: id,
     brand: brand,
+    view: t('view'),
+    requestDate: new Date(request_date),
   }));
   return (
     <>
@@ -71,11 +94,6 @@ function IndexReviewer() {
                 rowHeight={120}
               />
 
-              <PaginationComponent
-                page={page}
-                count={50}
-                changePage={changePage}
-              />
             </DataGridContainer>
           ) : (
             <Typography style={{ fontSize: "18px" }}>

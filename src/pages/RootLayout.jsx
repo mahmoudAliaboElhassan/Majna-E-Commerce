@@ -29,6 +29,7 @@ import Footer from "@components/footer";
 import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
 import { logOut } from "@state/slices/auth";
+import LogOutLoader from "@components/logOutLoader";
 
 // Configure JSS
 const jss = create({
@@ -41,7 +42,7 @@ function RootLayout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { mymode } = useSelector((state) => state.mode);
-  const { expireToken, token, role } = useSelector((state) => state.auth);
+  const { expireToken, token, role, loadingLogOut } = useSelector((state) => state.auth);
   useEffect(() => {
     document.title = t("website-title");
     AOS.init({
@@ -121,6 +122,9 @@ function RootLayout() {
         <CssBaseline />
         <Header />
         <div style={{ height: "20px" }}></div>
+        {loadingLogOut && (
+          <LogOutLoader />
+        )}
         <Outlet />
         <Footer />
 

@@ -242,5 +242,7 @@
   "data-added": "Added At",
   "role": "User Role",
   "product-category": "Product Category",
-  "product-subCategory": "Product Subcategory"
+  "product-subCategory": "Product Subcategory",
+  "view-brand":"View Brand",
+  "request-date":"Request Date"
 }

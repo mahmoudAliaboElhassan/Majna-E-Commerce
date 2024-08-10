@@ -18,6 +18,7 @@ function UseInitialStates() {
     Uid: localStorage.getItem("userId"),
     role: localStorage.getItem("role"),
     expireToken: localStorage.getItem("expired"),
+    loadingLogOut: false,
   };
 
   const initialStateDistributor = {

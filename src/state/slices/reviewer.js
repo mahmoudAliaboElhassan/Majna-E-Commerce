@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "@hooks/use-initial-state";
 import {
-  getBrandsPyPage,
+  getBrandsReviewer,
   getSpecificBrand,
   UpdateBrandStatus,
 } from "@state/act/actReviewer";
@@ -17,18 +17,18 @@ export const reviewrSlice = createSlice({
       state.authorizationDocument = null;
       state.identityDocument = null;
     },
-    cleanUpBrandsByPage: (state) => {
+    cleanUpBrandsReviewer: (state) => {
       state.allBrans = [];
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getBrandsPyPage.pending, (state, action) => {
+      .addCase(getBrandsReviewer.pending, (state, action) => {
         // state.loadingFetch = true;
         // state.error = false;
         state.loadingReviewer = true;
       })
-      .addCase(getBrandsPyPage.fulfilled, (state, action) => {
+      .addCase(getBrandsReviewer.fulfilled, (state, action) => {
         // state.loading = false;
         // state.error = false;
         // state.loadingFetch = false;
@@ -41,7 +41,7 @@ export const reviewrSlice = createSlice({
         // state.brands = action.payload.brands;
         // console.log(state.brands);
       })
-      .addCase(getBrandsPyPage.rejected, (state, action) => {
+      .addCase(getBrandsReviewer.rejected, (state, action) => {
         // state.loadingFetch = false;
         // state.error = action.payload;
         // state.loading = false;
@@ -97,6 +97,6 @@ export const reviewrSlice = createSlice({
 });
 
 export default reviewrSlice.reducer;
-export const { cleanUpSpecifiedBrand, cleanUpBrandsByPage } =
+export const { cleanUpSpecifiedBrand, cleanUpBrandsReviewer } =
   reviewrSlice.actions;
-export { getBrandsPyPage, getSpecificBrand, UpdateBrandStatus };
+export { getBrandsReviewer, getSpecificBrand, UpdateBrandStatus };
