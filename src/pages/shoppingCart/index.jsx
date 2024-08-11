@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import CartItem from "@components/cart/carItem";
 import CartListProducts from "@components/cart/cartListProducts";
@@ -16,15 +18,15 @@ import {
   cleanUpCartItems,
   deleteCartItem,
 } from "@state/slices/cart";
+import Footer from "@components/footer";
 import LoadingFetching from "@components/loadingFetching";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
 import UseFormValidation from "@formValidation/use-form-validation";
 import { helperStyle } from "@styles/error";
 import { AppbarHeader } from "@styles/appbar";
 import { DataGridContainer } from "@styles/dataGrid"
 import UseThemMode from "@hooks/use-theme";
 import "@pages/shoppingCart/style.css"
+
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -250,35 +252,38 @@ function ShoppingCart() {
     edit: t("edit"),
   }));
   return (
-    <Box sx={{ p: 2 }}>
-      {/* <ToastContainer /> */}
-      <Container>
-        {loadingCarts ? (
-          <LoadingFetching>{t("wait-carts")}</LoadingFetching>
-        ) : countOfCartItems !== "0" ? (
-          <>
-            <AppbarHeader data-aos="fade-up">{t('product-added-to-cart')}</AppbarHeader>
-            <DataGrid
-              rows={rows}
-              columns={columns}
-              initialState={{
-                pagination: {
-                  paginationModel: {
-                    pageSize: 5,
+    <>
+      <Box sx={{ p: 2 }}>
+        {/* <ToastContainer /> */}
+        <Container>
+          {loadingCarts ? (
+            <LoadingFetching>{t("wait-carts")}</LoadingFetching>
+          ) : countOfCartItems !== "0" ? (
+            <>
+              <AppbarHeader data-aos="fade-up">{t('product-added-to-cart')}</AppbarHeader>
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 5,
+                    },
                   },
-                },
-              }}
-              pageSizeOptions={[5, 10, 15, 20]}
-              checkboxSelection
-              disableRowSelectionOnClick
-              rowHeight={120}
-            />
-          </>
-        ) : (
-          <div>{t("no-carts")}</div>
-        )}
-      </Container>
-    </Box>
+                }}
+                pageSizeOptions={[5, 10, 15, 20]}
+                checkboxSelection
+                disableRowSelectionOnClick
+                rowHeight={120}
+              />
+            </>
+          ) : (
+            <div>{t("no-carts")}</div>
+          )}
+        </Container>
+      </Box>
+      <Footer />
+    </>
   );
 }
 

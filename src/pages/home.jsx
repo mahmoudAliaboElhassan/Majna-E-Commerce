@@ -21,6 +21,7 @@ import Introductory from "@components/introductory";
 import ProductTypesSidebar from "@components/sidebarFiltering";
 import LoadingFetching from "@components/loadingFetching";
 import Search from "@components/search";
+import Footer from "@components/footer";
 
 function Home() {
   const [page, setPage] = useState(1);
@@ -151,7 +152,7 @@ function Home() {
       // handleSearchClick={handleSearchClick}
       />
 
-      <Grid container style={{ overflow: "hidden" }}>
+      <Grid container style={{ overflow: "hidden", marginBottom: "-16px" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
             handlePriceChange={handlePriceChange}
@@ -190,6 +191,7 @@ function Home() {
         </Grid>
 
       </Grid>
+      <Footer />
     </>
   );
 }

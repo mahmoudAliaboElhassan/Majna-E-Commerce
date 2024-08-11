@@ -247,5 +247,6 @@
   "view-brand": "View Brand",
   "request-date": "Request Date",
   "wait-logout": "Wait for Log Out Processing ...",
-  "logOut-success": "You have Logged Out Successfully !"
+  "logOut-success": "You have Logged Out Successfully !",
+  "status": "Brand Status"
 }

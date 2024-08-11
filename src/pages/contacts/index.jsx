@@ -19,6 +19,8 @@ import TextFieldWrapper from "@components/formui/textField";
 import SelectComp from "@components/formui/Select";
 import ContactInfo from "@components/contactInfo";
 import UseFormValidation from "@formValidation/use-form-validation";
+import Footer from "@components/footer";
+
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -163,6 +165,8 @@ function Contacts() {
           </Grid>
         </Grid>
       </Container>
+      <Footer />
+
     </>
   );
 }

@@ -24,6 +24,8 @@ import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
 import teamImage from "@assets/team";
 import { Colors } from "@styles/theme";
+import Footer from "@components/footer";
+
 
 function ProductInformation() {
   const dispatch = useDispatch();
@@ -257,6 +259,7 @@ function ProductInformation() {
         </Container >
       )
       }
+      <Footer />
     </>
   );
 }

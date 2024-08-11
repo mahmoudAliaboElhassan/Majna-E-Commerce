@@ -21,9 +21,13 @@ function Footer() {
   const { token } = useSelector((state) => state.auth);
   const closeModal = useCallback(() => toggle(false), []);
   const handleShow = (element, index, array) => {
-    index === array.length - 1 && token
-      ? element?.click()
-      : toggle();
+    if (index === array.length - 1) {
+      if (token) {
+        element?.click();
+      } else {
+        toggle();
+      }
+    }
   };
   const location = useLocation();
   const locationPath = location.pathname.split("/")[1]
@@ -31,55 +35,50 @@ function Footer() {
   console.log(locationPath)
   return (
     <>
-      {locationPath != "distributor-control-panel"
-        &&
-        <>
-          <CardFooter raised>
-            <Container maxWidth="md">
-              <Grid container>
-                {allElements.map((el, idx, array) => (
-                  <Grid
-                    item
-                    key={idx}
-                    xs={12}
-                    sm={6}
-                    md={4}
-                    sx={{
-                      mb: 1,
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      color: "white"
-                    }}
-                  >
-                    <StyledLinkItem
-                      {...el}
-                      onClick={() => handleShow(el, idx, array)}
-                    >
-                      {el.label}
-                    </StyledLinkItem>
-                  </Grid>
-                ))}
-
-                <Grid
-                  item
-                  xs={12}
-                  sm={12}
-                  md={12}
-                  sx={{ borderTop: "2px solid white", paddingTop: 3 }}
+      <CardFooter raised>
+        <Container maxWidth="md">
+          <Grid container>
+            {allElements.map((el, idx, array) => (
+              <Grid
+                item
+                key={idx}
+                xs={12}
+                sm={6}
+                md={4}
+                sx={{
+                  mb: 1,
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "white"
+                }}
+              >
+                <StyledLinkItem
+                  {...el}
+                  onClick={() => handleShow(el, idx, array)}
                 >
-                  <AppbarHeader sx={{ position: "relative", zIndex: "9999" }}>
-                    {t("made-with")} &copy; {year}
-                  </AppbarHeader>
-                </Grid>
+                  {el.label}
+                </StyledLinkItem>
               </Grid>
-            </Container>
-          </CardFooter>
-          <ModalSignup open_modal={open_modal} close={closeModal} />
-        </>
-      }
+            ))}
+
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={12}
+              sx={{ borderTop: "2px solid white", paddingTop: 3 }}
+            >
+              <AppbarHeader sx={{ position: "relative", zIndex: "9999" }}>
+                {t("made-with")} &copy; {year}
+              </AppbarHeader>
+            </Grid>
+          </Grid>
+        </Container>
+      </CardFooter>
+      <ModalSignup open_modal={open_modal} close={closeModal} />
     </>
   );
 }
 
-export default withGuard(Footer);
+export default (Footer);

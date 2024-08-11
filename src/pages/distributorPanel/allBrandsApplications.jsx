@@ -53,6 +53,7 @@ function AllBrandsApplications() {
       headerName: t("status"),
       headerAlign: 'center',
       align: 'center',
+      flex: 1
     },
     {
       field: "date",

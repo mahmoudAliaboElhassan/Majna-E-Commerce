@@ -117,7 +117,6 @@ function RootLayout() {
           <div style={{ height: "20px" }}></div>
           <ToastContainer />
           <Outlet />
-          <Footer />
         </div>
         {loadingLogOut && (
           <div

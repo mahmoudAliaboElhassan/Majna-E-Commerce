@@ -37,6 +37,7 @@ const ScrollToTopButton = () => {
           bottom: showButton ? 10 : -50,
           right: 20,
           transition: "bottom 0.6s",
+          zIndex: "999"
         }}
       >
         <ScrollButton

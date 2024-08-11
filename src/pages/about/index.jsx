@@ -7,6 +7,7 @@ import QuestionsAnswers from "@components/faq";
 import { AppbarHeader } from "@styles/appbar";
 import UseMediaQueryHook from "@hooks/use-media-query";
 import Team from "@components/team";
+import Footer from "@components/footer";
 
 function About() {
   const location = useLocation();
@@ -19,6 +20,8 @@ function About() {
       <AppbarHeader data-aos="fade-up">{t("important-questions")}</AppbarHeader>
       <QuestionsAnswers />
       <Team />
+      <Footer />
+
       {/* <div>الحمد لله تم إسترجاع البيانات</div> */}
     </>
   );
