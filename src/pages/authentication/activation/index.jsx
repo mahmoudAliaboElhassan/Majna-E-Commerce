@@ -50,7 +50,7 @@ function ActivationAccount() {
               confirmButtonText: t("ok"),
             }).then((result) => {
               if (result.isConfirmed) {
-                dispatch(ResendConfirmation({ email:localStorage.getItem("email") }))
+                dispatch(ResendConfirmation({ email: localStorage.getItem("email") }))
                   .unwrap()
                   .then(() => {
                     {
@@ -90,7 +90,7 @@ function ActivationAccount() {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       {loading && !error && (
         <LoadingFetching>{t("activating")}</LoadingFetching>
       )}

@@ -21,6 +21,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import ScrollToTopButton from "@components/scroll";
 import Header from "@components/header";
@@ -113,6 +115,7 @@ function RootLayout() {
         <div style={{ opacity: loadingLogOut ? "0.2" : "1", position: "relative", overflow: loadingLogOut ? "hidden" : "auto", pointerEvents: loadingLogOut ? "none" : "auto", userSelect: loadingLogOut ? "none" : "auto" }}>
           <Header />
           <div style={{ height: "20px" }}></div>
+          <ToastContainer />
           <Outlet />
           <Footer />
         </div>

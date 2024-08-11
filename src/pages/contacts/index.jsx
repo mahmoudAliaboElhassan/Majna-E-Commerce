@@ -93,7 +93,7 @@ function Contacts() {
     <>
       <AppbarHeader data-aos="fade-up">{t("contact-us")}</AppbarHeader>
       <Container className={classes.formWrapper}>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6} md={6} lg={6}>
             <Typography style={{ marginBottom: "8px", textAlign: 'center', opacity: "0.8" }} variant="h5">{t('contact-message')}</Typography>

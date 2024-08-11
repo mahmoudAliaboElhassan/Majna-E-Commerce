@@ -145,7 +145,7 @@ function ProductInformation() {
                 />
               </Grid>
               <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                <ToastContainer />
+                {/* <ToastContainer /> */}
                 {/* <CardActionArea sx={{ height: "100%" }}> */}
                 <CardContent>
                   <Typography gutterBottom variant="h4" component="div" sx={{

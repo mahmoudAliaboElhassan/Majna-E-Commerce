@@ -333,7 +333,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4} key={id}>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <motion.div
         ref={ref}
         initial={{ x: 50, opacity: 0 }}

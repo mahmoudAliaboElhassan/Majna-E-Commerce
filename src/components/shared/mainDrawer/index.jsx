@@ -97,6 +97,8 @@ function MainDrawer({ open, handleClose, elements }) {
                     color: locationPath === el.to ? "bold" : "normal",
                     borderBottom:
                       locationPath === el.to ? "2px solid white" : "none",
+                    textAlign: `${[Direction.left]}`,
+                    width: "fit-content"
                   }}
                 />
               </ListItemButton>

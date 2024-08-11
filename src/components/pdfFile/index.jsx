@@ -58,7 +58,7 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
         documents={docs}
         initialActiveDocument={docs[0]}
         pluginRenderers={DocViewerRenderers}
-        stye={{ height: "100vh" }}
+      // stye={{ height: "100vh" }}
       />
     </>
   );

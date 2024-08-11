@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import {
   UpdateBrandStatus,
@@ -112,7 +112,7 @@ function BrnadApplication() {
 
   return (
     <>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       {loadingSpecificBrand ? (
         <LoadingFetching>{t("loading_Single_brand")}</LoadingFetching>
       ) : (
@@ -200,7 +200,7 @@ function BrnadApplication() {
                 >
                   {t("reject_application")}
                 </Button>
- 
+
               </Box>
             </>
           )}

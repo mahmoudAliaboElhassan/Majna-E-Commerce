@@ -251,7 +251,7 @@ function ShoppingCart() {
   }));
   return (
     <Box sx={{ p: 2 }}>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       <Container>
         {loadingCarts ? (
           <LoadingFetching>{t("wait-carts")}</LoadingFetching>

@@ -48,7 +48,7 @@ function ChangePassword() {
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm" className={classes.containerWrapper}>
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <Card raised>
           <Container maxWidth="md">
             <Grid container>
@@ -141,12 +141,12 @@ function ChangePassword() {
                       </Grid>
                       <Grid item xs={12} style={{ textAlign: "center" }}>
                         <AuthLink>
-                        <Typography
-                          component={Link}
-                          onClick={() => dispatch(logOut())}
-                        >
-                          {t("logout")}
-                        </Typography>{" "}
+                          <Typography
+                            component={Link}
+                            onClick={() => dispatch(logOut())}
+                          >
+                            {t("logout")}
+                          </Typography>{" "}
                         </AuthLink>
                       </Grid>
                     </Grid>{" "}
@@ -161,4 +161,4 @@ function ChangePassword() {
   );
 }
 
-export default   (ChangePassword);
+export default (ChangePassword);

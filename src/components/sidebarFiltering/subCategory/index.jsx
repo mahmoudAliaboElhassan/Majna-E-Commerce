@@ -57,7 +57,7 @@ function SubCategory({
                     textAlign: "center",
                     fontSize: { xs: "10px", sm: "12px", md: "14px", lg: "20px" },
                     maxWidth: "80%", margin: "auto"
-                }}>{t('wait-sub-categories')}</Typography>}
+                }}>{t('wait-sub-catogeries')}</Typography>}
             </div>
             {/* </label> */}
         </FilteringBox>

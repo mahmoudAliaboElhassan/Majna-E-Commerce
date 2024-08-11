@@ -42,7 +42,7 @@ function SignUp() {
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm">
-        <ToastContainer />
+        {/* <ToastContainer /> */}
         <Grid container>
           <Grid item={12}>
             <Formik

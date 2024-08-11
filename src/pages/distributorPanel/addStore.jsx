@@ -75,7 +75,7 @@ function AddStore() {
 
       {!loadingGovernaces && governance.length ? (
         <Container maxWidth="sm">
-          <ToastContainer />
+          {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">
               <Grid

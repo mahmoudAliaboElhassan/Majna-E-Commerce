@@ -215,6 +215,7 @@
   "sent-success": "Your Message has been Successfully sent ",
   "error-sending-message": "Error Sending this Message",
   "wait-catogeries": "Wait for all Categories to Load ...",
+  "wait-sub-catogeries": "Wait for all  Sub Categories to Load ...",
   "mahmoud-contact": "Mahmoud Contact Info",
   "mohammed-contact": "Mohammed Contact Info",
   "phone": "Phone Number",
@@ -245,5 +246,6 @@
   "product-subCategory": "Product Subcategory",
   "view-brand": "View Brand",
   "request-date": "Request Date",
-  "wait-logout": "Wait for Log Out Processing ..."
+  "wait-logout": "Wait for Log Out Processing ...",
+  "logOut-success": "You have Logged Out Successfully !"
 }
