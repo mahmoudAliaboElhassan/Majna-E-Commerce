@@ -24,7 +24,7 @@ const Search = ({ headerColor }) => {
     const inputValue = value || event.target.value;
     setMySearch(inputValue);
     dispatch(handleSearchChange(inputValue));
-    if (inputValue === undefined) {
+    if (!inputValue) {
       setMySearch("");
       dispatch(handleSearchChange(""));
       dispatch(handleSearchValue(""));
