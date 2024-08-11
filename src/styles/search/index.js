@@ -76,6 +76,7 @@ export const SearchBox = styled(Box)(({ theme }) => ({
   marginRight: 1,
   flex: 1,
   borderRadius: "3px",
+  overflow: "hidden",
 }));
 
 export const StyledAutocomplete = styled(Autocomplete)(({ theme }) => ({

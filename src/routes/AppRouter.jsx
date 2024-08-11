@@ -83,7 +83,6 @@ const RootReviewerLayout = React.lazy(() =>
 
 const IndexReviewer = React.lazy(() => import("@pages/reviewer/index"));
 
-const Profile = React.lazy(() => import("@pages/reviewer/profile"));
 const BrnadApplication = React.lazy(() =>
   import("@pages/reviewer/brnadApplication")
 );
@@ -319,14 +318,6 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <IndexReviewer />
-              </Suspense>
-            ),
-          },
-          {
-            path: "profile",
-            element: (
-              <Suspense fallback={<Loader />}>
-                <Profile />
               </Suspense>
             ),
           },
