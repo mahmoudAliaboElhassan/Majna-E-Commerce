@@ -249,5 +249,7 @@
   "wait-logout": "Wait for Log Out Processing ...",
   "logOut-success": "You have Logged Out Successfully !",
   "status": "Brand Status",
-  "logout": "Log Out"
+  "logout": "Log Out",
+  "all-addresses": "All Addresses",
+  "add-address": "Add Address"
 }

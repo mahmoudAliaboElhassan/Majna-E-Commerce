@@ -84,6 +84,9 @@ function UseInitialStates() {
     searchChage: null,
     searchValue: null,
   };
+  const initialStateUser = {
+    loadingGetAddresses: false,
+  };
 
   return {
     initialStateMode,
@@ -93,8 +96,8 @@ function UseInitialStates() {
     initialStateActiveLinks,
     initialStateProducts,
     initialStateCart,
-
     initialStateSearch,
+    initialStateUser,
   };
 }
 

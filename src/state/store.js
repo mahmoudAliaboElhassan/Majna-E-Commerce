@@ -19,6 +19,7 @@ import activeLinkSlice from "@state/slices/active";
 import productsSlice from "@state/slices/products";
 import searchSlice from "@state/slices/search";
 import cart from "@state/slices/cart";
+import customerSlice from "@state/slices/customer";
 
 const rootPersistConfig = {
   key: "root",
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   reviewer: reviewrSlice,
   active: activeLinkSlice,
   products: productsSlice,
-  search:searchSlice,
+  search: searchSlice,
+  customer: customerSlice,
   cart: persistReducer(cartPersistConfig, cart),
 });
 
