@@ -22,26 +22,30 @@ function UseHeaderElements() {
     },
     {
       label: t("about"),
-      to: "/about",
+      to: "about",
     },
     {
       label: t("contact"),
-      to: "/contact",
+      to: "contact",
     },
     {
       label: t("c_panel"),
-      to: "/distributor-control-panel",
+      to: "customer-control-panel",
+    },
+    {
+      label: t("c_panel"),
+      to: "distributor-control-panel",
     },
     {
       label: t("login"),
-      to: "/login",
+      to: "login",
     },
     {
       label: t("signup"),
     },
     {
       label: t("change-password"),
-      to: "/change-password",
+      to: "change-password",
     },
     {
       label: t("logout"),
@@ -65,16 +69,18 @@ function UseHeaderElements() {
     },
   ];
 
-  const authElementsNotUser = HeaderElements.slice(4, 6);
-  const authElementsUser = HeaderElements.slice(6);
-  const tabElements = HeaderElements.slice(0, -4);
-  const tabElementsBuyer = HeaderElements.slice(0, -5);
-  const tabElementsSeller = HeaderElements.slice(0, -4);
+  const authElementsNotUser = HeaderElements.slice(5, 7);
+  const authElementsUser = HeaderElements.slice(7);
+  const tabElements = HeaderElements.slice(0, 3);
+  const tabElementsBuyer = HeaderElements.slice(0, 4);
+  const tabElementsSeller = HeaderElements.slice(0, -4).filter(
+    ({ to }) => to !== "customer-control-panel"
+  );
   const allTabsElements = token
     ? role === "distributor"
       ? tabElementsSeller
       : tabElementsBuyer
-    : tabElementsBuyer;
+    : tabElements;
   const authElements = token ? authElementsUser : authElementsNotUser;
   const allElements = allTabsElements.concat(authElements);
 

@@ -94,6 +94,12 @@ const Favorite = React.lazy(() => import("@pages/favorite"));
 const ProductView = React.lazy(() =>
   import("@pages/productView")
 );
+const RootCustomerPanelLayOut = React.lazy(() => import("@pages/customerPanel/rootCustomerPanel"))
+
+const Addresses = React.lazy(() => import("@pages/customerPanel/addresses"))
+const AddAddress = React.lazy(() => import("@pages/customerPanel/addAddress"))
+const EditAddress = React.lazy(() => import("@pages/customerPanel/editAddress"))
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -257,6 +263,48 @@ const router = createBrowserRouter([
             ),
           },
         ],
+      },
+      {
+        path: "customer-control-panel",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <RootCustomerPanelLayOut />
+          </Suspense>
+        ), children:
+          [
+            {
+              index: true,
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <Addresses />
+                </Suspense>
+              )
+            },
+            {
+              path: "addresses",
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <Addresses />
+                </Suspense>
+              )
+            },
+            {
+              path: "add-address",
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <AddAddress />
+                </Suspense>
+              )
+            },
+            {
+              path: "edit-address",
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <EditAddress />
+                </Suspense>
+              )
+            }
+          ]
       },
       {
         path: "product/:id",
