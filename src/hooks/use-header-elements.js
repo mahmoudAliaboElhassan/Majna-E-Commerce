@@ -22,26 +22,26 @@ function UseHeaderElements() {
     },
     {
       label: t("about"),
-      to: "about",
+      to: "/about",
     },
     {
       label: t("contact"),
-      to: "contact",
+      to: "/contact",
     },
     {
       label: t("c_panel"),
-      to: "distributor-control-panel",
+      to: "/distributor-control-panel",
     },
     {
       label: t("login"),
-      to: "login",
+      to: "/login",
     },
     {
       label: t("signup"),
     },
     {
       label: t("change-password"),
-      to: "change-password",
+      to: "/change-password",
     },
     {
       label: t("logout"),
