@@ -1,5 +1,3 @@
-/* Adjust ToastContainer styles for mobile */
-
 @media (max-width: 600px) {
   .Toastify__toast {
     width: 90% !important;

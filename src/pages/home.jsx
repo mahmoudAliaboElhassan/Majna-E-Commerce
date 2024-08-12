@@ -29,96 +29,52 @@ function Home() {
   const { productsArray, loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
   );
+  const { searchValue } = useSelector((state) => state.search)
   const productsCount = Math.ceil(countOfProducts / 12);
   const dispatch = useDispatch();
+
   const changePage = useCallback((e, value) => {
     setPage(value);
-    console.log(page)
-  }, []);
-  let productImages;
-  if (productsArray) {
-    productImages = productsArray.map(({ cover_image }) => cover_image)
-    console.log("productImages")
-    console.log(productImages)
-  }
+    console.log(page);
+  }, [page]);
+
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const handleChange = (event) => {
+  const handleChange = useCallback((event) => {
     setSelectedCategory(event.target.value);
     console.log(event.target.value);
-  };
-
+  }, []);
   const [priceFromTo, setPriceFromTo] = useState(["", ""]);
   const [price, setPrice] = useState("");
 
-  const handlePriceChange = (index, value) => {
+  const handlePriceChange = useCallback((index, value) => {
     const newPriceFromTo = [...priceFromTo];
     newPriceFromTo[index] = value;
     setPriceFromTo(newPriceFromTo);
-  };
+  }, [priceFromTo]);
 
-  const handleClickPrice = () => {
+  const handleClickPrice = useCallback(() => {
     setPrice(priceFromTo.join(","));
-  };
-  // const [searchValue, setSearchValue] = useState(null);
-  const [searchChange, setSearchChange] = useState(null);
-  const { searchValue } = useSelector((state) => state.search)
-  // const handleSearchChange = (event) => {
-  //   setSearchChange(event.target.value);
-  //   console.log(searchChange);
-  //   // setSearchParams({ queryformMahmoud: searchValue });
-  //   // console.log(searchParams);
-  // };
-  // const handleSearchClick = () => {
-  //   setSearchValue(searchChange?.split(" ").join("+"));
-  //   console.log(searchValue);
-  // };
+  }, [priceFromTo]);
 
   const [color, setColor] = useState("");
-  const handleChangeColor = (event) => {
+  const handleChangeColor = useCallback((event) => {
     setColor(event.target.value);
     console.log(event.target.value);
-  };
+  }, []);
+
   const [ordering, setOrdering] = useState(null);
+  const handleOrdering = useCallback((e) => {
+    setOrdering(e.target.value);
+  }, []);
+
   const [selectedSubCategory, setSelectedSubCategory] = useState(null);
-  useEffect(() => {
-    selectedCategory
-      ? dispatch(
-        getProductsByCategory({
-          id: selectedCategory,
-          price__range: price,
-          ordering,
-          page,
-          search: searchValue,
-          sub_category_id: selectedSubCategory
-        })
-      )
-      : dispatch(
-        getProducts({
-          price__range: price,
-          ordering,
-          page,
-          search: searchValue,
-          sub_category_id: selectedSubCategory
-        })
-      );
-    return () => {
-      dispatch(cleanUpGetProducts());
-      dispatch(cleanUpgetProductsByCategory());
-    };
-  }, [selectedCategory, price, color, ordering, page, searchValue, selectedSubCategory]);
-  // const productInfo = products?.map((el) => ({
-  //   ...el,
-  //   quantity: items[el.id],
-  // }));
-  const handleOrdering = (e) => setOrdering(e.target.value);
-  const handleSelectedSubCategory = (value) => {
-    setSelectedSubCategory(value)
-    console.log("selectedSubCategory")
-  };
-  console.log(selectedSubCategory)
+  const handleSelectedSubCategory = useCallback((value) => {
+    setSelectedSubCategory(value);
+    console.log("selectedSubCategory");
+  }, []);
 
   const [productId, setProductId] = useState(null);
-  const handleProductsByCategory = (id) => {
+  const handleProductsByCategory = useCallback((id) => {
     setSelectedCategory(id);
     id
       ? dispatch(
@@ -128,7 +84,7 @@ function Home() {
           ordering,
           page,
           search: searchValue,
-          sub_category_id: selectedSubCategory
+          sub_category_id: selectedSubCategory,
         })
       )
       : dispatch(
@@ -137,21 +93,59 @@ function Home() {
           ordering,
           page,
           search: searchValue,
-          sub_category_id: selectedSubCategory
-
+          sub_category_id: selectedSubCategory,
         })
       );
-  };
+  }, [dispatch, price, ordering, page, searchValue, selectedSubCategory]);
+
+  useEffect(() => {
+    selectedCategory
+      ? dispatch(
+        getProductsByCategory({
+          id: selectedCategory,
+          price__range: price,
+          ordering,
+          page,
+          search: searchValue,
+          sub_category_id: selectedSubCategory,
+        })
+      )
+      : dispatch(
+        getProducts({
+          price__range: price,
+          ordering,
+          page,
+          search: searchValue,
+          sub_category_id: selectedSubCategory,
+        })
+      );
+    return () => {
+      dispatch(cleanUpGetProducts());
+      dispatch(cleanUpgetProductsByCategory());
+    };
+  }, [
+    dispatch,
+    selectedCategory,
+    price,
+    color,
+    ordering,
+    page,
+    searchValue,
+    selectedSubCategory,
+  ]);
+
+  let productImages;
+  if (productsArray) {
+    productImages = productsArray.map(({ cover_image }) => cover_image);
+    console.log("productImages");
+    console.log(productImages);
+  }
 
   return (
     <>
       <Swiperslide images={productImages} />
       <Introductory />
-      <Search
-      // onChange={handleSearchChange}
-      // handleSearchClick={handleSearchClick}
-      />
-
+      <Search />
       <Grid container style={{ overflow: "hidden", marginBottom: "-16px" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar
@@ -160,7 +154,6 @@ function Home() {
             handleClickPrice={handleClickPrice}
             price={price}
             color={color}
-            // handleChangeColor={handleChangeColor}
             handleOrdering={handleOrdering}
             handleProductsByCategory={handleProductsByCategory}
             selectedCategory={selectedCategory}
@@ -177,7 +170,6 @@ function Home() {
           spacing={1.5}
           sx={{
             padding: { xs: 2, sm: 3 },
-            // margin: "auto",
             maxWidth: { sm: "calc(100% - 40px)", md: "calc(100% - 48px)" },
           }}
         >
@@ -189,7 +181,6 @@ function Home() {
             changePage={changePage}
           />
         </Grid>
-
       </Grid>
       <Footer />
     </>
