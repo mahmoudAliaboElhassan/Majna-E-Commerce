@@ -156,6 +156,7 @@ function ProductInformation() {
                     letterSpacing: "-2px",
                     textAlign: "center",
                     color: Colors.seconday,
+                    marginBottom: "-4px"
                   }}>
                     {name}
                   </Typography>

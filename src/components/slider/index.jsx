@@ -37,7 +37,7 @@ const Swiperslide = ({ images }) => {
           EffectFade,
           Autoplay,
         ]}
-        spaceBetween={50}
+        spaceBetween={0}
         autoplay={{ delay: 3000 }}
         slidesPerView={2}
         navigation
@@ -53,7 +53,8 @@ const Swiperslide = ({ images }) => {
         {imageArray.map((img, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={img} alt={`slide-${index}`} loading="lazy" />
+              <img src={img} alt={`slide-${index}`} loading="lazy"
+                style={{ width: "100%", height: "100%" }} />
             </SwiperSlide>
           );
         })}

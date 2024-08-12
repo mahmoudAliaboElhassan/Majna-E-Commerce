@@ -248,5 +248,6 @@
   "request-date": "Request Date",
   "wait-logout": "Wait for Log Out Processing ...",
   "logOut-success": "You have Logged Out Successfully !",
-  "status": "Brand Status"
+  "status": "Brand Status",
+  "logout": "Log Out"
 }
