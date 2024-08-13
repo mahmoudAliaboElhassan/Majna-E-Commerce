@@ -6,10 +6,10 @@
 
 - **_Customizable Interface_**: Choose between Dark and Light Modes for a personalized browsing experience.
 - **_Multilingual Support_**: Seamlessly switch between Arabic and English languages to cater to diverse users.
-- **_Efficient Search and Navigation_**:Quickly find products by utilizing the Search Bar, Sorting, and Filtering options available in both Category and Subcategory.
+- **_Efficient Search and Navigation_**: Quickly find products by utilizing the Search Bar, Sorting, and Filtering options available in both Category and Subcategory.
 - **_Convenient Shopping Experience_**: Add items to the Cart and mark favorites for easy access.
-- **_Page for Every Product_**:Each product has its own dedicated page, displaying details such as name, description, category, subcategory, brand, store quantity, and price, allowing users to decide whether to add it to their cart or favorite list.
-- **_Wonderful Slider_**:The slider displays product images according to the selected filtering criteria.
+- **_Page for Every Product_**: Each product has its own dedicated page, displaying details such as name, description, category, subcategory, brand, store quantity, and price, allowing users to decide whether to add it to their cart or favorite list.
+- **_Wonderful Slider_**: The slider displays product images according to the selected filtering criteria.
 - **_User Authentication_**: Securely log in to access account features and make purchases.
 - **_User Registration_**: Sign up as a buyer or seller with ease.
 - **_Email Verification_**: Receive activation notifications via email for account authorization.
@@ -26,7 +26,7 @@
 - **_DRY Components and Hooks_**: Apply the "Don't Repeat Yourself" principle for cleaner code.
 - **_Optional Chaining and Nullish Coalescing_**: Increase code clarity and handle null or undefined values effectively.
 - **_Custom Hooks_**: Enhance code efficiency with custom hooks, Website uses the principle of **custom hooks** to shorten The code and make it more **efficient**.
-- **_Environmental Variables_** to Securely manage sensitive information and configuration settings.
+- **_Environmental Variables_**: to Securely manage sensitive information and configuration settings.
 - **_Organized Folder Structure_**: Maintain code organization with separate folders for pages, components, hooks, styles, form validation, and translation.
 
 ## Libraries and Dependencies
@@ -44,6 +44,6 @@
 11. **_react-toastify_**: Displays informative toasts for user actions.
 12. **_swiper_**: Creates beautiful sliders for showcasing content.
 13. **_sweetalert_**: Presents attractive alerts for user notifications.
-14. **_axios_** Facilitates data fetching and backend communication with interceptors for request and response handling.
+14. **_axios_**: Facilitates data fetching and backend communication with interceptors for request and response handling.
 15. **_craco/craco_**: Utilizes path aliases for cleaner import statements.
 16. **_gh-pages_**: Enables hosting on GitHub pages for easy deployment.
