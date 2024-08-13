@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { Box } from "@mui/material";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 import UseThemMode from "../../hooks/use-theme";
 import { Colors } from "../theme";
@@ -27,6 +27,13 @@ export const StoreAdded = styled(Button)(() => ({
   width: "fit-content",
   boxShadow: "0px 0px 6px 1px #7f4949",
   fontWeight: "700",
+}));
+export const NoCount = styled(Typography)(() => ({
+  position: "absolute",
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%,-50%)",
+  fontSize: "19px",
 }));
 
 export const DrawerButton = styled("button")(() => {

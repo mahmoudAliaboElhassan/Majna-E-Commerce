@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Function to create Axios instances with common settings
-function createAxiosInstance(baseURL, contentType) {
+function createAxiosInstance(baseURL, contentType, includeAuthHeader = false) {
   const instance = axios.create({
     baseURL: baseURL,
   });
@@ -11,7 +11,7 @@ function createAxiosInstance(baseURL, contentType) {
     console.log("token");
     console.log(localStorage.getItem("token"));
     config.headers["Content-Type"] = contentType;
-    if (localStorage.getItem("token")) {
+    if (includeAuthHeader && localStorage.getItem("token")) {
       config.headers["Authorization"] = `Token ${localStorage.getItem(
         "token"
       )}`;
@@ -60,9 +60,16 @@ function createAxiosInstance(baseURL, contentType) {
 // Create Axios instances for API and Files
 export const majnAPI = createAxiosInstance(
   process.env.REACT_APP_API_URL,
-  "application/json"
+  "application/json",
+  true
+);
+export const majnAPIWithoutAuth = createAxiosInstance(
+  process.env.REACT_APP_API_URL,
+  "application/json",
+  false
 );
 export const majnaFiles = createAxiosInstance(
   process.env.REACT_APP_API_URL,
-  'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
+  'multipart/form-data; charset=utf-8; boundary="another cool boundary";',
+  true
 );

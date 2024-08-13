@@ -119,7 +119,7 @@ const cart = createSlice({
       })
       .addCase(getFavorites.pending, (state, action) => {
         state.loadingGetFavorites = true;
-      })
+       })
       .addCase(getFavorites.fulfilled, (state, action) => {
         state.loadingGetFavorites = false;
         state.favoritesArray = action.payload.favorite_items;

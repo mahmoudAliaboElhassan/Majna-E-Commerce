@@ -91,6 +91,8 @@ function Header() {
   console.log("locationPath");
   console.log(locationPath);
   useEffect(() => { }, [countOfCartItems]);
+  console.log("type of local storage", typeof (localStorage.getItem("countOfCartItem")))
+  console.log(typeof (localStorage.getItem("countOfCartItem")))
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -110,7 +112,7 @@ function Header() {
                       }}
                     />
                     <CartNumber className={quantityStyle}>
-                      {localStorage.getItem("countOfCartItem") && localStorage.getItem("countOfCartItem")}
+                      {localStorage.getItem("countOfCartItem") != "0" && localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
 
@@ -181,7 +183,7 @@ function Header() {
                       }}
                     />
                     <CartNumber className={quantityStyle}>
-                      {localStorage.getItem("countOfCartItem") && localStorage.getItem("countOfCartItem")}
+                      {localStorage.getItem("countOfCartItem") != "0" && localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
 

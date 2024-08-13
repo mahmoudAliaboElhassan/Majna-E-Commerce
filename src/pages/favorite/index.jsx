@@ -18,6 +18,9 @@ import { DataGridContainer } from "@styles/dataGrid";
 import "@pages/shoppingCart/style.css"
 import { AppbarHeader } from "@styles/appbar";
 import Footer from "@components/footer";
+import withGuard from "@utils/withGuard";
+import { NoCount } from "@styles/products";
+
 
 function Favorite() {
   const { favoritesArray = [], loadingGetFavorites, countOfFavoritesProducts } = useSelector((state) => state.cart); // Default to empty array
@@ -156,39 +159,44 @@ function Favorite() {
 
   return (
     <>
-      <Box sx={{ p: 2 }}>
+      <Box sx={{
+        p: 2, minHeight: "55vh",
+        position: "relative"
+      }}>
         <Container>
-          {loadingGetFavorites ? (
-            <LoadingFetching>{t("wait-favorite")}</LoadingFetching>
-          ) : countOfFavoritesProducts ? (
-            <>
-              <AppbarHeader data-aos="fade-up">{t('product-added-to-favorite')}</AppbarHeader>
-              <DataGridContainer>
-                <DataGrid
-                  rows={rows}
-                  columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: {
-                        pageSize: 5,
+          {
+            loadingGetFavorites ? (
+              <LoadingFetching>{t("wait-favorite")}</LoadingFetching>
+            ) : countOfFavoritesProducts ? (
+              <>
+                <AppbarHeader data-aos="fade-up">{t('product-added-to-favorite')}</AppbarHeader>
+                <DataGridContainer>
+                  <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{
+                      pagination: {
+                        paginationModel: {
+                          pageSize: 5,
+                        },
                       },
-                    },
-                  }}
-                  pageSizeOptions={[5, 10, 15, 20]}
-                  checkboxSelection
-                  disableRowSelectionOnClick
-                  rowHeight={120}
-                />
-              </DataGridContainer>
-            </>
-          ) : (
-            <div>{t("no-favorites")}</div>
-          )}
-        </Container>
-      </Box>
+                    }}
+                    pageSizeOptions={[5, 10, 15, 20]}
+                    checkboxSelection
+                    disableRowSelectionOnClick
+                    rowHeight={120}
+                  />
+                </DataGridContainer>
+              </>
+            ) : (
+              <NoCount>{t("no-favorites")}</NoCount>
+            )
+          }
+        </Container >
+      </Box >
       <Footer />
     </>
   );
 }
 
-export default Favorite;
+export default withGuard(Favorite);

@@ -1,5 +1,6 @@
-import RootUserLayout from '@components/roorUserLayout'
+import RootUserLayout from '@components/shared/roorUserLayout'
 import UseCustomerElements from '@hooks/use-customer-elements'
+import withGuard from "@utils/withGuard";
 
 function RootCustomerPanelLayOut() {
     const { customerElements } = UseCustomerElements()
@@ -8,4 +9,4 @@ function RootCustomerPanelLayOut() {
     );
 }
 
-export default RootCustomerPanelLayOut
+export default withGuard(RootCustomerPanelLayOut)

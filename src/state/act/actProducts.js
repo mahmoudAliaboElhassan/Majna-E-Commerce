@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { majnAPI } from "@state/API/global-api";
+import { majnAPIWithoutAuth } from "@state/API/global-api";
 
 export const getProducts = createAsyncThunk(
   "products/getProducts",
@@ -15,7 +15,9 @@ export const getProducts = createAsyncThunk(
       .join("&");
 
     try {
-      const data = await majnAPI.get(`api/products?${queryParameters}`);
+      const data = await majnAPIWithoutAuth.get(
+        `api/products?${queryParameters}`
+      );
       return data;
     } catch (error) {
       if (error.response && error.response.status === 400) {
@@ -39,7 +41,7 @@ export const getProductsByCategory = createAsyncThunk(
       .join("&");
 
     try {
-      const data = await majnAPI.get(
+      const data = await majnAPIWithoutAuth.get(
         `api/categories/${id}/products?${queryParameters}`
       );
       return data;
@@ -58,7 +60,7 @@ export const getSpecifiedProduct = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const data = await majnAPI.get(`api/products/${id}`);
+      const data = await majnAPIWithoutAuth.get(`api/products/${id}`);
       return data;
     } catch (error) {
       if (error.response && error.response.status === 400) {

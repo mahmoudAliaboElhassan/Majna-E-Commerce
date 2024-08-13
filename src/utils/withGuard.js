@@ -13,8 +13,18 @@ const withGuard = (Component) => {
     useEffect(() => {
       // if (!loading && !token) navigate("/");
       if (!loading && token && role === "reviewer") navigate("/reviewer");
-      // if (location.pathname.startsWith("/reviewer") && role !== "reviewer")
-      //   navigate("/");
+      if (
+        (location.pathname === "/favorite" ||
+          location.pathname === "/shooping-cart" ||
+          location.pathname.startsWith("/customer-control-panel")) &&
+        role !== "customer"
+      )
+        navigate("/");
+      if (
+        location.pathname.startsWith("/distributor-control-panel") &&
+        role !== "distributor"
+      )
+        navigate("/");
     }, [navigate, loading, token]);
     if (loading) {
       return <Loader />;

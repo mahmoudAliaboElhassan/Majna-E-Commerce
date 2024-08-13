@@ -26,7 +26,8 @@ import { AppbarHeader } from "@styles/appbar";
 import { DataGridContainer } from "@styles/dataGrid"
 import UseThemMode from "@hooks/use-theme";
 import "@pages/shoppingCart/style.css"
-
+import withGuard from "@utils/withGuard";
+import { NoCount } from "@styles/products";
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -253,8 +254,10 @@ function ShoppingCart() {
   }));
   return (
     <>
-      <Box sx={{ p: 2 }}>
-        {/* <ToastContainer /> */}
+      <Box sx={{
+        p: 2, minHeight: "55vh",
+        position: "relative"
+      }}>        {/* <ToastContainer /> */}
         <Container>
           {loadingCarts ? (
             <LoadingFetching>{t("wait-carts")}</LoadingFetching>
@@ -278,7 +281,7 @@ function ShoppingCart() {
               />
             </>
           ) : (
-            <div>{t("no-carts")}</div>
+            <NoCount>{t("no-carts")}</NoCount>
           )}
         </Container>
       </Box>
@@ -287,4 +290,4 @@ function ShoppingCart() {
   );
 }
 
-export default ShoppingCart;
+export default withGuard(ShoppingCart)

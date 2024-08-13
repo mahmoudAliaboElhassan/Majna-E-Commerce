@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { majnAPI, majnaFiles } from "@state/API/global-api";
+import { majnAPI, majnaFiles, majnAPIWithoutAuth } from "@state/API/global-api";
 
 export const addBrand = createAsyncThunk(
   "distributorSlice/addBrand",
@@ -39,7 +39,7 @@ export const fetchPrands = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get(
+      const res = await majnAPIWithoutAuth.get(
         `api/brands`
         //  {
         //   headers: {
@@ -65,7 +65,7 @@ export const fetchGovernance = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get("api/locations/governorates");
+      const res = await majnAPIWithoutAuth.get("api/locations/governorates");
       console.log("from slice res is");
       console.log(res);
       return res;
@@ -229,7 +229,7 @@ export const getSubCategory = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get(`api/sub-categories`);
+      const res = await majnAPIWithoutAuth.get(`api/sub-categories`);
       console.log("from slice res is");
       console.log(res);
       return res;
@@ -248,7 +248,7 @@ export const getCategories = createAsyncThunk(
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.get(`api/categories`);
+      const res = await majnAPIWithoutAuth.get(`api/categories`);
       console.log("from slice res is");
       console.log(res);
       return res;

@@ -74,7 +74,7 @@ function UseHeaderElements() {
   const tabElements = HeaderElements.slice(0, 3);
   const tabElementsBuyer = HeaderElements.slice(0, 4);
   const tabElementsSeller = HeaderElements.slice(0, -4).filter(
-    ({ to }) => to !== "customer-control-panel"
+    ({ to }) => to !== "/customer-control-panel"
   );
   const allTabsElements = token
     ? role === "distributor"

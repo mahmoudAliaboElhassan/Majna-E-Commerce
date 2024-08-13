@@ -1,5 +1,6 @@
-import RootUserLayout from "@components/roorUserLayout";
+import RootUserLayout from '@components/shared/roorUserLayout'
 import UseDistributorElements from "@hooks/use-distributor-elements";
+import withGuard from "@utils/withGuard";
 
 function RootProductLayout() {
 
@@ -9,4 +10,4 @@ function RootProductLayout() {
     <RootUserLayout links={distributorElements} />
   );
 }
-export default (RootProductLayout);
+export default withGuard(RootProductLayout);

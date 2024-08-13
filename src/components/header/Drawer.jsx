@@ -125,7 +125,7 @@ function DrawerComponent({ drawerElements }) {
                     }}
                   />
                   <CartNumber>
-                    {localStorage.getItem("countOfCartItem") && localStorage.getItem("countOfCartItem")}
+                    {localStorage.getItem("countOfCartItem") != "0" && localStorage.getItem("countOfCartItem")}
                   </CartNumber>
                 </IconButton>{" "}
               </ListItemButton>
