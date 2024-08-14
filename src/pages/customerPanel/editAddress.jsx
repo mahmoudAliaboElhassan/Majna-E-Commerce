@@ -105,7 +105,7 @@ function EditAddress() {
                         editAddress({
                           customerId: Uid,
                           addressId,
-                          city: values.singleAddressCity,
+                          city_id: values.singleAddressCity,
                           address: values.singleAddress,
                         })
                       )
