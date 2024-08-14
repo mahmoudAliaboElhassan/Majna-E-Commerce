@@ -17,7 +17,7 @@ import SelectComp from "@components/formui/Select";
 import FileInput from "@components/formui/file";
 import {
   addBrand,
-  fetchPrands,
+  fetchBrands,
   cleanUpBrands,
 } from "@state/slices/distributor";
 import withGuard from "@utils/withGuard";
@@ -50,7 +50,7 @@ function AddBrand() {
 
   useEffect(() => {
     if (brands.length === 0) {
-      dispatch(fetchPrands());
+      dispatch(fetchBrands());
     }
     return () => {
       dispatch(cleanUpBrands());

@@ -41,8 +41,6 @@ const jss = create({
 function RootLayout() {
   const { t } = useTranslation();
   const { Direction } = UseDirection();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { mymode } = useSelector((state) => state.mode);
   const { expireToken, token, role, loadingLogOut } = useSelector((state) => state.auth);
 

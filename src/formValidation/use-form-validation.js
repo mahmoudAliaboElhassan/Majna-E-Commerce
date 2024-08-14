@@ -272,6 +272,15 @@ function UseFormValidation() {
     ),
   });
 
+  const FORM_VALIDATION_SCHEMA_ADD_ADDRESS = Yup.object().shape({
+    city: Yup.string().required("City is Required"),
+    address: Yup.string().required("Full Address is Required"),
+  });
+  const FORM_VALIDATION_SCHEMA_EDIT_ADDRESS = Yup.object().shape({
+    singleAddressCity: Yup.string().required("City is Required"),
+    singleAddress: Yup.string().required("Full Address is Required"),
+  });
+
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
     FORM_VALIDATION_SCHEMA_Login,
@@ -286,6 +295,8 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY,
     FORM_VALIDATION_SCHEMA_CONTACT,
     FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT,
+    FORM_VALIDATION_SCHEMA_ADD_ADDRESS,
+    FORM_VALIDATION_SCHEMA_EDIT_ADDRESS,
   };
 }
 

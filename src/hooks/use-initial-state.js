@@ -86,6 +86,12 @@ function UseInitialStates() {
   };
   const initialStateUser = {
     loadingGetAddresses: false,
+    loadingAddAddress: false,
+    loadingGetSpecificAddress: false,
+    loadingEditAddress: false,
+    singleAddressData: null,
+    addresses: null,
+    countOfAddresses: 0,
   };
 
   return {

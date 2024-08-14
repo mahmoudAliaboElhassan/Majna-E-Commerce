@@ -4,14 +4,14 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from '@mui/icons-material/Mail';
 import PhoneIcon from '@mui/icons-material/Phone';
-import Card from "@mui/material/Card";
 import { useTranslation } from "react-i18next";
 import { Typography } from "@material-ui/core";
+import Card from "@mui/material/Card";
 
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
 
-function ContactInfo() {
+function SocialMedia() {
     const { t } = useTranslation()
     const { Direction } = UseDirection()
     const { themeMode } = UseThemMode()
@@ -126,4 +126,4 @@ function ContactInfo() {
     )
 }
 
-export default ContactInfo
+export default SocialMedia

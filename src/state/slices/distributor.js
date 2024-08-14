@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import UseInitialStates from "@hooks/use-initial-state";
 import {
   addBrand,
-  fetchPrands,
+  fetchBrands,
   fetchGovernance,
   getAllBrandsApplication,
   getAtuthorizedBrands,
@@ -52,11 +52,11 @@ export const distributorSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPrands.pending, (state, action) => {
+      .addCase(fetchBrands.pending, (state, action) => {
         state.loadingFetch = true;
         // state.error = false;
       })
-      .addCase(fetchPrands.fulfilled, (state, action) => {
+      .addCase(fetchBrands.fulfilled, (state, action) => {
         // state.loading = false;
         // state.error = false;
         state.loadingFetch = false;
@@ -64,7 +64,7 @@ export const distributorSlice = createSlice({
         state.brands = action.payload.brands;
         console.log(state.brands);
       })
-      .addCase(fetchPrands.rejected, (state, action) => {
+      .addCase(fetchBrands.rejected, (state, action) => {
         state.loadingFetch = false;
         // state.error = action.payload;
         // state.loading = false;
@@ -299,7 +299,7 @@ export const {
 } = distributorSlice.actions;
 export {
   addBrand,
-  fetchPrands,
+  fetchBrands,
   fetchGovernance,
   getAllBrandsApplication,
   getAtuthorizedBrands,

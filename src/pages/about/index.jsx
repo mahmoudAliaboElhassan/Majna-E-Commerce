@@ -21,8 +21,6 @@ function About() {
       <QuestionsAnswers />
       <Team />
       <Footer />
-
-      {/* <div>الحمد لله تم إسترجاع البيانات</div> */}
     </>
   );
 }

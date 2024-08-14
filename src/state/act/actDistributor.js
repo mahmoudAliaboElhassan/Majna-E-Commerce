@@ -34,8 +34,8 @@ export const addBrand = createAsyncThunk(
     }
   }
 );
-export const fetchPrands = createAsyncThunk(
-  "distributorSlice/fetchPrands",
+export const fetchBrands = createAsyncThunk(
+  "distributorSlice/fetchBrands",
   async (_, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {

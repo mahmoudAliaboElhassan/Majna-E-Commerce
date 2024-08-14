@@ -297,7 +297,7 @@ const router = createBrowserRouter([
               )
             },
             {
-              path: "edit-address",
+              path: "edit-address/:addressId",
               element: (
                 <Suspense fallback={<Loader />}>
                   <EditAddress />
