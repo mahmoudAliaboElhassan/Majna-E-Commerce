@@ -21,10 +21,11 @@ import {
   fetchsinglesingleStoreData,
   getStore,
   fetchGovernance,
-} from "../../state/slices/distributor";
-import withGuard from "../../utils/withGuard";
-import LoadingFetching from "../../components/loadingFetching";
-import TextFieldWrapper from "../../components/formui/textField";
+  cleanUpGetStore
+} from "@state/slices/distributor";
+import withGuard from "@utils/withGuard";
+import LoadingFetching from "@components/loadingFetching";
+import TextFieldWrapper from "@components/formui/textField";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -60,7 +61,12 @@ function EditStore() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getStore({ Uid, storeId }));
-    dispatch(fetchGovernance());
+    if (governance.length === 0) {
+      dispatch(fetchGovernance());
+    }
+    return()=>{
+      dispatch(cleanUpGetStore())
+    }
   }, []);
   console.log(singleStoreData?.city);
   console.log(typeof singleStoreData?.city);
@@ -75,7 +81,7 @@ function EditStore() {
     <div style={{ position: "relative", height: "100vh" }}>
 
       {!loadingGovernaces && !loadingSingleStoreData ? (
-        <Container maxWidth="sm">
+        <Container maxWidth="sm"style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
           {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">

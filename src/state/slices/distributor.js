@@ -40,6 +40,9 @@ export const distributorSlice = createSlice({
     cleanUpStores: (state) => {
       state.stores = [];
     },
+    cleanUpGetStore: (state) => {
+      state.singleStoreData = null;
+    },
     cleanUpCategories: (state) => {
       state.categories = [];
     },
@@ -296,6 +299,7 @@ export const {
   cleanUpCategories,
   cleanUpSubCategories,
   cleanUpUploadedProducts,
+  cleanUpGetStore
 } = distributorSlice.actions;
 export {
   addBrand,

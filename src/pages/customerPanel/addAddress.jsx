@@ -55,9 +55,9 @@ function AddAddress() {
         if (governance.length === 0) {
             dispatch(fetchGovernance());
         }
-        return () => {
-            dispatch(cleanUpGovernance());
-        };
+        // return () => {
+        //     dispatch(cleanUpGovernance());
+        // };
     }, [dispatch]);
     let allCities = [];
 
@@ -70,7 +70,7 @@ function AddAddress() {
     return (
         <div style={{ position: "relative", height: "100vh" }}>
             {!loadingGovernaces && governance.length ? (
-                <Container maxWidth="sm">
+                <Container maxWidth="sm" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
                     {/* <ToastContainer /> */}
                     <Card raised>
                         <Container maxWidth="md">

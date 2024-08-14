@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import UseThemMode from "@hooks/use-theme";
@@ -60,11 +60,11 @@ function EditAddress() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getAddress({ customerId: Uid, addressId }));
-    dispatch(fetchGovernance());
+    if (governance.length === 0) {
+      dispatch(fetchGovernance());
+    }
     return () => {
       dispatch(cleanUpGetAddresses())
-      dispatch(cleanUpGovernance());
-
     }
   }, [])
   console.log(singleStoreData?.city);
@@ -78,9 +78,8 @@ function EditAddress() {
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
-
       {!loadingGovernaces && !loadingGetSpecificAddress ? (
-        <Container maxWidth="sm">
+        <Container maxWidth="sm" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
           {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">

@@ -60,7 +60,7 @@ function AddBrand() {
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       {!loadingFetch ? (
-        <Container maxWidth="sm">
+        <Container maxWidth="sm"style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
           {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">
