@@ -46,4 +46,5 @@
 13. **_sweetalert_**: Presents attractive alerts for user notifications.
 14. **_axios_**: Facilitates data fetching and backend communication with interceptors for request and response handling.
 15. **_craco/craco_**: Utilizes path aliases for cleaner import statements.
-16. **_gh-pages_**: Enables hosting on GitHub pages for easy deployment.
+16. **_emailjs-com_**: Enables receiving messages sent via email.
+17. **_gh-pages_**: Enables hosting on GitHub pages for easy deployment.
