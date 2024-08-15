@@ -11,7 +11,6 @@ const withGuard = (Component) => {
     const location = useLocation();
 
     useEffect(() => {
-      // if (!loading && !token) navigate("/");
       if (!loading && token && role === "reviewer") navigate("/reviewer");
       if (
         (location.pathname === "/favorite" ||
@@ -20,7 +19,7 @@ const withGuard = (Component) => {
         role !== "customer"
       )
         navigate("/");
-      if (
+      else if (
         location.pathname.startsWith("/distributor-control-panel") &&
         role !== "distributor"
       )

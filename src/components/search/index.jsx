@@ -55,6 +55,7 @@ const Search = ({ headerColor }) => {
           <TextField
             {...params}
             fullWidth
+            value={searchChange}
             InputProps={{
               ...params.InputProps,
               endAdornment: (

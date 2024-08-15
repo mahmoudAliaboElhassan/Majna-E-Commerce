@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import Card from "@mui/material/Card";
@@ -10,9 +10,8 @@ import Swal from "sweetalert2";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
-import {
-  getCarts,
-} from "@state/slices/cart";
+
+import { getCarts } from "@state/slices/cart";
 import TextFieldWrapper from "@components/formui/textField";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import PasswordField from "@components/formui/passwordField";
@@ -24,7 +23,7 @@ import UseInitialValues from "@utils/use-initial-values";
 import { ResendConfirmation, logIn } from "@state/slices/auth";
 import { AppbarHeader } from "@styles/appbar";
 import { DisabledByDefault } from "@mui/icons-material";
-
+import withGuard from "@utils/withGuard"
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
     marginTop: theme.spacing(5),
@@ -53,7 +52,13 @@ function Login() {
   const [email, setEmail] = useState(null);
   const { themeMode } = UseThemMode();
   const handleCloseModal = useCallback(() => setOpenModal(false), []);
-
+  useEffect(() => {
+    token &&
+      (role === "reviewer"
+        ? navigate("/reviewer")
+        : (role === "distributor" || role === "customer") &&
+        navigate("/"))
+  }, [])
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm" className={classes.containerWrapper}>
@@ -79,7 +84,9 @@ function Login() {
                       .then((data) => {
                         console.log("data in login page");
                         console.log(data);
-                        if (Uid) { dispatch(getCarts({ id: data?.user?.id })); }
+                        data?.user?.user_role === "reviewer" ? navigate("/reviewer") : navigate("/")
+                        data?.user?.user_role === "customer" &&
+                          dispatch(getCarts({ id: data?.user?.id }));
                         {
                           toast.success(t("login-success"), {
                             position: "top-right",
@@ -148,13 +155,6 @@ function Login() {
                   }}
                 >
                   <Form className={classes.formWrapper}>
-                    {setTimeout(() => {
-                      token &&
-                        (role === "reviewer"
-                          ? navigate("/reviewer")
-                          : (role === "distributor" || role === "customer") &&
-                          navigate("/"))
-                    }, 1000)}
                     <Grid container spacing={2}>
                       <Grid item xs={12}>
                         <Typography>
@@ -212,9 +212,9 @@ function Login() {
           </Container>
         </Card>
         <ModalSignup open_modal={open_modal} close={handleCloseModal} />
-      </Container>
-    </div>
+      </Container >
+    </div >
   );
 }
 
-export default Login;
+export default (Login);

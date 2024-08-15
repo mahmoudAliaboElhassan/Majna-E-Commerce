@@ -1,41 +1,22 @@
 import React from "react";
 
 import { IconButton, Slide, Autocomplete } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import { useTranslation } from "react-i18next";
 
-import { SearchBoxContainer, SerarchField } from "@styles/search";
+import { SearchBoxContainer } from "@styles/search";
+import Search from "@components/search"
+import UseDirection from "@hooks/use-direction";
+
 
 function SlideSearch({ show, close, dir }) {
-  const skills = ["html", "css", "javascript", "typescipt"];
-  const { t } = useTranslation();
-
+  const { Direction } = UseDirection()
   return (
     <Slide direction={dir} timeout={500} in={show}>
       <SearchBoxContainer>
-        <Autocomplete
-          options={skills || []}
-          fullWidth
-          color="secondary"
-          freeSolo
-          renderInput={(params) => (
-            <SerarchField
-              {...params}
-              variant="standard"
-              placeholder={t("search_product")}
-            />
-          )}
-        />
-        <IconButton>
-          <SearchIcon
-            sx={{ fontSize: { xs: "2rem", md: "3rem" } }}
-            color="secondary"
-          />
-        </IconButton>
+        <Search />
         <IconButton
           onClick={close}
-          sx={{ position: "absolute", top: "50px", right: "10px" }}
+          sx={{ position: "absolute", top: "50px", [Direction.right]: "10px" }}
         >
           <CloseIcon sx={{ fontSize: "4rem" }} color="secondary" />
         </IconButton>

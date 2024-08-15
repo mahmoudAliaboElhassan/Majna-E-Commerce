@@ -16,9 +16,8 @@ export const SearchBoxContainer = styled(Box)(() => {
     height: "100%",
     top: 0,
     left: 0,
-    background: themeMode === "dark" ? Colors.lightblack : Colors.primary,
+    background: Colors.lightblack,
     zIndex: 999,
-    opacity: 0.95,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -87,11 +86,11 @@ export const StyledAutocomplete = styled(Autocomplete)(({ theme }) => ({
 }));
 
 export const SearchButton = styled(IconButton)(({ theme }) => {
-  const { Direction } = UseDirection(); // Use the correct hook
+  const { Direction } = UseDirection();
 
   return {
     position: "absolute",
-    [Direction.right]: 0, // Use the dynamic property
+    [Direction.left]: 0,
     height: "100%",
     top: 0,
     padding: theme.spacing(1, 2),
