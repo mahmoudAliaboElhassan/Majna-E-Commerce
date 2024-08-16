@@ -53,7 +53,7 @@ function AllStores() {
     {
       field: "city",
       headerName: t("storeCity"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
@@ -62,14 +62,14 @@ function AllStores() {
       headerName: t("storeAddress"),
       headerAlign: 'center',
       align: 'center',
-      flex: 1
+      width: 500,
     },
     {
       field: "edit",
       headerName: t("edit"),
       headerAlign: 'center',
       align: 'center',
-      flex: 1,
+      width: 150,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}

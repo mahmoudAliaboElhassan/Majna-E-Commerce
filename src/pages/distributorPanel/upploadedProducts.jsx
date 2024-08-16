@@ -63,7 +63,7 @@ function UploadedProducts() {
       headerAlign: "center", align: "center",
     },
     {
-      field: "name", headerName: t("product-name"), width: 150,
+      field: "name", headerName: t("product-name"), width: 250,
       headerAlign: "center", align: "center",
     },
     {
@@ -84,7 +84,8 @@ function UploadedProducts() {
     },
     {
       field: "view", headerName: t("view-product"),
-      headerAlign: "center", align: "center", flex: 1,
+      headerAlign: "center", align: "center",
+      width: 150,
       renderCell: (params) =>
       (
         <Button
@@ -99,7 +100,7 @@ function UploadedProducts() {
     },
     {
       field: "edit", headerName: t("edit-product"),
-      headerAlign: "center", align: "center", flex: 1,
+      headerAlign: "center", align: "center", width: 150,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -113,7 +114,7 @@ function UploadedProducts() {
     },
     {
       field: "delete", headerName: t("delete-product"),
-      headerAlign: "center", align: "center", flex: 1,
+      headerAlign: "center", align: "center", width: 150,
       renderCell: (params) => (
         <Button variant={themeMode === "dark" ? "contained" : "outlined"} color="error" onClick={() => handleDelete(params.row.id)}>
           {t("delete")}

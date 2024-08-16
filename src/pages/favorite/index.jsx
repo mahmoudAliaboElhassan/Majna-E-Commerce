@@ -120,6 +120,7 @@ function Favorite() {
       headerName: t("view-cart"),
       headerAlign: 'center',
       align: 'center',
+      minWidth: 150,
       flex: 1,
       renderCell: (params) => (
         <Button
@@ -136,6 +137,7 @@ function Favorite() {
       headerName: t("delete-cart"),
       headerAlign: 'center',
       align: 'center',
+      minWidth: 150,
       flex: 1,
       renderCell: (params) => (
         <Button

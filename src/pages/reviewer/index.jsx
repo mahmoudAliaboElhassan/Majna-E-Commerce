@@ -31,37 +31,45 @@ function IndexReviewer() {
   }, []);
   const columns = [
     {
-      field: "id", headerName: t("id"), width: 100, headerAlign: 'center',
+      field: "id",
+      headerName: t("id"),
+      headerAlign: 'center',
       align: 'center',
     },
     {
       field: "brand",
       headerName: t("brand_name"),
-      width: 150, headerAlign: 'center',
+      headerAlign: 'center',
       align: 'center',
     },
     {
       field: "requestDate",
       headerName: t("request-date"),
-      width: 150, headerAlign: 'center',
+      headerAlign: 'center',
       align: 'center',
-      flex: 1
+      width: 500
     },
     {
       field: "view",
       headerName: t("view-brand"),
-      width: 150, headerAlign: 'center',
+      headerAlign: 'center',
       align: 'center',
       flex: 1,
+      minWidth: 100,
+
       renderCell: (params) => (
-        <Button component={Link}
+        <Button
+          component={Link}
+          style={{ width: "60%" }}
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="success"
-          to={`brand/${params.row.id}`}>{params.value}
+          to={`brand/${params.row.id}`}>
+          {params.value}
         </Button>
       ),
     },
   ];
+
 
   // Transform allBrands data into rows for the DataGrid
   const rows = allBrans.map(({ id, brand, request_date }) => ({
@@ -73,28 +81,26 @@ function IndexReviewer() {
   return (
     <>
       {loadingReviewer ? (
-        <LoadingFetching>{t("loading-brands")}</LoadingFetching>
+        <LoadingFetching>{t("loading-brands-applications")}</LoadingFetching>
       ) : (
         <>
           {countOfBrands ? (
-            <DataGridContainer>
-              <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{
-                  pagination: {
-                    paginationModel: {
-                      pageSize: 5,
-                    },
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
                   },
-                }}
-                pageSizeOptions={[5, 10, 15, 20]}
-                checkboxSelection
-                disableRowSelectionOnClick
-                rowHeight={120}
-              />
+                },
+              }}
+              pageSizeOptions={[5, 10, 15, 20]}
+              checkboxSelection
+              disableRowSelectionOnClick
+              rowHeight={120}
+            />
 
-            </DataGridContainer>
           ) : (
             <Typography style={{ fontSize: "18px" }}>
               {t("no_brands")}

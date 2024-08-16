@@ -86,14 +86,14 @@ function Addresses() {
             headerName: t("full-address"),
             headerAlign: 'center',
             align: 'center',
-            flex: 1
+            width: 500
         },
         {
             field: "edit",
             headerName: t("edit"),
             headerAlign: 'center',
             align: 'center',
-            flex: 1,
+            width: 150,
             renderCell: (params) => (
                 <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -111,7 +111,8 @@ function Addresses() {
             headerName: t("delete"),
             headerAlign: 'center',
             align: 'center',
-            flex: 1,
+            width: 150,
+
             renderCell: (params) => (
                 <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}

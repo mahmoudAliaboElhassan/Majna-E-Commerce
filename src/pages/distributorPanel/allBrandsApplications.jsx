@@ -53,12 +53,13 @@ function AllBrandsApplications() {
       headerName: t("status"),
       headerAlign: 'center',
       align: 'center',
-      flex: 1
+      width: 150,
     },
     {
       field: "date",
       headerName: t("data-added"),
       flex: 1,
+      minWidth: 500,
       headerAlign: 'center',
       align: 'center',
     },

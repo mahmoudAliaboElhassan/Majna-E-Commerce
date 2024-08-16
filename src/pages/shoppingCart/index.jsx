@@ -130,14 +130,14 @@ function ShoppingCart() {
     {
       field: "quantity",
       headerName: t("product-quantity"),
-      width: 100,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: "totalPrice",
       headerName: t("total-price"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
@@ -146,6 +146,8 @@ function ShoppingCart() {
       headerName: t("view-cart"),
       headerAlign: 'center',
       align: 'center',
+      minWidth: 200,
+      flex: 1,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -159,7 +161,8 @@ function ShoppingCart() {
     {
       field: "edit",
       headerName: t("edit-quantity"),
-      width: 200,
+      minWidth: 200,
+      flex: 1,
       headerAlign: 'center',
       align: 'center',
       renderCell: (params) => (

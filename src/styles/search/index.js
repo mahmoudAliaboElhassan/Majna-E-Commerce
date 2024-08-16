@@ -90,7 +90,7 @@ export const SearchButton = styled(IconButton)(({ theme }) => {
 
   return {
     position: "absolute",
-    [Direction.left]: 0,
+    [Direction.right]: 0,
     height: "100%",
     top: 0,
     padding: theme.spacing(1, 2),
