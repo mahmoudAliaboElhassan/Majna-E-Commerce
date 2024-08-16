@@ -95,14 +95,14 @@ function ShoppingCart() {
     {
       field: "name",
       headerName: t("product-name"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: "brand",
       headerName: t("product-brand"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
@@ -123,7 +123,7 @@ function ShoppingCart() {
     {
       field: "price",
       headerName: t("product-price"),
-      width: 100,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
@@ -231,6 +231,8 @@ function ShoppingCart() {
       headerName: t("delete-cart"),
       headerAlign: 'center',
       align: 'center',
+      minWidth: 200,
+      flex: 1,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}

@@ -70,14 +70,14 @@ function Addresses() {
         {
             field: "governorate",
             headerName: t("governorate"),
-            width: 150,
+            width: 200,
             headerAlign: 'center',
             align: 'center',
         },
         {
             field: "city",
             headerName: t("city"),
-            width: 150,
+            width: 200,
             headerAlign: 'center',
             align: 'center',
         },
@@ -112,7 +112,6 @@ function Addresses() {
             headerAlign: 'center',
             align: 'center',
             width: 150,
-
             renderCell: (params) => (
                 <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}

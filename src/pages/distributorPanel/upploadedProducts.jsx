@@ -67,7 +67,7 @@ function UploadedProducts() {
       headerAlign: "center", align: "center",
     },
     {
-      field: "brand", headerName: t("product-brand"), width: 150,
+      field: "brand", headerName: t("product-brand"), width: 200,
       headerAlign: "center", align: "center",
     },
     {
@@ -80,7 +80,7 @@ function UploadedProducts() {
     },
     {
       field: "price", headerName: t("product-price"),
-      width: 100, headerAlign: "center", align: "center",
+      width: 200, headerAlign: "center", align: "center",
     },
     {
       field: "view", headerName: t("view-product"),

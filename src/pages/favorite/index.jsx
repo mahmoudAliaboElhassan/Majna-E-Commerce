@@ -75,21 +75,21 @@ function Favorite() {
     {
       field: "id",
       headerName: t("cart-id"),
-      width: 100,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: "name",
       headerName: t("product-name"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: "brand",
       headerName: t("product-brand"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
@@ -111,7 +111,7 @@ function Favorite() {
     {
       field: "price",
       headerName: t("product-price"),
-      width: 100,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },

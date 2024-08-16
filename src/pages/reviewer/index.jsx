@@ -34,12 +34,14 @@ function IndexReviewer() {
       field: "id",
       headerName: t("id"),
       headerAlign: 'center',
+      width: 100,
       align: 'center',
     },
     {
       field: "brand",
       headerName: t("brand_name"),
       headerAlign: 'center',
+      width: 200,
       align: 'center',
     },
     {
@@ -55,7 +57,7 @@ function IndexReviewer() {
       headerAlign: 'center',
       align: 'center',
       flex: 1,
-      minWidth: 100,
+      minWidth: 150,
 
       renderCell: (params) => (
         <Button

@@ -41,7 +41,7 @@ function AllBrandsApplications() {
     {
       field: "brand",
       headerName: t("brand_name"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
       // renderCell: (params) => (
@@ -53,7 +53,7 @@ function AllBrandsApplications() {
       headerName: t("status"),
       headerAlign: 'center',
       align: 'center',
-      width: 150,
+      width: 200,
     },
     {
       field: "date",

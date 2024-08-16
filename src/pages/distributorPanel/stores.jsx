@@ -46,7 +46,7 @@ function AllStores() {
     {
       field: "governorate",
       headerName: t("governorate"),
-      width: 150,
+      width: 200,
       headerAlign: 'center',
       align: 'center',
     },
