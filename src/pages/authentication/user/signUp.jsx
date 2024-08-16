@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import { Form, Formik } from "formik";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -38,7 +38,15 @@ function SignUp() {
   const { FORM_VALIDATION_SCHEMA_SignUp } = UseFormValidation();
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
-
+  const { token, role } = useSelector((state) => state.auth)
+  const navigate = useNavigate()
+  useEffect(() => {
+    token &&
+      (role === "reviewer"
+        ? navigate("/reviewer")
+        : (role === "distributor" || role === "customer") &&
+        navigate("/"))
+  }, [])
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm">
