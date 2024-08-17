@@ -86,10 +86,13 @@ const Search = ({ headerColor }) => {
       <SearchButton
         variant={themeMode === "dark" ? "contained" : "outlined"}
         onClick={handleSearchClick}
+        sx={{
+          backgroundColor: headerColor && (themeMode === "dark" ? theme.palette.primary.dark : "#1d1919"),
+        }}
       >
         <SearchIcon />
       </SearchButton>
-    </SearchBox>
+    </SearchBox >
   );
 };
 
