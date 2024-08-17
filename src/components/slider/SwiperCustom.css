@@ -1,18 +1,60 @@
+.swiper-button-prev,
+.swiper-button-next {
+  color: #007bff;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease,
+    width 0.3s ease, height 0.3s ease;
+  -o-transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease,
+    height 0.3s ease;
+  -webkit-transition: background-color 0.3s ease, color 0.3s ease,
+    width 0.3s ease, height 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, width 0.3s ease,
+    height 0.3s ease;
+  padding: 5px;
+  border: 1px solid white;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  font-size: 25px;
+  -webkit-transition: font-size 0.3s ease;
+  -o-transition: font-size 0.3s ease;
+  transition: font-size 0.3s ease;
+}
+
 .swiper-pagination {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex; /* Ensure pagination bullets are displayed horizontally */
+  display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px; /* Add space between bullets */
+  gap: 10px;
 }
 
 .swiper-pagination-bullet.custom-bullet {
-  background: #007bff; /* Change this to your desired color */
+  background: #007bff;
   color: #fff;
   width: 25px;
   height: 25px;
@@ -27,33 +69,62 @@
   align-items: center;
   border-radius: 50%;
   font-size: 14px;
+  -webkit-transition: background-color 0.3s ease, width 0.3s ease,
+    height 0.3s ease, font-size 0.3s ease;
+  -o-transition: background-color 0.3s ease, width 0.3s ease, height 0.3s ease,
+    font-size 0.3s ease;
+  -webkit-transition: background-color 0.3s ease, width 0.3s ease,
+    height 0.3s ease, font-size 0.3s ease;
+  transition: background-color 0.3s ease, width 0.3s ease, height 0.3s ease,
+    font-size 0.3s ease;
 }
 
 .swiper-pagination-bullet.custom-bullet.swiper-pagination-bullet-active {
-  background: #0056b3; /* Change this to your desired active color */
+  background: #0056b3;
 }
 
-/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 35px;
+    height: 35px;
+  }
+
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 20px;
+  }
+
   .swiper-pagination {
-    gap: 5px; /* Reduce space between bullets */
+    gap: 5px;
   }
 
   .swiper-pagination-bullet.custom-bullet {
-    width: 20px; /* Shrink width */
-    height: 20px; /* Shrink height */
-    font-size: 12px; /* Reduce font size */
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 16px;
+  }
+
   .swiper-pagination {
-    gap: 3px; /* Further reduce space between bullets */
+    gap: 3px;
   }
 
   .swiper-pagination-bullet.custom-bullet {
-    width: 15px; /* Further shrink width */
-    height: 15px; /* Further shrink height */
-    font-size: 10px; /* Further reduce font size */
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
   }
 }

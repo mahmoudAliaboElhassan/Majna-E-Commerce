@@ -44,10 +44,10 @@ const Swiperslide = ({ images }) => {
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
-            return `<span class="${className} custom-bullet">${index + 1
-              }</span>`;
+            return `<span class="${className} custom-bullet">${index + 1}</span>`;
           },
         }}
+        loop={true} // Enable looping
         style={{ height: "350px", width: "100%" }}
       >
         {imageArray.map((img, index) => {
@@ -59,6 +59,7 @@ const Swiperslide = ({ images }) => {
           );
         })}
       </Swiper>
+
     </Box>
   );
 };
