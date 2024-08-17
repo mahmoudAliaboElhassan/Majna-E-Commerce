@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import FacebookIcon from '@mui/icons-material/Facebook';
+import PersonIcon from '@mui/icons-material/Person';
 import { useTranslation } from "react-i18next";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
@@ -20,6 +20,7 @@ import { motion } from "framer-motion";
 import UseMediaQueryHook from "@hooks/use-media-query";
 import UseThemMode from "@hooks/use-theme";
 import teamImage from "@assets/team";
+import portfolioImage from "@assets/team/profile.png";
 import { AppbarHeader } from "@styles/appbar";
 
 function Team() {
@@ -83,8 +84,8 @@ function Team() {
                   </a>
                 </Box>
                 <Box sx={{ flex: 1 }}>
-                  <a href="https://www.facebook.com/profile.php?id=100075492203648" target="_blank" style={{ color: "inherit" }} title={t("facebook")}>
-                    <FacebookIcon sx={{ fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" } }} />
+                  <a href="https://mahmoudaliaboelhassan.github.io/Portfolio-Website/" target="_blank" style={{ color: "inherit" }} title={t("website")}>
+                  <PersonIcon sx={{ fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" } }} />
                   </a>
                 </Box>
               </CardActions>
