@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Container, Button } from "@mui/material";
@@ -14,6 +14,7 @@ import {
   cleanUpFavorites,
 } from "@state/slices/cart";
 import UseThemeMode from "@hooks/use-theme";
+import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import { DataGridContainer } from "@styles/dataGrid";
 import "@pages/shoppingCart/style.css"
 import { AppbarHeader } from "@styles/appbar";
@@ -21,10 +22,11 @@ import Footer from "@components/footer";
 import withGuard from "@utils/withGuard";
 import { NoCount } from "@styles/products";
 
-
 function Favorite() {
   const { favoritesArray = [], loadingGetFavorites, countOfFavoritesProducts } = useSelector((state) => state.cart); // Default to empty array
   const dispatch = useDispatch();
+  const [btnDisabled, setBtnDisabled] = useState(null)
+  const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
   const { Uid } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function Favorite() {
 
   const handleDelete = useCallback(
     (favoriteItemId) => {
+      setBtnDisabled(favoriteItemId)
       Swal.fire({
         title: t("suring"),
         text: t("info-favorite"),
@@ -53,12 +56,23 @@ function Favorite() {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteFavorite({ customerId: Uid, favoriteItemId }));
-          Swal.fire({
-            title: t("deleting-favorite"),
-            icon: "success",
-            confirmButtonText: t("ok"),
-          });
+          dispatch(deleteFavorite({ customerId: Uid, favoriteItemId })).unwrap().then(() => {
+
+            Swal.fire({
+              title: t("deleting-favorite"),
+              icon: "success",
+              confirmButtonText: t("ok"),
+            });
+
+          }).catch((error) => {
+
+            Swal.fire({
+              title: t("error-deleting-favorite"),
+              icon: "warning",
+              confirmButtonText: t("ok"),
+            });
+          })
+
         } else {
           Swal.fire({
             title: t("keeping-favorite"),
@@ -144,6 +158,7 @@ function Favorite() {
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="error"
           onClick={() => handleDelete(params.row.id)}
+          disabled={LoadingStatusDeleteUpdate && btnDisabled === params.row.id}
         >
           {t("delete")}
         </Button>

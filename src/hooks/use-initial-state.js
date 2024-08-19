@@ -44,9 +44,12 @@ function UseInitialStates() {
     subCategories: [],
     loadingAddProduct: false,
     loadingGetUploadedProducts: false,
+    loadingDeleteProduct: false,
     uploadedProducts: [],
     countOfUploadedProducts: 0,
     loadingUpdateProduct: false,
+    loadingDeleteStore: false,
+    countOfStores: 0,
   };
 
   const initialStateReviewer = {
@@ -79,6 +82,8 @@ function UseInitialStates() {
     loadingGetFavorites: false,
     countOfFavoritesProducts: null,
     loadingSpecificProduct: false,
+    loadingDeleteCart: false,
+    loadingDeleteFavorite: false,
   };
   const initialStateSearch = {
     searchChage: null,

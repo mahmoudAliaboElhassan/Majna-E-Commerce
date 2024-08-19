@@ -28,6 +28,7 @@ import UseThemMode from "@hooks/use-theme";
 import "@pages/shoppingCart/style.css"
 import withGuard from "@utils/withGuard";
 import { NoCount } from "@styles/products";
+import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -36,7 +37,6 @@ function ShoppingCart() {
     cartItems,
     countOfCartItems,
     loadingCarts,
-    loadingEditCartQuantity,
     cartQuantity,
   } = useSelector((state) => state.cart);
   const { themeMode } = UseThemMode();
@@ -50,10 +50,15 @@ function ShoppingCart() {
   console.log(countOfCartItems !== 0)
   const { t } = useTranslation();
   const { FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY } = UseFormValidation();
-  console.log("loadingEditCartQuantity");
-  console.log(loadingEditCartQuantity);
+
+  const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
+  const [btnEditDisabled, setBtnEditDisabled] = useState(null);
+  const [btnDeleteDisabled, setBtnDeleteDisabled] = useState(null);
+
   const handleDelete = useCallback(
     (cartId) => {
+      setBtnEditDisabled(null)
+      setBtnDeleteDisabled(cartId)
       Swal.fire({
         title: t("suring"),
         text: t("info-cart"),
@@ -66,12 +71,20 @@ function ShoppingCart() {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteCartItem({ customerId: Uid, cartId }));
-          Swal.fire({
-            title: t("deleting-cart"),
-            icon: "success",
-            confirmButtonText: t("ok"),
-          });
+          dispatch(deleteCartItem({ customerId: Uid, cartId })).unwrap().then(() => {
+            Swal.fire({
+              title: t("deleting-cart"),
+              icon: "success",
+              confirmButtonText: t("ok"),
+            });
+          }).catch((error) => {
+            Swal.fire({
+              title: t("error-deleting-cart"),
+              icon: "warning",
+              confirmButtonText: t("ok"),
+            });
+          })
+
         } else {
           Swal.fire({
             title: t("keeping-cart"),
@@ -83,7 +96,8 @@ function ShoppingCart() {
     },
     [dispatch, t, Uid]
   );
-  const [idx, setIdx] = useState(null);
+
+
   const columns = [
     {
       field: "id",
@@ -170,7 +184,7 @@ function ShoppingCart() {
           initialValues={{ quantity: params.row.quantity }}
           validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY}
           onSubmit={(values) => {
-            setIdx(params.row.id);
+            setBtnEditDisabled(params.row.id);
             if (params.row.quantity !== values.quantity) {
               dispatch(
                 updateQuantity({
@@ -212,7 +226,7 @@ function ShoppingCart() {
                 onClick={handleSubmit}
                 variant={themeMode === "dark" ? "contained" : "outlined"}
                 color="info"
-                disabled={loadingEditCartQuantity && idx === params.row.id}
+                disabled={LoadingStatusDeleteUpdate && btnEditDisabled === params.row.id}
               >
                 {t("edit")}
               </Button>
@@ -237,6 +251,7 @@ function ShoppingCart() {
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="error"
+          disabled={LoadingStatusDeleteUpdate && btnDeleteDisabled === params.row.id}
           onClick={() => handleDelete(params.row.id)}
         >
           {t("delete")}

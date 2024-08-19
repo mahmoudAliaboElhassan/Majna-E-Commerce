@@ -119,7 +119,7 @@ const cart = createSlice({
       })
       .addCase(getFavorites.pending, (state, action) => {
         state.loadingGetFavorites = true;
-       })
+      })
       .addCase(getFavorites.fulfilled, (state, action) => {
         state.loadingGetFavorites = false;
         state.favoritesArray = action.payload.favorite_items;
@@ -129,11 +129,25 @@ const cart = createSlice({
         state.loadingGetFavorites = false;
         state.countOfFavoritesProducts = 0;
       })
+      .addCase(deleteCartItem.pending, (state, action) => {
+        state.loadingDeleteCart = true;
+      })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
+        state.loadingDeleteCart = false;
         state.countOfCartItems--;
       })
+      .addCase(deleteCartItem.rejected, (state, action) => {
+        state.loadingDeleteCart = false;
+      })
+      .addCase(deleteFavorite.pending, (state, action) => {
+        state.loadingDeleteFavorite = true;
+      })
       .addCase(deleteFavorite.fulfilled, (state, action) => {
+        state.loadingDeleteFavorite = false;
         state.countOfFavoritesProducts--;
+      })
+      .addCase(deleteFavorite.rejected, (state, action) => {
+        state.loadingDeleteFavorite = false;
       });
   },
 });

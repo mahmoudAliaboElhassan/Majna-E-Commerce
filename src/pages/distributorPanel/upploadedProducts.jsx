@@ -1,4 +1,5 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+
 import { Box, Button, Container } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,11 +7,13 @@ import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+
+import "@pages/shoppingCart/style.css"
 import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
 import LoadingFetching from "@components/loadingFetching";
+import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import { getUploadedProducts, deleteUploadedProduct, cleanUpUploadedProducts } from "@state/slices/distributor";
-import "@pages/shoppingCart/style.css"
 
 function UploadedProducts() {
   const { t } = useTranslation();
@@ -18,6 +21,8 @@ function UploadedProducts() {
   const { themeMode } = UseThemMode();
   const { Uid } = useSelector((state) => state.auth);
   const { uploadedProducts, loadingGetUploadedProducts, countOfUploadedProducts } = useSelector((state) => state.distributor);
+  const [btnDisabled, setbtnDisabled] = useState(null)
+  const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
 
   useEffect(() => {
     dispatch(getUploadedProducts({ distributorId: Uid }));
@@ -26,6 +31,7 @@ function UploadedProducts() {
 
   const handleDelete = useCallback(
     (productId) => {
+      setbtnDisabled(productId)
       Swal.fire({
         title: t("suring"),
         text: t("info-product"),
@@ -38,12 +44,20 @@ function UploadedProducts() {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteUploadedProduct({ distributorId: Uid, productId }));
-          Swal.fire({
-            title: t("deleting-product"),
-            icon: "success",
-            confirmButtonText: t("ok"),
-          });
+          dispatch(deleteUploadedProduct({ distributorId: Uid, productId })).unwrap().then(() => {
+            Swal.fire({
+              title: t("deleting-product"),
+              icon: "success",
+              confirmButtonText: t("ok"),
+            });
+          }).catch((error) => {
+            Swal.fire({
+              title: t("error-deleting-product"),
+              icon: "warning",
+              confirmButtonText: t("ok"),
+            });
+          })
+
         } else {
           Swal.fire({
             title: t("keeping-product"),
@@ -116,7 +130,12 @@ function UploadedProducts() {
       field: "delete", headerName: t("delete-product"),
       headerAlign: "center", align: "center", width: 200,
       renderCell: (params) => (
-        <Button variant={themeMode === "dark" ? "contained" : "outlined"} color="error" onClick={() => handleDelete(params.row.id)}>
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="error"
+          disabled={btnDisabled === params.row.id && LoadingStatusDeleteUpdate}
+          onClick={() => handleDelete(params.row.id)}
+        >
           {t("delete")}
         </Button>
       ),

@@ -11,6 +11,7 @@ import {
   editStore,
   getStores,
   getStore,
+  deleteStore,
   addProduct,
   getCategories,
   getSubCategory,
@@ -195,6 +196,7 @@ export const distributorSlice = createSlice({
       .addCase(getStores.fulfilled, (state, action) => {
         console.log(action.payload);
         state.stores = action.payload.stores;
+        state.countOfStores = action.payload.stores.length;
         state.loadingStores = false;
       })
       .addCase(getStores.rejected, (state, action) => {
@@ -271,11 +273,16 @@ export const distributorSlice = createSlice({
       .addCase(getUploadedProducts.rejected, (state, action) => {
         state.loadingGetUploadedProducts = false;
       })
-      .addCase(deleteUploadedProduct.pending, (state, action) => {})
+      .addCase(deleteUploadedProduct.pending, (state, action) => {
+        state.loadingDeleteProduct = true;
+      })
       .addCase(deleteUploadedProduct.fulfilled, (state, action) => {
         state.countOfUploadedProducts--;
+        state.loadingDeleteProduct = false;
       })
-      .addCase(deleteUploadedProduct.rejected, (state, action) => {})
+      .addCase(deleteUploadedProduct.rejected, (state, action) => {
+        state.loadingDeleteProduct = false;
+      })
 
       .addCase(updateUploadedProduct.pending, (state, action) => {
         state.loadingUpdateProduct = true;
@@ -285,6 +292,16 @@ export const distributorSlice = createSlice({
       })
       .addCase(updateUploadedProduct.rejected, (state, action) => {
         state.loadingUpdateProduct = false;
+      })
+      .addCase(deleteStore.pending, (state, action) => {
+        state.loadingDeleteStore = true;
+      })
+      .addCase(deleteStore.fulfilled, (state, action) => {
+        state.countOfStores -= 1;
+        state.loadingDeleteStore = false;
+      })
+      .addCase(deleteStore.rejected, (state, action) => {
+        state.loadingDeleteStore = false;
       });
   },
 });
@@ -299,7 +316,7 @@ export const {
   cleanUpCategories,
   cleanUpSubCategories,
   cleanUpUploadedProducts,
-  cleanUpGetStore
+  cleanUpGetStore,
 } = distributorSlice.actions;
 export {
   addBrand,
@@ -311,6 +328,7 @@ export {
   editStore,
   getStores,
   getStore,
+  deleteStore,
   addProduct,
   getCategories,
   getSubCategory,

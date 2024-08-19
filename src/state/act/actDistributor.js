@@ -224,6 +224,27 @@ export const getStore = createAsyncThunk(
     }
   }
 );
+export const deleteStore = createAsyncThunk(
+  "distributorSlice/deleteStore",
+  async ({ Uid, storeId }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await majnAPI.delete(
+        `api/distributors/${Uid}/stores/${storeId}`
+      );
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
 export const getSubCategory = createAsyncThunk(
   "distributorSlice/getSubCategory",
   async (_, thunkAPI) => {
