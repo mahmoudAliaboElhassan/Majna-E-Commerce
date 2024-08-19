@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FormHelperText } from "@material-ui/core";
 
 import UseThemMode from "@hooks/use-theme";
+import UseMediaQueryHook from "@hooks/use-media-query";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import { AppbarHeader } from "@styles/appbar";
 import UseFormValidation from "@formValidation/use-form-validation";
@@ -75,6 +76,7 @@ function AddProduct() {
   const { FORM_VALIDATION_SCHEMA_Add_PRODUCT } = UseFormValidation();
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
+  const { isMatch } = UseMediaQueryHook();
   const { brands, loadingFetch } = useSelector((state) => state.distributor);
   const { Uid } = useSelector((state) => state.auth);
   const {
@@ -109,7 +111,7 @@ function AddProduct() {
       {loadingState ? (
         <LoadingFetching>{t("wait-data")}</LoadingFetching>
       ) : approvedBrands.length ? (
-        <Container maxWidth="sm">
+        <Container maxWidth={isMatch ? "md" : "lg"}>
           {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">

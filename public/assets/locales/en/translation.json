@@ -273,5 +273,6 @@
   "store-related": "This Store is related with Products, There are Products Uploaded within this Store",
   "error-deleting-product": "Error in Deleting This Product",
   "error-deleting-cart": "Error in Deleting This Product From your Shopping Cart list",
-  "error-deleting-favorite": "Error in Deleting This Product From your Favorites list"
+  "error-deleting-favorite": "Error in Deleting This Product From your Favorites list",
+  "remove-store": "Remove Store"
 }

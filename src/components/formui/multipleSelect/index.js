@@ -76,7 +76,13 @@ function MultipleSelect({
   };
 
   return (
-    <Grid container spacing={2} justifyContent="center" alignItems="center">
+    <Grid
+      container
+      spacing={2}
+      justifyContent="center"
+      alignItems="center"
+      style={{ marginBottom: "8px" }}
+    >
       <Grid item xs={6}>
         <FormControl fullWidth variant="outlined" {...configStoreName}>
           <InputLabel

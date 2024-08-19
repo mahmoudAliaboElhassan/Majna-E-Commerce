@@ -273,5 +273,6 @@
   "store-related": "هذا المتجر مرتبط بمنتج ،هناك منتج مرفوع يتضمن هذا المتجر ",
   "error-deleting-product": "خطأ بحذف هذا المنتج",
   "error-deleting-cart": "خطأ بحذف هذا المنتج من سلتك",
-  "error-deleting-favorite": "خطأ بحذف هذا المنتج من قائمتك المفضله"
+  "error-deleting-favorite": "خطأ بحذف هذا المنتج من قائمتك المفضله",
+  "remove-store": "إزالة المتجر"
 }

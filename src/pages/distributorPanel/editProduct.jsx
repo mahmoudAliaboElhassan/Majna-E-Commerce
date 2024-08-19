@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import UseThemMode from "@hooks/use-theme";
+import UseMediaQueryHook from "@hooks/use-media-query";
 import ButtonWrapper from "@components/formui/SubmitButton";
 import { AppbarHeader } from "@styles/appbar";
 import UseFormValidation from "@formValidation/use-form-validation";
@@ -60,6 +61,7 @@ function EditProduct() {
   const { FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT } = UseFormValidation();
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
+  const { isMatch } = UseMediaQueryHook();
   const { productData, loadingSpecificProduct } = useSelector((state) => state.products);
   const { INITIAL_FORM_STATE_EDIT_PRODUCT } = UseInitialValues(productData);
   console.log("productData?.inventory?.stores")
@@ -84,7 +86,7 @@ function EditProduct() {
         <LoadingFetching>{t("wait-data")}</LoadingFetching>
       ) :
         <div style={{ position: "relative", height: "100vh" }}>
-          <Container maxWidth="sm">
+          <Container maxWidth={isMatch ? "md" : "lg"}>
             {/* <ToastContainer /> */}
             <Card raised>
               <Container maxWidth="md">
