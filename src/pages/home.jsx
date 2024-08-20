@@ -37,9 +37,9 @@ function Home() {
     localStorage.setItem("page", value)
     console.log("localStorage.getItem(page)")
     console.log(localStorage.getItem("page"))
-    setPage(value);
-    console.log(page);
+    setPage((value));
   }, [page]);
+  console.log("page :", page)
 
   const [selectedCategory, setSelectedCategory] =
     useState(localStorage.getItem("category") || "");

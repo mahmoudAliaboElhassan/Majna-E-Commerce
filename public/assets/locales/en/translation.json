@@ -274,5 +274,10 @@
   "error-deleting-product": "Error in Deleting This Product",
   "error-deleting-cart": "Error in Deleting This Product From your Shopping Cart list",
   "error-deleting-favorite": "Error in Deleting This Product From your Favorites list",
-  "remove-store": "Remove Store"
+  "remove-store": "Remove Store",
+  "orders": "Orders",
+  "welcome-sentence": "Welcome to Our Majna Store",
+  "feel": "feel",
+  "free": "free",
+  "for-browsing": "for browsing and navigating our website"
 }

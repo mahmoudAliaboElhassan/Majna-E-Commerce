@@ -274,5 +274,10 @@
   "error-deleting-product": "خطأ بحذف هذا المنتج",
   "error-deleting-cart": "خطأ بحذف هذا المنتج من سلتك",
   "error-deleting-favorite": "خطأ بحذف هذا المنتج من قائمتك المفضله",
-  "remove-store": "إزالة المتجر"
+  "remove-store": "إزالة المتجر",
+  "orders": "الطلبات",
+  "welcome-sentence": "أهلاً بكم في مجنا ستور",
+  "feel": "إشعر",
+  "free": "بالسلاسة ",
+  "for-browsing": "بالتصفح و التجول داخل موقعنا"
 }

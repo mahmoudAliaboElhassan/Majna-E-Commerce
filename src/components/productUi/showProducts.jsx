@@ -12,6 +12,7 @@ const ShowProducts = ({ records, renderProducts, page, count, changePage }) => {
   const { loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
   );
+
   return (
     <>
       {loadingProducts ? (

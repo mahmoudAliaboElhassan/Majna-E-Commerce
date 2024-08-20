@@ -23,13 +23,13 @@ const Search = ({ resetPage, headerColor }) => {
   const { themeMode } = UseThemeMode();
 
   const handleInputChange = (event, value) => {
-    const inputValue = value || event.target.value;
+    const inputValue = value || event?.target?.value;
     setMySearch(inputValue);
     dispatch(handleSearchChange(inputValue));
     if (!inputValue) {
       setMySearch("");
       dispatch(handleSearchChange(""));
-      resetPage()
+      if (resetPage) { resetPage() }
       dispatch(handleSearchValue(""));
     }
   };

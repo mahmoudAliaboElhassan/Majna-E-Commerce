@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
+
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import "./introductory.css";
 import Image from "@assets/introductory";
@@ -16,7 +19,44 @@ function Introductory() {
   const { t } = useTranslation();
   const { themeMode } = UseThemMode();
   const { isMatch } = UseMediaQueryHook();
+
+  // Use useInView hook
+  const { ref: imgRef, inView: imgInView } = useInView({ triggerOnce: false });
+  const { ref: textRef, inView: textInView } = useInView({ triggerOnce: false });
+  const { ref: introductoryRef, inView: introductoryInView } = useInView({ triggerOnce: false });
+
   useEffect(() => { }, [theme.direction]);
+
+  const words = t("welcome-sentence").split(" ");
+
+  const container = {
+    hidden: { opacity: 0 },
+    visible: (i = 1) => ({
+      opacity: 1,
+      transition: { staggerChildren: 0.22, delayChildren: 0.06 * i },
+    }),
+  };
+
+  const child = {
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      x: 20,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
 
   return (
     <div
@@ -32,36 +72,68 @@ function Introductory() {
           flexDirection: isMatch ? "column" : "row",
         }}
       >
-        <div className="hero-right">
+        <motion.div
+          ref={imgRef}
+          initial={{ opacity: 0, y: -100 }}
+          animate={imgInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
+          className="hero-right"
+        >
           <img
             src={Image[0]}
             alt=""
             style={{ width: "350px", height: "350px" }}
             loading="lazy"
           />
-        </div>
-        <div className="hero-left">
-          <h2>{t("NEW arrivals Only")}</h2>
-          <div
-            className="hero-hand-icon"
-            style={{ justifyContent: isMatch ? "center" : "start" }}
-          >
-            <p>{t("new")}</p>
-            <img src={Image[1]} alt="New Collection Icon" />
-          </div>
-          <p>{t("Collections")}</p>
-          <p>{t("for everyone")}</p>
-          <IntroudctoryButton style={{ transition: "0.5s" }}>
-            <div>{t("Latest Collection")}</div>
-            {theme.direction === "rtl" ? (
-              <ArrowBackIcon className="icon" style={{ transition: "0.3s" }} />
-            ) : (
-              <ArrowForwardIcon
-                className="icon"
-                style={{ transition: "0.3s" }}
-              />
-            )}
-          </IntroudctoryButton>
+        </motion.div>
+        <div
+          className="hero-left"
+        >
+          <h2>
+            <motion.div
+              style={{ overflow: "hidden", display: "flex", justifyContent: "center", flexWrap: "wrap", fontSize: "2rem" }}
+              ref={textRef}
+              initial="hidden"
+              animate={textInView ? "visible" : "hidden"} // Use "hidden" instead of null
+              variants={container}
+            >
+              {words.map((word, index) => (
+                <motion.span
+                  variants={child}
+                  style={{ marginRight: "5px" }}
+                  key={index}
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.div>
+          </h2>
+          <motion.div
+            ref={introductoryRef}
+            initial={{ opacity: 0, y: -100 }}
+            animate={introductoryInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }}>
+            <div
+              className="hero-hand-icon"
+              style={{ justifyContent: isMatch ? "center" : "start" }}
+            >
+              <p>{t("feel")}</p>
+              <img src={Image[1]} alt="New Collection Icon" />
+            </div>
+            <p>{t("free")}</p>
+            <p>{t("for-browsing")}</p>
+            <IntroudctoryButton style={{ transition: "0.5s" }}>
+              <div>{t("Latest Collection")}</div>
+              {theme.direction === "rtl" ? (
+                <ArrowBackIcon className="icon" style={{ transition: "0.3s" }} />
+              ) : (
+                <ArrowForwardIcon
+                  className="icon"
+                  style={{ transition: "0.3s" }}
+                />
+              )}
+            </IntroudctoryButton>
+          </motion.div>
         </div>
       </Container>
     </div>

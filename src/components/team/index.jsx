@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Typography,
   Container,
@@ -85,7 +86,7 @@ function Team() {
                 </Box>
                 <Box sx={{ flex: 1 }}>
                   <a href="https://mahmoudaliaboelhassan.github.io/Portfolio-Website/" target="_blank" style={{ color: "inherit" }} title={t("website")}>
-                  <PersonIcon sx={{ fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" } }} />
+                    <PersonIcon sx={{ fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" } }} />
                   </a>
                 </Box>
               </CardActions>

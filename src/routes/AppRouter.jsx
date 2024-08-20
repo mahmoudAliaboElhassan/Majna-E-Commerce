@@ -99,6 +99,7 @@ const RootCustomerPanelLayOut = React.lazy(() => import("@pages/customerPanel/ro
 const Addresses = React.lazy(() => import("@pages/customerPanel/addresses"))
 const AddAddress = React.lazy(() => import("@pages/customerPanel/addAddress"))
 const EditAddress = React.lazy(() => import("@pages/customerPanel/editAddress"))
+const Orders = React.lazy(() => import("@pages/customerPanel/orders"))
 
 const router = createBrowserRouter([
   {
@@ -301,6 +302,14 @@ const router = createBrowserRouter([
               element: (
                 <Suspense fallback={<Loader />}>
                   <EditAddress />
+                </Suspense>
+              )
+            },
+            {
+              path: "orders",
+              element: (
+                <Suspense fallback={<Loader />}>
+                  <Orders />
                 </Suspense>
               )
             }
