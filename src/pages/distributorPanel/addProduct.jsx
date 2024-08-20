@@ -112,7 +112,6 @@ function AddProduct() {
         <LoadingFetching>{t("wait-data")}</LoadingFetching>
       ) : approvedBrands.length ? (
         <Container maxWidth={isMatch ? "md" : "lg"}>
-          {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">
               <Grid
@@ -252,7 +251,7 @@ function AddProduct() {
               </Grid>
             </Container>
           </Card>
-        </Container>
+        </Container >
       ) : (
         <div>{t("no-brands")}</div>
       )

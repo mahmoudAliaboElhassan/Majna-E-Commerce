@@ -65,6 +65,7 @@ const InventoryComp = () => {
         <StoreAdded
           variant="contained"
           onClick={handleAddClick}
+          title={t('add-store')}
           disabled={!stores.length || count >= stores.length}
         >
           <ControlPointIcon />

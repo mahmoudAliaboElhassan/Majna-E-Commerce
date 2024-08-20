@@ -52,8 +52,8 @@ function UseInitialValues(props) {
     sub_category_pk: null,
   };
   const INITIAL_FORM_STATE_PRICES = {
-    priceFrom: null,
-    priceTo: null,
+    priceFrom: localStorage.getItem("priceFrom"),
+    priceTo: localStorage.getItem("priceTo"),
   };
   const INITIAL_FORM_STATE_CONTACT = {
     yourName: "",

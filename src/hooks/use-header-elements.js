@@ -18,7 +18,7 @@ function UseHeaderElements() {
   const HeaderElements = [
     {
       label: t("home"),
-      to: "",
+      to: "/",
     },
     {
       label: t("about"),

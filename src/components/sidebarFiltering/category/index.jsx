@@ -35,11 +35,11 @@ function Category({ handleProductsByCategory, selectedCategory }) {
       <div>
         <Input
           key={"all"}
-          handleChange={() => handleProductsByCategory(null)}
+          handleChange={() => handleProductsByCategory("")}
           value={null}
           title={t("all")}
           name="category"
-          isCheck={selectedCategory === null}
+          isCheck={selectedCategory === ""}
         />
         {categories?.length ? categories.map(({ id, name }) => (
           <Input
@@ -48,7 +48,7 @@ function Category({ handleProductsByCategory, selectedCategory }) {
             value={id}
             title={name}
             name="category"
-          // isChecked={selectedCategory === id}
+            isCheck={+selectedCategory === id}
           />
         )) : <Typography sx={{
           textAlign: "center",

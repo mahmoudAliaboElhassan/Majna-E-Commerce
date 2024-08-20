@@ -24,7 +24,7 @@ import Search from "@components/search";
 import Footer from "@components/footer";
 
 function Home() {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(localStorage.getItem("page") || 1);
   const { items } = useSelector((state) => state.cart);
   const { productsArray, loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
@@ -34,17 +34,19 @@ function Home() {
   const dispatch = useDispatch();
 
   const changePage = useCallback((e, value) => {
+    localStorage.setItem("page", value)
+    console.log("localStorage.getItem(page)")
+    console.log(localStorage.getItem("page"))
     setPage(value);
     console.log(page);
   }, [page]);
 
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const handleChange = useCallback((event) => {
-    setSelectedCategory(event.target.value);
-    console.log(event.target.value);
-  }, []);
-  const [priceFromTo, setPriceFromTo] = useState(["", ""]);
-  const [price, setPrice] = useState("");
+  const [selectedCategory, setSelectedCategory] =
+    useState(localStorage.getItem("category") || "");
+  const [priceFromTo, setPriceFromTo] =
+    useState([localStorage.getItem("priceFrom"),
+    localStorage.getItem("priceTo")]);
+  const [price, setPrice] = useState(localStorage.getItem("price"));
 
   const handlePriceChange = useCallback((index, value) => {
     const newPriceFromTo = [...priceFromTo];
@@ -53,29 +55,36 @@ function Home() {
   }, [priceFromTo]);
 
   const handleClickPrice = useCallback(() => {
+    localStorage.setItem("priceFrom", priceFromTo[0])
+    localStorage.setItem("priceTo", priceFromTo[1])
+    localStorage.setItem("price", priceFromTo.join(","))
     setPrice(priceFromTo.join(","));
+    localStorage.setItem("page", 1)
+    setPage(1)
   }, [priceFromTo]);
 
-  const [color, setColor] = useState("");
-  const handleChangeColor = useCallback((event) => {
-    setColor(event.target.value);
-    console.log(event.target.value);
-  }, []);
 
   const [ordering, setOrdering] = useState(null);
   const handleOrdering = useCallback((e) => {
     setOrdering(e.target.value);
   }, []);
 
-  const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+  const [selectedSubCategory, setSelectedSubCategory] = useState(localStorage.getItem("subCategory") || "");
   const handleSelectedSubCategory = useCallback((value) => {
+    localStorage.setItem("page", 1)
+    setPage(1)
+    localStorage.setItem("subCategory", value)
     setSelectedSubCategory(value);
     console.log("selectedSubCategory");
   }, []);
 
-  const [productId, setProductId] = useState(null);
   const handleProductsByCategory = useCallback((id) => {
+    localStorage.setItem("category", id)
+    localStorage.removeItem("subCategory")
     setSelectedCategory(id);
+    setSelectedSubCategory("")
+    localStorage.setItem("page", 1)
+    setPage(1)
     id
       ? dispatch(
         getProductsByCategory({
@@ -127,7 +136,6 @@ function Home() {
     dispatch,
     selectedCategory,
     price,
-    color,
     ordering,
     page,
     searchValue,
@@ -153,7 +161,6 @@ function Home() {
             priceFromTo={priceFromTo}
             handleClickPrice={handleClickPrice}
             price={price}
-            color={color}
             handleOrdering={handleOrdering}
             handleProductsByCategory={handleProductsByCategory}
             selectedCategory={selectedCategory}

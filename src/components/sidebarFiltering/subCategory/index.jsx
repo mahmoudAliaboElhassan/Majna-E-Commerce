@@ -26,7 +26,8 @@ function SubCategory({
     const filteredSubCategories = selectedCategory ? subCategories?.filter(
         (subcat) => subcat.category_id == selectedCategory
     ) : subCategories;
-
+    console.log("typeof (subCategories[0]?.id)")
+    console.log(typeof (subCategories[0]?.id))
     return (
         <FilteringBox>
             <Typography
@@ -39,11 +40,11 @@ function SubCategory({
             <div>
                 <Input
                     key={"all"}
-                    handleChange={() => handleSelectedSubCategory(null)}
+                    handleChange={() => handleSelectedSubCategory("")}
                     value={null}
                     title={t("all")}
                     name="subCategory"
-                    isCheck={selectedSubCategory === null}
+                    isCheck={selectedSubCategory === ""}
                 />
                 {filteredSubCategories?.length ? filteredSubCategories.map(({ id, name }) => (
                     <Input
@@ -52,6 +53,7 @@ function SubCategory({
                         value={id}
                         title={name}
                         name="subCategory"
+                        isCheck={+selectedSubCategory === id}
                     />
                 )) : <Typography sx={{
                     textAlign: "center",

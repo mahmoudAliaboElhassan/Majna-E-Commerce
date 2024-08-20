@@ -7,6 +7,8 @@ import LoadingFetching from "@components/loadingFetching";
 
 const ShowProducts = ({ records, renderProducts, page, count, changePage }) => {
   const { t } = useTranslation()
+  console.log("page from show products")
+  console.log(page)
   const { loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
   );
