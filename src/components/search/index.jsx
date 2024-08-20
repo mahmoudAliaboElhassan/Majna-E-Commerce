@@ -10,10 +10,12 @@ import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
 import UseProducts from "@hooks/use-products";
 
-const Search = ({ headerColor }) => {
+const Search = ({ resetPage, headerColor }) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { searchChange } = useSelector((state) => state.search);
+  console.log("searchChange")
+  console.log(searchChange)
   const [mysearch, setMySearch] = useState(searchChange);
 
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ const Search = ({ headerColor }) => {
     if (!inputValue) {
       setMySearch("");
       dispatch(handleSearchChange(""));
+      resetPage()
       dispatch(handleSearchValue(""));
     }
   };
@@ -35,12 +38,15 @@ const Search = ({ headerColor }) => {
     if (value) {
       setMySearch(value);
       dispatch(handleSearchChange(value));
+      resetPage()
       dispatch(handleSearchValue(value));
     }
   };
 
   const handleSearchClick = () => {
+    resetPage()
     dispatch(handleSearchValue(mysearch));
+
   };
 
   return (
@@ -48,14 +54,13 @@ const Search = ({ headerColor }) => {
       <StyledAutocomplete
         freeSolo
         options={products}
-        value={mysearch}
+        value={searchChange}
         onInputChange={handleInputChange}
         onChange={handleSkillSelect}
         renderInput={(params) => (
           <TextField
             {...params}
             fullWidth
-            value={searchChange}
             InputProps={{
               ...params.InputProps,
               endAdornment: (

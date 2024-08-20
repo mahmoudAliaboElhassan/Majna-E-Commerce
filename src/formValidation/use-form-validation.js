@@ -223,7 +223,7 @@ function UseFormValidation() {
   const FORM_VALIDATION_SCHEMA_PRICES = Yup.object().shape({
     priceFrom: Yup.number("Price From should be a number")
       .required("Price From is required")
-      .min(0, "Price From cannot be negative"),
+      .min(1, "Price From cannot be negative or Zero"),
     priceTo: Yup.number("Price To should be a number")
       .required("Price To is required")
       .min(Yup.ref("priceFrom"), "Price To must be greater than Price From")

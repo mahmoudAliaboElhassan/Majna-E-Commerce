@@ -86,8 +86,8 @@ function UseInitialStates() {
     loadingDeleteFavorite: false,
   };
   const initialStateSearch = {
-    searchChage: null,
-    searchValue: null,
+    searchChange: localStorage.getItem("searchChange") || "", // Should retrieve correctly
+    searchValue: localStorage.getItem("searchValue") || "",
   };
   const initialStateUser = {
     loadingGetAddresses: false,

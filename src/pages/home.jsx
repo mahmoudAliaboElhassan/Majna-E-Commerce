@@ -63,6 +63,10 @@ function Home() {
     setPage(1)
   }, [priceFromTo]);
 
+  const resetPage = () => {
+    localStorage.setItem("page", 1)
+    setPage(1)
+  }
 
   const [ordering, setOrdering] = useState(null);
   const handleOrdering = useCallback((e) => {
@@ -153,7 +157,7 @@ function Home() {
     <>
       <Swiperslide images={productImages} />
       <Introductory />
-      <Search />
+      <Search resetPage={resetPage} />
       <Grid container style={{ overflow: "hidden", marginBottom: "-16px" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar

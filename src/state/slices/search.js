@@ -9,11 +9,16 @@ export const searchSlice = createSlice({
   initialState: initialStateSearch,
   reducers: {
     handleSearchChange: (state, action) => {
-      state.searchChage = action.payload;
-      console.log(state.searchChage);
+      localStorage.setItem("searchChange", action.payload);
+      state.searchChange = localStorage.getItem("searchChange");
+      console.log(state.searchChange);
     },
     handleSearchValue: (state) => {
-      state.searchValue = state.searchChage?.split(" ")?.join("+");
+      localStorage.setItem(
+        "searchValue",
+        state.searchChange?.split(" ")?.join("+")
+      );
+      state.searchValue = localStorage.getItem("searchValue");
       console.log(state.searchValue);
     },
   },
