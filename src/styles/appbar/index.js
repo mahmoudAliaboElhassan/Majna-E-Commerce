@@ -12,7 +12,6 @@ export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   fontFamily: '"Montez","cursive"',
   color: Colors.seconday,
   textAlign: "center",
-  cursor: "pointer",
   fontSize: "2.25em",
   fontStyle: "italic",
 }));

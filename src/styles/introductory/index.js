@@ -1,25 +1,27 @@
 import styled from "@emotion/styled";
-import { Button } from "@mui/material";
 import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
 
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 
-export const IntroudctoryButton = styled(Button)(() => {
+export const IntroudctoryButton = styled(Link)(() => {
   const { themeMode } = UseThemMode();
   const theme = useTheme();
   return {
     display: "inline-flex",
     padding: "0.5rem 1rem",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: "8px",
     cursor: "pointer",
     marginTop: "1rem",
     marginBottom: "1rem",
-    backgroundColor: themeMode === "dark" ? "#f5f5f5" : "#333",
+    backgroundColor: themeMode === "dark" ? "#333" : "#f5f5f5",
     color: themeMode === "dark" ? "#333" : "#fff",
     transition: "background-color 0.3s, color 0.3s",
     "&:hover": {
-      backgroundColor: themeMode === "dark" ? "#ddd" : "#2b1f1f",
+      backgroundColor: themeMode === "dark" ? "#2b1f1f" : "#ddd",
       color: themeMode === "dark" ? "#333" : "#fff",
     },
     "&:hover .icon": {

@@ -20,7 +20,7 @@ function UseDistributorElements() {
       to: "approved-brands",
     },
     {
-      label: t("upploaded-products"),
+      label: t("uploaded-products"),
       to: "uploaded-products",
     },
     {

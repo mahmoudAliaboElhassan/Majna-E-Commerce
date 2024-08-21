@@ -2,7 +2,7 @@ import RootUserLayout from '@components/shared/roorUserLayout'
 import UseDistributorElements from "@hooks/use-distributor-elements";
 import withGuard from "@utils/withGuard";
 
-function RootProductLayout() {
+function RootDistributorPanelLayout() {
 
   const { distributorElements } = UseDistributorElements();
 
@@ -10,4 +10,4 @@ function RootProductLayout() {
     <RootUserLayout links={distributorElements} />
   );
 }
-export default withGuard(RootProductLayout);
+export default withGuard(RootDistributorPanelLayout);

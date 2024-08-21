@@ -21,7 +21,9 @@ const SingleProductInventory = ({ SingleProductInventory }) => {
   console.log("stores")
   console.log(stores)
   const [count, setCount] = useState(SingleProductInventory?.length);
-  const { themeMode } = UseThemeMode()
+  const { themeMode } = UseThemeMode();
+
+
 
   const handleAddClick = () => {
     const newSingleInventory = [...values.singleProductInventory, { store_id: "", quantity: "" }];
@@ -53,12 +55,12 @@ const SingleProductInventory = ({ SingleProductInventory }) => {
           </Grid>
           <Grid item xs={1} >
             <Button type="button" onClick={() => handleRemoveClick(index)}
-              // fullWidth
-              variant={themeMode === "dark" ? "contained" : "outlined"}
+              fullWidth
+              variant="outlined"
               title={t('remove-store')}
               disabled={count === 1}
             >
-              <RemoveIcon />
+              <RemoveIcon sx={{ color: themeMode === "dark" ? "white" : "black" }} />
             </Button>
           </Grid>
         </Grid>
@@ -70,7 +72,7 @@ const SingleProductInventory = ({ SingleProductInventory }) => {
           disabled={!stores.length || count >= stores.length}
           title={t('add-store')}
         >
-          <ControlPointIcon />
+          <ControlPointIcon sx={{ color: themeMode === "dark" ? "white" : "black" }} />
         </StoreAdded>
       </Grid>
     </>

@@ -83,11 +83,11 @@ function EditProduct() {
   return (
     <div>
       {loadingStores || loadingSpecificProduct ? (
-        <LoadingFetching>{t("wait-data")}</LoadingFetching>
+        <LoadingFetching>{t("wait-previous-product")}</LoadingFetching>
       ) :
         <div style={{ position: "relative", height: "100vh" }}>
           <Container maxWidth={isMatch ? "md" : "lg"}>
-             <Card raised>
+            <Card raised>
               <Container maxWidth="md">
                 <Grid
                   container

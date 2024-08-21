@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useTheme } from "@emotion/react";
 import { useTranslation } from "react-i18next";
 import { Container } from "@mui/material";
+import { Typography } from "@material-ui/core";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
@@ -122,8 +123,8 @@ function Introductory() {
             </div>
             <p>{t("free")}</p>
             <p>{t("for-browsing")}</p>
-            <IntroudctoryButton style={{ transition: "0.5s" }}>
-              <div>{t("Latest Collection")}</div>
+            <IntroudctoryButton to="discover">
+              <Typography>{t("discover")}</Typography>
               {theme.direction === "rtl" ? (
                 <ArrowBackIcon className="icon" style={{ transition: "0.3s" }} />
               ) : (

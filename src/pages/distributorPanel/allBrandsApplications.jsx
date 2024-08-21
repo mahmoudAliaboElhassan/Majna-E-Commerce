@@ -75,7 +75,7 @@ function AllBrandsApplications() {
   return (
     <>
       {loadingDistributorApplications ? (
-        <LoadingFetching>{t("loading-brands")}</LoadingFetching>
+        <LoadingFetching>{t("loading-brands-applications")}</LoadingFetching>
       ) : distributorBrands.length ? (
         <>
           <AppbarHeader data-aos="fade-up">{t("brand-applications")}</AppbarHeader>

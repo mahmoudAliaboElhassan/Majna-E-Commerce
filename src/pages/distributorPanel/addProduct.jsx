@@ -222,16 +222,19 @@ function AddProduct() {
                             label={t("categories")}
                             options={categories}
                           />
+                          <Typography style={{ marginTop: "8px", marginBottom: "8px" }}>{t('static-category')}</Typography>
                         </Grid>
                         <Grid item xs={12}>
                           <SubCategorySelect subCategories={subCategories} />
                         </Grid>
+                        <Typography style={{ marginTop: "8px", marginBottom: "8px" }}>{t('static-subCategory')}</Typography>
                         <Grid item xs={12}>
                           <SelectComp
                             name="brand_pk"
                             label={t("brand")}
                             options={approvedBrands}
                           />
+                          <Typography style={{ marginTop: "8px", marginBottom: "8px" }}>{t('static-brand')}</Typography>
                         </Grid>
                         <Grid item xs={12}>
                           <TextFieldWrapper

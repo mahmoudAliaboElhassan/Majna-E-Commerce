@@ -204,7 +204,7 @@ function UseFormValidation() {
           //     return true;
           //   }
           // )
-          is_cover: Yup.string().required("isCover is required"),
+          is_cover: Yup.string().required(""),
         })
       )
       .test(

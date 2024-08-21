@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import SearchIcon from '@mui/icons-material/Search';
 
 import UseThemeMode from "@hooks/use-theme";
+import UseProducts from "@hooks/use-products";
 import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
-import UseProducts from "@hooks/use-products";
 
 const Search = ({ resetPage, headerColor }) => {
   const { t } = useTranslation();

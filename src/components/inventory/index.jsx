@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { useFormikContext } from "formik";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -7,7 +8,9 @@ import ControlPointIcon from "@mui/icons-material/ControlPoint";
 import RemoveIcon from '@mui/icons-material/Remove';
 
 import MultipleSelect from "@components/formui/multipleSelect";
+import UseThemeMode from "@hooks/use-theme";
 import { StoreAdded } from "@styles/products";
+
 
 const InventoryComp = () => {
   const { values, setFieldValue } = useFormikContext();
@@ -17,6 +20,7 @@ const InventoryComp = () => {
   // Set initial count based on the inventory length
   const [count, setCount] = useState(values.inventory.length);
 
+  const { themeMode } = UseThemeMode();
   // Handle adding a new select element
   const handleAddClick = () => {
     const newInventory = [...values.inventory, { store_pk: "", quantity: "" }];
@@ -37,7 +41,6 @@ const InventoryComp = () => {
       {Array.from({ length: count }).map((_, index) => (
         <Grid item xs={12} container key={index} alignItems="center" spacing={1}>
           <Grid item xs={11} >
-
             <MultipleSelect
               nameStore={`inventory.${index}.store_pk`}
               nameQuantity={`inventory.${index}.quantity`}
@@ -49,26 +52,25 @@ const InventoryComp = () => {
           </Grid>
           <Grid item xs={1} >
 
-            {/* Button to remove the current select element */}
             <Button type="button" onClick={() => handleRemoveClick(index)}
+          fullWidth
               disabled={count === 1}
-              variant="contained"
+              variant="outlined"
               title={t('remove-store')}
             >
-              <RemoveIcon />
+              <RemoveIcon sx={{ color: themeMode === "dark" ? "white" : "black" }} />
             </Button>
           </Grid>
         </Grid>
       ))}
       <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
-        {/* Button to add a new select element */}
-        <StoreAdded
+         <StoreAdded
           variant="contained"
           onClick={handleAddClick}
           title={t('add-store')}
           disabled={!stores.length || count >= stores.length}
         >
-          <ControlPointIcon />
+          <ControlPointIcon sx={{ color: themeMode === "dark" ? "white" : "black" }} />
         </StoreAdded>
       </Grid>
     </>

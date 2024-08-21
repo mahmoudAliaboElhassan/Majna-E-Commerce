@@ -87,9 +87,10 @@ function Header() {
   const heartStyle = `${isAnimate ? cgBgcolor : ""}`;
 
   console.log(location.pathname.split("/"));
-  const locationPath = location.pathname.split("/")[1];
+  const locationPath = `/${location.pathname.split("/")[1]}`;
   console.log("locationPath");
   console.log(locationPath);
+  console.log(location.pathname)
   useEffect(() => { }, [countOfCartItems]);
   console.log("type of local storage", typeof (localStorage.getItem("countOfCartItem")))
   console.log(typeof (localStorage.getItem("countOfCartItem")))
@@ -115,7 +116,6 @@ function Header() {
                       {localStorage.getItem("countOfCartItem") != "0" && localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
-
                   <IconButton component={Link} to="favorite">
                     <FavoriteIcon
                       className={`${heartStyle}`}
@@ -126,50 +126,55 @@ function Header() {
                           color: "red !important",
                         },
                       }}
-
-
                     />
                   </IconButton>
-
                 </>
               )}
-
-
-
-              <AppbarHeader
-                className="logo"
-                transition={{ delay: 0.7, duration: 1.6 }}
-                initial={{ y: "-100vh" }}
-                animate={{ y: 0 }}
-                variant="h5"
-                sx={{
-                  fontSize: {
-                    xs: "1.5em",
-                    sm: "1.75em",
-                    md: "2em",
-                  },
-                  fontStyle: "normal",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {t("website-title")}
-              </AppbarHeader>
+              <Link to="/" style={{
+                marginRight: "auto",
+                marginLeft: "auto"
+              }}>
+                <AppbarHeader
+                  className="logo"
+                  transition={{ delay: 0.7, duration: 1.6 }}
+                  initial={{ y: "-100vh" }}
+                  animate={{ y: 0 }}
+                  variant="h5"
+                  sx={{
+                    fontSize: {
+                      xs: "1.5em",
+                      sm: "1.75em",
+                      md: "2em",
+                    },
+                    fontStyle: "normal",
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                    flex: 1
+                  }}
+                >
+                  {t("website-title")}
+                </AppbarHeader>
+              </Link>
               <LanguageSelection />
               <Mode />
               <DrawerComponent drawerElements={allElements} />
             </>
           ) : (
             <>
-              <motion.div
-                className="logo"
-                transition={{ delay: 0.7, duration: 1.6 }}
-                initial={{ y: "-100vh" }}
-                animate={{ y: 0 }}
-              >
-                <AppbarHeader sx={{
-                  fontStyle: "normal"
-                }}>{t("website-title")}</AppbarHeader>
-              </motion.div>
+              <Link to="/">
+                {/* <IconButton component={Link} to="/"> */}
+                <AppbarHeader
+                  transition={{ delay: 0.7, duration: 1.6 }}
+                  initial={{ y: "-100vh" }}
+                  animate={{ y: 0 }}
+                  className="logo"
+                  to="/"
+                  sx={{
+                    fontStyle: "normal",
+                    cursor: "pointer"
+                  }}>{t("website-title")}</AppbarHeader>
+                {/* </IconButton> */}
+              </Link>
               {token && role === "customer" && (
                 <>
                   <IconButton component={Link} to="shooping-cart">
@@ -206,27 +211,31 @@ function Header() {
                 <TabsElementsList
                   textColor="inherit"
                   indicatorColor="secondary"
-                // onChange={handleChange}
                 >
                   {allTabsElements.map((el, idx) => (
                     <Tab
                       key={el.to}
                       component={Link}
-                      // onClick={() => dispatch(activate(el.to))}
+                      to={el.to}
                       {...el}
                       sx={{
                         fontSize: { md: "12px", lg: "16px" },
                         display: "inline",
                         textAlign: "center",
-                        color: locationPath === el.to ? "bold" : "normal",
-                        borderBottom:
-                          locationPath === el.to ? "2px solid white" : "none",
+                        color: locationPath === el.to ? "white" : "normal", // Set color to white when active, adjust as needed
+                        fontWeight: locationPath === el.to ? "bold" : "normal", // Set font weight to bold when active
+                        borderBottom: locationPath === el.to ? "2px solid white" : "none", // Set border bottom when active
                         lineHeight: "32px",
+                        "&:hover": {
+                          color: "white",
+                          borderBottom: "2px solid white",
+                        },
                       }}
                     />
                   ))}
                 </TabsElementsList>
               </TabContext>
+
               {/* <MyComponent onChange={handleSearchChange} /> */}
               <Search headerColor={true} />
               <LanguageSelection />

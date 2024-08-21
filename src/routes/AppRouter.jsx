@@ -6,14 +6,7 @@ import Loader from "@components/loader";
 import ErrorPage from "@pages/errorPage/index";
 import Home from "@pages/home";
 import RootLayout from "@pages/RootLayout";
-import ProtectedRoute from "@components/protectedRoute";
 
-const RootProductList = React.lazy(() =>
-  import("@pages/productList/rootProductList")
-);
-const ProductType = React.lazy(() =>
-  import("@pages/productList/productType")
-);
 const ResetPassword = React.lazy(() =>
   import("@pages/authentication/user/reset-password")
 );
@@ -42,7 +35,7 @@ const ForgetPassword = React.lazy(() =>
   import("@pages/authentication/user/forget-password")
 );
 
-const RootProductLayout = React.lazy(() =>
+const RootDistributorPanelLayout = React.lazy(() =>
   import("@pages/distributorPanel/rootDistributorPanel")
 );
 const ApprovedBrands = React.lazy(() =>
@@ -73,9 +66,9 @@ const EditProduct = React.lazy(() =>
   import("@pages/distributorPanel/editProduct")
 );
 
-const CardProductDetails = React.lazy(() =>
-  import("@pages/distributorPanel/productDetails")
-);
+// const CardProductDetails = React.lazy(() =>
+//   import("@pages/distributorPanel/productDetails")
+// );
 
 const RootReviewerLayout = React.lazy(() =>
   import("@pages/reviewer/rootReviewerLayout")
@@ -95,11 +88,11 @@ const ProductView = React.lazy(() =>
   import("@pages/productView")
 );
 const RootCustomerPanelLayOut = React.lazy(() => import("@pages/customerPanel/rootCustomerPanel"))
-
 const Addresses = React.lazy(() => import("@pages/customerPanel/addresses"))
 const AddAddress = React.lazy(() => import("@pages/customerPanel/addAddress"))
 const EditAddress = React.lazy(() => import("@pages/customerPanel/editAddress"))
 const Orders = React.lazy(() => import("@pages/customerPanel/orders"))
+const Discover = React.lazy(() => import("@pages/discover"))
 
 const router = createBrowserRouter([
   {
@@ -178,7 +171,7 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             {/* <ProtectedRoute> */}
-            <RootProductLayout />
+            <RootDistributorPanelLayout />
             {/* </ProtectedRoute> */}
           </Suspense>
         ),
@@ -312,31 +305,31 @@ const router = createBrowserRouter([
                   <Orders />
                 </Suspense>
               )
-            }
+            },
           ]
       },
-      {
-        path: "product/:id",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <CardProductDetails />
-          </Suspense>
-        ),
-      },
-      {
-        path: "productlist",
-        element: (
-          <Suspense fallback={<Loader />}>
-            <RootProductList />
-          </Suspense>
-        ),
-        children: [
-          {
-            path: ":producttype",
-            element: <ProductType />,
-          },
-        ],
-      },
+      // {
+      //   path: "product/:id",
+      //   element: (
+      //     <Suspense fallback={<Loader />}>
+      //       <CardProductDetails />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "productlist",
+      //   element: (
+      //     <Suspense fallback={<Loader />}>
+      //       <RootProductList />
+      //     </Suspense>
+      //   ),
+      //   children: [
+      //     {
+      //       path: ":producttype",
+      //       element: <ProductType />,
+      //     },
+      //   ],
+      // },
       {
         path: "activate-account/:uid/:token",
         element: (
@@ -361,8 +354,14 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
-      { path: "ordered", element: <div>Ordered</div> },
       {
+        path: "discover",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Discover />
+          </Suspense>
+        )
+      }, {
         path: "/reviewer",
         element: (
           <Suspense fallback={<Loader />}>

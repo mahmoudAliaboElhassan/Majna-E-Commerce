@@ -20,6 +20,9 @@ function Footer() {
   const { allElements } = UseHeaderElements();
   const { token } = useSelector((state) => state.auth);
   const closeModal = useCallback(() => toggle(false), []);
+  const location = useLocation();
+  const locationPath = `/${location.pathname.split("/")[1]}`;
+
   const handleShow = (element, index, array) => {
     if (index === array.length - 1) {
       if (token) {
@@ -29,10 +32,7 @@ function Footer() {
       }
     }
   };
-  const location = useLocation();
-  const locationPath = location.pathname.split("/")[1]
-  console.log("locationPath from footer")
-  console.log(locationPath)
+
   return (
     <>
       <CardFooter raised>
@@ -55,6 +55,7 @@ function Footer() {
               >
                 <StyledLinkItem
                   {...el}
+                  isActive={locationPath === el.to} // Pass isActive prop
                   onClick={() => handleShow(el, idx, array)}
                 >
                   {el.label}
@@ -81,4 +82,4 @@ function Footer() {
   );
 }
 
-export default (Footer);
+export default Footer;

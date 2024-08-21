@@ -5,10 +5,13 @@ import { Card } from "@mui/material";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 
-export const StyledLinkItem = styled(Link)(() => ({
+export const StyledLinkItem = styled(Link)(({ isActive }) => ({
   position: "relative",
   paddingBottom: "8px",
   overflow: "hidden",
+  fontWeight: isActive ? "bold" : "normal", // Apply bold font weight if active
+  borderBottom: isActive ? "2px solid white" : "none", // Apply border bottom if active
+
   "&::after": {
     content: "''",
     position: "absolute",
@@ -21,14 +24,13 @@ export const StyledLinkItem = styled(Link)(() => ({
   },
 
   "&:hover": {
-    // backgroundColor: "#2c2c2c",
-    // padding: "4px",
     color: Colors.white,
   },
   "&:hover::after": {
     width: "100%",
   },
 }));
+
 export const CardFooter = styled(Card)(() => {
   const { themeMode } = UseThemMode();
   return {
@@ -50,8 +52,8 @@ export const CardFooter = styled(Card)(() => {
       borderRadius: "18px",
       backgroundColor:
         themeMode === "dark"
-          ? "#1a1a1a" // Increase the degree of dark color by adjusting RGB values
-          : "#6f1a38", // Increase the degree of light color by adjusting RGB values
+          ? "#1a1a1a"
+          : "#6f1a38",
       transition: "0.3s",
     },
     "&:hover::before": {
