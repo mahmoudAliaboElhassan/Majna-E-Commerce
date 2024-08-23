@@ -14,11 +14,11 @@ function Category({ handleProductsByCategory, selectedCategory }) {
   const dispatch = useDispatch();
   const { themeMode } = UseThemMode();
 
+  const { categories } = useSelector((state) => state.distributor);
   useEffect(() => {
-    dispatch(getCategories());
+    if (categories.length === 0) { dispatch(getCategories()) }
   }, [dispatch]);
 
-  const { categories } = useSelector((state) => state.distributor);
   const { t } = useTranslation();
 
   return (

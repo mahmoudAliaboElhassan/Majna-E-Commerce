@@ -81,6 +81,13 @@ function UseInitialValues(props) {
     singleAddressCity: props?.city_id,
     singleAddress: props?.address,
   };
+  const INITIAL_FORM_STATE_ADD_ORDER = {
+    address:null,
+    productInformation:[{
+      productId:null,
+      quantity:null
+    }]
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -97,6 +104,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_EDIT_PRODUCT,
     INITIAL_FORM_STATE_ADD_ADDRESS,
     INITIAL_FORM_STATE_Edit_ADDRESS,
+    INITIAL_FORM_STATE_ADD_ORDER,
   };
 }
 

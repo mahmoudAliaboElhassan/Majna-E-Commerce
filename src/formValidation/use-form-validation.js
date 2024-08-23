@@ -280,6 +280,15 @@ function UseFormValidation() {
     singleAddressCity: Yup.string().required("City is Required"),
     singleAddress: Yup.string().required("Full Address is Required"),
   });
+  const FORM_VALIDATION_SCHEMA_ADD_ORDER = Yup.object().shape({
+    address:Yup.string().required("Order Address is Required"),
+    productInformation:Yup.array().of(
+      Yup.object().shape({
+        productId:Yup.string().required("Product ID is Required"),
+        quantity:Yup.string().required("Quantity Of Product is Required is Required"),
+      })
+    )
+  });
 
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
@@ -297,6 +306,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT,
     FORM_VALIDATION_SCHEMA_ADD_ADDRESS,
     FORM_VALIDATION_SCHEMA_EDIT_ADDRESS,
+    FORM_VALIDATION_SCHEMA_ADD_ORDER,
   };
 }
 

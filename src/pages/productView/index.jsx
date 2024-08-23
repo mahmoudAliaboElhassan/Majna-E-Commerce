@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -22,9 +21,12 @@ import { postCart, postFavorite } from "@state/slices/cart";
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
+import UseToggle from "@hooks/use-toggle";
 import teamImage from "@assets/team";
 import { Colors } from "@styles/theme";
+import ModalOrder from "@components/modalOrder";
 import Footer from "@components/footer";
+import "./style.css"
 
 
 function ProductInformation() {
@@ -34,6 +36,9 @@ function ProductInformation() {
   const { Direction } = UseDirection();
   const { Uid } = useSelector((state) => state.auth);
   const { loadingPostCart, loadingAddtoFavorite } = useSelector((state) => state.cart);
+  const [open_modal_order, toggle] = UseToggle();
+  const closeModalOrder = () => toggle(false);
+
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -58,7 +63,8 @@ function ProductInformation() {
   const handleImageChange = ({ target: { value } }) => {
     setImgNo(Number(value));
   };
-
+  console.log("id", id)
+  console.log("productId", productId)
   const handlePostCart = () => {
     dispatch(postCart({
       customerId: Uid,
@@ -134,7 +140,7 @@ function ProductInformation() {
         <LoadingFetching>{t("wait-product")}</LoadingFetching>
       ) : (
         <Container>
-          <Card raised component="div" sx={{ maxWidth: "100%" }}>
+          <Card raised component="div" sx={{ maxWidth: "100%", p: 2 }}>
             <Grid container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
               <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <CardMedia
@@ -253,6 +259,13 @@ function ProductInformation() {
                     {t('add-favorite')}
                   </Button>
                 </CardActions>
+                <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                  onClick={() => toggle()}
+                  fullWidth
+                  sx={{ mx: 2, whiteSpace: "nowrap" }}
+                >
+                  {t('add-order')}
+                </Button>
                 {/* </CardActionArea> */}
               </Grid>
             </Grid>
@@ -260,9 +273,9 @@ function ProductInformation() {
         </Container >
       )
       }
+      <ModalOrder openModalOrder={open_modal_order} close={closeModalOrder} productId={productId} />
       <Footer />
     </>
   );
 }
-
-export default ProductInformation;
+export default ProductInformation

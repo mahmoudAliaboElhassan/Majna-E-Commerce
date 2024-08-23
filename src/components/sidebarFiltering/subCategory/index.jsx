@@ -16,12 +16,13 @@ function SubCategory({
 }) {
     const dispatch = useDispatch();
     const { themeMode } = UseThemMode();
+    const { subCategories } = useSelector((state) => state.distributor);
 
     useEffect(() => {
-        dispatch(getSubCategory());
+        if(subCategories.length===0){
+        dispatch(getSubCategory())}
     }, [dispatch]);
 
-    const { subCategories } = useSelector((state) => state.distributor);
     const { t } = useTranslation();
     const filteredSubCategories = selectedCategory ? subCategories?.filter(
         (subcat) => subcat.category_id == selectedCategory

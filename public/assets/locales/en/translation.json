@@ -276,7 +276,7 @@
   "error-deleting-cart": "Error in Deleting This Product From your Shopping Cart list",
   "error-deleting-favorite": "Error in Deleting This Product From your Favorites list",
   "remove-store": "Remove Store",
-  "orders": "Orders",
+  "all-orders": "All Orders",
   "welcome-sentence": "Welcome to Our Majna Store",
   "feel": "feel",
   "free": "free",
@@ -284,5 +284,8 @@
   "static-category": "be sure of category as it can not be updated",
   "static-subCategory": "be sure of Sub Category as it can not be updated",
   "static-brand": "be sure of Brand as it can not be updated",
-  "discover": "Discover More"
+  "discover": "Discover More",
+  "add-order": "Add Order",
+  "add-order-now": "Add your Order Now",
+  "no-addresses": "No Addresses are added yet"
 }

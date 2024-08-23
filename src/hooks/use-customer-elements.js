@@ -12,8 +12,8 @@ function UseCustomerElements() {
       to: "add-address",
     },
     {
-      label: t("orders"),
-      to: "orders",
+      label: t("all-orders"),
+      to: "all-orders",
     },
     // {
     //   label: t("edit-address"),
