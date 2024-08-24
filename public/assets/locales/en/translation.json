@@ -287,5 +287,7 @@
   "discover": "Discover More",
   "add-order": "Add Order",
   "add-order-now": "Add your Order Now",
-  "no-addresses": "No Addresses are added yet"
+  "no-addresses": "No Addresses are added yet",
+  "next": "Next",
+  "back":"Previous"
 }

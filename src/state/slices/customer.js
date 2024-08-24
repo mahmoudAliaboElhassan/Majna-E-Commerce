@@ -5,7 +5,7 @@ import {
   addAddress,
   getAddress,
   editAddress,
-  deleteAddress,
+  deleteAddress,AddOrder,getAllOrders
 } from "@state/act/actCustomer";
 
 import UseInitialStates from "@hooks/use-initial-state";
@@ -71,6 +71,6 @@ export const customerSlice = createSlice({
 });
 
 export default customerSlice.reducer;
-export { getAllAddresses, addAddress, getAddress, editAddress, deleteAddress };
+export { getAllAddresses, addAddress, getAddress, editAddress, deleteAddress,AddOrder,getAllOrders };
 export const { cleanUpGetAllAddresses, cleanUpGetAddresses } =
   customerSlice.actions;

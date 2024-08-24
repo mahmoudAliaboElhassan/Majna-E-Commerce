@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import { Modal, IconButton, Card, Container, Grid, Typography, Button } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@mui/icons-material/Close';
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ModalOrder({ openModalOrder, close, productId }) { // Added productId prop
+function ModalOrder({ openModalOrder, close, productId }) {
     const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation();
     const { t } = useTranslation();
     const { Uid } = useSelector((state) => state.auth);
@@ -49,6 +48,8 @@ function ModalOrder({ openModalOrder, close, productId }) { // Added productId p
     const { Direction } = UseDirection();
     const { addresses, loadingGetAddresses } = useSelector((state) => state.customer);
 
+    const [currentStep, setCurrentStep] = useState(0);
+
     useEffect(() => {
         dispatch(getAllAddresses({ customerId: Uid }));
         return () => {
@@ -56,10 +57,24 @@ function ModalOrder({ openModalOrder, close, productId }) { // Added productId p
         };
     }, [Uid, dispatch]);
 
+    const handleNextStep = (validateForm, errors) => {
+        console.log(errors)
+        console.log(validateForm)
+        console.log(validateForm())
+        validateForm().then((errors) => {
+            console.log(errors)
+            if (currentStep === 0 && !errors.address) {
+                setCurrentStep((prevStep) => prevStep + 1);
+            }
+        });
+    };
+
+    const handlePreviousStep = () => setCurrentStep((prevStep) => prevStep - 1);
+
     return (
         <div data-aos="fade-up">
             <Modal
-                open={openModalOrder} // Ensure this is always a boolean
+                open={openModalOrder}
                 onClose={close}
                 aria-labelledby="modal-for-add-order"
                 aria-describedby="modal-description"
@@ -68,7 +83,6 @@ function ModalOrder({ openModalOrder, close, productId }) { // Added productId p
                     <LoadingFetching>{t('wait-addresses')}</LoadingFetching>
                 ) : (
                     <Container maxWidth="sm" className={classes.containerWrapper}>
-
                         {addresses?.length ? (
                             <>
                                 <IconButton
@@ -91,7 +105,7 @@ function ModalOrder({ openModalOrder, close, productId }) { // Added productId p
                                                         address: null,
                                                         productInformation: [{
                                                             productId: productId,
-                                                            quantity: null,
+                                                            quantity: 1,
                                                         }],
                                                     }}
                                                     validationSchema={FORM_VALIDATION_SCHEMA_ADD_ORDER}
@@ -100,34 +114,57 @@ function ModalOrder({ openModalOrder, close, productId }) { // Added productId p
                                                         // Handle form submission logic here
                                                     }}
                                                 >
-                                                    <Form className={classes.formWrapper}>
-                                                        <Grid container spacing={2}>
-                                                            <Grid item xs={12}>
-                                                                <AppbarHeader data-aos="fade-up">
-                                                                    {t('add-order-now')}
-                                                                </AppbarHeader>
+                                                    {({ validateForm, errors }) => (
+                                                        <Form className={classes.formWrapper}>
+                                                            <Grid container spacing={2}>
+                                                                <Grid item xs={12}>
+                                                                    <AppbarHeader data-aos="fade-up">
+                                                                        {t('add-order-now')}
+                                                                    </AppbarHeader>
+                                                                </Grid>
+
+                                                                {currentStep === 0 && (
+                                                                    <>
+                                                                        <Grid item xs={12}>
+                                                                            <SelectAddress
+                                                                                name="address"
+                                                                                label={t('address')}
+                                                                                options={addresses}
+                                                                            />
+                                                                        </Grid>
+                                                                        <Grid item xs={12}>
+                                                                            <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                                                                                type="submit" onClick={() => handleNextStep(validateForm, errors)}
+                                                                                fullWidth>
+                                                                                {t('next')}
+                                                                            </Button>
+                                                                        </Grid>
+                                                                    </>
+                                                                )}
+
+                                                                {currentStep === 1 && (
+                                                                    <>
+                                                                        <Grid item xs={12}>
+                                                                            <TextFieldWrapper
+                                                                                name="productInformation.0.quantity"
+                                                                                label={t('quantity')}
+                                                                                type="number"
+                                                                            />
+                                                                        </Grid>
+                                                                        <Grid item xs={12}>
+                                                                            <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                                                                                onClick={handlePreviousStep}>
+                                                                                {t('back')}
+                                                                            </Button>
+                                                                            <ButtonWrapper>
+                                                                                {t('add-order')}
+                                                                            </ButtonWrapper>
+                                                                        </Grid>
+                                                                    </>
+                                                                )}
                                                             </Grid>
-                                                            <Grid item xs={12}>
-                                                                <SelectAddress
-                                                                    name="address"
-                                                                    label={t('address')}
-                                                                    options={addresses}
-                                                                />
-                                                            </Grid>
-                                                            <Grid item xs={12}>
-                                                                <TextFieldWrapper
-                                                                    name="productInformation.0.quantity"
-                                                                    label={t('quantity')}
-                                                                    type="number"
-                                                                />
-                                                            </Grid>
-                                                            <Grid item xs={12}>
-                                                                <ButtonWrapper>
-                                                                    {t('add-order')}
-                                                                </ButtonWrapper>
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Form>
+                                                        </Form>
+                                                    )}
                                                 </Formik>
                                             </Grid>
                                         </Grid>
@@ -163,7 +200,7 @@ function ModalOrder({ openModalOrder, close, productId }) { // Added productId p
                     </Container>
                 )}
             </Modal>
-        </div >
+        </div>
     );
 }
 
