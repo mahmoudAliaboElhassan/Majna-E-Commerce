@@ -182,7 +182,7 @@
   "people-developed": "Developers Worked On Majna Store Website",
   "faculty-mahmoud": "Faculty Of Computer and Information Science Information Systems/ Assiut University ",
   "faculty-mohammed": "Faculty Of Computer and Information Science Computer Science/ Assiut University ",
-  "job-mahmoud": "FrontEnd Developer (React.js, Next.js)",
+  "job-mahmoud": "FrontEnd Developer (React.js, Next.js, TypeScript)",
   "job-mohammed": "BackEnd Developer (Python, Django)",
   "contact-us": "Let s Contact How do You Take Your Coffee?",
   "what-majna": "What is Majna Store ?",
@@ -289,5 +289,6 @@
   "add-order-now": "Add your Order Now",
   "no-addresses": "No Addresses are added yet",
   "next": "Next",
-  "back":"Previous"
+  "back": "Previous",
+  "questions-info": "Getting more information about our platform that will help you get all benefits from us."
 }

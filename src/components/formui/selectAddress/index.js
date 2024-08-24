@@ -63,11 +63,19 @@ function SelectAddress({ name, label, options, ...otherProps }) {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              width: "100%",
+              overflowX: "auto",
             }}
           >
-            <span>{city}</span>
-            <span>{address}</span>
-            <span>{governorate}</span>
+            <span style={{ marginRight: "10px", marginLeft: "10px" }}>
+              {city}
+            </span>
+            <span style={{ marginRight: "10px", marginLeft: "10px" }}>
+              {address}
+            </span>
+            <span style={{ marginRight: "10px", marginLeft: "10px" }}>
+              {governorate}
+            </span>
           </MenuItem>
         ))}
       </Select>

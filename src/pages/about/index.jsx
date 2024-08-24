@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Typography } from "@material-ui/core";
+import { Container } from "@mui/material";
 
 import QuestionsAnswers from "@components/faq";
 import { AppbarHeader } from "@styles/appbar";
@@ -17,7 +19,11 @@ function About() {
 
   return (
     <>
-      <AppbarHeader data-aos="fade-up">{t("important-questions")}</AppbarHeader>
+      <Container>
+        <AppbarHeader data-aos="fade-up">{t("important-questions")}</AppbarHeader>
+        <Typography variant="h5" style={{ textAlign: "center", opacity: "0.8" }}>{t('questions-info')}
+        </Typography>
+      </Container>
       <QuestionsAnswers />
       <Team />
       <Footer />

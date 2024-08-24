@@ -67,7 +67,7 @@ function Team() {
                     {t("faculty-mahmoud")}
                   </Typography>
                   <Typography variant="body1" component="div" color="textPrimary" sx={{
-                    whiteSpace: "nowrap",
+                    // whiteSpace: "nowrap",
                   }}>
                     {t("job-mahmoud")}
                   </Typography>
