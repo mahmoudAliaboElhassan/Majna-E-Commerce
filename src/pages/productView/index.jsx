@@ -223,7 +223,7 @@ function ProductInformation() {
                     <span style={{ fontWeight: "700" }}>{t("data-added")} </span>
                     <span style={{
                       textAlign: `${[Direction.right]}`
-                    }}>  {added_at}</span>
+                    }}>{added_at}</span>
                   </Typography>
                 </CardContent>
                 <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>

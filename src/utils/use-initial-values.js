@@ -82,11 +82,13 @@ function UseInitialValues(props) {
     singleAddress: props?.address,
   };
   const INITIAL_FORM_STATE_ADD_ORDER = {
-    address:null,
-    productInformation:[{
-      productId:null,
-      quantity:null
-    }]
+    pickup_address_id: null,
+    order_items: [
+      {
+        product_id: null,
+        quantity: null,
+      },
+    ],
   };
   return {
     INITIAL_FORM_STATE_Login,

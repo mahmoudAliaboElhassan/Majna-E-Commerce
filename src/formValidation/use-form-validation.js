@@ -281,10 +281,10 @@ function UseFormValidation() {
     singleAddress: Yup.string().required("Full Address is Required"),
   });
   const FORM_VALIDATION_SCHEMA_ADD_ORDER = Yup.object().shape({
-    address:Yup.string().required("Order Address is Required"),
-    productInformation:Yup.array().of(
+    pickup_address_id:Yup.string().required("Order Address is Required"),
+    order_items:Yup.array().of(
       Yup.object().shape({
-        productId:Yup.string().required("Product ID is Required"),
+        product_id:Yup.string().required("Product ID is Required"),
         quantity:Yup.string().required("Quantity Of Product is Required is Required"),
       })
     )

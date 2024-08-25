@@ -206,6 +206,8 @@
   "favorite-success": "Product is Added Successfully to Favorite  !",
   "error-not-authorized-text-favorite": "Login In First then Add to Favorite",
   "error-not-customer-text-favorite": "It is Forbidden for Non Customer to Add to Favorite Login as Customer and Add To Favorite",
+  "error-not-authorized-text-order": "Login In First then Add Order",
+  "error-not-customer-text-order": "It is Forbidden for Non Customer to Add Orders Login as Customer and Add Order",
   "wait-favorite": "Wait for Favorite Products to Load ...",
   "no-favorites": "No Products Added to Favorites Yet",
   "deleting-favorite": "Product is Deleted Successfully from your Favorite List !",
@@ -290,5 +292,6 @@
   "no-addresses": "No Addresses are added yet",
   "next": "Next",
   "back": "Previous",
-  "questions-info": "Getting more information about our platform that will help you get all benefits from us."
+  "questions-info": "Getting more information about our platform that will help you get all benefits from us.",
+  "order-success": "Order Has Been Added Successfully !"
 }

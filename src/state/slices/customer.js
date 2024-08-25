@@ -5,16 +5,18 @@ import {
   addAddress,
   getAddress,
   editAddress,
-  deleteAddress,AddOrder,getAllOrders
+  deleteAddress,
+  addOrder,
+  getAllOrders,
 } from "@state/act/actCustomer";
 
 import UseInitialStates from "@hooks/use-initial-state";
 
-const { initialStateUser } = UseInitialStates();
+const { initialStateCustomer } = UseInitialStates();
 
 export const customerSlice = createSlice({
   name: "customer",
-  initialState: initialStateUser,
+  initialState: initialStateCustomer,
   reducers: {
     cleanUpGetAllAddresses: (state) => {
       state.addresses = [];
@@ -66,11 +68,28 @@ export const customerSlice = createSlice({
       })
       .addCase(deleteAddress.fulfilled, (state, action) => {
         state.countOfAddresses -= 1;
+      })
+      .addCase(addOrder.pending, (state, action) => {
+        state.loadingAddOrder = true;
+      })
+      .addCase(addOrder.fulfilled, (state, action) => {
+        state.loadingAddOrder = false;
+      })
+      .addCase(addOrder.rejected, (state, action) => {
+        state.loadingAddOrder = false;
       });
   },
 });
 
 export default customerSlice.reducer;
-export { getAllAddresses, addAddress, getAddress, editAddress, deleteAddress,AddOrder,getAllOrders };
+export {
+  getAllAddresses,
+  addAddress,
+  getAddress,
+  editAddress,
+  deleteAddress,
+  addOrder,
+  getAllOrders,
+};
 export const { cleanUpGetAllAddresses, cleanUpGetAddresses } =
   customerSlice.actions;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { Modal, IconButton, Card, Container, Grid, Typography, Button } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@mui/icons-material/Close';
@@ -21,7 +22,7 @@ import TextFieldWrapper from '@components/formui/textField';
 import withGuard from '@utils/withGuard';
 import LoadingFetching from '@components/loadingFetching';
 import SelectAddress from '@components/formui/selectAddress';
-import { getAllAddresses, cleanUpGetAllAddresses } from '@state/slices/customer';
+import { getAllAddresses, cleanUpGetAllAddresses, addOrder } from '@state/slices/customer';
 
 const useStyles = makeStyles((theme) => ({
     formWrapper: {
@@ -102,9 +103,9 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                             <Grid item xs={12}>
                                                 <Formik
                                                     initialValues={{
-                                                        address: null,
-                                                        productInformation: [{
-                                                            productId: productId,
+                                                        pickup_address_id: null,
+                                                        order_items: [{
+                                                            product_id: productId,
                                                             quantity: 1,
                                                         }],
                                                     }}
@@ -112,6 +113,33 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                                     onSubmit={(values) => {
                                                         console.log({ ...values });
                                                         // Handle form submission logic here
+                                                        dispatch(addOrder(values)).unwrap()
+                                                            .then(() => {
+                                                                toast.success(t("order-success"), {
+                                                                    position: "top-right",
+                                                                    autoClose: 1000,
+                                                                    hideProgressBar: false,
+                                                                    closeOnClick: true,
+                                                                    pauseOnHover: true,
+                                                                    draggable: true,
+                                                                    progress: undefined,
+                                                                    theme: themeMode,
+                                                                });
+                                                            })
+                                                            .catch((error) => {
+                                                                const errorMessages = {
+                                                                    401: t("error-not-authorized-text-order"),
+                                                                    403: t("error-not-customer-text-order"),
+                                                                };
+                                                                const errorMessage =
+                                                                    errorMessages[error.response.status] || error.message;
+                                                                Swal.fire({
+                                                                    title: t("error-adding-order"),
+                                                                    text: errorMessage,
+                                                                    icon: "error",
+                                                                    confirmButtonText: t("ok"),
+                                                                });
+                                                            });
                                                     }}
                                                 >
                                                     {({ validateForm, errors }) => (
@@ -127,7 +155,7 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                                                     <>
                                                                         <Grid item xs={12}>
                                                                             <SelectAddress
-                                                                                name="address"
+                                                                                name="pickup_address_id"
                                                                                 label={t('address')}
                                                                                 options={addresses}
                                                                             />
@@ -146,7 +174,7 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                                                     <>
                                                                         <Grid item xs={12}>
                                                                             <TextFieldWrapper
-                                                                                name="productInformation.0.quantity"
+                                                                                name="order_items.0.quantity"
                                                                                 label={t('quantity')}
                                                                                 type="number"
                                                                             />

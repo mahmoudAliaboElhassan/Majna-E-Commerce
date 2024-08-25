@@ -9,4 +9,4 @@ function RootCustomerPanelLayOut() {
     );
 }
 
-export default (RootCustomerPanelLayOut)
+export default withGuard(RootCustomerPanelLayOut)

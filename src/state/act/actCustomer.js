@@ -129,26 +129,23 @@ export const getAllOrders = createAsyncThunk(
     // }
   }
 );
-export const AddOrder = createAsyncThunk(
-  "customer/AddOrder",
-  async ({ customerId, ...addressData }, thunkAPI) => {
+export const addOrder = createAsyncThunk(
+  "customer/addOrder",
+  async (orderData, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
 
-    // try {
-    //   const res = await majnAPI.post(
-    //     `api/customers/${customerId}/addresses`,
-    //     addressData
-    //   );
-    //   console.log("from slice res is");
-    //   console.log(res);
-    //   return res;
-    // } catch (error) {
-    //   if (error.response && error.response.status === 400) {
-    //     // Handle 403 error here
-    //     // Example: setConfirmed(true);
-    //     console.log("400 Forbidden - User not authorized from slice");
-    //   }
-    //   return rejectWithValue(error);
-    // }
+    try {
+      const res = await majnAPI.post(`api/orders/`, orderData);
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
   }
 );

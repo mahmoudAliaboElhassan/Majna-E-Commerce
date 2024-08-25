@@ -89,7 +89,7 @@ function UseInitialStates() {
     searchChange: localStorage.getItem("searchChange") || "", // Should retrieve correctly
     searchValue: localStorage.getItem("searchValue") || "",
   };
-  const initialStateUser = {
+  const initialStateCustomer = {
     loadingGetAddresses: false,
     loadingAddAddress: false,
     loadingGetSpecificAddress: false,
@@ -97,6 +97,7 @@ function UseInitialStates() {
     singleAddressData: null,
     addresses: null,
     countOfAddresses: 0,
+    loadingAddOrder:false
   };
 
   return {
@@ -108,7 +109,7 @@ function UseInitialStates() {
     initialStateProducts,
     initialStateCart,
     initialStateSearch,
-    initialStateUser,
+    initialStateCustomer,
   };
 }
 
