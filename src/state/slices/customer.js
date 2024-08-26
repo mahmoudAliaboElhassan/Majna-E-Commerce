@@ -66,8 +66,15 @@ export const customerSlice = createSlice({
       .addCase(editAddress.rejected, (state, action) => {
         state.loadingEditAddress = false;
       })
+      .addCase(deleteAddress.pending, (state, action) => {
+        state.loadingDeleteAddress = true;
+      })
       .addCase(deleteAddress.fulfilled, (state, action) => {
         state.countOfAddresses -= 1;
+        state.loadingDeleteAddress = false;
+      })
+      .addCase(deleteAddress.rejected, (state, action) => {
+        state.loadingDeleteAddress = false;
       })
       .addCase(addOrder.pending, (state, action) => {
         state.loadingAddOrder = true;

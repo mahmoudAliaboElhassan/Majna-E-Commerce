@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -11,9 +11,11 @@ import Swal from "sweetalert2";
 import { DataGridContainer } from "@styles/dataGrid"
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
+import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import { AppbarHeader } from "@styles/appbar";
 import { getAllAddresses, deleteAddress, cleanUpGetAllAddresses } from "@state/slices/customer";
 import "@pages/shoppingCart/style.css"
+import { NoCount, NoCountContainer } from "@styles/products";
 
 function Addresses() {
     const { t } = useTranslation();
@@ -21,7 +23,8 @@ function Addresses() {
     const { addresses, loadingGetAddresses, countOfAddresses } = useSelector((state) => state.customer);
     const dispatch = useDispatch();
     const { themeMode } = UseThemMode();
-
+    const [deleteId, setDeleteId] = useState(null)
+    const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn()
     useEffect(() => {
         dispatch(getAllAddresses({ customerId: Uid }));
         return () => {
@@ -30,6 +33,7 @@ function Addresses() {
     }, [Uid, countOfAddresses]);
     const handleDeleteAddress = useCallback(
         (addressId) => {
+            setDeleteId(addressId)
             Swal.fire({
                 title: t("suring"),
                 text: t("info-address"),
@@ -42,12 +46,19 @@ function Addresses() {
                 },
             }).then((result) => {
                 if (result.isConfirmed) {
-                    dispatch(deleteAddress({ customerId: Uid, addressId }));
-                    Swal.fire({
-                        title: t("deleting-address"),
-                        icon: "success",
-                        confirmButtonText: t("ok"),
-                    });
+                    dispatch(deleteAddress({ customerId: Uid, addressId })).unwrap().then(() => {
+                        Swal.fire({
+                            title: t("deleting-address"),
+                            icon: "success",
+                            confirmButtonText: t("ok"),
+                        })
+                    }).catch((error) => {
+                        Swal.fire({
+                            title: t("error-deleting-address"),
+                            icon: "warning",
+                            confirmButtonText: t("ok"),
+                        });
+                    })
                 } else {
                     Swal.fire({
                         title: t("keeping-address"),
@@ -118,7 +129,9 @@ function Addresses() {
                     fullWidth
                     style={{ width: "60%" }}
                     onClick={() => handleDeleteAddress(params.row.id)}
-                    color="error">
+                    color="error"
+                    disabled={deleteId === params.row.id && LoadingStatusDeleteUpdate}
+                >
                     {params.value}
                 </Button>
             ),
@@ -160,7 +173,9 @@ function Addresses() {
                     </DataGridContainer>
                 </>
             ) : (
-                <Typography style={{ fontSize: "18px" }}>{t("no-addresses")}</Typography>
+                <NoCountContainer>
+                    <NoCount>{t("no-addresses")}</NoCount>
+                </NoCountContainer>
             )}
         </>
     );

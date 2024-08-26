@@ -13,7 +13,7 @@ import {
 import LoadingFetching from "@components/loadingFetching";
 import { DataGridContainer } from "@styles/dataGrid"
 import { AppbarHeader } from "@styles/appbar";
-
+import { NoCount, NoCountContainer } from "@styles/products";
 
 function AllBrandsApplications() {
   const { t } = useTranslation();
@@ -99,7 +99,9 @@ function AllBrandsApplications() {
           </DataGridContainer>
         </>
       ) : (
-        <Typography style={{ fontSize: "18px" }}>{t("no_brands")}</Typography>
+        <NoCountContainer>
+          <NoCount>{t("no_brands")}</NoCount>
+        </NoCountContainer>
       )}
     </>
   );

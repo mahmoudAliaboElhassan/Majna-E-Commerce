@@ -33,7 +33,13 @@ export const NoCount = styled(Typography)(() => ({
   left: "50%",
   top: "50%",
   transform: "translate(-50%,-50%)",
-  fontSize: "19px",
+  fontSize: "22px",
+  textAlign: "center",
+}));
+export const NoCountContainer = styled("div")(() => ({
+  position: "relative",
+  width: "100%",
+  height: "100vh",
 }));
 
 export const DrawerButton = styled("button")(() => {

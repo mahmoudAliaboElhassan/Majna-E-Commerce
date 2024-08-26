@@ -293,5 +293,6 @@
   "next": "Next",
   "back": "Previous",
   "questions-info": "Getting more information about our platform that will help you get all benefits from us.",
-  "order-success": "Order Has Been Added Successfully !"
+  "order-success": "Order Has Been Added Successfully !",
+  "error-deleting-address": "Error in Deleting this Address"
 }

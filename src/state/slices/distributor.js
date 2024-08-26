@@ -109,7 +109,7 @@ export const distributorSlice = createSlice({
         console.log(action.payload);
         state.loadingDistributorApplications = false;
       })
-      .addCase(getAtuthorizedBrands.rejected, (state, action) => {
+      .addCase(getAllBrandsApplication.rejected, (state, action) => {
         // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;
@@ -133,7 +133,7 @@ export const distributorSlice = createSlice({
         console.log(action.payload);
         state.loadingAuthorized = false;
       })
-      .addCase(getAllBrandsApplication.rejected, (state, action) => {
+      .addCase(getAtuthorizedBrands.rejected, (state, action) => {
         // state.loadingAddBrand = false;
         // state.error = action.payload;
         // state.loading = false;

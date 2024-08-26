@@ -15,6 +15,7 @@ import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
+import { NoCount, NoCountContainer } from "@styles/products";
 
 
 function AllStores() {
@@ -185,7 +186,9 @@ function AllStores() {
           </DataGridContainer>
         </>
       ) : (
-        <Typography style={{ fontSize: "18px" }}>{t("no-stores")}</Typography>
+        <NoCountContainer>
+          <NoCount>{t("no-stores")}</NoCount>
+        </NoCountContainer>
       )}
     </>
   );

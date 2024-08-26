@@ -8,12 +8,14 @@ function UseLoadingStatusUpdateDeleteBtn() {
   );
   const { loadingEditCartQuantity, loadingDeleteCart, loadingDeleteFavorite } =
     useSelector((state) => state.cart);
+  const { loadingDeleteAddress } = useSelector((state) => state.customer);
   const LoadingStatusDeleteUpdate =
     loadingDeleteStore ||
     loadingDeleteProduct ||
     loadingEditCartQuantity ||
     loadingDeleteCart ||
-    loadingDeleteFavorite;
+    loadingDeleteFavorite ||
+    loadingDeleteAddress;
   return Boolean(LoadingStatusDeleteUpdate);
 }
 

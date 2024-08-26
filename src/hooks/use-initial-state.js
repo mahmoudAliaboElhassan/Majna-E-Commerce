@@ -97,7 +97,8 @@ function UseInitialStates() {
     singleAddressData: null,
     addresses: null,
     countOfAddresses: 0,
-    loadingAddOrder:false
+    loadingAddOrder: false,
+    loadingDeleteAddress: false,
   };
 
   return {

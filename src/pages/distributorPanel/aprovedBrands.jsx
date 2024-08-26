@@ -13,6 +13,7 @@ import {
 } from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
 import { AppbarHeader } from "@styles/appbar";
+import { NoCount,NoCountContainer } from "@styles/products";
 
 function ApprovedBrands() {
   const { t } = useTranslation();
@@ -50,9 +51,11 @@ function ApprovedBrands() {
           </Box>
         </>
       ) : (
-        <div data-aos="fade-up">
-          {t("no_brands")}
-        </div>
+        <NoCountContainer>
+          <NoCount>
+            {t("no_brands")}
+          </NoCount>
+        </NoCountContainer >
       )}
     </>
   );
