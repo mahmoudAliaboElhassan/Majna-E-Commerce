@@ -157,7 +157,6 @@ function Home() {
     <>
       <Swiperslide images={productImages} />
       <Introductory />
-      introductory section
       <Search resetPage={resetPage} />
       <Grid container style={{ overflow: "hidden", marginBottom: "-16px" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>

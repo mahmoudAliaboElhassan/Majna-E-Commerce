@@ -84,7 +84,7 @@ function ModalOrder({ openModalOrder, close, productId }) {
                     <LoadingFetching>{t('wait-addresses')}</LoadingFetching>
                 ) : (
                     <Container maxWidth="sm" className={classes.containerWrapper}>
-                        {role !== "customer" ? addresses?.length ? (
+                        {role === "customer" ? addresses?.length ? (
                             <>
                                 <IconButton
                                     onClick={close}
@@ -224,7 +224,28 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                         </Card>
                                     </Container>
                                 </>
-                            ) : "not customer"}
+                            ) : <>
+                            <IconButton
+                                onClick={close}
+                                sx={{ position: 'absolute', top: "5px", [Direction.left]: '40px' }}
+                            >
+                                <CloseIcon sx={{ fontSize: '3rem' }} color="secondary" />
+                            </IconButton>
+                            <Container maxWidth="md">
+                                <Card sx={{
+                                    minWidth: "80%",
+                                    minHeight: "80vh",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    flexDirection: "column"
+                                }}>
+                                    <Typography style={{ fontSize: '18px' }}>
+                                        {t('no-addresses')}
+                                    </Typography>
+                                </Card>
+                            </Container>
+                        </>}
                     </Container>
                 )}
             </Modal>
