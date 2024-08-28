@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+
 import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const { INITIAL_FORM_STATE_ADD_BRAND } = UseInitialValues();
 
-function AddBrand() {
+function AddBrandApplication() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { FORM_VALIDATION_SCHEMA_Add_BRAND } = UseFormValidation();
@@ -173,4 +174,4 @@ function AddBrand() {
   );
 }
 
-export default (AddBrand);
+export default (AddBrandApplication);

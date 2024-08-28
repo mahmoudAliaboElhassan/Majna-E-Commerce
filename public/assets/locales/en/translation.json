@@ -295,5 +295,9 @@
   "back": "Previous",
   "questions-info": "Getting more information about our platform that will help you get all benefits from us.",
   "order-success": "Order Has Been Added Successfully !",
-  "error-deleting-address": "Error in Deleting this Address"
+  "error-deleting-address": "Error in Deleting this Address",
+  "wait-orders": "Wait for all Orders to Load ...",
+  "your-orders": "Here is All your Orders",
+  "no-orders":"No Orders are added yet"
+
 }

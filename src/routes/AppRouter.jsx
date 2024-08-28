@@ -38,12 +38,15 @@ const ForgetPassword = React.lazy(() =>
 const RootDistributorPanelLayout = React.lazy(() =>
   import("@pages/distributorPanel/rootDistributorPanel")
 );
+
 const ApprovedBrands = React.lazy(() =>
   import("@pages/distributorPanel/aprovedBrands")
 );
+
 const AllBrandsApplications = React.lazy(() =>
   import("@pages/distributorPanel/allBrandsApplications")
 );
+
 const AllStores = React.lazy(() => import("@pages/distributorPanel/stores"));
 
 const UploadedProducts = React.lazy(() => import("@pages/distributorPanel/upploadedProducts"));
@@ -51,8 +54,9 @@ const UploadedProducts = React.lazy(() => import("@pages/distributorPanel/upploa
 const AddStore = React.lazy(() =>
   import("@pages/distributorPanel/addStore")
 );
-const AddBrand = React.lazy(() =>
-  import("@pages/distributorPanel/addBrand")
+
+const AddBrandApplication = React.lazy(() =>
+  import("@pages/distributorPanel/addBrandApplication")
 );
 
 const AddProduct = React.lazy(() =>
@@ -212,7 +216,7 @@ const router = createBrowserRouter([
             path: "add-brand",
             element: (
               <Suspense fallback={<Loader />}>
-                <AddBrand />
+                <AddBrandApplication />
               </Suspense>
             ),
           },

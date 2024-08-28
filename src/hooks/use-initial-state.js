@@ -99,6 +99,8 @@ function UseInitialStates() {
     countOfAddresses: 0,
     loadingAddOrder: false,
     loadingDeleteAddress: false,
+    loadingGetOrders: false,
+    allOrders: [],
   };
 
   return {
