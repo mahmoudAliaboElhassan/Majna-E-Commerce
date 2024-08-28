@@ -13,7 +13,7 @@ import {
 } from "@state/slices/distributor";
 import LoadingFetching from "@components/loadingFetching";
 import { AppbarHeader } from "@styles/appbar";
-import { NoCount,NoCountContainer } from "@styles/products";
+import { NoCount, NoCountContainer } from "@styles/products";
 
 function ApprovedBrands() {
   const { t } = useTranslation();

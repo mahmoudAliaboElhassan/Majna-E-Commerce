@@ -91,6 +91,7 @@
   "error_brand_updating_text": "Conflict, the Application has been already Reviewed",
   "brand-app": "Brand Application",
   "no_brands": "No Brands, Perhaps All Brands is Reviewed",
+  "no-brands-stores": "No Brands Approved or No Stores added",
   "accept_application": "Accept Application",
   "reject_application": "Reject Application",
   "brand_name": "Brand Name",

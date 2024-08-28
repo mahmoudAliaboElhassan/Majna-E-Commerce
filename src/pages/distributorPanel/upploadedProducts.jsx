@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 import "@pages/shoppingCart/style.css"
 import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
+import { NoCount, NoCountContainer } from "@styles/products";
 import LoadingFetching from "@components/loadingFetching";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import { getUploadedProducts, deleteUploadedProduct, cleanUpUploadedProducts } from "@state/slices/distributor";
@@ -182,7 +183,11 @@ function UploadedProducts() {
             </Box>
           </>
         ) : (
-          <div>{t("no-product-uploaded")}</div>
+          <NoCountContainer>
+            <NoCount>
+              {t("no-product-uploaded")}
+            </NoCount>
+          </NoCountContainer >
         )}
       </Container>
     </Box>

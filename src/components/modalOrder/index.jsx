@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 function ModalOrder({ openModalOrder, close, productId }) {
     const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation();
     const { t } = useTranslation();
-    const { Uid } = useSelector((state) => state.auth);
+    const { Uid, role } = useSelector((state) => state.auth);
     const { themeMode } = UseThemMode();
     const dispatch = useDispatch();
     const classes = useStyles();
@@ -84,7 +84,7 @@ function ModalOrder({ openModalOrder, close, productId }) {
                     <LoadingFetching>{t('wait-addresses')}</LoadingFetching>
                 ) : (
                     <Container maxWidth="sm" className={classes.containerWrapper}>
-                        {addresses?.length ? (
+                        {role !== "customer" ? addresses?.length ? (
                             <>
                                 <IconButton
                                     onClick={close}
@@ -224,7 +224,7 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                         </Card>
                                     </Container>
                                 </>
-                            )}
+                            ) : "not customer"}
                     </Container>
                 )}
             </Modal>

@@ -41,6 +41,7 @@ import ImageUploader from "@components/formui/multipleImages";
 import { helperStyle } from "@styles/error";
 import InventoryComp from "@components/inventory";
 import SubCategorySelect from "@components/subCateogry";
+import { NoCount, NoCountContainer } from "@styles/products";
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -256,7 +257,11 @@ function AddProduct() {
           </Card>
         </Container >
       ) : (
-        <div>{t("no-brands")}</div>
+        <NoCountContainer>
+          <NoCount>
+            {t("no-brands-stores")}
+          </NoCount>
+        </NoCountContainer >
       )
       }
     </div >
