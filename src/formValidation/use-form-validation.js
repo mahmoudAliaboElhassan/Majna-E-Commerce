@@ -107,7 +107,7 @@ function UseFormValidation() {
 
   const FORM_VALIDATION_SCHEMA_Add_BRAND = Yup.object().shape({
     productType: Yup.string().required("Product Type is Required"),
-
+  
     IdDistributor: Yup.mixed()
       .required("Id of the User is required")
       .test("fileFormat", "Only PDF files are allowed", (value) => {
@@ -117,13 +117,13 @@ function UseFormValidation() {
         }
         return true;
       })
-      .test("fileSize", "File size must not be more than 10MB", (value) => {
+      .test("fileSize", "File size must not be more than 7MB", (value) => {
         if (value) {
-          return value.size <= 10485760; // 10MB in bytes
+          return value.size <= 7340032; // 7MB in bytes
         }
         return true;
       }),
-
+  
     authorizeDocument: Yup.mixed()
       .required("Authorize Document is required")
       .test(
@@ -146,13 +146,14 @@ function UseFormValidation() {
         }
         return true;
       })
-      .test("fileSize", "File size must not be more than 10MB", (value) => {
+      .test("fileSize", "File size must not be more than 7MB", (value) => {
         if (value) {
-          return value.size <= 10485760; // 10MB in bytes
+          return value.size <= 7340032; // 7MB in bytes
         }
         return true;
       }),
   });
+  
 
   const FORM_VALIDATION_SCHEMA_Add_STORE = Yup.object().shape({
     storeName: Yup.string().required("Store Name is Required"),
@@ -185,7 +186,8 @@ function UseFormValidation() {
           .min(1, "Minimum amount of Product is one"),
       })
     ),
-    album: Yup.array()
+    album: Yup
+      .array()
       .of(
         Yup.object().shape({
           image: Yup.mixed().required("Image is required"),
@@ -206,7 +208,7 @@ function UseFormValidation() {
           // )
           is_cover: Yup.string().required(""),
         })
-      )
+      ).min(2, "Minimum number of Images is Two")
       .test(
         "atLeastOneCover",
         "At least one image must be marked as cover",
@@ -281,13 +283,15 @@ function UseFormValidation() {
     singleAddress: Yup.string().required("Full Address is Required"),
   });
   const FORM_VALIDATION_SCHEMA_ADD_ORDER = Yup.object().shape({
-    pickup_address_id:Yup.string().required("Order Address is Required"),
-    order_items:Yup.array().of(
+    pickup_address_id: Yup.string().required("Order Address is Required"),
+    order_items: Yup.array().of(
       Yup.object().shape({
-        product_id:Yup.string().required("Product ID is Required"),
-        quantity:Yup.string().required("Quantity Of Product is Required is Required"),
+        product_id: Yup.string().required("Product ID is Required"),
+        quantity: Yup.string().required(
+          "Quantity Of Product is Required is Required"
+        ),
       })
-    )
+    ),
   });
 
   return {

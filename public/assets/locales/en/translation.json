@@ -298,6 +298,8 @@
   "error-deleting-address": "Error in Deleting this Address",
   "wait-orders": "Wait for all Orders to Load ...",
   "your-orders": "Here is All your Orders",
-  "no-orders":"No Orders are added yet"
-
+  "no-orders": "No Orders are added yet",
+  "more-four": "You cannot select more than four images",
+  "less-two": "You cannot choose less than two images",
+  "required-img": "One Image is Required to be the Cover"
 }
