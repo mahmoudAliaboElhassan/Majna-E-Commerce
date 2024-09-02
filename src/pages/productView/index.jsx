@@ -64,7 +64,8 @@ function ProductInformation() {
     setImgNo(Number(value));
   };
   console.log("id", id)
-  console.log("productId", productId)
+  console.log("album_items", album_items)
+  console.log("album_items", album_items?.[0]?.url)
   const handlePostCart = () => {
     dispatch(postCart({
       customerId: Uid,
@@ -145,7 +146,7 @@ function ProductInformation() {
               <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <CardMedia
                   component="img"
-                  image={teamImage[imgNo]}
+                  image={album_items?.[imgNo]?.url} // Access the URL using the imgNo index
                   alt={"Product Image"}
                   loading="lazy"
                   // sx={{ width: "100%", height: "100%" }}

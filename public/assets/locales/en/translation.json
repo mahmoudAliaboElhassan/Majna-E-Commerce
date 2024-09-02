@@ -207,8 +207,8 @@
   "favorite-success": "Product is Added Successfully to Favorite  !",
   "error-not-authorized-text-favorite": "Login In First then Add to Favorite",
   "error-not-customer-text-favorite": "It is Forbidden for Non Customer to Add to Favorite Login as Customer and Add To Favorite",
-  "error-not-authorized-text-order": "Login In First then Add Order",
-  "error-not-customer-text-order": "It is Forbidden for Non Customer to Add Orders Login as Customer and Add Order",
+  "error-not-authorized-text-order": "Login In First then Place Order",
+  "error-not-customer-text-order": "It is Forbidden for Non Customer to Place Orders Login as Customer and Add Order",
   "wait-favorite": "Wait for Favorite Products to Load ...",
   "no-favorites": "No Products Added to Favorites Yet",
   "deleting-favorite": "Product is Deleted Successfully from your Favorite List !",
@@ -288,8 +288,8 @@
   "static-subCategory": "be sure of Sub Category as it can not be updated",
   "static-brand": "be sure of Brand as it can not be updated",
   "discover": "Discover More",
-  "add-order": "Add Order",
-  "add-order-now": "Add your Order Now",
+  "add-order": "Place Order",
+  "add-order-now": "Place your Order Now",
   "no-addresses": "No Addresses are added yet",
   "next": "Next",
   "back": "Previous",
@@ -301,5 +301,10 @@
   "no-orders": "No Orders are added yet",
   "more-four": "You cannot select more than four images",
   "less-two": "You cannot choose less than two images",
-  "required-img": "One Image is Required to be the Cover"
+  "required-img": "One Image is Required to be the Cover",
+  "unit-price": "Unit Price",
+  "total-price-order": "Total Price",
+  "order-status": "Order Status",
+  "ordered-at": "Ordered At",
+  "order-address": "Order Address"
 }

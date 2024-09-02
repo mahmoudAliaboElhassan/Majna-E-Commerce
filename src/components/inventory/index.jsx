@@ -53,7 +53,7 @@ const InventoryComp = () => {
           <Grid item xs={1} >
 
             <Button type="button" onClick={() => handleRemoveClick(index)}
-          fullWidth
+              fullWidth
               disabled={count === 1}
               variant="outlined"
               title={t('remove-store')}
@@ -64,7 +64,7 @@ const InventoryComp = () => {
         </Grid>
       ))}
       <Grid item xs={12} style={{ display: "flex", justifyContent: "center" }}>
-         <StoreAdded
+        <StoreAdded
           variant="contained"
           onClick={handleAddClick}
           title={t('add-store')}

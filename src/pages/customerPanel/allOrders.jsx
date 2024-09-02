@@ -1,34 +1,107 @@
-import React, { useEffect } from 'react'
-
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from "@mui/x-data-grid";
 import { useTranslation } from "react-i18next";
 
 import { AppbarHeader } from "@styles/appbar";
-import { getAllOrders } from '@state/slices/customer'
+import { getAllOrders, getAllAddresses } from '@state/slices/customer';
 import LoadingFetching from "@components/loadingFetching";
-import { DataGridContainer } from "@styles/dataGrid"
+import { DataGridContainer } from "@styles/dataGrid";
 import { NoCount, NoCountContainer } from "@styles/products";
 
 function AllOrders() {
-    const dispatch = useDispatch()
-    const { loadingGetOrders, allOrders } = useSelector((state) => state.customer)
-    const { t } = useTranslation()
+    const dispatch = useDispatch();
+    const { loadingGetOrders, allOrders, addresses, loadingGetAddresses } = useSelector((state) => state.customer);
+    const { Uid } = useSelector((state) => state.auth);
+    const { t } = useTranslation();
+
     useEffect(() => {
-        dispatch(getAllOrders())
-    }, [])
+        dispatch(getAllOrders({ customerId: Uid, status: "Placed" }));
+        dispatch(getAllAddresses({ customerId: Uid }));
+    }, [dispatch, Uid]);
+
+
+
+    // Define columns for the DataGrid
+    const columns = [
+        {
+            field: 'id', headerName: t('id'), width: 100,
+            headerAlign: 'center',
+            align: 'center',
+        },
+        {
+            field: 'pickup_address_id', headerName: t('order-address'), width: 200,
+            headerAlign: 'center',
+            align: 'center',
+        },
+        {
+            field: 'status', headerName: t('order-status'), width: 150,
+            headerAlign: 'center',
+            align: 'center',
+        },
+
+        {
+            field: 'unit_price', headerName: t('unit-price'),
+            width: 150, headerAlign: 'center',
+            align: 'center', type: 'number'
+        },
+        {
+            field: 'quantity', headerName: t('quantity'),
+            width: 100, type: 'number',
+            headerAlign: 'center',
+            align: 'center',
+        },
+        {
+            field: 'total_price', headerName: t('total-price-order'),
+            width: 150, type: 'number',
+            headerAlign: 'center',
+            align: 'center',
+        },
+        {
+            field: 'image',
+            headerName: t('product-img'),
+            width: 150,
+            headerAlign: 'center',
+            align: 'center',
+            renderCell: (params) => (
+                <img
+                    src={params.value}
+                    alt="Product"
+                    style={{ width: '100%', height: 'auto' }}
+                />
+            ),
+        },
+        {
+            field: 'ordered_at', headerName: t('ordered-at'),
+            minWidth: 500,
+            headerAlign: 'center',
+            align: 'center',
+        },
+    ];
+
+    // Prepare rows for the DataGrid
+    const rows = allOrders?.map(({ id, pickup_address_id, status, ordered_at, total_price, order_items }) => ({
+        id,
+        status,
+        total_price,
+        ordered_at: new Date(ordered_at),
+        quantity: order_items?.[0]?.quantity,
+        unit_price: order_items?.[0]?.unit_price,
+        image: order_items?.[0]?.product?.cover_image,
+        pickup_address_id: addresses?.find((address) => address.id === pickup_address_id)?.address,
+    }));
 
     return (
         <>
-            {loadingGetOrders ? (
+            {loadingGetOrders || loadingGetAddresses ? (
                 <LoadingFetching>{t("wait-orders")}</LoadingFetching>
             ) : allOrders?.length ? (
                 <>
                     <AppbarHeader data-aos="fade-up">{t("your-orders")}</AppbarHeader>
                     <DataGridContainer>
                         <DataGrid
-                            // rows={rows}
-                            // columns={columns}
+                            rows={rows}
+                            columns={columns}
                             initialState={{
                                 pagination: {
                                     paginationModel: {
@@ -49,7 +122,7 @@ function AllOrders() {
                 </NoCountContainer>
             )}
         </>
-    )
+    );
 }
 
-export default AllOrders
+export default AllOrders;

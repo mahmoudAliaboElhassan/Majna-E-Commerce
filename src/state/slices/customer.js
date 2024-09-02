@@ -90,7 +90,7 @@ export const customerSlice = createSlice({
       })
       .addCase(getAllOrders.fulfilled, (state, action) => {
         state.loadingGetOrders = false;
-        state.allOrders = action.payload.orders;
+        state.allOrders = action.payload.results;
       })
       .addCase(getAllOrders.rejected, (state, action) => {
         state.loadingGetOrders = false;
