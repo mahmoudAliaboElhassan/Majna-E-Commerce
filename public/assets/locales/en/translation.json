@@ -306,5 +306,13 @@
   "total-price-order": "Total Price",
   "order-status": "Order Status",
   "ordered-at": "Ordered At",
-  "order-address": "Order Address"
+  "order-address": "Order Address",
+  "select-status": "Select the status of your orders",
+  "placed": "Placed",
+  "shipped": "Shipped",
+  "delivered": "Delivered",
+  "not-ordered": "Not Ordered",
+  "ascending-date": "Ascending Date",
+  "descending-date": "Descending Date",
+  "select-order-type": "Select orders by Date"
 }

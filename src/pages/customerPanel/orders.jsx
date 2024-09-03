@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from "@mui/x-data-grid";
 import { useTranslation } from "react-i18next";
+import { Box } from '@material-ui/core';
 
 import { AppbarHeader } from "@styles/appbar";
 import { getAllOrders, getAllAddresses } from '@state/slices/customer';
+import SelectStatus from "@components/selectStatus"
 import LoadingFetching from "@components/loadingFetching";
 import { DataGridContainer } from "@styles/dataGrid";
+import UseOrderOptions from '@hooks/use-order-date';
+import UseStatusOptions from '@hooks/use-status-options';
 import { NoCount, NoCountContainer } from "@styles/products";
 
 function AllOrders() {
@@ -14,13 +18,20 @@ function AllOrders() {
     const { loadingGetOrders, allOrders, addresses, loadingGetAddresses } = useSelector((state) => state.customer);
     const { Uid } = useSelector((state) => state.auth);
     const { t } = useTranslation();
-
+    const [status, setStaus] = useState("")
+    const [ordering, setOrderding] = useState("")
+    const handleChangeStatus = (e) => {
+        setStaus(e.target.value)
+    }
+    const handleChangeOrdering = (e) => {
+        setOrderding(e.target.value)
+    }
+    const { statusOptions } = UseStatusOptions()
+    const { orderOptions } = UseOrderOptions()
     useEffect(() => {
-        dispatch(getAllOrders({ customerId: Uid, status: "Placed" }));
+        dispatch(getAllOrders({ customerId: Uid, status, ordering }));
         dispatch(getAllAddresses({ customerId: Uid }));
-    }, [dispatch, Uid]);
-
-
+    }, [dispatch, Uid, status, ordering]);
 
     // Define columns for the DataGrid
     const columns = [
@@ -98,6 +109,10 @@ function AllOrders() {
             ) : allOrders?.length ? (
                 <>
                     <AppbarHeader data-aos="fade-up">{t("your-orders")}</AppbarHeader>
+                    <Box style={{ display: "flex", justifyContent: "space-between", alignItem: "center" }}>
+                        <SelectStatus options={statusOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
+                        <SelectStatus options={orderOptions} status={ordering} handleChange={handleChangeOrdering} label={t("select-order-type")} />
+                    </Box>
                     <DataGridContainer>
                         <DataGrid
                             rows={rows}
@@ -118,6 +133,7 @@ function AllOrders() {
                 </>
             ) : (
                 <NoCountContainer>
+                    <SelectStatus options={statusOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
                     <NoCount>{t("no-orders")}</NoCount>
                 </NoCountContainer>
             )}

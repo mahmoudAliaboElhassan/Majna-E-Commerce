@@ -112,12 +112,18 @@ export const deleteAddress = createAsyncThunk(
 
 export const getAllOrders = createAsyncThunk(
   "customer/getAllOrders",
-  async ({ customerId, status }, thunkAPI) => {
+  async ({ customerId, ...query }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const statusParam = status ? `?status=${status}` : "";
+    const entriesArray = Object.entries(query);
+    console.log("entriesArray");
+    console.log(entriesArray);
+    const queryParameters = entriesArray
+      .map(([key, value]) => (value ? `${key}=${value}` : null))
+      .filter(Boolean)
+      .join("&");
     try {
       const res = await majnAPI.get(
-        `api/customers/${customerId}/orders${statusParam}`
+        `api/customers/${customerId}/orders?${queryParameters}`
       );
       console.log("from slice res is");
       console.log(res);

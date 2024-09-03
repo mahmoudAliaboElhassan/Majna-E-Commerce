@@ -306,5 +306,13 @@
   "total-price-order": "السعر الإجمالي",
   "order-status": "حالة الطلب",
   "ordered-at": "وقت إضافة الطلب",
-  "order-address": "عنوان الطلب"
+  "order-address": "عنوان الطلب",
+  "select-status": "اختر حالة طلباتك",
+  "placed": "تمت الإضافة",
+  "shipped": "تم الشحن",
+  "delivered": "تم التسليم",
+  "not-ordered": "غير مرتب",
+  "ascending-date": "التاريخ التصاعدي",
+  "descending-date": "التاريخ التنازلي",
+  "select-order-type": "إختر ترتيب الطلبات بالتاريخ"
 }
