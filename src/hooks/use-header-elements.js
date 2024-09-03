@@ -76,12 +76,12 @@ function UseHeaderElements() {
   const tabElementsSeller = HeaderElements.slice(0, -4).filter(
     ({ to }) => to !== "/customer-control-panel"
   );
-  const allTabsElements = token
-    ? role === "distributor"
+  const allTabsElements = localStorage.getItem("token")
+    ?localStorage.getItem("role") === "distributor"
       ? tabElementsSeller
       : tabElementsBuyer
     : tabElements;
-  const authElements = token ? authElementsUser : authElementsNotUser;
+  const authElements = localStorage.getItem("token") ? authElementsUser : authElementsNotUser;
   const allElements = allTabsElements.concat(authElements);
 
   return {

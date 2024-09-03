@@ -206,7 +206,7 @@ function Header() {
                   </IconButton>
                 </>
               )}
-              {/* <div>{process.env.REACT_APP_API_URL}</div> */}
+              
               <TabContext value={value}>
                 <TabsElementsList
                   textColor="inherit"

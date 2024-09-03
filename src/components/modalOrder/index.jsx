@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ModalOrder({ openModalOrder, close, productId }) {
+function ModalOrder({ openModalOrder, close, productId, maxNumber }) {
     const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation();
     const { t } = useTranslation();
     const { Uid, role } = useSelector((state) => state.auth);
@@ -111,6 +111,8 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                                     }}
                                                     validationSchema={FORM_VALIDATION_SCHEMA_ADD_ORDER}
                                                     onSubmit={(values) => {
+                                                        setCurrentStep(0)
+                                                        close()
                                                         console.log({ ...values });
                                                         // Handle form submission logic here
                                                         dispatch(addOrder(values)).unwrap()
@@ -130,6 +132,7 @@ function ModalOrder({ openModalOrder, close, productId }) {
                                                                 const errorMessages = {
                                                                     401: t("error-not-authorized-text-order"),
                                                                     403: t("error-not-customer-text-order"),
+                                                                    400: `${(t('error-exceed-number'))} ${maxNumber}`
                                                                 };
                                                                 const errorMessage =
                                                                     errorMessages[error.response.status] || error.message;

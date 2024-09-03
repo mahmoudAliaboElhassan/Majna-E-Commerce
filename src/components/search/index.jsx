@@ -46,6 +46,14 @@ const Search = ({ resetPage, headerColor }) => {
   const handleSearchClick = () => {
     resetPage()
     dispatch(handleSearchValue(mysearch));
+  };
+
+  // New function to handle key press
+  const handleKeyDown = (event) => {
+    console.log("e.key",event.key)
+    if (event.key === "Enter") {
+      handleSearchClick();
+    }
 
   };
 
@@ -61,6 +69,7 @@ const Search = ({ resetPage, headerColor }) => {
           <TextField
             {...params}
             fullWidth
+            onKeyDown={handleKeyDown}  // Add onKeyDown event
             InputProps={{
               ...params.InputProps,
               endAdornment: (
@@ -102,3 +111,18 @@ const Search = ({ resetPage, headerColor }) => {
 };
 
 export default React.memo(Search);
+
+
+// Key Concepts of event.key
+// Basic Usage: When a key is pressed, the event.key property provides the value of the key. For example, if the "Enter" key is pressed, event.key will be "Enter".
+
+// Common Values:
+
+// Character Keys: If the key pressed is a character key (like "A", "1", etc.), event.key will return the character itself, respecting case sensitivity (e.g., "a" or "A").
+// Control Keys: For non-character keys, event.key will return the name of the key, such as "Enter", "Escape", "Tab", "ArrowUp", "ArrowDown", "Backspace", etc.
+// Modifier Keys: Keys like "Shift", "Control", "Alt", and "Meta" (command key on Mac) also have corresponding values for event.key.
+// Event Types:
+
+// keydown: Fired when a key is first pressed.
+// keyup: Fired when a key is released.
+// keypress (deprecated): Used to be fired when a key is pressed down and held, but it's generally replaced by keydown.
