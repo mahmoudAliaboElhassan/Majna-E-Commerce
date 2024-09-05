@@ -16,7 +16,13 @@ const { initialStateAuth } = UseInitialStates();
 export const authSlice = createSlice({
   name: "authSlice",
   initialState: initialStateAuth,
-  reducers: {},
+  reducers: {
+    handlelogOutState: (state) => {
+      state.token = "";
+      state.role = "";
+      state.expireToken = "";
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(logIn.pending, (state, action) => {
@@ -170,3 +176,4 @@ export {
   logOut,
   resetPassword,
 };
+export const { handlelogOutState } = authSlice.actions;

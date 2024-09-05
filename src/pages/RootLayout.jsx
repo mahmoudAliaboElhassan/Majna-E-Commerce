@@ -29,7 +29,7 @@ import Header from "@components/header";
 import Footer from "@components/footer";
 import UseDirection from "@hooks/use-direction";
 import { Colors } from "@styles/theme";
-import { logOut } from "@state/slices/auth";
+import { logOut, handlelogOutState } from "@state/slices/auth";
 import LoadingFetching from "@components/loadingFetching";
 
 
@@ -43,7 +43,7 @@ function RootLayout() {
   const { Direction } = UseDirection();
   const { mymode } = useSelector((state) => state.mode);
   const { expireToken, token, role, loadingLogOut } = useSelector((state) => state.auth);
-
+  const dispatch = useDispatch()
   useEffect(() => {
     document.title = t("website-title");
     AOS.init({
@@ -56,9 +56,11 @@ function RootLayout() {
       const currentTime = new Date().getTime();
       if (token && role) {
         if (currentTime >= expired) {
+          dispatch(logOut())
           localStorage.removeItem("token");
           localStorage.removeItem("role");
           localStorage.removeItem("expired");
+          dispatch(handlelogOutState())
           clearInterval(interval);
         }
       }
