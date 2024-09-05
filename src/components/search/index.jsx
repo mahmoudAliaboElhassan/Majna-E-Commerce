@@ -8,17 +8,18 @@ import SearchIcon from '@mui/icons-material/Search';
 import UseThemeMode from "@hooks/use-theme";
 import UseProducts from "@hooks/use-products";
 import { handleSearchChange, handleSearchValue } from "@state/slices/search";
+import { setPage } from "@state/slices/page";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
 
 const Search = ({ resetPage, headerColor }) => {
   const { t } = useTranslation();
   const theme = useTheme();
   const { searchChange } = useSelector((state) => state.search);
+  const dispatch = useDispatch()
   console.log("searchChange")
   console.log(searchChange)
   const [mysearch, setMySearch] = useState(searchChange);
 
-  const dispatch = useDispatch();
   const { products } = UseProducts();
   const { themeMode } = UseThemeMode();
 
@@ -29,7 +30,7 @@ const Search = ({ resetPage, headerColor }) => {
     if (!inputValue) {
       setMySearch("");
       dispatch(handleSearchChange(""));
-      if (resetPage) { resetPage() }
+      dispatch(setPage(1))
       dispatch(handleSearchValue(""));
     }
   };
@@ -38,19 +39,20 @@ const Search = ({ resetPage, headerColor }) => {
     if (value) {
       setMySearch(value);
       dispatch(handleSearchChange(value));
-      resetPage()
+      dispatch(setPage(1))
       dispatch(handleSearchValue(value));
     }
   };
 
   const handleSearchClick = () => {
-    resetPage()
+    dispatch(setPage(1))
+    localStorage.setItem("page", 1)
     dispatch(handleSearchValue(mysearch));
   };
 
   // New function to handle key press
   const handleKeyDown = (event) => {
-    console.log("e.key",event.key)
+    console.log("e.key", event.key)
     if (event.key === "Enter") {
       handleSearchClick();
     }

@@ -89,6 +89,9 @@ function UseInitialStates() {
     searchChange: localStorage.getItem("searchChange") || "", // Should retrieve correctly
     searchValue: localStorage.getItem("searchValue") || "",
   };
+  const initialStatePage = {
+    page: localStorage.getItem("page") || "", // Should retrieve correctly
+  };
   const initialStateCustomer = {
     loadingGetAddresses: false,
     loadingAddAddress: false,
@@ -113,6 +116,7 @@ function UseInitialStates() {
     initialStateCart,
     initialStateSearch,
     initialStateCustomer,
+    initialStatePage,
   };
 }
 

@@ -22,9 +22,11 @@ import ProductTypesSidebar from "@components/sidebarFiltering";
 import LoadingFetching from "@components/loadingFetching";
 import Search from "@components/search";
 import Footer from "@components/footer";
+import { setPage } from "@state/slices/page";
 
 function Home() {
-  const [page, setPage] = useState(localStorage.getItem("page") || 1);
+  // const [page, setPage] = useState(localStorage.getItem("page") || 1);
+  const { page } = useSelector((state) => state.PageSlice)
   const { items } = useSelector((state) => state.cart);
   const { productsArray, loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
@@ -37,7 +39,7 @@ function Home() {
     localStorage.setItem("page", value)
     console.log("localStorage.getItem(page)")
     console.log(localStorage.getItem("page"))
-    setPage((value));
+    dispatch(setPage(value))
   }, [page]);
   console.log("page :", page)
 
@@ -59,13 +61,11 @@ function Home() {
     localStorage.setItem("priceTo", priceFromTo[1])
     localStorage.setItem("price", priceFromTo.join(","))
     setPrice(priceFromTo.join(","));
-    localStorage.setItem("page", 1)
-    setPage(1)
+    dispatch(setPage(1))
   }, [priceFromTo]);
 
   const resetPage = () => {
-    localStorage.setItem("page", 1)
-    setPage(1)
+    dispatch(setPage(1))
   }
 
   const [ordering, setOrdering] = useState(null);
@@ -75,8 +75,8 @@ function Home() {
 
   const [selectedSubCategory, setSelectedSubCategory] = useState(localStorage.getItem("subCategory") || "");
   const handleSelectedSubCategory = useCallback((value) => {
-    localStorage.setItem("page", 1)
-    setPage(1)
+    dispatch(setPage(1))
+
     localStorage.setItem("subCategory", value)
     setSelectedSubCategory(value);
     console.log("selectedSubCategory");
@@ -87,8 +87,7 @@ function Home() {
     localStorage.removeItem("subCategory")
     setSelectedCategory(id);
     setSelectedSubCategory("")
-    localStorage.setItem("page", 1)
-    setPage(1)
+    dispatch(setPage(1))
     id
       ? dispatch(
         getProductsByCategory({
