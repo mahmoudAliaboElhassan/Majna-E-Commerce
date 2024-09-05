@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import TextField from "@mui/material/TextField";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@mui/material/styles";
@@ -32,6 +33,9 @@ const Search = ({ resetPage, headerColor }) => {
       dispatch(handleSearchChange(""));
       dispatch(setPage(1))
       dispatch(handleSearchValue(""));
+      if (headerColor) {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      }
     }
   };
 
@@ -41,13 +45,18 @@ const Search = ({ resetPage, headerColor }) => {
       dispatch(handleSearchChange(value));
       dispatch(setPage(1))
       dispatch(handleSearchValue(value));
+      if (headerColor) {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      }
     }
   };
 
   const handleSearchClick = () => {
     dispatch(setPage(1))
-    localStorage.setItem("page", 1)
     dispatch(handleSearchValue(mysearch));
+    if (headerColor) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
   };
 
   // New function to handle key press
