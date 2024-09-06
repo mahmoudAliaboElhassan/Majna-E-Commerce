@@ -149,7 +149,6 @@ function ProductInformation() {
                   image={album_items?.[imgNo]?.url} // Access the URL using the imgNo index
                   alt={"Product Image"}
                   loading="lazy"
-                  // sx={{ width: "100%", height: "100%" }}
                   height="500"
                 />
               </Grid>

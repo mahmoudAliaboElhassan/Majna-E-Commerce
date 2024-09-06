@@ -243,9 +243,8 @@ function ModalOrder({ openModalOrder, close, productId, maxNumber }) {
                                     alignItems: "center",
                                     flexDirection: "column"
                                 }}>
-                                    <Typography style={{ fontSize: '18px' }}>
-                                        {t('no-addresses')}
-                                    </Typography>
+
+                                    <Button onClick={close} variant={themeMode === "dark" ? "contained" : "outlined"} sx={{ fontSize: "19px" }} component={Link} to="/login" >{t('login-now-add-address')}</Button>
                                 </Card>
                             </Container>
                         </>}

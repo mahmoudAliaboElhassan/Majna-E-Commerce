@@ -316,5 +316,6 @@
   "descending-date": "Descending Date",
   "select-order-type": "Select orders by Date",
   "error-exceed-number": "you Can not Place more thant ",
-  "error-adding-order": "Error Adding This Order"
+  "error-adding-order": "Error Adding This Order",
+  "login-now-add-address":"Login Now to Place Order"
 }

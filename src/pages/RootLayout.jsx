@@ -56,7 +56,7 @@ function RootLayout() {
       const currentTime = new Date().getTime();
       if (token && role) {
         if (currentTime >= expired) {
-          dispatch(logOut())
+          // dispatch(logOut())
           localStorage.removeItem("token");
           localStorage.removeItem("role");
           localStorage.removeItem("expired");

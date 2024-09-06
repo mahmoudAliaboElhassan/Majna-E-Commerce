@@ -316,5 +316,7 @@
   "descending-date": "التاريخ التنازلي",
   "select-order-type": "إختر ترتيب الطلبات بالتاريخ",
   "error-exceed-number": "لا يكمن أن تضيف أكثر من",
-  "error-adding-order": "خطأ بإضافة الطلب"
+  "error-adding-order": "خطأ بإضافة الطلب",
+  "login-now-add-address": "قم بتسجيل الدخول الآن لتقديم الطلب"
+
 }
