@@ -96,7 +96,11 @@ const Addresses = React.lazy(() => import("@pages/customerPanel/addresses"))
 const AddAddress = React.lazy(() => import("@pages/customerPanel/addAddress"))
 const EditAddress = React.lazy(() => import("@pages/customerPanel/editAddress"))
 const Orders = React.lazy(() => import("@pages/customerPanel/orders"))
+
 const Discover = React.lazy(() => import("@pages/discover"))
+
+const RootDeliveryPanelLayout = React.lazy(() => import("@pages/deliveryPanel/rootDeliveryPanel"))
+const UpdateOrderStatus = React.lazy(() => import("@pages/deliveryPanel/updateOrderStatus"))
 
 const router = createBrowserRouter([
   {
@@ -365,7 +369,32 @@ const router = createBrowserRouter([
             <Discover />
           </Suspense>
         )
-      }, {
+      },
+      {
+        path: "delivery-control-panel",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <RootDeliveryPanelLayout />
+          </Suspense>
+        ),
+        children: [
+          {
+            index: true,
+            element: (<Suspense fallback={<Loader />}>
+              <UpdateOrderStatus />
+            </Suspense>
+            )
+          },
+          {
+            path: "update-order-status",
+            element: (<Suspense fallback={<Loader />}>
+              <UpdateOrderStatus />
+            </Suspense>
+            )
+          }
+        ]
+      },
+      {
         path: "/reviewer",
         element: (
           <Suspense fallback={<Loader />}>

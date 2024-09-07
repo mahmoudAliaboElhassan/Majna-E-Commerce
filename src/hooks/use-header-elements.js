@@ -37,6 +37,10 @@ function UseHeaderElements() {
       to: "/distributor-control-panel",
     },
     {
+      label: t("c_panel"),
+      to: "/delivery-control-panel",
+    },
+    {
       label: t("login"),
       to: "/login",
     },
@@ -69,19 +73,32 @@ function UseHeaderElements() {
     },
   ];
 
-  const authElementsNotUser = HeaderElements.slice(5, 7);
-  const authElementsUser = HeaderElements.slice(7);
+  const authElementsNotUser = HeaderElements.slice(6, 8);
+  const authElementsUser = HeaderElements.slice(8);
   const tabElements = HeaderElements.slice(0, 3);
+
   const tabElementsBuyer = HeaderElements.slice(0, 4);
-  const tabElementsSeller = HeaderElements.slice(0, -4).filter(
+
+  const tabElementsSeller = HeaderElements.slice(0, -5).filter(
     ({ to }) => to !== "/customer-control-panel"
   );
+  const tabElementsDelivery = HeaderElements.slice(0, 6).filter(
+    ({ to }) =>
+      to !== "/customer-control-panel" && to !== "/distributor-control-panel"
+  );
+  console.log("tabElementsDelivery");
+  console.log(tabElementsDelivery);
   const allTabsElements = localStorage.getItem("token")
-    ?localStorage.getItem("role") === "distributor"
+    ? localStorage.getItem("role") === "distributor"
       ? tabElementsSeller
+      : localStorage.getItem("role") === "null"
+      ? tabElementsDelivery
       : tabElementsBuyer
     : tabElements;
-  const authElements = localStorage.getItem("token") ? authElementsUser : authElementsNotUser;
+
+  const authElements = localStorage.getItem("token")
+    ? authElementsUser
+    : authElementsNotUser;
   const allElements = allTabsElements.concat(authElements);
 
   return {
