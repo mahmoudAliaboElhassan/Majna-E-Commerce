@@ -317,5 +317,6 @@
   "select-order-type": "Select orders by Date",
   "error-exceed-number": "you Can not Place more thant ",
   "error-adding-order": "Error Adding This Order",
-  "login-now-add-address":"Login Now to Place Order"
+  "login-now-add-address": "Login Now to Place Order",
+  "not-exist": "This Product Does not Exists Currently in stores"
 }

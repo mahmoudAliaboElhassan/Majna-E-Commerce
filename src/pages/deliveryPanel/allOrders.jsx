@@ -70,11 +70,6 @@ function AllDeliveryOrders() {
             align: 'center',
         },
         {
-            field: 'pickup_address_id', headerName: t('order-address'), width: 200,
-            headerAlign: 'center',
-            align: 'center',
-        },
-        {
             field: 'status', headerName: t('order-status'), width: 150,
             headerAlign: 'center',
             align: 'center',
@@ -107,12 +102,7 @@ function AllDeliveryOrders() {
     const rows = ordersDelivery?.map(({ id, pickup_address_id, status, ordered_at, total_price, order_items }) => ({
         id,
         status,
-        total_price,
         ordered_at: new Date(ordered_at),
-        quantity: order_items?.[0]?.quantity,
-        unit_price: order_items?.[0]?.unit_price,
-        image: order_items?.[0]?.product?.cover_image,
-        pickup_address_id: addresses?.find((address) => address.id === pickup_address_id)?.address,
     }));
 
     return (
