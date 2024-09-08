@@ -41,12 +41,6 @@ function ProductInformation() {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    dispatch(getSpecifiedProduct({ id: productId }));
-    return () => {
-      dispatch(cleanUpGetSpecifiedProduct());
-    };
-  }, [dispatch, productId]);
 
   const { productData, loadingSpecificProduct } = useSelector((state) => state.products);
 
@@ -58,6 +52,16 @@ function ProductInformation() {
       ({ stores, total_quantity } = inventory);
     }
   }
+
+
+  useEffect(() => {
+    dispatch(getSpecifiedProduct({ id: productId }));
+    return () => {
+      dispatch(cleanUpGetSpecifiedProduct());
+    };
+  }, [dispatch, productId]);
+
+
 
   const [imgNo, setImgNo] = useState(0);
   const handleImageChange = ({ target: { value } }) => {

@@ -15,13 +15,13 @@ const withGuard = (Component) => {
       if (
         (location.pathname === "/favorite" ||
           location.pathname === "/shooping-cart" ||
-          location.pathname.split("/")[1] === "customer-control-panel") &&
-        localStorage.getItem("role") !== "customer"
+          location.pathname.startsWith("/customer-control-panel")) &&
+        localStorage.getItem("role") !== "Customer"
       )
         navigate("/");
       else if (
         location.pathname.startsWith("/distributor-control-panel") &&
-        role !== "distributor"
+        role !== "Distributor"
       )
         navigate("/");
       else if (

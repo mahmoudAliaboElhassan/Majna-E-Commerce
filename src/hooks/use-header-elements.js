@@ -89,7 +89,7 @@ function UseHeaderElements() {
   console.log("tabElementsDelivery");
   console.log(tabElementsDelivery);
   const allTabsElements = localStorage.getItem("token")
-    ? localStorage.getItem("role") === "distributor"
+    ? localStorage.getItem("role") === "Distributor"
       ? tabElementsSeller
       : localStorage.getItem("role") === "Delivery"
       ? tabElementsDelivery

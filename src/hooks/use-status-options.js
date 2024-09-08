@@ -20,7 +20,17 @@ function UseStatusOptions() {
       label: t("delivered"),
     },
   ];
-  return { statusOptions };
+  const statusDeliveryOptions = [
+    {
+      value: "Placed",
+      label: t("placed"),
+    },
+    {
+      value: "Shipped",
+      label: t("shipped"),
+    },
+  ];
+  return { statusOptions, statusDeliveryOptions };
 }
 
 export default UseStatusOptions;

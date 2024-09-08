@@ -84,7 +84,7 @@ function ModalOrder({ openModalOrder, close, productId, maxNumber }) {
                     <LoadingFetching>{t('wait-addresses')}</LoadingFetching>
                 ) : (
                     <Container maxWidth="sm" className={classes.containerWrapper}>
-                        {role === "customer" ? addresses?.length ? (
+                        {role === "Customer" ? addresses?.length ? (
                             <>
                                 <IconButton
                                     onClick={close}
