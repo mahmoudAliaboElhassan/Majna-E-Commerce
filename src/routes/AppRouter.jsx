@@ -100,7 +100,8 @@ const Orders = React.lazy(() => import("@pages/customerPanel/orders"))
 const Discover = React.lazy(() => import("@pages/discover"))
 
 const RootDeliveryPanelLayout = React.lazy(() => import("@pages/deliveryPanel/rootDeliveryPanel"))
-const UpdateOrderStatus = React.lazy(() => import("@pages/deliveryPanel/updateOrderStatus"))
+const AllOrders = React.lazy(() => import("@pages/deliveryPanel/allOrders"))
+const SpecificOrder = React.lazy(() => import("@pages/deliveryPanel/specificOrder"));
 
 const router = createBrowserRouter([
   {
@@ -381,14 +382,21 @@ const router = createBrowserRouter([
           {
             index: true,
             element: (<Suspense fallback={<Loader />}>
-              <UpdateOrderStatus />
+              <AllOrders />
             </Suspense>
             )
           },
           {
-            path: "update-order-status",
+            path: "all-delivery-orders",
             element: (<Suspense fallback={<Loader />}>
-              <UpdateOrderStatus />
+              <AllOrders />
+            </Suspense>
+            )
+          },
+          {
+            path: "order/:orderId",
+            element: (<Suspense fallback={<Loader />}>
+              <SpecificOrder />
             </Suspense>
             )
           }

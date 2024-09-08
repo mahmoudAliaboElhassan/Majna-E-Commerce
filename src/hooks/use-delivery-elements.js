@@ -4,12 +4,8 @@ function UseDeliveryElements() {
   const { t } = useTranslation();
   const deliveryElements = [
     {
-      label: t("update-order-status"),
-      to: "update-order-status",
-    },
-    {
       label: t("all-orders"),
-      to: "all-orders",
+      to: "all-delivery-orders",
     },
   ];
   return { deliveryElements };

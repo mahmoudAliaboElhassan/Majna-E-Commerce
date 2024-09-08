@@ -26,7 +26,7 @@ const withGuard = (Component) => {
         navigate("/");
       else if (
         location.pathname.startsWith("/delivery-control-panel") &&
-        role !== "null"
+        role !== "Delivery"
       )
         navigate("/");
     }, [navigate, loading, token]);

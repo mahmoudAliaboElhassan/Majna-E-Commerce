@@ -105,6 +105,12 @@ function UseInitialStates() {
     loadingGetOrders: false,
     allOrders: [],
   };
+  const initialStateDelivery = {
+    loadingOrdersDelivery: false,
+    ordersDelivery: [],
+    loadingSpecificOrderData: false,
+    specificOrderData: null,
+  };
 
   return {
     initialStateMode,
@@ -117,6 +123,7 @@ function UseInitialStates() {
     initialStateSearch,
     initialStateCustomer,
     initialStatePage,
+    initialStateDelivery,
   };
 }
 
