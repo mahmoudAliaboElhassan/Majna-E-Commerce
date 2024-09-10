@@ -108,7 +108,7 @@ function MotionComp() {
           }
           label="Password"
         />{" "}
-     
+
       </FormControl>
     </motion.div>
   );

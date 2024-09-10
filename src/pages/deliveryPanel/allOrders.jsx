@@ -1,29 +1,8 @@
-// import React, { useEffect } from 'react'
-
-// import { useDispatch } from 'react-redux'
-// import { Link } from 'react-router-dom'
-
-// import { getDeliveryOrders } from '@state/slices/delivery'
-
-// function AllDeliveryOrders() {
-//     const dispatch = useDispatch()
-//     useEffect(() => {
-//         dispatch(getDeliveryOrders({ ordering: "ordered_at" }))
-//     })
-//     return (
-//         <div>
-//             AllDeliveryOrders
-//             <Link to={`/delivery-control-panel/order/15`}>specific order</Link>
-//         </div>
-//     )
-// }
-
-// export default AllDeliveryOrders
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from "@mui/x-data-grid";
 import { useTranslation } from "react-i18next";
-import { Box } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -111,11 +90,17 @@ function AllDeliveryOrders() {
                 <LoadingFetching>{t("wait-orders")}</LoadingFetching>
             ) : ordersDelivery?.length ? (
                 <>
-                    <AppbarHeader data-aos="fade-up">{t("orders")}</AppbarHeader>
-                    <Box style={{ display: "flex", justifyContent: "space-between", alignItem: "center" }}>
-                        <SelectStatus options={statusDeliveryOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
-                        <SelectStatus options={orderOptions} status={ordering} handleChange={handleChangeOrdering} label={t("select-order-type")} />
-                    </Box>
+                    <AppbarHeader data-aos="fade-up">{t("here-all-orders")}</AppbarHeader>
+                    {/* <Box style={{ display: "flex", justifyContent: "space-between", alignItem: "center" }}> */}
+                    <Grid container spacing={2} justifyContent='center' style={{ marginBottom: "8px" }}>
+                        <Grid item xs={12} sm={6} md={6}  >
+                            <SelectStatus options={statusDeliveryOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6}>
+                            <SelectStatus options={orderOptions} status={ordering} handleChange={handleChangeOrdering} label={t("select-order-type")} />
+                        </Grid>
+                    </Grid>
+                    {/* </Box> */}
                     <DataGridContainer>
                         <DataGrid
                             rows={rows}
@@ -139,7 +124,8 @@ function AllDeliveryOrders() {
                     <SelectStatus options={statusDeliveryOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
                     <NoCount>{t("no-orders")}</NoCount>
                 </NoCountContainer>
-            )}
+            )
+            }
         </>
     );
 }

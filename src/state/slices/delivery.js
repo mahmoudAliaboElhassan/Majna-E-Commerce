@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import UseInitialStates from "@hooks/use-initial-state";
-import { getDeliveryOrders, getSpecificOrder } from "@state/act/actDelivery";
+import {
+  getDeliveryOrders,
+  getSpecificOrder,
+  updateSpecificOrder,
+} from "@state/act/actDelivery";
 
 const { initialStateDelivery } = UseInitialStates();
 
@@ -30,8 +34,17 @@ export const deliverySlice = createSlice({
       })
       .addCase(getSpecificOrder.rejected, (state, action) => {
         state.loadingSpecificOrderData = false;
+      })
+      .addCase(updateSpecificOrder.pending, (state, action) => {
+        state.loadingUpdateOrderStatus = true;
+      })
+      .addCase(updateSpecificOrder.fulfilled, (state, action) => {
+        state.loadingUpdateOrderStatus = false;
+      })
+      .addCase(updateSpecificOrder.rejected, (state, action) => {
+        state.loadingUpdateOrderStatus = false;
       });
   },
 });
 export default deliverySlice.reducer;
-export { getDeliveryOrders, getSpecificOrder };
+export { getDeliveryOrders, getSpecificOrder, updateSpecificOrder };

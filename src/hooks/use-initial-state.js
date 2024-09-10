@@ -110,6 +110,7 @@ function UseInitialStates() {
     ordersDelivery: [],
     loadingSpecificOrderData: false,
     specificOrderData: null,
+    loadingUpdateOrderStatus: false,
   };
 
   return {

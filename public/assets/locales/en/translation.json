@@ -318,5 +318,10 @@
   "error-exceed-number": "you Can not Place more thant ",
   "error-adding-order": "Error Adding This Order",
   "login-now-add-address": "Login Now to Place Order",
-  "not-exist": "This Product Does not Exists Currently in stores"
+  "not-exist": "This Product Does not Exists Currently in stores",
+  "updated-Shipped": "Order Has Been Updated to Shipped !",
+  "updated-Delivered": "Order Has Been Updated to Delivered !",
+  "change-Shipped": "Update the order to Shipped",
+  "change-Delivered": "Update the order to Delivered",
+  "here-all-orders": "Here are the orders from all customers"
 }

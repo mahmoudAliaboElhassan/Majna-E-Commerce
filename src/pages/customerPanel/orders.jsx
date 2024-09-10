@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { DataGrid } from "@mui/x-data-grid";
 import { useTranslation } from "react-i18next";
-import { Box } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 import { AppbarHeader } from "@styles/appbar";
 import { getAllOrders, getAllAddresses } from '@state/slices/customer';
@@ -109,10 +109,14 @@ function AllOrders() {
             ) : allOrders?.length ? (
                 <>
                     <AppbarHeader data-aos="fade-up">{t("your-orders")}</AppbarHeader>
-                    <Box style={{ display: "flex", justifyContent: "space-between", alignItem: "center" }}>
-                        <SelectStatus options={statusOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
-                        <SelectStatus options={orderOptions} status={ordering} handleChange={handleChangeOrdering} label={t("select-order-type")} />
-                    </Box>
+                    <Grid container spacing={2} justifyContent='center' style={{ marginBottom: "8px" }}>
+                        <Grid item xs={12} sm={6} md={6} >
+                            <SelectStatus options={statusOptions} status={status} handleChange={handleChangeStatus} label={t("select-status")} />
+                        </Grid>
+                        <Grid item xs={12} sm={6} md={6} >
+                            <SelectStatus options={orderOptions} status={ordering} handleChange={handleChangeOrdering} label={t("select-order-type")} />
+                        </Grid>
+                    </Grid>
                     <DataGridContainer>
                         <DataGrid
                             rows={rows}
