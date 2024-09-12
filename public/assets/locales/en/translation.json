@@ -323,5 +323,10 @@
   "updated-Delivered": "Order Has Been Updated to Delivered !",
   "change-Shipped": "Update the order to Shipped",
   "change-Delivered": "Update the order to Delivered",
-  "here-all-orders": "Here are the orders from all customers"
+  "here-all-orders": "Here are the orders from all customers",
+  "order-details": "Here are Order details ",
+  "order-summary": "Order Summary",
+  "product-details": "Product Details",
+  "stores-details": "Stores Details",
+  "store-details": "Store Details"
 }

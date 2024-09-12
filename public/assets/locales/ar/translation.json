@@ -323,5 +323,10 @@
   "updated-Delivered": "تم تحديث الطلب كطلب تم تسليمه !",
   "change-Shipped": "تحديث الطلب للشحن",
   "change-Delivered": "تحديث الطلب كطلب تم تسليمه",
-  "here-all-orders": "ها هي الطلبات من كل الزبائن"
+  "here-all-orders": "ها هي الطلبات من كل الزبائن",
+  "order-details": "ها هي بيانات الطلب",
+  "order-summary": "بيانات الطلب",
+  "product-details": "بيانات المنتج",
+  "stores-details": "بيانات المتاجر",
+  "store-details": "بيانات المتجر"
 }
