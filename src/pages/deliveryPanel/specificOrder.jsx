@@ -10,6 +10,7 @@ import UseThemeMode from '@hooks/use-theme';
 import { AppbarHeader } from "@styles/appbar";
 import UseMediaQueryHook from "@hooks/use-media-query";
 import { getSpecificOrder, updateSpecificOrder } from '@state/act/actDelivery';
+import UseDirection from "@hooks/use-direction";
 
 
 function SpecificOrder() {
@@ -19,7 +20,7 @@ function SpecificOrder() {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const { isMatch } = UseMediaQueryHook();
-
+    const { Direction } = UseDirection()
     useEffect(() => {
         dispatch(getSpecificOrder({ orderId }));
     }, [dispatch, orderId]);
@@ -56,20 +57,51 @@ function SpecificOrder() {
                     <Grid container spacing={3}>
                         <Grid item xs={12} >
                             <CardContent>
-                                <Typography variant="h6" sx={{ mb: 2 }}>{t('order-summary')}</Typography>
-                                <Typography>Total Price: {specificOrderData?.total_price}</Typography>
-                                <Typography>City: {specificOrderData?.pickup_address?.city}</Typography>
-                                <Typography>Address: {specificOrderData?.pickup_address?.address}</Typography>
-                                <Typography>Governorate: {specificOrderData?.pickup_address?.governorate}</Typography>
-                                <Typography>Status: {specificOrderData?.status}</Typography>
+                                <Typography variant="h5" sx={{ mb: 2 }}>{t('order-summary')}</Typography>
+                                <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("total-price-order")} </span>
+                                    {specificOrderData?.total_price}
+                                </Typography>
+
+                                <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("city")} </span>
+                                    {specificOrderData?.pickup_address?.city}
+                                </Typography>
+                                <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("full-order-address")} </span>
+                                    {specificOrderData?.pickup_address?.address}
+                                </Typography>
+
+                                <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("governorate")} </span>
+                                    {specificOrderData?.pickup_address?.governorate}
+                                </Typography>
+                                <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("order-status")} </span>
+                                    {specificOrderData?.status}
+                                </Typography>
                             </CardContent>
                         </Grid>
-
                         <Grid item xs={12} >
                             {orderItems?.map(({ quantity, unit_price, product, stores }, index) => (
                                 <Card sx={{ p: 4, mb: 2 }}
                                     key={index} >
-                                    <Typography variant="h6" sx={{ mb: 2 }} >
+                                    <Typography variant="h5" sx={{ mb: 2 }} >
                                         {t('product-details')}
                                     </Typography>
                                     <Grid container>
@@ -83,13 +115,48 @@ function SpecificOrder() {
                                         </Grid>
                                         <Grid item xs={8}>
                                             <CardContent>
-                                                <Typography variant="body1">Name: {product?.name}</Typography>
-                                                <Typography variant="body1">Brand: {product?.brand}</Typography>
-                                                <Typography variant="body1">Quantity: {quantity}</Typography>
-                                                <Typography variant="body1">Unit Price: {unit_price}</Typography>
-                                                <Typography variant="h6" sx={{ mb: 2 }}>
+
+
+
+                                            <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("product-name")} </span>
+                                    {product?.name}
+           </Typography>
+
+                                            <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("product-brand")} </span>
+                                    {product?.brand}
+           </Typography>
+                                            <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("product-quantity")} </span>
+                                    {quantity}
+           </Typography>
+                                            <Typography variant="h6" component="p" gutterBottom
+                                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
+                                    sx={{ display: "flex", justifyContent: "center" }}
+                                >
+                                    <span style={{ fontWeight: "500", [Direction.marginRight]: "8px" }}>{t("product-price")} </span>
+                                    {unit_price}
+           </Typography>
+
+
+
+
+
+                                                 <Typography variant="h5" sx={{ mb: 2 }}>
                                                     {stores.length > 1 ? t('stores-details') : t('store-details')}
                                                 </Typography>
+
+
                                                 {stores?.map(({ store }, storeIndex) => (
                                                     <Box key={storeIndex} mt={2}>
                                                         <Typography variant="body2">Store Name: {store?.name}</Typography>
