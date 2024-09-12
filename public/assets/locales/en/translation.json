@@ -329,5 +329,9 @@
   "order-summary": "Order Summary",
   "product-details": "Product Details",
   "stores-details": "Stores Details",
-  "store-details": "Store Details"
+  "store-details": "Store Details",
+  "store-city": "Store City",
+  "store-governorate": "Store Governorate",
+  "store-address": "Store Address",
+  "wait-order": "Wait for Order Detials To Load ..."
 }

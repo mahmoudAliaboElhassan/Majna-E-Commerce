@@ -329,5 +329,9 @@
   "order-summary": "بيانات الطلب",
   "product-details": "بيانات المنتج",
   "stores-details": "بيانات المتاجر",
-  "store-details": "بيانات المتجر"
+  "store-details": "بيانات المتجر",
+  "store-city": "مدينة المتجر",
+  "store-governorate": "محافظة المتجر",
+  "store-address": "عنوان المتجر",
+  "wait-order": "انتظر حتى يتم تحميل تفاصيل الطلب ..."
 }
