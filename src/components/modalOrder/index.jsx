@@ -4,7 +4,7 @@ import { Modal, IconButton, Card, Container, Grid, Typography, Button } from '@m
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Form, Formik } from 'formik';
 import Swal from 'sweetalert2';
@@ -39,12 +39,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ModalOrder({ openModalOrder, close, productId, maxNumber }) {
+function ModalOrder({ openModalOrder, close, productId, maxNumber, price }) {
     const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation();
     const { t } = useTranslation();
     const { Uid, role } = useSelector((state) => state.auth);
     const { themeMode } = UseThemMode();
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const classes = useStyles();
     const { Direction } = UseDirection();
     const { addresses, loadingGetAddresses } = useSelector((state) => state.customer);
@@ -127,6 +128,8 @@ function ModalOrder({ openModalOrder, close, productId, maxNumber }) {
                                                                     progress: undefined,
                                                                     theme: themeMode,
                                                                 });
+
+                                                                navigate(`/payments/${values.order_items[0].quantity * parseInt(price)}`)
                                                             })
                                                             .catch((error) => {
                                                                 const errorMessages = {

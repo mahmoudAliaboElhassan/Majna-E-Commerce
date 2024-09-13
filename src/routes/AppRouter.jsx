@@ -102,6 +102,7 @@ const Discover = React.lazy(() => import("@pages/discover"))
 const RootDeliveryPanelLayout = React.lazy(() => import("@pages/deliveryPanel/rootDeliveryPanel"))
 const AllOrders = React.lazy(() => import("@pages/deliveryPanel/allOrders"))
 const SpecificOrder = React.lazy(() => import("@pages/deliveryPanel/specificOrder"));
+const Payment = React.lazy(() => import("@pages/payment"));
 
 const router = createBrowserRouter([
   {
@@ -368,6 +369,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <Discover />
+          </Suspense>
+        )
+      },
+      {
+        path: "payments/:price",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Payment />
           </Suspense>
         )
       },

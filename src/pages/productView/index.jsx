@@ -278,7 +278,7 @@ function ProductInformation() {
         </Container >
       )
       }
-      <ModalOrder openModalOrder={open_modal_order} close={closeModalOrder} productId={productId} maxNumber={total_quantity} />
+      <ModalOrder openModalOrder={open_modal_order} close={closeModalOrder} productId={productId} maxNumber={total_quantity} price={price} />
       <Footer />
     </>
   );

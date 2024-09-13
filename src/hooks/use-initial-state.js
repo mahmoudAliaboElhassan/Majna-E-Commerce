@@ -104,6 +104,7 @@ function UseInitialStates() {
     loadingDeleteAddress: false,
     loadingGetOrders: false,
     allOrders: [],
+    clientSecret: null,
   };
   const initialStateDelivery = {
     loadingOrdersDelivery: false,

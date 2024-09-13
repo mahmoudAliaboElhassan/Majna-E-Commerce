@@ -81,6 +81,7 @@ export const customerSlice = createSlice({
       })
       .addCase(addOrder.fulfilled, (state, action) => {
         state.loadingAddOrder = false;
+        // state.clientSecret = action.payload;
       })
       .addCase(addOrder.rejected, (state, action) => {
         state.loadingAddOrder = false;
