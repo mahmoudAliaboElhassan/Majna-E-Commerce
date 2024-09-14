@@ -59,13 +59,19 @@ function ModalOrder({ openModalOrder, close, productId, maxNumber, price, produc
         };
     }, [Uid, dispatch]);
 
+
+    useEffect(() => {
+        setCurrentStep(0);
+    }, [openModalOrder]);
+
+
     const handleNextStep = (validateForm, errors) => {
         console.log(errors)
         console.log(validateForm)
         console.log(validateForm())
         validateForm().then((errors) => {
             console.log(errors)
-            if (currentStep === 0 && !errors.address) {
+            if (currentStep === 0 && !errors.pickup_address_id) {
                 setCurrentStep((prevStep) => prevStep + 1);
             }
         });

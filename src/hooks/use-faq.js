@@ -44,6 +44,16 @@ function UseFAQ() {
       title: t("both-modes"),
       content: t("both-modes-answer"),
     },
+    {
+      id: 9,
+      title: t("what-order-processes"),
+      content: t("order-processes-answer"),
+    },
+    {
+      id: 10,
+      title: t("what-after-place-order"),
+      content: t("after-place-order-answer"),
+    },
   ];
   return { FAQ };
 }

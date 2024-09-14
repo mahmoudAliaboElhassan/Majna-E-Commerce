@@ -78,7 +78,7 @@ function AllOrders() {
                 <img
                     src={params.value}
                     alt="Product"
-                    style={{ width: '100%', height: 'auto' }}
+                    style={{ width: '100%', height: 'auto', objectFit: "cover" }}
                 />
             ),
         },
