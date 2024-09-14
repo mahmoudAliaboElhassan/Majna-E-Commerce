@@ -5,7 +5,7 @@ function UseDeliveryElements() {
   const deliveryElements = [
     {
       label: t("all-orders"),
-      to: "all-delivery-orders",
+      to: "",
     },
   ];
   return { deliveryElements };

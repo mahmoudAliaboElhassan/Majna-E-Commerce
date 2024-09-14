@@ -29,6 +29,11 @@ const withGuard = (Component) => {
         role !== "Delivery"
       )
         navigate("/");
+      else if (
+        location.pathname.startsWith("/reviewer-control-panel") &&
+        role !== "Reviewer"
+      )
+        navigate("/");
     }, [navigate, loading, token]);
     if (loading) {
       return <Loader />;

@@ -62,11 +62,13 @@ function AllDeliveryOrders() {
         {
             field: "view", headerName: t("view-product"),
             headerAlign: "center", align: "center",
-            width: 200,
+            flex: 1,
+            minWidth: 150,
             renderCell: (params) =>
             (
                 <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}
+                    style={{ width: "60%" }}
                     color="success"
                     component={Link}
                     to={`/delivery-control-panel/order/${params.row.id}`}

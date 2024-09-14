@@ -333,5 +333,8 @@
   "store-city": "Store City",
   "store-governorate": "Store Governorate",
   "store-address": "Store Address",
-  "wait-order": "Wait for Order Detials To Load ..."
+  "wait-order": "Wait for Order Detials To Load ...",
+  "data-not-loaded": "Data can not be Loaded",
+  "has-requested": "Has Been Requested, Complete Paying process Plac your Order",
+  "pay": "Pay"
 }

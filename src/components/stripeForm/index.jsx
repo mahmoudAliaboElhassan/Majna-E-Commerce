@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   useStripe,
@@ -8,13 +8,14 @@ import {
 } from "@stripe/react-stripe-js";
 import { Box } from '@mui/material';
 import { useSelector } from "react-redux"
+import { useTranslation } from "react-i18next";
 
 const CheckoutPage = ({ amount }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState();
   const [loading, setLoading] = useState(false);
-
+  const { t } = useTranslation()
   // const { clientSecret } = useSelector((state) => state.customer)
   const clientSecret = "askejt"
 
@@ -36,7 +37,7 @@ const CheckoutPage = ({ amount }) => {
 
     const { error } = await stripe.confirmPayment({
       elements,
-      // clientSecret,
+      clientSecret,
       confirmParams: {
         return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
       },
@@ -94,7 +95,7 @@ const CheckoutPage = ({ amount }) => {
               clip: 'rect(0, 0, 0, 0)',
             }}
           >
-            Loading...
+            {t("loading")}
           </span>
         </Box>
       </Box>
@@ -124,7 +125,7 @@ const CheckoutPage = ({ amount }) => {
         }}
 
       >
-        {!loading ? `Pay $${amount}` : "Processing..."}
+        {!loading ? `${t("pay")} ${amount / 100}` : "Processing..."}
       </button>
     </form>
   );

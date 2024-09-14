@@ -74,11 +74,11 @@ const EditProduct = React.lazy(() =>
 //   import("@pages/distributorPanel/productDetails")
 // );
 
-const RootReviewerLayout = React.lazy(() =>
+const RootReviewerPanelLayOut = React.lazy(() =>
   import("@pages/reviewer/rootReviewerLayout")
 );
 
-const IndexReviewer = React.lazy(() => import("@pages/reviewer/index"));
+const AllBrands = React.lazy(() => import("@pages/reviewer/allBrands"));
 
 const BrnadApplication = React.lazy(() =>
   import("@pages/reviewer/brnadApplication")
@@ -412,10 +412,10 @@ const router = createBrowserRouter([
         ]
       },
       {
-        path: "/reviewer",
+        path: "/reviewer-control-panel",
         element: (
           <Suspense fallback={<Loader />}>
-            <RootReviewerLayout />
+            <RootReviewerPanelLayOut />
           </Suspense>
         ),
         children: [
@@ -423,7 +423,7 @@ const router = createBrowserRouter([
             index: true,
             element: (
               <Suspense fallback={<Loader />}>
-                <IndexReviewer />
+                <AllBrands />
               </Suspense>
             ),
           },

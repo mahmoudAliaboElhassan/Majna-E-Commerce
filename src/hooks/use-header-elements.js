@@ -32,10 +32,16 @@ function UseHeaderElements() {
       label: t("c_panel"),
       to: "/customer-control-panel",
     },
+
     {
       label: t("c_panel"),
       to: "/distributor-control-panel",
     },
+    {
+      label: t("c_panel"),
+      to: "/reviewer-control-panel",
+    },
+
     {
       label: t("c_panel"),
       to: "/delivery-control-panel",
@@ -73,26 +79,38 @@ function UseHeaderElements() {
     },
   ];
 
-  const authElementsNotUser = HeaderElements.slice(6, 8);
-  const authElementsUser = HeaderElements.slice(8);
+  const authElementsNotUser = HeaderElements.slice(7, 9);
+  const authElementsUser = HeaderElements.slice(9);
   const tabElements = HeaderElements.slice(0, 3);
 
   const tabElementsBuyer = HeaderElements.slice(0, 4);
 
-  const tabElementsSeller = HeaderElements.slice(0, -5).filter(
+  const tabElementsSeller = HeaderElements.slice(0, -6).filter(
     ({ to }) => to !== "/customer-control-panel"
   );
-  const tabElementsDelivery = HeaderElements.slice(0, 6).filter(
+  const tabElementsDelivery = HeaderElements.slice(0, 7).filter(
+    ({ to }) =>
+      to !== "/customer-control-panel" &&
+      to !== "/distributor-control-panel" &&
+      to !== "/reviewer-control-panel"
+  );
+  const tabElementsReviewer = HeaderElements.slice(0, 6).filter(
     ({ to }) =>
       to !== "/customer-control-panel" && to !== "/distributor-control-panel"
   );
+
   console.log("tabElementsDelivery");
   console.log(tabElementsDelivery);
+  console.log("tabElementsReviewer");
+  console.log(tabElementsReviewer);
+
   const allTabsElements = localStorage.getItem("token")
     ? localStorage.getItem("role") === "Distributor"
       ? tabElementsSeller
       : localStorage.getItem("role") === "Delivery"
       ? tabElementsDelivery
+      : localStorage.getItem("role") === "Reviewer"
+      ? tabElementsReviewer
       : tabElementsBuyer
     : tabElements;
 

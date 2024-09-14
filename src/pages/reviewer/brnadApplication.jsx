@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +21,7 @@ import PdfViewer from "@components/pdfFile";
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
+import "./style.css"
 
 const useStyles = makeStyles((theme) => ({
   buttonContainer: {
@@ -60,6 +61,7 @@ function BrnadApplication() {
   const { themeMode } = UseThemMode();
   const { Direction } = UseDirection();
   const { ApplicationId } = useParams();
+  const [btnDisabled, setBtnDisabled] = useState(null)
   console.log(ApplicationId);
   const {
     authorizationDocument,
@@ -119,7 +121,7 @@ function BrnadApplication() {
         <>
           {!authorizationDocument || !identityDocument ? (
             <>
-              <Typography>data can not be loaded</Typography>
+              <Typography>{t('data-not-loaded')}</Typography>
               <Button
                 startIcon={
                   <ThumbDownIcon
@@ -129,6 +131,7 @@ function BrnadApplication() {
                     }}
                   />
                 }
+                fullWidth
                 variant="contained"
                 color="warning"
                 className={`${classes.button} ${classes.rejectButton}`}
@@ -157,50 +160,56 @@ function BrnadApplication() {
                 fileAuthorize={authorizationDocument}
                 fileIdntity={identityDocument}
               />
-              {/* </Grid> */}
-              {/* <Grid item xs={12} md={6} lg={6}> */}
-              {/* <PdfViewer */}
-              {/* file={identityDocument} */}
-              {/* label="authorizeDocument" */}
-              {/* /> */}
-              {/* </Grid> */}
-              {/* </Grid>{" "} */}
-              <Box className={classes.buttonContainer}>
-                <Button
-                  startIcon={
-                    <ThumbUpAltIcon
-                      sx={{
-                        [Direction.marginRight]: "8px",
-                        fontSize: "25px !important",
-                      }}
-                    />
-                  }
-                  color="success"
-                  variant="contained"
-                  className={`${classes.button} ${classes.acceptButton}`}
-                  disabled={loadingStatus}
-                  onClick={() => handleStatus("approved")}
-                >
-                  {t("accept_application")}
-                </Button>
-                <Button
-                  startIcon={
-                    <ThumbDownIcon
-                      sx={{
-                        [Direction.marginRight]: "8px",
-                        fontSize: "25px !important",
-                      }}
-                    />
-                  }
-                  variant="contained"
-                  color="warning"
-                  className={`${classes.button} ${classes.rejectButton}`}
-                  disabled={loadingStatus}
-                  onClick={() => handleStatus("rejected")}
-                >
-                  {t("reject_application")}
-                </Button>
 
+              <Box className={classes.buttonContainer}>
+                <Grid container spacing={4} justifyContent='center'>
+                  <Grid item xs={12} sm={6} md={6}  >
+                    <Button
+                      startIcon={
+                        <ThumbUpAltIcon
+                          sx={{
+                            [Direction.marginRight]: "8px",
+                            fontSize: "25px !important",
+                          }}
+                        />
+                      }
+                      color="success"
+                      fullWidth
+                      variant="contained"
+                      className={`${classes.button} ${classes.acceptButton}`}
+                      disabled={loadingStatus && btnDisabled === "accept"}
+                      onClick={() => {
+                        handleStatus("approved")
+                        setBtnDisabled("accept")
+                      }}
+                    >
+                      {t("accept_application")}
+                    </Button>
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={6}  >
+                    <Button
+                      startIcon={
+                        <ThumbDownIcon
+                          sx={{
+                            [Direction.marginRight]: "8px",
+                            fontSize: "25px !important",
+                          }}
+                        />
+                      }
+                      variant="contained"
+                      color="warning"
+                      fullWidth
+                      className={`${classes.button} ${classes.rejectButton}`}
+                      disabled={loadingStatus && btnDisabled === "reject"}
+                      onClick={() => {
+                        handleStatus("rejected")
+                        setBtnDisabled("reject")
+                      }}
+                    >
+                      {t("reject_application")}
+                    </Button>
+                  </Grid>
+                </Grid>
               </Box>
             </>
           )}

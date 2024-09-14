@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ModalOrder({ openModalOrder, close, productId, maxNumber, price }) {
+function ModalOrder({ openModalOrder, close, productId, maxNumber, price, productName }) {
     const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation();
     const { t } = useTranslation();
     const { Uid, role } = useSelector((state) => state.auth);
@@ -128,8 +128,11 @@ function ModalOrder({ openModalOrder, close, productId, maxNumber, price }) {
                                                                     progress: undefined,
                                                                     theme: themeMode,
                                                                 });
-
-                                                                navigate(`/payments/${values.order_items[0].quantity * parseInt(price)}`)
+                                                                navigate(`/payments/${values.order_items[0].quantity * parseInt(price)}`, {
+                                                                    state: {
+                                                                        productName,
+                                                                    }
+                                                                })
                                                             })
                                                             .catch((error) => {
                                                                 const errorMessages = {
