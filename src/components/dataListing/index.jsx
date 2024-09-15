@@ -3,21 +3,20 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 import { Container } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
-import UseFAQ from "@hooks/use-faq";
 import UseThemeMode from "@hooks/use-theme";
 
-function QuestionsAnswers() {
+function DataListing({ data }) {
 
-  const { FAQ } = UseFAQ()
-  const [active, setActive] = useState(null);
+
+  const [active, setActive] = useState(1);
   const { themeMode } = UseThemeMode()
-  const handleClick = (QuestionId) => setActive(QuestionId);
+  const handleClick = (dataId) => setActive(dataId);
   return (
     <AnimatePresence initial={false}>
       <Container maxWidth="lg">
         <div>
           <ul>
-            {FAQ.map(({ id, title, content }) => (
+            {data.map(({ id, title, content }) => (
               <li
                 key={id}
                 onClick={() => handleClick(id)}
@@ -66,4 +65,4 @@ function QuestionsAnswers() {
   );
 }
 
-export default QuestionsAnswers;
+export default DataListing;

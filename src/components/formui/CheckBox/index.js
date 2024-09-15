@@ -8,6 +8,8 @@ import {
   FormLabel,
 } from "@material-ui/core";
 import { useField, useFormikContext } from "formik";
+import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
@@ -22,6 +24,8 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
   };
 
   const { themeMode } = UseThemMode();
+
+  const { t } = useTranslation();
 
   const configCheckbox = {
     ...field,
@@ -48,8 +52,14 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
           whiteSpace: "nowrap",
         }}
       >
-        {" "}
-        {legend}
+        <Link
+          title={t("terms-conditions")}
+          to="/terms-conditions"
+          style={{ textDecoration: "underline" }}
+        >
+          {" "}
+          {legend}
+        </Link>
       </FormLabel>
       <FormGroup>
         <FormControlLabel

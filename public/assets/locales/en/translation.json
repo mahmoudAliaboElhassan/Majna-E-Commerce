@@ -341,5 +341,25 @@
   "wait-order": "Wait for Order Detials To Load ...",
   "data-not-loaded": "Data can not be Loaded",
   "has-requested": "Has Been Requested, Complete Paying process Plac your Order",
-  "pay": "Pay"
+  "pay": "Pay",
+
+  "inclusivity-community": "Inclusivity and Community Standards",
+  "inclusivity-community-desc": "We strive to foster a community that promotes respect, equality, and fairness for all. We do not endorse or support any activities or organizations that contradict these values.",
+
+  "ethical-purchasing-policy": "Ethical Purchasing Policy",
+  "ethical-purchasing-policy-desc": "Our store is committed to sourcing products from ethical suppliers. As part of our company values, we do not support companies or entities involved in activities that we believe are against our ethical guidelines.",
+
+  "human-rights-policy": "Human Rights Policy",
+  "human-rights-policy-desc": "We believe in protecting and promoting human rights. Therefore, we do not support any entities or organizations that violate the basic principles of human dignity and rights Such as what Israel does to the Palestinians.",
+
+  "non-discrimination-policy": "Non-Discrimination Policy",
+  "non-discrimination-policy-desc": "We are committed to maintaining a store environment that does not discriminate against any person based on race, religion, or nationality, while standing by our ethical values.",
+
+  "ethical-sourcing-commitment": "Commitment to Ethical Values",
+  "ethical-sourcing-commitment-desc": "As part of our commitment to ethical sourcing, we refrain from engaging in business with regions or companies that are involved in practices or policies we do not align with Such as alcoholic beverages",
+
+  "values-statement": "Values Statement",
+  "values-statement-desc": "Our store adheres to a set of core values that emphasize respect for all individuals, ethical business practices, and the promotion of fair trade. We reserve the right to refuse engagement with entities or practices that conflict with our principles.",
+  "here-terms-conditions": "Here are Our Terms and Conditions that we adopt",
+  "if-agreed": "If You agreed to These Terms and Conditions, You're welcome to Create an Account in Our Store"
 }

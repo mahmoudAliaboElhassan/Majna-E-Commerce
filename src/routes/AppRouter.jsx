@@ -103,7 +103,7 @@ const RootDeliveryPanelLayout = React.lazy(() => import("@pages/deliveryPanel/ro
 const AllOrders = React.lazy(() => import("@pages/deliveryPanel/allOrders"))
 const SpecificOrder = React.lazy(() => import("@pages/deliveryPanel/specificOrder"));
 const Payment = React.lazy(() => import("@pages/payment"));
-
+const TermsConditions=React.lazy(()=>import("@pages/termsConditions"))
 const router = createBrowserRouter([
   {
     path: "/",
@@ -450,6 +450,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <SpecificCartItem />
+          </Suspense>
+        ),
+      },
+      {
+        path: "terms-conditions",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <TermsConditions />
           </Suspense>
         ),
       },

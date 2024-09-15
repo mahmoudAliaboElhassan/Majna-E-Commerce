@@ -97,7 +97,7 @@ function BrnadApplication() {
           });
         }
         setTimeout(() => {
-          navigate("/reviewer");
+          navigate("/reviewer-control-panel");
         }, 1000);
       })
       .catch((error) => {
