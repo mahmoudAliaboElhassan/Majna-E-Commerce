@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { majnAPI } from "@state/API/global-api";
+import { majnAPI, majnAPIWithoutAuth } from "@state/API/global-api";
 
 export const getAllAddresses = createAsyncThunk(
   "customer/getAllAddresses",
@@ -145,6 +145,26 @@ export const addOrder = createAsyncThunk(
 
     try {
       const res = await majnAPI.post(`api/orders/`, orderData);
+      console.log("from slice res is");
+      console.log(res);
+      return res;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 403 error here
+        // Example: setConfirmed(true);
+        console.log("400 Forbidden - User not authorized from slice");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
+export const getPublisherKey = createAsyncThunk(
+  "customer/getPublisherKey",
+  async (_, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+
+    try {
+      const res = await majnAPIWithoutAuth.get(`api/orders/publisher-key`);
       console.log("from slice res is");
       console.log(res);
       return res;

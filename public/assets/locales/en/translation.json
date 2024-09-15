@@ -340,7 +340,7 @@
   "store-address": "Store Address",
   "wait-order": "Wait for Order Detials To Load ...",
   "data-not-loaded": "Data can not be Loaded",
-  "has-requested": "Has Been Requested, Complete Paying process Plac your Order",
+  "has-requested": "Has Been Requested, Complete Paying process to Place your Order",
   "pay": "Pay",
 
   "inclusivity-community": "Inclusivity and Community Standards",
@@ -361,5 +361,9 @@
   "values-statement": "Values Statement",
   "values-statement-desc": "Our store adheres to a set of core values that emphasize respect for all individuals, ethical business practices, and the promotion of fair trade. We reserve the right to refuse engagement with entities or practices that conflict with our principles.",
   "here-terms-conditions": "Here are Our Terms and Conditions that we adopt",
-  "if-agreed": "If You agreed to These Terms and Conditions, You're welcome to Create an Account in Our Store"
+
+  "if-agreed": "If You agreed to These Terms and Conditions, You're Welcome to Create an Account in Our Majna Store",
+  "loading-payment-form": "Wait for Payment Form to Load ...",
+  "pending": "Pending",
+  "processing": "Processing..."
 }

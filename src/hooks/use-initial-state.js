@@ -104,7 +104,9 @@ function UseInitialStates() {
     loadingDeleteAddress: false,
     loadingGetOrders: false,
     allOrders: [],
-    clientSecret: null,
+    clientSecret: sessionStorage.getItem("clientSecret"),
+    loadingGetPublisherKey: false,
+    publisherKey: sessionStorage.getItem("publisherKey"),
   };
   const initialStateDelivery = {
     loadingOrdersDelivery: false,

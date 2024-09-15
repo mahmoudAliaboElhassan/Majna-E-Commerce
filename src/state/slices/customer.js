@@ -8,6 +8,7 @@ import {
   deleteAddress,
   addOrder,
   getAllOrders,
+  getPublisherKey,
 } from "@state/act/actCustomer";
 
 import UseInitialStates from "@hooks/use-initial-state";
@@ -81,7 +82,9 @@ export const customerSlice = createSlice({
       })
       .addCase(addOrder.fulfilled, (state, action) => {
         state.loadingAddOrder = false;
-        // state.clientSecret = action.payload;
+        console.log("action.payload", action.payload);
+        sessionStorage.setItem("clientSecret", action.payload.client_secret);
+        state.clientSecret = sessionStorage.getItem("clientSecret");
       })
       .addCase(addOrder.rejected, (state, action) => {
         state.loadingAddOrder = false;
@@ -95,6 +98,17 @@ export const customerSlice = createSlice({
       })
       .addCase(getAllOrders.rejected, (state, action) => {
         state.loadingGetOrders = false;
+      })
+      .addCase(getPublisherKey.pending, (state, action) => {
+        state.loadingGetPublisherKey = true;
+      })
+      .addCase(getPublisherKey.fulfilled, (state, action) => {
+        state.loadingGetPublisherKey = false;
+        sessionStorage.setItem("publisherKey", action.payload["publisher-key"]);
+        state.publisherKey = sessionStorage.getItem("publisherKey");
+      })
+      .addCase(getPublisherKey.rejected, (state, action) => {
+        state.loadingGetPublisherKey = false;
       });
   },
 });
@@ -108,6 +122,7 @@ export {
   deleteAddress,
   addOrder,
   getAllOrders,
+  getPublisherKey,
 };
 export const { cleanUpGetAllAddresses, cleanUpGetAddresses } =
   customerSlice.actions;

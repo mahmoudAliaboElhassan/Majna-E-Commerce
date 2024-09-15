@@ -8,6 +8,10 @@ function UseStatusOptions() {
       label: t("all-orders"),
     },
     {
+      value: "Pending",
+      label: t("pending"),
+    },
+    {
       value: "Placed",
       label: t("placed"),
     },

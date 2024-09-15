@@ -16,8 +16,7 @@ const CheckoutPage = ({ amount }) => {
   const [errorMessage, setErrorMessage] = useState();
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation()
-  // const { clientSecret } = useSelector((state) => state.customer)
-  const clientSecret = "askejt"
+  const { clientSecret } = useSelector((state) => state.customer)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -125,7 +124,7 @@ const CheckoutPage = ({ amount }) => {
         }}
 
       >
-        {!loading ? `${t("pay")} ${amount / 100}` : "Processing..."}
+        {!loading ? `${t("pay")} $${amount / 100}` : t("processing")}
       </button>
     </form>
   );

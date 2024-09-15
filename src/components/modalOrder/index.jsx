@@ -134,7 +134,7 @@ function ModalOrder({ openModalOrder, close, productId, maxNumber, price, produc
                                                                     progress: undefined,
                                                                     theme: themeMode,
                                                                 });
-                                                                navigate(`/payments/${values.order_items[0].quantity * parseInt(price)}`, {
+                                                                navigate(`/payment?price=${values.order_items[0].quantity * parseInt(price)}`, {
                                                                     state: {
                                                                         productName,
                                                                     }
