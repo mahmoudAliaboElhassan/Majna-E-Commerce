@@ -11,6 +11,8 @@ import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
 
+import "./style.css"
+
 
 const CheckoutPage = ({ amount }) => {
   const stripe = useStripe();
@@ -25,6 +27,7 @@ const CheckoutPage = ({ amount }) => {
     setLoading(true);
 
     if (!stripe || !elements) {
+
       return;
     }
 
@@ -66,48 +69,44 @@ const CheckoutPage = ({ amount }) => {
   if (
     !clientSecret ||
     !stripe || !elements) {
+
     return (
       <Box
         sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Box
           sx={{
-            display: 'inline-block',
-            height: '2rem',
-            width: '2rem',
-            borderRadius: '50%',
-            border: '4px solid currentColor',
-            borderRightColor: 'transparent',
-            animation: 'spin 1.5s linear infinite',
-            '@media (prefers-reduced-motion)': {
-              animation: 'none',
-            },
-            color: 'text.surface',
+            display: "inline-block",
+            height: "2rem",
+            width: "2rem",
+            borderRadius: "50%",
+            border: "4px solid currentColor",
+            borderRightColor: "transparent",
+            animation: "spin 1.5s linear infinite",
           }}
-          role="status"
         >
           <span
             style={{
-              position: 'absolute',
-              margin: '-1px',
-              height: '1px',
-              width: '1px',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              border: '0',
-              padding: '0',
-              clip: 'rect(0, 0, 0, 0)',
+              position: "absolute",
+              margin: "-1px",
+              height: "1px",
+              width: "1px",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              border: "0",
+              padding: "0",
+              clip: "rect(0, 0, 0, 0)",
             }}
           >
             {t("loading")}
           </span>
         </Box>
       </Box>
-    )
+    );
   }
 
   return (
