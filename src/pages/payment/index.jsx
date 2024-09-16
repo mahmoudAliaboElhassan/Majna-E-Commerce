@@ -1,14 +1,16 @@
+import { useEffect } from "react";
 import { useLocation, useSearchParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { Box, Typography, Container } from '@mui/material';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Box, Typography, Container } from '@mui/material';
 
 import { getPublisherKey } from "@state/slices/customer";
 import CheckoutPage from "@components/stripeForm";
 import LoadingFetching from "@components/loadingFetching";
+import { PaymentBoxContainer } from "@styles/payment";
+
 
 
 // if (process.env.STRIPE_SECRET_KEY === undefined) {
@@ -39,18 +41,7 @@ export default function Payment() {
     <div>
       {loadingGetPublisherKey ? <LoadingFetching>{t('loading-payment-form')}</LoadingFetching> : (
 
-        <Box
-          sx={{
-            // maxWidth: '72rem',
-            margin: 'auto',
-            p: 5,
-            textAlign: 'center',
-            color: 'white',
-            border: '1px solid',
-            m: 3,
-            borderRadius: '8px',
-            background: 'linear-gradient(to top right, #3b82f6, #a855f7)',
-          }}
+        <PaymentBoxContainer
         >
           <Box sx={{ mb: 5 }}>
             <Typography variant="h1" sx={{ fontSize: '2.5rem', fontWeight: '800', mb: 2 }}>
@@ -72,7 +63,7 @@ export default function Payment() {
           >
             <CheckoutPage amount={price * 100} />
           </Elements>
-        </Box>
+        </PaymentBoxContainer>
       )}
 
     </div>

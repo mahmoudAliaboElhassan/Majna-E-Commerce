@@ -365,5 +365,7 @@
   "if-agreed": "If You agreed to These Terms and Conditions, You're Welcome to Create an Account in Our Majna Store",
   "loading-payment-form": "Wait for Payment Form to Load ...",
   "pending": "Pending",
-  "processing": "Processing..."
+  "processing": "Processing...",
+  "completed": "Your Order has been Placed Successfully",
+  "paied-success": "Payment has been Done Successfully"
 }

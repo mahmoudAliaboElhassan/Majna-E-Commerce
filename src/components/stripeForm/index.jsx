@@ -38,7 +38,7 @@ const CheckoutPage = ({ amount }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount / 100}`,
+        return_url: `${process.env.REACT_APP_BASE_WEBSITE_URL}/payment-success?amount=${amount / 100}`,
       },
     });
 
