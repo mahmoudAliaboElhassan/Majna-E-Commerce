@@ -9,6 +9,8 @@ import {
 import { Box } from '@mui/material';
 import { useSelector } from "react-redux"
 import { useTranslation } from "react-i18next";
+import Swal from "sweetalert2";
+
 
 const CheckoutPage = ({ amount }) => {
   const stripe = useStripe();
@@ -46,6 +48,13 @@ const CheckoutPage = ({ amount }) => {
       // This point is only reached if there's an immediate error when
       // confirming the payment. Show the error to your customer (for example, payment details incomplete)
       setErrorMessage(error.message);
+      console.log(error)
+      Swal.fire({
+        title: error.message,
+        icon: "error",
+        confirmButtonText: t("ok"),
+      });
+      console.log(error.message)
     } else {
       // The payment UI automatically closes with a success animation.
       // Your customer is redirected to your `return_url`.

@@ -38,7 +38,7 @@ function ProductInformation() {
   const { loadingPostCart, loadingAddtoFavorite } = useSelector((state) => state.cart);
   const [open_modal_order, toggle] = UseToggle();
   const closeModalOrder = () => toggle(false);
-
+  const { loadingAddOrder } = useSelector((state) => state.customer)
   const { t } = useTranslation();
 
 
@@ -267,7 +267,7 @@ function ProductInformation() {
                   onClick={() => toggle()}
                   fullWidth
                   sx={{ mx: 2, whiteSpace: "nowrap" }}
-                  disabled={!total_quantity}
+                  disabled={!total_quantity || loadingAddOrder}
                 >
                   {t('add-order')}
                 </Button>
