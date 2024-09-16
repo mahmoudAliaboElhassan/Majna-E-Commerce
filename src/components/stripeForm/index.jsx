@@ -38,7 +38,7 @@ const CheckoutPage = ({ amount }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `http://www.localhost:3000/payment-success?amount=${amount}`,
+        return_url: `http://www.localhost:3000/payment-success?amount=${amount / 100}`,
       },
     });
 
@@ -120,7 +120,6 @@ const CheckoutPage = ({ amount }) => {
           marginTop: '8px',  // mt-2 corresponds to 0.5rem, which is 8px
           borderRadius: '8px',  // rounded-md typically corresponds to 0.375rem, which is ~8px
           fontWeight: 'bold',
-
         }}
 
       >

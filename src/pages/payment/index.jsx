@@ -16,6 +16,7 @@ import LoadingFetching from "@components/loadingFetching";
 // }
 
 // "pk_test_51Pxx5DIIYZKV6Xi0546hQZkRv91CaFqH1uXSJKnE2sbYz7r4d2FJgqg3PfCqYcloWaLSBfho0EJkuzPFIKluU69l00C0YTjbPz"
+const stripePromise = loadStripe("pk_test_51PyrdGP7eKsdIhqmLphXqPOMxmcaFumS3iIEVoXlgLwAVG6nw3k7a2Pg8YP8gGIvQfxLlfKD5hskqbqfXKhb9W9900WSym3N2z");
 
 export default function Payment() {
 
@@ -25,8 +26,6 @@ export default function Payment() {
     dispatch(getPublisherKey())
   }, [])
   const { loadingGetPublisherKey, publisherKey } = useSelector((state) => state.customer)
-  let stripePromise;
-  if (!loadingGetPublisherKey && publisherKey) stripePromise = loadStripe(publisherKey);
 
 
   const [searchParams] = useSearchParams()
@@ -38,44 +37,43 @@ export default function Payment() {
   console.log(process.env.REACT_APP_STRIPE_PUBLISH_KEY)
   return (
     <div>
-      {loadingGetPublisherKey ?
-        <LoadingFetching>{t('loading-payment-form')}</LoadingFetching>
-        : (
-          <Box
-            sx={{
-              // maxWidth: '72rem',
-              margin: 'auto',
-              p: 5,
-              textAlign: 'center',
-              color: 'white',
-              border: '1px solid',
-              m: 3,
-              borderRadius: '8px',
-              background: 'linear-gradient(to top right, #3b82f6, #a855f7)',
+      {loadingGetPublisherKey ? <LoadingFetching>{t('loading-payment-form')}</LoadingFetching> : (
+
+        <Box
+          sx={{
+            // maxWidth: '72rem',
+            margin: 'auto',
+            p: 5,
+            textAlign: 'center',
+            color: 'white',
+            border: '1px solid',
+            m: 3,
+            borderRadius: '8px',
+            background: 'linear-gradient(to top right, #3b82f6, #a855f7)',
+          }}
+        >
+          <Box sx={{ mb: 5 }}>
+            <Typography variant="h1" sx={{ fontSize: '2.5rem', fontWeight: '800', mb: 2 }}>
+              {productName}
+            </Typography>
+            <Typography variant="h2" sx={{ fontSize: '2rem' }}>
+              {t("has-requested")}
+              <span style={{ fontWeight: 'bold' }}> ${price}</span>
+            </Typography>
+          </Box>
+
+          <Elements
+            stripe={stripePromise}
+            options={{
+              mode: "payment",
+              amount: (price * 100), //cent
+              currency: "usd",
             }}
           >
-            <Box sx={{ mb: 5 }}>
-              <Typography variant="h1" sx={{ fontSize: '2.5rem', fontWeight: '800', mb: 2 }}>
-                {productName}
-              </Typography>
-              <Typography variant="h2" sx={{ fontSize: '2rem' }}>
-                {t("has-requested")}
-                <span style={{ fontWeight: 'bold' }}> ${price}</span>
-              </Typography>
-            </Box>
-
-            <Elements
-              stripe={stripePromise}
-              options={{
-                mode: "payment",
-                amount: (price * 100), //cent
-                currency: "usd",
-              }}
-            >
-              <CheckoutPage amount={price * 100} />
-            </Elements>
-          </Box>
-        )}
+            <CheckoutPage amount={price * 100} />
+          </Elements>
+        </Box>
+      )}
 
     </div>
   );
