@@ -26,6 +26,16 @@ const CheckoutPage = ({ amount }) => {
     event.preventDefault();
     setLoading(true);
 
+
+
+    // code that send to endpoint
+
+
+
+
+
+
+
     if (!stripe || !elements) {
 
       return;

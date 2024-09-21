@@ -11,10 +11,13 @@ import UseProducts from "@hooks/use-products";
 import { handleSearchChange, handleSearchValue } from "@state/slices/search";
 import { setPage } from "@state/slices/page";
 import { SearchBox, SearchButton, StyledAutocomplete } from "@styles/search";
+import { useSearchParams } from "react-router-dom";
 
-const Search = ({ resetPage, headerColor }) => {
+const Search = ({ headerColor }) => {
   const { t } = useTranslation();
   const theme = useTheme();
+  const [searchParams, setSearchParams] = useSearchParams()
+
   const { searchChange } = useSelector((state) => state.search);
   const dispatch = useDispatch()
   console.log("searchChange")
@@ -24,15 +27,36 @@ const Search = ({ resetPage, headerColor }) => {
   const { products } = UseProducts();
   const { themeMode } = UseThemeMode();
 
+
+
+  const updateSearch = (searchValue) => {
+    if (searchValue === "") {
+      // Create a copy of the current params as an object
+      const newParams = Object.fromEntries(searchParams.entries());
+
+      // Remove the 'search' parameter
+      delete newParams.search;
+
+      // Set the new search parameters
+      setSearchParams(newParams);
+    } else {
+      // Update the search param
+      setSearchParams({ search: searchValue });
+    }
+  };
+
+
   const handleInputChange = (event, value) => {
     const inputValue = value || event?.target?.value;
     setMySearch(inputValue);
-    dispatch(handleSearchChange(inputValue));
+    // dispatch(handleSearchChange(inputValue));
     if (!inputValue) {
       setMySearch("");
-      dispatch(handleSearchChange(""));
+      // dispatch(handleSearchChange(""));
       dispatch(setPage(1))
-      dispatch(handleSearchValue(""));
+      // dispatch(handleSearchValue(""));
+      updateSearch("")
+
       if (headerColor) {
         window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
       }
@@ -42,9 +66,10 @@ const Search = ({ resetPage, headerColor }) => {
   const handleSkillSelect = (event, value) => {
     if (value) {
       setMySearch(value);
-      dispatch(handleSearchChange(value));
+      // dispatch(handleSearchChange(value));
       dispatch(setPage(1))
-      dispatch(handleSearchValue(value));
+      // dispatch(handleSearchValue(value));
+      updateSearch(value)
       if (headerColor) {
         window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
       }
@@ -53,7 +78,9 @@ const Search = ({ resetPage, headerColor }) => {
 
   const handleSearchClick = () => {
     dispatch(setPage(1))
-    dispatch(handleSearchValue(mysearch));
+    // dispatch(handleSearchValue(mysearch));
+    updateSearch(mysearch)
+
     if (headerColor) {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
@@ -73,7 +100,7 @@ const Search = ({ resetPage, headerColor }) => {
       <StyledAutocomplete
         freeSolo
         options={products}
-        value={searchChange}
+        value={searchParams.get("search".split("+").join(" "))}
         onInputChange={handleInputChange}
         onChange={handleSkillSelect}
         renderInput={(params) => (
@@ -91,6 +118,7 @@ const Search = ({ resetPage, headerColor }) => {
               sx: {
                 fontSize: { md: "12px", lg: "16px" },
                 ml: "5px",
+
                 pl: `calc(1em + ${theme.spacing(4)})`,
                 transition: theme.transitions.create('width'),
                 width: '100%',
@@ -100,6 +128,9 @@ const Search = ({ resetPage, headerColor }) => {
                 },
                 '.MuiInputBase-input': {
                   marginLeft: "15px"
+                },
+                '.MuiAutocomplete-clearIndicator ': {
+                  color: headerColor ? "white" : "inherit"
                 },
               },
               placeholder: t("search-product"),
@@ -137,3 +168,10 @@ export default React.memo(Search);
 // keydown: Fired when a key is first pressed.
 // keyup: Fired when a key is released.
 // keypress (deprecated): Used to be fired when a key is pressed down and held, but it's generally replaced by keydown.
+
+
+
+
+
+
+// searchParams keep data as first+second

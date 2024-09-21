@@ -29,6 +29,7 @@ import "@pages/shoppingCart/style.css"
 import withGuard from "@utils/withGuard";
 import { NoCount } from "@styles/products";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
+import ModalOrderAll from "@components/modalAllProducts";
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -53,8 +54,9 @@ function ShoppingCart() {
 
   const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
   const [btnEditDisabled, setBtnEditDisabled] = useState(null);
+  const { loadingAddOrder } = useSelector((state) => state.customer)
   const [btnDeleteDisabled, setBtnDeleteDisabled] = useState(null);
-
+  const [openModal, setOpenModal] = useState(false)
   const handleDelete = useCallback(
     (cartId) => {
       setBtnEditDisabled(null)
@@ -272,6 +274,16 @@ function ShoppingCart() {
     delete: t("delete"),
     edit: t("edit"),
   }));
+  const allProducts = cartItems?.map((cart) => ({
+    product_id: cart?.id,
+    quantity: cart?.quantity,
+  }));
+
+  let totalPrice = 0;
+  cartItems?.forEach((cart) => {
+    totalPrice += cart?.product?.price * cart?.quantity;
+  });
+  console.log("totalPrice", totalPrice)
   return (
     <>
       <Box sx={{
@@ -299,12 +311,21 @@ function ShoppingCart() {
                 disableRowSelectionOnClick
                 rowHeight={120}
               />
+              <Button
+                onClick={() => setOpenModal(true)}
+                variant={themeMode === "dark" ? "contained" : "outlined"}
+                disabled={loadingAddOrder}
+                fullWidth
+
+
+              >{t('place-order-all')}</Button>
             </>
           ) : (
             <NoCount>{t("no-carts")}</NoCount>
           )}
         </Container>
       </Box>
+      <ModalOrderAll openModalOrder={openModal} close={() => setOpenModal(false)} allProducts={allProducts} totalPrice={totalPrice} />
       <Footer />
     </>
   );

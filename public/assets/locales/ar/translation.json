@@ -365,5 +365,6 @@
   "pending": "قيد الإنتظار",
   "processing": "جاري الدفع ...",
   "completed": "تم تقديم طلبك بنجاح",
-  "paied-success": "تم الدفع بنجاح"
+  "paied-success": "تم الدفع بنجاح",
+  "place-order-all": "أضف طلب بكل ما في السله"
 }

@@ -23,6 +23,7 @@ import LoadingFetching from "@components/loadingFetching";
 import Search from "@components/search";
 import Footer from "@components/footer";
 import { setPage } from "@state/slices/page";
+import { useSearchParams } from "react-router-dom";
 
 function Home() {
   // const [page, setPage] = useState(localStorage.getItem("page") || 1);
@@ -42,6 +43,13 @@ function Home() {
     dispatch(setPage(value))
   }, [page]);
   console.log("page :", page)
+
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  const search = searchParams.get('search') || '';
+
+  // Function to update the search parameter
+
 
   const [selectedCategory, setSelectedCategory] =
     useState(localStorage.getItem("category") || "");
@@ -95,7 +103,7 @@ function Home() {
           price__range: price,
           ordering,
           page,
-          search: searchValue,
+          search: search,
           sub_category_id: selectedSubCategory,
         })
       )
@@ -104,11 +112,11 @@ function Home() {
           price__range: price,
           ordering,
           page,
-          search: searchValue,
+          search: search,
           sub_category_id: selectedSubCategory,
         })
       );
-  }, [dispatch, price, ordering, page, searchValue, selectedSubCategory]);
+  }, [dispatch, price, ordering, page, searchValue, selectedSubCategory, search]);
 
   useEffect(() => {
     selectedCategory
@@ -118,7 +126,7 @@ function Home() {
           price__range: price,
           ordering,
           page,
-          search: searchValue,
+          search: search,
           sub_category_id: selectedSubCategory,
         })
       )
@@ -127,7 +135,7 @@ function Home() {
           price__range: price,
           ordering,
           page,
-          search: searchValue,
+          search: search,
           sub_category_id: selectedSubCategory,
         })
       );
@@ -142,6 +150,7 @@ function Home() {
     ordering,
     page,
     searchValue,
+    search,
     selectedSubCategory,
   ]);
 
@@ -156,7 +165,7 @@ function Home() {
     <>
       <Swiperslide images={productImages} />
       <Introductory />
-      <Search resetPage={resetPage} />
+      <Search />
       <Grid container style={{ overflow: "hidden", marginBottom: "-16px" }}>
         <Grid item sm={2.5} xs={4} md={2.5}>
           <ProductTypesSidebar

@@ -349,10 +349,10 @@ const Product = ({ id, name, cover_image, price, brand }) => {
               alt={name}
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div"
-                sx={{ height: isMatch ? "60px" : "70px" }}
+              <Typography gutterBottom variant="h6" component="div"
+                sx={{ height: isMatch ? "60px" : "70px", mb: 4 }}
               >
-                {isMatch ? name.slice(0, 20) : name.slice(0, 30)}
+                {isMatch ? name.slice(0, 50) : name.slice(0, 60)}
               </Typography>
               <Typography variant="h6" component="p" gutterBottom>
                 {brand}

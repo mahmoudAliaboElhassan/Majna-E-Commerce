@@ -100,7 +100,7 @@ function Header() {
         <Toolbar>
           {isMatch ? (
             <>
-              {token && role === "customer" && (
+              {token && role === "Customer" && (
                 <>
                   <IconButton component={Link} to="shooping-cart">
                     <ShoppingCartIcon
@@ -175,7 +175,7 @@ function Header() {
                   }}>{t("website-title")}</AppbarHeader>
                 {/* </IconButton> */}
               </Link>
-              {token && role === "customer" && (
+              {token && role === "Customer" && (
                 <>
                   <IconButton component={Link} to="shooping-cart">
                     <ShoppingCartIcon

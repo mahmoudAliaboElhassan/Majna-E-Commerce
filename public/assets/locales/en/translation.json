@@ -367,5 +367,6 @@
   "pending": "Pending",
   "processing": "Processing...",
   "completed": "Your Order has been Placed Successfully",
-  "paied-success": "Payment has been Done Successfully"
+  "paied-success": "Payment has been Done Successfully",
+  "place-order-all": "Place order with all items in the cart"
 }

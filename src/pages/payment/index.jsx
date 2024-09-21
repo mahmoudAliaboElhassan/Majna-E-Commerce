@@ -43,26 +43,28 @@ export default function Payment() {
 
         <PaymentBoxContainer
         >
-          <Box sx={{ mb: 5 }}>
-            <Typography variant="h1" sx={{ fontSize: '2.5rem', fontWeight: '800', mb: 2 }}>
-              {productName}
-            </Typography>
-            <Typography variant="h2" sx={{ fontSize: '2rem' }}>
-              {t("has-requested")}
-              <span style={{ fontWeight: 'bold' }}> ${price}</span>
-            </Typography>
-          </Box>
+          <Container >
+            <Box sx={{ mb: 5 }}>
+              <Typography variant="h1" sx={{ fontSize: '2.5rem', fontWeight: '800', mb: 2 }}>
+                {productName}
+              </Typography>
+              <Typography variant="h2" sx={{ fontSize: '2rem' }}>
+                {t("has-requested")}
+                <span style={{ fontWeight: 'bold' }}> ${price}</span>
+              </Typography>
+            </Box>
 
-          <Elements
-            stripe={stripePromise}
-            options={{
-              mode: "payment",
-              amount: (price * 100), //cent
-              currency: "usd",
-            }}
-          >
-            <CheckoutPage amount={price * 100} />
-          </Elements>
+            <Elements
+              stripe={stripePromise}
+              options={{
+                mode: "payment",
+                amount: (price * 100), //cent
+                currency: "usd",
+              }}
+            >
+              <CheckoutPage amount={price * 100} />
+            </Elements>
+          </Container>
         </PaymentBoxContainer>
       )}
 
