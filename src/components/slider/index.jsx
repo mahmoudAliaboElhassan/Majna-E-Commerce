@@ -15,12 +15,14 @@ import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import { Box } from "@mui/material";
+
 import defaultSliderImages from "@assets/sliderImages";
 import "./SwiperCustom.css"; // Import custom CSS file
+import UseMediaQueryHook from "@hooks/use-media-query";
 
 const Swiperslide = ({ images }) => {
-  const imageArray = images?.length ? images : defaultSliderImages;
-
+  // const imageArray = images?.length ? images : defaultSliderImages;
+  const { isMatch } = UseMediaQueryHook()
   return (
     <Box
       sx={{
@@ -39,7 +41,7 @@ const Swiperslide = ({ images }) => {
         ]}
         spaceBetween={0}
         autoplay={{ delay: 3000 }}
-        slidesPerView={2}
+        slidesPerView={isMatch ? 1 : 2}
         navigation
         pagination={{
           clickable: true,
@@ -50,10 +52,11 @@ const Swiperslide = ({ images }) => {
         loop={true} // Enable looping
         style={{ height: "350px", width: "100%" }}
       >
-        {imageArray.map((img, index) => {
+        {defaultSliderImages.map((img, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={img} alt={`slide-${index}`} loading="lazy"
+              <img src={img} alt={`slide-${index}`}
+                // loading="lazy"
                 style={{ width: "100%", height: "100%" }} />
             </SwiperSlide>
           );

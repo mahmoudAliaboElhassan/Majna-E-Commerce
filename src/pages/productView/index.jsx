@@ -7,7 +7,6 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  CardActionArea,
   Button,
   Box,
 } from "@mui/material";
@@ -16,18 +15,18 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 
+
 import { getSpecifiedProduct, cleanUpGetSpecifiedProduct } from "@state/slices/products";
 import { postCart, postFavorite } from "@state/slices/cart";
 import LoadingFetching from "@components/loadingFetching";
 import UseThemMode from "@hooks/use-theme";
 import UseDirection from "@hooks/use-direction";
 import UseToggle from "@hooks/use-toggle";
-import teamImage from "@assets/team";
 import { Colors } from "@styles/theme";
 import ModalOrder from "@components/modalOrder";
 import Footer from "@components/footer";
-import "./style.css"
-
+import "./style.css";
+import Reviews from "@components/reviews";
 
 function ProductInformation() {
   const dispatch = useDispatch();
@@ -38,9 +37,8 @@ function ProductInformation() {
   const { loadingPostCart, loadingAddtoFavorite } = useSelector((state) => state.cart);
   const [open_modal_order, toggle] = UseToggle();
   const closeModalOrder = () => toggle(false);
-  const { loadingAddOrder } = useSelector((state) => state.customer)
+  const { loadingAddOrder } = useSelector((state) => state.customer);
   const { t } = useTranslation();
-
 
   const { productData, loadingSpecificProduct } = useSelector((state) => state.products);
 
@@ -53,7 +51,6 @@ function ProductInformation() {
     }
   }
 
-
   useEffect(() => {
     dispatch(getSpecifiedProduct({ id: productId }));
     return () => {
@@ -61,15 +58,11 @@ function ProductInformation() {
     };
   }, [dispatch, productId]);
 
-
-
   const [imgNo, setImgNo] = useState(0);
   const handleImageChange = ({ target: { value } }) => {
     setImgNo(Number(value));
   };
-  console.log("id", id)
-  console.log("album_items", album_items)
-  console.log("album_items", album_items?.[0]?.url)
+
   const handlePostCart = () => {
     dispatch(postCart({
       customerId: Uid,
@@ -145,23 +138,21 @@ function ProductInformation() {
         <LoadingFetching>{t("wait-product")}</LoadingFetching>
       ) : (
         <Container>
-          <Card raised component="div" sx={{ maxWidth: "100%", p: 2 }}>
+          <Card raised component="div" sx={{ maxWidth: "100%", p: 2 }} data-aos="fade-up">
             <Grid container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} data-aos="zoom-in">
                 <CardMedia
                   component="img"
                   image={album_items?.[imgNo]?.url} // Access the URL using the imgNo index
                   alt={"Product Image"}
                   loading="lazy"
                   height="500"
+                  style={{ width: "100%", height: "100vh" }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                {/* <ToastContainer /> */}
-                {/* <CardActionArea sx={{ height: "100%" }}> */}
+              <Grid item xs={12} sm={6} md={6} lg={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} data-aos="fade-right">
                 <CardContent>
                   <Typography gutterBottom variant="h4" component="div" sx={{
-                    // fontSize: { xs: "27px", sm: "19px", md: "21px", lg: "27px" },
                     fontStyle: "italic",
                     letterSpacing: "-2px",
                     textAlign: "center",
@@ -179,58 +170,34 @@ function ProductInformation() {
                   }}>
                     {description}
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
-                  >
+                  <Typography variant="h6" component="p" gutterBottom sx={{ display: "flex", justifyContent: "space-between" }}>
                     <span style={{ fontWeight: "700" }}>{t("product-brand")} </span>
                     {brand}
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
-                  >
+                  <Typography variant="h6" component="p" gutterBottom sx={{ display: "flex", justifyContent: "space-between" }}>
                     <span style={{ fontWeight: "700" }}>{t("product-category")} </span>
                     {category}
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom
-                    // sx={{ fontSize: { xs: "20px", sm: "15px", md: "18px", lg: "21px" } }}
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
+                  <Typography variant="h6" component="p" gutterBottom sx={{ display: "flex", justifyContent: "space-between" }}>
                     <span style={{ fontWeight: "700" }}>{t("product-subCategory")} </span>
-                    <span style={{
-                      textAlign: `${[Direction.right]}`
-                    }}>
+                    <span style={{ textAlign: `${[Direction.right]}` }}>
                       {sub_category}
                     </span>
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom
-                    // sx={{
-                    //   fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" },
-                    // }}
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span span style={{ fontWeight: "700" }}>{t("in-store")} </span>
+                  <Typography variant="h6" component="p" gutterBottom sx={{ display: "flex", justifyContent: "space-between" }}>
+                    <span style={{ fontWeight: "700" }}>{t("in-store")} </span>
                     <span style={{ textAlign: "center" }}> {total_quantity ? total_quantity : t("not-exist")}</span>
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom
-                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
+                  <Typography variant="h6" component="p" gutterBottom sx={{ display: "flex", justifyContent: "space-between" }}>
                     <span style={{ fontWeight: "700" }}>{t("product-price")} </span>
                     {price}$
                   </Typography>
-                  <Typography variant="h6" component="p" gutterBottom
-                    // sx={{ fontSize: { xs: "20px", sm: "13px", md: "14px", lg: "20px" } }}
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
+                  <Typography variant="h6" component="p" gutterBottom sx={{ display: "flex", justifyContent: "space-between" }}>
                     <span style={{ fontWeight: "700" }}>{t("data-added")} </span>
-                    <span style={{
-                      textAlign: `${[Direction.right]}`
-                    }}>{added_at}</span>
+                    <span style={{ textAlign: `${[Direction.right]}` }}>{added_at}</span>
                   </Typography>
                 </CardContent>
-                <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap' }} data-aos="fade-up">
                   {album_items?.length > 1 && album_items?.map(({ url }, idx) => (
                     <Box key={idx} sx={{ m: 1 }}>
                       <input name="image" type="radio" value={idx} id={`image-${idx}`} onChange={handleImageChange} style={{ display: 'none' }} />
@@ -239,50 +206,20 @@ function ProductInformation() {
                           style={{
                             width: "100px", height: "100px", margin: "5px",
                             border: imgNo === idx ? `3px solid ${themeMode === "dark" ? "white" : "black"}` : null
-                          }}
-                        />
+
+
+                          }} />
                       </label>
-                    </Box>
-                  ))}
+                    </Box>))}
                 </Box>
-                <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }}>
-                  <Button variant={themeMode === "dark" ? "contained" : "outlined"}
-                    onClick={handlePostCart}
-                    disabled={loadingPostCart}
-                    fullWidth
-                    sx={{ whiteSpace: "nowrap" }}
-                  >
-                    {t('add-to-cart')}
-                  </Button>
-                  <Button variant={themeMode === "dark" ? "contained" : "outlined"}
-                    onClick={handlePostFavorite}
-                    disabled={loadingAddtoFavorite}
-                    fullWidth
-                    sx={{ mx: 2, whiteSpace: "nowrap" }}
-                  >
-                    {t('add-favorite')}
-                  </Button>
-                </CardActions>
-                <Button variant={themeMode === "dark" ? "contained" : "outlined"}
-                  onClick={() => toggle()}
-                  fullWidth
-                  sx={{ mx: 2, whiteSpace: "nowrap" }}
-                  disabled={!total_quantity || loadingAddOrder}
-                >
-                  {t('add-order')}
-                </Button>
-                {/* </CardActionArea> */}
+                <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} data-aos="fade-up"> <Button variant={themeMode === "dark" ? "contained" : "outlined"} onClick={handlePostCart} disabled={loadingPostCart} fullWidth sx={{ whiteSpace: "nowrap" }} > {t('add-to-cart')} </Button> <Button variant={themeMode === "dark" ? "contained" : "outlined"} onClick={handlePostFavorite} disabled={loadingAddtoFavorite} fullWidth sx={{ mx: 2, whiteSpace: "nowrap" }} > {t('add-favorite')} </Button> </CardActions> <Button variant={themeMode === "dark" ? "contained" : "outlined"} onClick={() => toggle()} fullWidth sx={{ mx: 2, whiteSpace: "nowrap" }} disabled={!total_quantity || loadingAddOrder} data-aos="fade-up" > {t('add-order')} </Button>
               </Grid>
             </Grid>
-          </Card >
-        </Container >
-      )
-      }
-      <ModalOrder openModalOrder={open_modal_order} close={closeModalOrder}
-        productId={productId} maxNumber={total_quantity} price={price}
-        productName={name} />
-      <Footer />
-    </>
-  );
+          </Card>
+          <Reviews />
+        </Container>)}
+      <ModalOrder openModalOrder={open_modal_order} close={closeModalOrder} productId={productId} maxNumber={total_quantity} price={price} productName={name} />
+      <Footer /> </>);
 }
-export default ProductInformation
+
+export default ProductInformation;

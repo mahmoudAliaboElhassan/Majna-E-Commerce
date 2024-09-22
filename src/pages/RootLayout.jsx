@@ -47,7 +47,7 @@ function RootLayout() {
   useEffect(() => {
     document.title = t("website-title");
     AOS.init({
-      duration: 700,
+      duration: 1000,
       easing: "ease-out-cubic",
     });
 

@@ -368,5 +368,8 @@
   "processing": "Processing...",
   "completed": "Your Order has been Placed Successfully",
   "paied-success": "Payment has been Done Successfully",
-  "place-order-all": "Place order with all items in the cart"
+  "place-order-all": "Place order with all items in the cart",
+  "updating-album": "If you want to edit the photo album for this product",
+  "you-can": "You Can",
+  "update-album": "Update Album"
 }

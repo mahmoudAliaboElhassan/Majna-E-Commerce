@@ -112,7 +112,7 @@ function AddProduct() {
       {loadingState ? (
         <LoadingFetching>{t("wait-data")}</LoadingFetching>
       ) : approvedBrands.length ? (
-        <Container maxWidth={isMatch ? "md" : "lg"}>
+        <Container maxWidth="md"  >
           <Card raised>
             <Container maxWidth="md">
               <Grid

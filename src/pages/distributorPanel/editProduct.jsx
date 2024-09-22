@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import Card from "@mui/material/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 import Swal from "sweetalert2";
@@ -33,7 +33,7 @@ import TextAreaWrapper from "@components/formui/textarea";
 import ImageUploader from "@components/formui/multipleImages";
 import { helperStyle } from "@styles/error";
 import InventoryComp from "@components/inventory";
-import { Description } from "@mui/icons-material";
+import { BorderBottom, Description } from "@mui/icons-material";
 import SingleProductInventory from "@components/singleProductInventory";
 
 const useStyles = makeStyles((theme) => ({
@@ -85,147 +85,148 @@ function EditProduct() {
       {loadingStores || loadingSpecificProduct ? (
         <LoadingFetching>{t("wait-previous-product")}</LoadingFetching>
       ) :
-        <div style={{ position: "relative", height: "100vh" }}>
-          <Container maxWidth={isMatch ? "md" : "lg"}>
-            <Card raised>
-              <Container maxWidth="md">
-                <Grid
-                  container
-                  spacing={2}
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Grid item={12}>
-                    <Formik
-                      initialValues={{
-                        ...INITIAL_FORM_STATE_EDIT_PRODUCT,
-                      }}
-                      validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT}
-                      onSubmit={(values) => {
-                        console.log({ ...values });
-                        // const processedAlbum = processAlbumArray(productData.album);
-                        // const processedInventory = processAlbumArray(
-                        //   productData.inventory
-                        // );
-                        // console.log(JSON.stringify(processedAlbum));
-                        // console.log(typeof JSON.stringify(processedAlbum));
-                        // console.log(JSON.stringify(processedInventory));
-                        // console.log(typeof JSON.stringify(processedInventory));
-                        // const productDataWithQuotedKeys = {
-                        //   ...productData,
-                        //   album: JSON.stringify(productData.album),
-                        //   inventory: JSON.stringify(productData.inventory),
-                        // };
-                        const updatedInventory = values.singleProductInventory.map(item => ({
-                          ...item,
-                          store_pk: item.store_id,
-                          store_id: undefined, // Remove the store_id field
-                        }));
-                        dispatch(updateUploadedProduct(
+        <Container maxWidth="md">
+          <Card raised>
+            <Container maxWidth="md">
+              <Grid
+                container
+                spacing={2}
+                justifyContent="center"
+                alignItems="center"
+              >
+                <Grid item={12}>
+                  <Formik
+                    initialValues={{
+                      ...INITIAL_FORM_STATE_EDIT_PRODUCT,
+                    }}
+                    validationSchema={FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT}
+                    onSubmit={(values) => {
+                      console.log({ ...values });
+                      // const processedAlbum = processAlbumArray(productData.album);
+                      // const processedInventory = processAlbumArray(
+                      //   productData.inventory
+                      // );
+                      // console.log(JSON.stringify(processedAlbum));
+                      // console.log(typeof JSON.stringify(processedAlbum));
+                      // console.log(JSON.stringify(processedInventory));
+                      // console.log(typeof JSON.stringify(processedInventory));
+                      // const productDataWithQuotedKeys = {
+                      //   ...productData,
+                      //   album: JSON.stringify(productData.album),
+                      //   inventory: JSON.stringify(productData.inventory),
+                      // };
+                      const updatedInventory = values.singleProductInventory.map(item => ({
+                        ...item,
+                        store_pk: item.store_id,
+                        store_id: undefined, // Remove the store_id field
+                      }));
+                      dispatch(updateUploadedProduct(
+                        {
+                          distributorId: Uid,
+                          productId,
+                          name: values.singleProductName,
+                          description: values.singleProductDescription,
+                          price: +values.singleProductPrice,
+                          inventory: updatedInventory
+                        }
+                      ))
+                        .unwrap()
+                        .then(() => {
                           {
-                            distributorId: Uid,
-                            productId,
-                            name: values.singleProductName,
-                            description: values.singleProductDescription,
-                            price: +values.singleProductPrice,
-                            inventory: updatedInventory
+                            toast.success(t("product-edited"), {
+                              position: "top-right",
+                              autoClose: 1000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: true,
+                              progress: undefined,
+                              theme: themeMode,
+                            });
+                            setTimeout(() => {
+                              navigate("/distributor-control-panel/uploaded-products");
+                            }, 1000);
                           }
-                        ))
-                          .unwrap()
-                          .then(() => {
-                            {
-                              toast.success(t("product-edited"), {
-                                position: "top-right",
-                                autoClose: 1000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: themeMode,
-                              });
-                              setTimeout(() => {
-                                navigate("/distributor-control-panel/uploaded-products");
-                              }, 1000);
-                            }
-                          })
-                          .catch((error) => {
-                            if (error.response.status === 400) {
-                              Swal.fire({
-                                title: t("error-edit-product"),
-                                text: t("error-bad-data"),
-                                icon: "error",
-                                confirmButtonColor: "#3085d6",
-                                confirmButtonText: t("ok"),
-                              });
-                            } else if (error.response.status === 401) {
-                              Swal.fire({
-                                title: t("unauthorize"),
-                                text: t("unauthorized-txt"),
-                                icon: "error",
-                                confirmButtonColor: "#3085d6",
-                                confirmButtonText: t("ok"),
-                              });
-                            } else if (error.response.status === 403) {
-                              Swal.fire({
-                                title: t("forbidden"),
-                                text: t("forbidden-txt-distributor"),
-                                icon: "error",
-                                confirmButtonColor: "#3085d6",
-                                confirmButtonText: t("ok"),
-                              });
-                            }
-                            console.log(error);
-                          });
-                      }}
-                    >
-                      <Form className={classes.formWrapper}>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12}>
-                            <Typography>
-                              <AppbarHeader data-aos="fade-up">
-                                {t("edit-product-now")}
-                              </AppbarHeader>
-                            </Typography>
-                          </Grid>
-                          <Grid item xs={12}>
-                            <TextFieldWrapper
-                              name="singleProductName"
-                              label={t("product_title")}
-                              autocomplete="off"
-                            />
-                          </Grid>
-                          <Grid item xs={12}>
-                            <TextAreaWrapper
-                              name="singleProductDescription"
-                              textarea={3}
-                              label={t("description")}
-                              placeholder={t("description-txt")}
-                              autocomplete="off"
-                            />
-                          </Grid>
-                          <Grid item xs={12}>
-                            <TextFieldWrapper
-                              name="singleProductPrice"
-                              label={t("product-price")}
-                              type="number"
-                            />
-                          </Grid>
-                          <Grid item xs={12}>
-                            <SingleProductInventory SingleProductInventory={productData?.inventory?.stores} />
-                          </Grid>
-                          <Grid item xs={12}>
-                            <ButtonWrapper>{t("edit-product")}</ButtonWrapper>
-                          </Grid>
+                        })
+                        .catch((error) => {
+                          if (error.response.status === 400) {
+                            Swal.fire({
+                              title: t("error-edit-product"),
+                              text: t("error-bad-data"),
+                              icon: "error",
+                              confirmButtonColor: "#3085d6",
+                              confirmButtonText: t("ok"),
+                            });
+                          } else if (error.response.status === 401) {
+                            Swal.fire({
+                              title: t("unauthorize"),
+                              text: t("unauthorized-txt"),
+                              icon: "error",
+                              confirmButtonColor: "#3085d6",
+                              confirmButtonText: t("ok"),
+                            });
+                          } else if (error.response.status === 403) {
+                            Swal.fire({
+                              title: t("forbidden"),
+                              text: t("forbidden-txt-distributor"),
+                              icon: "error",
+                              confirmButtonColor: "#3085d6",
+                              confirmButtonText: t("ok"),
+                            });
+                          }
+                          console.log(error);
+                        });
+                    }}
+                  >
+                    <Form className={classes.formWrapper}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                          <Typography>
+                            <AppbarHeader data-aos="fade-up">
+                              {t("edit-product-now")}
+                            </AppbarHeader>
+                          </Typography>
                         </Grid>
-                      </Form>
-                    </Formik>
-                  </Grid>
+                        <Grid item xs={12}>
+                          <TextFieldWrapper
+                            name="singleProductName"
+                            label={t("product_title")}
+                            autocomplete="off"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextAreaWrapper
+                            name="singleProductDescription"
+                            textarea={3}
+                            label={t("description")}
+                            placeholder={t("description-txt")}
+                            autocomplete="off"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextFieldWrapper
+                            name="singleProductPrice"
+                            label={t("product-price")}
+                            type="number"
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <SingleProductInventory SingleProductInventory={productData?.inventory?.stores} />
+                        </Grid>
+                        <div>
+                          <span>{t('updating-album')}</span>
+                          <Link to={`/distributor-control-panel/edit-product-album/${productData.id}`} title={t('update-album')} style={{ borderBottom: "1px solid", fontWeight: "bold" }}>{t("you-can")}</Link></div>
+                        <Grid item xs={12}>
+                          <ButtonWrapper>{t("edit-product")}</ButtonWrapper>
+                        </Grid>
+                      </Grid>
+                    </Form>
+                  </Formik>
                 </Grid>
-              </Container>
-            </Card>
-          </Container>
-        </div>
+              </Grid>
+            </Container>
+          </Card>
+        </Container>
       }
     </div>
   );
