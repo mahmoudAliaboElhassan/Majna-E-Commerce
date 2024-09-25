@@ -11,6 +11,7 @@ import {
   postFavorite,
   getFavorites,
   deleteFavorite,
+  deleteCarts,
 } from "@state/act/actCarts";
 // const initialState = {
 //   items: {}, //  1 :1  1 for id and 1 for quantity
@@ -148,6 +149,18 @@ const cart = createSlice({
       })
       .addCase(deleteFavorite.rejected, (state, action) => {
         state.loadingDeleteFavorite = false;
+      })
+
+      .addCase(deleteCarts.pending, (state, action) => {
+        state.loadingDeleteCarts = true;
+      })
+      .addCase(deleteCarts.fulfilled, (state, action) => {
+        state.loadingDeleteCarts = false;
+        localStorage.setItem("countOfCartItem", 0);
+        state.countOfCartItems = localStorage.getItem("countOfCartItem");
+      })
+      .addCase(deleteCarts.rejected, (state, action) => {
+        state.loadingDeleteCarts = false;
       });
   },
 });
@@ -165,6 +178,7 @@ export {
   postFavorite,
   getFavorites,
   deleteFavorite,
+  deleteCarts,
 };
 export const { cleanUpCartItems, cleanUpCartItem, cleanUpFavorites } =
   cart.actions;

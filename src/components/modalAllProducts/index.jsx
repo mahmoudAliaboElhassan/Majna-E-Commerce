@@ -17,6 +17,7 @@ import LoadingFetching from '@components/loadingFetching';
 import SelectAddress from '@components/formui/selectAddress';
 import { getAllAddresses, cleanUpGetAllAddresses, addOrder } from '@state/slices/customer';
 import UseFormValidation from '@formValidation/use-form-validation';
+import { deleteCarts } from '@state/slices/cart'
 
 const useStyles = makeStyles((theme) => ({
     formWrapper: {
@@ -69,13 +70,26 @@ function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
                     autoClose: 1000,
                     theme: themeMode,
                 });
+
+                dispatch(deleteCarts({ customerId: Uid }))
                 close(); // Close the modal on success
                 navigate(`/payment?price=${totalPrice}`)
             })
             .catch((error) => {
+                console.log(error.response.data)
+                const errorMessage = error.response.data
+                const key = Object.keys(errorMessage)
+                console.log("error keys", error.response.data["103"])
+                const words = errorMessage[key].message;
+                const index = words.indexOf("#");
+
+
+                const orderId = words.slice(index + 1);  // Extracts everything after the #
+
+
                 Swal.fire({
-                    title: t("error-adding-order"),
-                    text: error.message,
+                    title: `${t('order-id-error')} ${orderId}`,
+                    text: `${t('exists-in-store')} ${errorMessage[key].available_inventory}`,
                     icon: "error",
                     confirmButtonText: t("ok"),
                 });

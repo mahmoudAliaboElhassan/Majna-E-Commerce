@@ -371,5 +371,9 @@
   "place-order-all": "Place order with all items in the cart",
   "updating-album": "If you want to edit the photo album for this product",
   "you-can": "You Can",
-  "update-album": "Update Album"
+  "update-album": "Update Album",
+  "delete-carts": "Delete Carts",
+  "cart-deleted": "Cart Items has been Deleted Successfully !",
+  "exists-in-store": "Count of Products in store is",
+  "order-id-error": "Not Enough inventory exist for product"
 }

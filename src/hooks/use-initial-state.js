@@ -84,6 +84,7 @@ function UseInitialStates() {
     loadingSpecificProduct: false,
     loadingDeleteCart: false,
     loadingDeleteFavorite: false,
+    loadingDeleteCarts: false,
   };
   const initialStateSearch = {
     searchChange: localStorage.getItem("searchChange") || "", // Should retrieve correctly

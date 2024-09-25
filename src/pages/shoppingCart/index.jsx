@@ -1,10 +1,11 @@
 import { Fragment, useCallback, useEffect, useState } from "react";
 
-import { Box, Container, TextField, Button } from "@mui/material";
+import { Box, Container, TextField, Button, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { useDispatch, useSelector } from "react-redux";
+
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useSelector, useDispatch } from "react-redux"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
@@ -30,6 +31,7 @@ import withGuard from "@utils/withGuard";
 import { NoCount } from "@styles/products";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import ModalOrderAll from "@components/modalAllProducts";
+import { deleteCarts } from '@state/slices/cart'
 
 function ShoppingCart() {
   const dispatch = useDispatch();
@@ -55,8 +57,32 @@ function ShoppingCart() {
   const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
   const [btnEditDisabled, setBtnEditDisabled] = useState(null);
   const { loadingAddOrder } = useSelector((state) => state.customer)
+  const { loadingDeleteCarts } = useSelector((state) => state.cart)
   const [btnDeleteDisabled, setBtnDeleteDisabled] = useState(null);
   const [openModal, setOpenModal] = useState(false)
+
+
+
+  const handleDeleteCartItems = () => {
+    dispatch(deleteCarts({ customerId: Uid })).unwrap()
+      .then(() => {
+        {
+          toast.success(t("cart-deleted"), {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: themeMode,
+          });
+        }
+      });
+  }
+
+
+
   const handleDelete = useCallback(
     (cartId) => {
       setBtnEditDisabled(null)
@@ -311,14 +337,28 @@ function ShoppingCart() {
                 disableRowSelectionOnClick
                 rowHeight={120}
               />
-              <Button
-                onClick={() => setOpenModal(true)}
-                variant={themeMode === "dark" ? "contained" : "outlined"}
-                disabled={loadingAddOrder}
-                fullWidth
+              <Grid container spacing={1}>
+                <Grid item xs={12} md={6}>
+                  <Button
+                    onClick={() => setOpenModal(true)}
+                    variant={themeMode === "dark" ? "contained" : "outlined"}
+                    disabled={loadingAddOrder}
+                    fullWidth
 
 
-              >{t('place-order-all')}</Button>
+                  >{t('place-order-all')}</Button>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Button
+                    onClick={handleDeleteCartItems}
+                    variant={themeMode === "dark" ? "contained" : "outlined"}
+                    disabled={loadingDeleteCarts}
+                    fullWidth
+
+
+                  >{t('delete-carts')}</Button>
+                </Grid>
+              </Grid>
             </>
           ) : (
             <NoCount>{t("no-carts")}</NoCount>

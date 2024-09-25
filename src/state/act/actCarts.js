@@ -156,3 +156,21 @@ export const deleteFavorite = createAsyncThunk(
     }
   }
 );
+export const deleteCarts = createAsyncThunk(
+  "products/deleteCarts",
+  async ({ customerId }, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const data = await majnAPI.delete(
+        `api/customers/${customerId}/cart-items`
+      );
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        // Handle 400 error here
+        console.log("400 Bad Request - Error in the request");
+      }
+      return rejectWithValue(error);
+    }
+  }
+);
