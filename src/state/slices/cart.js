@@ -22,21 +22,9 @@ const cart = createSlice({
   name: "cart",
   initialState: initialStateCart,
   reducers: {
-    // addToCart: (state, action) => {
-    //   const id = action.payload;
-    //   if (state.items[id]) {
-    //     state.items[id]++;
-    //   } else {
-    //     state.items[id] = 1;
-    //   }
-    // },
-
-    addToCart: (state, action) => {
-      if (!state.cartArr) {
-        state.cartArr = [];
-      }
-      state.cartArr.push(action.payload);
-      localStorage.setItem("cartArr", JSON.stringify(state.cartArr));
+    resetCartItemsCount: (state, action) => {
+      localStorage.setItem("countOfCartItem", 0);
+      state.countOfCartItems = 0;
     },
     cleanUpCartItems: (state) => {
       state.cartItems = [];
@@ -101,7 +89,7 @@ const cart = createSlice({
         console.log("action?.meta?.arg?.quantity");
         localStorage.setItem(
           "countOfCartItem",
-          localStorage.getItem("countOfCartItem") + 1
+          parseInt(localStorage.getItem("countOfCartItem")) + 1
         );
         state.countOfCartItems = localStorage.getItem("countOfCartItem");
       })
@@ -166,7 +154,7 @@ const cart = createSlice({
 });
 
 export default cart.reducer;
-export const { addToCart } = cart.actions;
+export const { resetCartItemsCount } = cart.actions;
 export {
   // getTotalQuantities,
   actGetCategoriesByItems,

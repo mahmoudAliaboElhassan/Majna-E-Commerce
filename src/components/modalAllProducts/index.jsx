@@ -85,8 +85,6 @@ function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
 
 
                 const orderId = words.slice(index + 1);  // Extracts everything after the #
-
-
                 Swal.fire({
                     title: `${t('order-id-error')} ${orderId}`,
                     text: `${t('exists-in-store')} ${errorMessage[key].available_inventory}`,

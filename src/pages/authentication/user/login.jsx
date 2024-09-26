@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { motion } from "framer-motion";
 
@@ -22,8 +22,6 @@ import UseThemMode from "@hooks/use-theme";
 import UseInitialValues from "@utils/use-initial-values";
 import { ResendConfirmation, logIn } from "@state/slices/auth";
 import { AppbarHeader } from "@styles/appbar";
-import { DisabledByDefault } from "@mui/icons-material";
-import withGuard from "@utils/withGuard"
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
     marginTop: theme.spacing(5),
@@ -62,7 +60,6 @@ function Login() {
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm" className={classes.containerWrapper}>
-        {/* <ToastContainer /> */}
         <Card raised>
           <Container maxWidth="md">
             <Grid container>
@@ -85,7 +82,7 @@ function Login() {
                         console.log("data in login page");
                         console.log(data);
                         data?.user?.user_role === "reviewer" ? navigate("/reviewer") : navigate("/")
-                        data?.user?.user_role === "customer" &&
+                        data?.user?.user_role === "Customer" &&
                           dispatch(getCarts({ id: data?.user?.id }));
                         {
                           toast.success(t("login-success"), {

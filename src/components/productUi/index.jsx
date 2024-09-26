@@ -238,52 +238,62 @@ const Product = ({ id, name, cover_image, price, brand }) => {
   const { themeMode } = UseThemMode();
   const { ref, inView } = useInView({ triggerOnce: false });
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-  const { Uid } = useSelector((state) => state.auth);
+  const { Uid, token, role } = useSelector((state) => state.auth);
   const [idx, setIdx] = useState(null);
   const { t } = useTranslation();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const { loadingPostCart, loadingAddtoFavorite } = useSelector(
+  const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } = useSelector(
     (state) => state.cart
   );
 
   const handleBtnClick = (id) => {
-    setIdx(id);
-    dispatch(
-      postCart({
-        customerId: Uid,
-        product_ids: [id],
-      })
-    )
-      .unwrap()
-      .then(() => {
-        toast.success(t("added-success"), {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: themeMode,
-        });
-      })
-      .catch((error) => {
-        const errorMessages = {
-          409: t("error-exist-cart"),
-          401: t("error-not-authorized-text"),
-          403: t("error-not-customer-text"),
-        };
-
-        const errorMessage =
-          errorMessages[error.response.status] || error.message;
-        Swal.fire({
-          title: t("error-adding"),
-          text: errorMessage,
-          icon: "error",
-          confirmButtonText: t("ok"),
-        });
-      })
     setIsBtnDisabled(true);
+    if (parseInt(countOfCartItems) < 10) {
+      setIdx(id);
+      dispatch(
+        postCart({
+          customerId: Uid,
+          product_ids: [id],
+        })
+      )
+        .unwrap()
+        .then(() => {
+          toast.success(t("added-success"), {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: themeMode,
+          });
+        })
+        .catch((error) => {
+          const errorMessages = {
+            409: t("error-exist-cart"),
+            401: t("error-not-authorized-text"),
+            403: t("error-not-customer-text"),
+          };
+
+          const errorMessage =
+            errorMessages[error.response.status] || error.message;
+          Swal.fire({
+            title: t("error-adding"),
+            text: errorMessage,
+            icon: "error",
+            confirmButtonText: t("ok"),
+          });
+        })
+    }
+    else {
+      Swal.fire({
+        title: t("error-adding"),
+        text: t('excceeded-10'),
+        icon: "error",
+        confirmButtonText: t("ok"),
+      });
+    }
   };
   const handleFavorite = (id) => {
     setIdx(id);
@@ -321,6 +331,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           confirmButtonText: t("ok"),
         });
       });
+
   };
   useEffect(() => {
     if (!isBtnDisabled) return;

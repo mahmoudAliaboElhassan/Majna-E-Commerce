@@ -34,7 +34,7 @@ function ProductInformation() {
   const { themeMode } = UseThemMode();
   const { Direction } = UseDirection();
   const { Uid } = useSelector((state) => state.auth);
-  const { loadingPostCart, loadingAddtoFavorite } = useSelector((state) => state.cart);
+  const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } = useSelector((state) => state.cart);
   const [open_modal_order, toggle] = UseToggle();
   const closeModalOrder = () => toggle(false);
   const { loadingAddOrder } = useSelector((state) => state.customer);
@@ -64,38 +64,48 @@ function ProductInformation() {
   };
 
   const handlePostCart = () => {
-    dispatch(postCart({
-      customerId: Uid,
-      product_ids: [id],
-    })).unwrap()
-      .then(() => {
-        toast.success(t("added-success"), {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: themeMode,
-        });
-      })
-      .catch((error) => {
-        const errorMessages = {
-          409: t("error-exist-cart"),
-          401: t("error-not-authorized-text"),
-          403: t("error-not-customer-text"),
-        };
+    if (parseInt(countOfCartItems) < 10) {
+      dispatch(postCart({
+        customerId: Uid,
+        product_ids: [id],
+      })).unwrap()
+        .then(() => {
+          toast.success(t("added-success"), {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: themeMode,
+          });
+        })
+        .catch((error) => {
+          const errorMessages = {
+            409: t("error-exist-cart"),
+            401: t("error-not-authorized-text"),
+            403: t("error-not-customer-text"),
+          };
 
-        const errorMessage =
-          errorMessages[error.response.status] || error.message;
-        Swal.fire({
-          title: t("error-adding"),
-          text: errorMessage,
-          icon: "error",
-          confirmButtonText: t("ok"),
+          const errorMessage =
+            errorMessages[error.response.status] || error.message;
+          Swal.fire({
+            title: t("error-adding"),
+            text: errorMessage,
+            icon: "error",
+            confirmButtonText: t("ok"),
+          });
         });
+    }
+    else {
+      Swal.fire({
+        title: t("error-adding"),
+        text: t('excceeded-10'),
+        icon: "error",
+        confirmButtonText: t("ok"),
       });
+    }
   };
 
   const handlePostFavorite = () => {
@@ -212,7 +222,20 @@ function ProductInformation() {
                       </label>
                     </Box>))}
                 </Box>
-                <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} data-aos="fade-up"> <Button variant={themeMode === "dark" ? "contained" : "outlined"} onClick={handlePostCart} disabled={loadingPostCart} fullWidth sx={{ whiteSpace: "nowrap" }} > {t('add-to-cart')} </Button> <Button variant={themeMode === "dark" ? "contained" : "outlined"} onClick={handlePostFavorite} disabled={loadingAddtoFavorite} fullWidth sx={{ mx: 2, whiteSpace: "nowrap" }} > {t('add-favorite')} </Button> </CardActions> <Button variant={themeMode === "dark" ? "contained" : "outlined"} onClick={() => toggle()} fullWidth sx={{ mx: 2, whiteSpace: "nowrap" }} disabled={!total_quantity || loadingAddOrder} data-aos="fade-up" > {t('add-order')} </Button>
+                <CardActions sx={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%" }} data-aos="fade-up">
+                  <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                    onClick={handlePostCart}
+                    disabled={loadingPostCart} fullWidth sx={{ whiteSpace: "nowrap" }} >
+                    {t('add-to-cart')} </Button>
+                  <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                    onClick={handlePostFavorite} disabled={loadingAddtoFavorite}
+                    fullWidth sx={{ mx: 2, whiteSpace: "nowrap" }} >
+                    {t('add-favorite')} </Button>
+                </CardActions> <Button variant={themeMode === "dark" ? "contained" : "outlined"}
+                  onClick={() => toggle()} fullWidth sx={{ mx: 2, whiteSpace: "nowrap" }}
+                  disabled={!total_quantity || loadingAddOrder} data-aos="fade-up" >
+                  {t('add-order')}
+                </Button>
               </Grid>
             </Grid>
           </Card>

@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "@state/slices/auth";
 import ModalSignup from "@components/modal";
 import UseThemeMode from "@hooks/use-theme";
+import { resetCartItemsCount } from "@state/slices/cart";
 
 function UseHeaderElements() {
   const { t } = useTranslation();
@@ -61,20 +62,25 @@ function UseHeaderElements() {
       label: t("logout"),
       click: () =>
         dispatch(logOut())
-          .unwrap()
+          .unwrap() // Only necessary if your logOut action returns a promise
           .then(() => {
-            {
-              toast.success(t("logOut-success"), {
-                position: "top-right",
-                autoClose: 1000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: themeMode,
-              });
-            }
+            // Reset cart count after successful logout
+            dispatch(resetCartItemsCount());
+
+            toast.success("Logout successful, cart reset!", {
+              position: "top-right",
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
+          })
+          .catch((error) => {
+            toast.error(t("logout-failed"), {
+              position: "top-right",
+              autoClose: 1000,
+            });
           }),
     },
   ];

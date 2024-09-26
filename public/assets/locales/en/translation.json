@@ -375,5 +375,7 @@
   "delete-carts": "Delete Carts",
   "cart-deleted": "Cart Items has been Deleted Successfully !",
   "exists-in-store": "Count of Products in store is",
-  "order-id-error": "Not Enough inventory exist for product"
+  "order-id-error": "Not Enough inventory exist for product",
+  "excceeded-10": "You cannot add more than 10 products to the cart",
+  "logout-failed": "Logout failed!"
 }

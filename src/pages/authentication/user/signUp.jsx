@@ -5,7 +5,7 @@ import { Form, Formik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 
@@ -48,111 +48,108 @@ function SignUp() {
         navigate("/"))
   }, [])
   return (
-    <div style={{ position: "relative", height: "100vh" }}>
-      <Container maxWidth="sm">
-        {/* <ToastContainer /> */}
-        <Grid container>
-          <Grid item={12}>
-            <Formik
-              initialValues={{
-                ...INITIAL_FORM_STATE_SignUp,
-              }}
-              validationSchema={FORM_VALIDATION_SCHEMA_SignUp}
-              onSubmit={(values) => {
-                console.log(values);
-                console.log(localStorage.getItem("type"))
-                dispatch(
-                  signUp({
-                    username: values.username,
-                    email: values.email,
-                    password: values.password,
-                    role: localStorage.getItem("type"),
-                  })
-                )
-                  .unwrap()
-                  .then(() => {
-                    localStorage.setItem("email", values.email)
-                    {
-                      toast.success(t("signup-success"), {
-                        position: "top-right",
-                        autoClose: 1000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: themeMode,
-                      });
-                    }
-                  })
-                  .catch((error) => {
-                    if (error.response.status === 400) {
-                      Swal.fire({
-                        title: t("error-signup"),
-                        text: t("error-signup-text"),
-                        icon: "error",
-                        confirmButtonText: t("ok"),
-                      });
-                    }
-                  });
-              }}
-            >
-              <Form className={classes.formWrapper}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Typography>
-                      <AppbarHeader>{t("create-account")}</AppbarHeader>
-                    </Typography>
-                  </Grid>{" "}
-                  <Grid item xs={12}>
-                    <TextFieldWrapper
-                      name="username"
-                      type="text"
-                      label={t("username")}
-                    />
-                  </Grid>{" "}
-                  <Grid item xs={12}>
-                    <TextFieldWrapper name="email" label={t("email")} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <PasswordField name="password" label={t("password")} />
-                  </Grid>{" "}
-                  <Grid item xs={12}>
-                    <PasswordField
-                      name="confirm_password"
-                      label={t("confirm-password")}
-                    />
-                  </Grid>
-                  <Grid item xs={6}>
-                    <CheckboxWrapper
-                      name="termsOfService"
-                      legend={t("terms-conditions")}
-                      label={t("i-agree")}
-                    />{" "}
-                  </Grid>{" "}
-                  <Grid item xs={6}>
-                    {/* <PhoneNumber />{" "} */}
-                  </Grid>{" "}
-                  <Grid item xs={12}>
-                    <ButtonWrapper>{t("signup")}</ButtonWrapper>{" "}
-                  </Grid>
-                  <Grid item xs={12} style={{ textAlign: "center" }}>
-                    <Typography component="span">
-                      {t("have-account")}
-                    </Typography>{" "}
-                    <AuthLink>
-                      <Typography component={Link} to="/login">
-                        {t("login")}
-                      </Typography>{" "}
-                    </AuthLink>
-                  </Grid>
+    <Container maxWidth="sm">
+      <Grid container>
+        <Grid item={12}>
+          <Formik
+            initialValues={{
+              ...INITIAL_FORM_STATE_SignUp,
+            }}
+            validationSchema={FORM_VALIDATION_SCHEMA_SignUp}
+            onSubmit={(values) => {
+              console.log(values);
+              console.log(localStorage.getItem("type"))
+              dispatch(
+                signUp({
+                  username: values.username,
+                  email: values.email,
+                  password: values.password,
+                  role: localStorage.getItem("type"),
+                })
+              )
+                .unwrap()
+                .then(() => {
+                  localStorage.setItem("email", values.email)
+                  {
+                    toast.success(t("signup-success"), {
+                      position: "top-right",
+                      autoClose: 1000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: themeMode,
+                    });
+                  }
+                })
+                .catch((error) => {
+                  if (error.response.status === 400) {
+                    Swal.fire({
+                      title: t("error-signup"),
+                      text: t("error-signup-text"),
+                      icon: "error",
+                      confirmButtonText: t("ok"),
+                    });
+                  }
+                });
+            }}
+          >
+            <Form className={classes.formWrapper}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Typography>
+                    <AppbarHeader>{t("create-account")}</AppbarHeader>
+                  </Typography>
                 </Grid>{" "}
-              </Form>
-            </Formik>
-          </Grid>
+                <Grid item xs={12}>
+                  <TextFieldWrapper
+                    name="username"
+                    type="text"
+                    label={t("username")}
+                  />
+                </Grid>{" "}
+                <Grid item xs={12}>
+                  <TextFieldWrapper name="email" label={t("email")} />
+                </Grid>
+                <Grid item xs={12}>
+                  <PasswordField name="password" label={t("password")} />
+                </Grid>{" "}
+                <Grid item xs={12}>
+                  <PasswordField
+                    name="confirm_password"
+                    label={t("confirm-password")}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <CheckboxWrapper
+                    name="termsOfService"
+                    legend={t("terms-conditions")}
+                    label={t("i-agree")}
+                  />{" "}
+                </Grid>{" "}
+                <Grid item xs={6}>
+                  {/* <PhoneNumber />{" "} */}
+                </Grid>{" "}
+                <Grid item xs={12}>
+                  <ButtonWrapper>{t("signup")}</ButtonWrapper>{" "}
+                </Grid>
+                <Grid item xs={12} style={{ textAlign: "center" }}>
+                  <Typography component="span">
+                    {t("have-account")}
+                  </Typography>{" "}
+                  <AuthLink>
+                    <Typography component={Link} to="/login">
+                      {t("login")}
+                    </Typography>{" "}
+                  </AuthLink>
+                </Grid>
+              </Grid>{" "}
+            </Form>
+          </Formik>
         </Grid>
-      </Container>
-    </div>
+      </Grid>
+    </Container>
   );
 }
 

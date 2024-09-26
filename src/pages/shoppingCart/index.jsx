@@ -2,7 +2,6 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 
 import { Box, Container, TextField, Button, Grid } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useSelector, useDispatch } from "react-redux"
@@ -344,8 +343,6 @@ function ShoppingCart() {
                     variant={themeMode === "dark" ? "contained" : "outlined"}
                     disabled={loadingAddOrder}
                     fullWidth
-
-
                   >{t('place-order-all')}</Button>
                 </Grid>
                 <Grid item xs={12} md={6}>
