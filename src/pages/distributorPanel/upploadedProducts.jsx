@@ -98,6 +98,22 @@ function UploadedProducts() {
       width: 200, headerAlign: "center", align: "center",
     },
     {
+      field: "albums", headerName: t("view-albums"),
+      headerAlign: "center", align: "center",
+      width: 200,
+      renderCell: (params) =>
+      (
+        <Button
+          variant={themeMode === "dark" ? "contained" : "outlined"}
+          color="success"
+          component={Link}
+          to={`/distributor-control-panel/albums/${params.row.id}`}
+        >
+          {t("view")}
+        </Button>
+      ),
+    },
+    {
       field: "view", headerName: t("view-product"),
       headerAlign: "center", align: "center",
       width: 200,
@@ -152,6 +168,7 @@ function UploadedProducts() {
     view: t("view-product"),
     edit: t('edit'),
     delete: t("delete"),
+    albums: t("albums"),
   }));
 
   return (

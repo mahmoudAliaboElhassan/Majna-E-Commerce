@@ -117,6 +117,11 @@ function UseInitialStates() {
     loadingUpdateOrderStatus: false,
   };
 
+  const initalStateAlbumItems = {
+    albumItems: [],
+    loadingGetAlbumItems: false,
+  };
+
   return {
     initialStateMode,
     initialStateAuth,
@@ -129,6 +134,7 @@ function UseInitialStates() {
     initialStateCustomer,
     initialStatePage,
     initialStateDelivery,
+    initalStateAlbumItems,
   };
 }
 

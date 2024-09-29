@@ -72,6 +72,9 @@ const EditProduct = React.lazy(() =>
 const EditProductAlbum = React.lazy(() =>
   import("@pages/distributorPanel/editProductAlbum")
 );
+const Albums = React.lazy(() =>
+  import("@pages/distributorPanel/albums")
+);
 
 // const CardProductDetails = React.lazy(() =>
 //   import("@pages/distributorPanel/productDetails")
@@ -219,6 +222,14 @@ const router = createBrowserRouter([
             element: (
               <Suspense fallback={<Loader />}>
                 <UploadedProducts />
+              </Suspense>
+            ),
+          },
+          {
+            path: "albums/:productId",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Albums />
               </Suspense>
             ),
           },
