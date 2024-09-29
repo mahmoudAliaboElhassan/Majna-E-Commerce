@@ -27,11 +27,10 @@ export const albumSlice = createSlice({
       })
       .addCase(getAlbumItems.fulfilled, (state, action) => {
         state.loadingGetAlbumItems = false;
-        state.albumItems=action.payload.album_items
+        state.albumItems = action.payload.album_items;
       })
       .addCase(getAlbumItems.rejected, (state, action) => {
-         state.loadingGetAlbumItems = false;
-         
+        state.loadingGetAlbumItems = false;
       });
     //   .addCase(signUp.pending, (state, action) => {
     //     state.loading = true; // Fix the typo here
