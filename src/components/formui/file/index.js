@@ -31,7 +31,7 @@ const FileInput = ({ name, label, ...otherProps }) => {
     style: { display: "none" }, // Hide the original input
     onChange: handleChange,
     type: "file",
-    accept: ".pdf",
+    // accept: ".pdf",
     fullWidth: true,
   };
 

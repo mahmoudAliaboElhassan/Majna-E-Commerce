@@ -120,6 +120,12 @@ function UseInitialStates() {
   const initalStateAlbumItems = {
     albumItems: [],
     loadingGetAlbumItems: false,
+    loadingDeleteAlbumItem: false,
+    loadingSpecifiedAlbumItem: false,
+    loadingAddAlbumItem: false,
+    imgUrl: null,
+    imgIsCover: null,
+    countOfAlbumItems: 0,
   };
 
   return {

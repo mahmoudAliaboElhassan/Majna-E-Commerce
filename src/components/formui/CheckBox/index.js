@@ -14,13 +14,15 @@ import { Link } from "react-router-dom";
 import { Colors } from "@styles/theme";
 import UseThemMode from "@hooks/use-theme";
 
-const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
+const CheckboxWrapper = ({ name, label, legend, from, ...otherProps }) => {
   const { setFieldValue } = useFormikContext();
   const [field, meta] = useField(name);
 
   const handleChange = (evt) => {
     const { checked } = evt.target;
-    setFieldValue(name, checked);
+    if (from === "add-album") {
+      setFieldValue(name, checked === true ? "True" : "False");
+    } else setFieldValue(name, checked);
   };
 
   const { themeMode } = UseThemMode();
@@ -52,14 +54,16 @@ const CheckboxWrapper = ({ name, label, legend, ...otherProps }) => {
           whiteSpace: "nowrap",
         }}
       >
-        <Link
-          title={t("terms-conditions")}
-          to="/terms-conditions"
-          style={{ textDecoration: "underline" }}
-        >
-          {" "}
-          {legend}
-        </Link>
+        {from !== "add-album" && (
+          <Link
+            title={t("terms-conditions")}
+            to="/terms-conditions"
+            style={{ textDecoration: "underline" }}
+          >
+            {" "}
+            {legend}
+          </Link>
+        )}
       </FormLabel>
       <FormGroup>
         <FormControlLabel

@@ -48,8 +48,8 @@ export const getAlbumItem = createAsyncThunk(
   }
 );
 // update album
-export const updateAlbmItem = createAsyncThunk(
-  "albumSlice/getAlbumItems",
+export const updateAlbumItem = createAsyncThunk(
+  "albumSlice/updateAlbumItem",
   async ({ albumId, productId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
@@ -72,8 +72,8 @@ export const updateAlbmItem = createAsyncThunk(
   }
 );
 // delete album
-export const deleteAlbumItem = createAsyncThunk(
-  "albumSlice/getAlbumItems",
+export const deleteAlbum = createAsyncThunk(
+  "albumSlice/deleteAlbum",
   async ({ albumId, productId }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
@@ -97,12 +97,13 @@ export const deleteAlbumItem = createAsyncThunk(
 );
 // ADD album
 export const addAlbumItem = createAsyncThunk(
-  "albumSlice/getAlbumItems",
-  async ({ albumId, productId }, thunkAPI) => {
+  "albumSlice/addAlbumItem",
+  async ({ productId, ...rest }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnAPI.delete(
-        `api/products/${productId}/album-items/${albumId}`
+      const res = await majnaFiles.post(
+        `api/products/${productId}/album-items`,
+        rest
       );
       console.log("from slice res is for add product");
       console.log(res);

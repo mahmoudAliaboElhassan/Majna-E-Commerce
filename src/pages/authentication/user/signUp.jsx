@@ -126,7 +126,7 @@ function SignUp() {
                     name="termsOfService"
                     legend={t("terms-conditions")}
                     label={t("i-agree")}
-                  />{" "}
+                  />
                 </Grid>{" "}
                 <Grid item xs={6}>
                   {/* <PhoneNumber />{" "} */}

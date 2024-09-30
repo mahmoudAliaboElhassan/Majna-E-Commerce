@@ -90,6 +90,10 @@ function UseInitialValues(props) {
       },
     ],
   };
+  const INITAL_FORM_STATE_ADD_ALBUM = {
+    image: null,
+    is_cover: "False",
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -107,6 +111,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_ADD_ADDRESS,
     INITIAL_FORM_STATE_Edit_ADDRESS,
     INITIAL_FORM_STATE_ADD_ORDER,
+    INITAL_FORM_STATE_ADD_ALBUM,
   };
 }
 

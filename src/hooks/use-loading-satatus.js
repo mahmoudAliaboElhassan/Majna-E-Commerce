@@ -13,6 +13,7 @@ function UseLoadingStatus() {
   } = useSelector((state) => state.distributor);
   const { loadingAddAddress, loadingEditAddress, loadingAddOrder } =
     useSelector((state) => state.customer);
+    const{loadingAddAlbumItem}=useSelector((state)=>state.album)
   const loadinStatus =
     loading ||
     loadingAddBrand ||
@@ -22,7 +23,7 @@ function UseLoadingStatus() {
     loadingUpdateProduct ||
     loadingAddAddress ||
     loadingEditAddress ||
-    loadingAddOrder;
+    loadingAddOrder||loadingAddAlbumItem;
   return Boolean(loadinStatus);
 }
 

@@ -8,6 +8,7 @@ function UseLoadingStatusUpdateDeleteBtn() {
   );
   const { loadingEditCartQuantity, loadingDeleteCart, loadingDeleteFavorite } =
     useSelector((state) => state.cart);
+  const { loadingDeleteAlbumItem } = useSelector((state) => state.album);
   const { loadingDeleteAddress } = useSelector((state) => state.customer);
   const LoadingStatusDeleteUpdate =
     loadingDeleteStore ||
@@ -15,7 +16,8 @@ function UseLoadingStatusUpdateDeleteBtn() {
     loadingEditCartQuantity ||
     loadingDeleteCart ||
     loadingDeleteFavorite ||
-    loadingDeleteAddress;
+    loadingDeleteAddress ||
+    loadingDeleteAlbumItem;
   return Boolean(LoadingStatusDeleteUpdate);
 }
 
