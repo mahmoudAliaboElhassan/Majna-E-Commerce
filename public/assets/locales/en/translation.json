@@ -393,5 +393,11 @@
   "album-img": "Image",
   "add-album-now": "Add Image for your Product Now",
   "is-cover": "Make it Cover",
-  "add-album-item": "Add Image for the Product"
+  "add-album-item": "Add Image for the Product",
+  "img-is-cover": "The image is the cover",
+  "img-isnot-cover": "The image is not the cover",
+  "change-to-cover": "Make the image for the cover",
+  "image-cover-changed": "Image has been Become The Cover !",
+  "image-updated": "Image has Been Updated Successfully !",
+  "upload-new-image": "Update the Image"
 }

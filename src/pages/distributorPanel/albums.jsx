@@ -9,12 +9,12 @@ import Swal from "sweetalert2";
 import { DataGrid } from "@mui/x-data-grid";
 
 import "@pages/shoppingCart/style.css"
+import { DataGridContainer } from "@styles/dataGrid"
 import LoadingFetching from "@components/loadingFetching";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import { getAlbumItems, deleteAlbum } from '@state/slices/album'
 import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
-
 
 function Albums() {
     const dispatch = useDispatch()
@@ -178,24 +178,24 @@ function Albums() {
             ) : (
                 <>
                     <AppbarHeader data-aos="fade-up">{t("product-albums")}</AppbarHeader>
-                    {/* <DataGridContainer> */}
-                    <DataGrid
-                        rows={rows}
-                        columns={columns}
-                        initialState={{
-                            pagination: {
-                                paginationModel: {
-                                    pageSize: 5,
+                    <DataGridContainer>
+                        <DataGrid
+                            rows={rows}
+                            columns={columns}
+                            initialState={{
+                                pagination: {
+                                    paginationModel: {
+                                        pageSize: 5,
+                                    },
                                 },
-                            },
-                        }}
-                        pageSizeOptions={[5, 10, 15, 20]}
-                        checkboxSelection
-                        disableRowSelectionOnClick
-                        rowHeight={200}
-                    // pagination={false}
-                    />
-                    {/* </DataGridContainer> */}
+                            }}
+                            pageSizeOptions={[5, 10, 15, 20]}
+                            checkboxSelection
+                            disableRowSelectionOnClick
+                            rowHeight={200}
+                        // pagination={false}
+                        />
+                    </DataGridContainer>
                 </>
             )
             }

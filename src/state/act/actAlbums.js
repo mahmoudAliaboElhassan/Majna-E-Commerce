@@ -50,11 +50,12 @@ export const getAlbumItem = createAsyncThunk(
 // update album
 export const updateAlbumItem = createAsyncThunk(
   "albumSlice/updateAlbumItem",
-  async ({ albumId, productId }, thunkAPI) => {
+  async ({ albumId, productId, ...values }, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
     try {
-      const res = await majnaFiles.put(
-        `api/products/${productId}/album-items/${albumId}`
+      const res = await majnaFiles.patch(
+        `api/products/${productId}/album-items/${albumId}`,
+        values
       );
       console.log("from slice res is for add product");
       console.log(res);

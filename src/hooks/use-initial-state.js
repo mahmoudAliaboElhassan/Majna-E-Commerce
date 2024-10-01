@@ -123,9 +123,11 @@ function UseInitialStates() {
     loadingDeleteAlbumItem: false,
     loadingSpecifiedAlbumItem: false,
     loadingAddAlbumItem: false,
+    loadingUpdateImageCover: false,
     imgUrl: null,
     imgIsCover: null,
     countOfAlbumItems: 0,
+    flag: 0,
   };
 
   return {

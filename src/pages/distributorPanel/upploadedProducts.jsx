@@ -12,6 +12,7 @@ import "@pages/shoppingCart/style.css"
 import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
 import { NoCount, NoCountContainer } from "@styles/products";
+import { DataGridContainer } from "@styles/dataGrid"
 import LoadingFetching from "@components/loadingFetching";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
 import { getUploadedProducts, deleteUploadedProduct, cleanUpUploadedProducts } from "@state/slices/distributor";
@@ -179,25 +180,24 @@ function UploadedProducts() {
         ) : countOfUploadedProducts ? (
           <>
             <AppbarHeader data-aos="fade-up">{t("uploaded-products")}</AppbarHeader>
-            <Box sx={{ width: '100%', overflowX: 'auto' }}>
-              <Box sx={{ minWidth: 1000 }}>
-                <DataGrid
-                  rows={rows}
-                  columns={columns}
-                  initialState={{
-                    pagination: {
-                      paginationModel: {
-                        pageSize: 5,
-                      },
+            <DataGridContainer>
+
+              <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                  pagination: {
+                    paginationModel: {
+                      pageSize: 5,
                     },
-                  }}
-                  pageSizeOptions={[5, 10, 15, 20]}
-                  checkboxSelection
-                  disableRowSelectionOnClick
-                  rowHeight={120}
-                />
-              </Box>
-            </Box>
+                  },
+                }}
+                pageSizeOptions={[5, 10, 15, 20]}
+                checkboxSelection
+                disableRowSelectionOnClick
+                rowHeight={120}
+              />
+            </DataGridContainer>
           </>
         ) : (
           <NoCountContainer>
@@ -207,7 +207,7 @@ function UploadedProducts() {
           </NoCountContainer >
         )}
       </Container>
-    </Box>
+    </Box >
   );
 }
 

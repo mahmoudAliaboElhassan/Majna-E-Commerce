@@ -28,7 +28,7 @@ export const albumSlice = createSlice({
         state.loadingGetAlbumItems = false;
       })
       .addCase(deleteAlbum.pending, (state, action) => {
-        state.loadingDeleteAlbumItem = true; // Fix the typo here
+        state.loadingDeleteAlbumItem = true;
       })
       .addCase(deleteAlbum.fulfilled, (state, action) => {
         state.loadingDeleteAlbumItem = false;
@@ -38,7 +38,7 @@ export const albumSlice = createSlice({
         state.loadingDeleteAlbumItem = false;
       })
       .addCase(addAlbumItem.pending, (state, action) => {
-        state.loadingAddAlbumItem = true; // Fix the typo here
+        state.loadingAddAlbumItem = true;
       })
       .addCase(addAlbumItem.fulfilled, (state, action) => {
         state.loadingAddAlbumItem = false;
@@ -47,7 +47,7 @@ export const albumSlice = createSlice({
         state.loadingAddAlbumItem = false;
       })
       .addCase(getAlbumItem.pending, (state) => {
-        state.loadingSpecifiedAlbumItem = true; // Fix the typo here
+        state.loadingSpecifiedAlbumItem = true;
       })
       .addCase(getAlbumItem.fulfilled, (state, action) => {
         state.loadingSpecifiedAlbumItem = false;
@@ -56,6 +56,16 @@ export const albumSlice = createSlice({
       })
       .addCase(getAlbumItem.rejected, (state, action) => {
         state.loadingSpecifiedAlbumItem = false;
+      })
+      .addCase(updateAlbumItem.pending, (state) => {
+        state.loadingUpdateImageCover = true;
+      })
+      .addCase(updateAlbumItem.fulfilled, (state, action) => {
+        state.loadingUpdateImageCover = false;
+        state.flag += 1;
+      })
+      .addCase(updateAlbumItem.rejected, (state, action) => {
+        state.loadingUpdateImageCover = false;
       });
   },
 });

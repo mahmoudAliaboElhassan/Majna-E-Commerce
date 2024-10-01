@@ -391,5 +391,11 @@
   "album-img": "الصوره",
   "add-album-now": "أضف صوره لمنتجك الآن",
   "is-cover": "إجعلها الغلاف",
-  "add-album-item": "أضف صوره للمنتج"
+  "add-album-item": "أضف صوره للمنتج",
+  "img-is-cover": "الصوره هي الغلاف",
+  "img-isnot-cover": "الصوره ليست الغلاف",
+  "change-to-cover": "إجعل الصوره للغلاف",
+  "image-cover-changed": "لقد أصبحت الصورة هي الغلاف!",
+  "image-updated": "تم تعديل الصوره بنجاح !",
+  "upload-new-image": "تعديل الصوره"
 }

@@ -49,7 +49,6 @@ function AddAlbum() {
 
     return (
         <div style={{ position: "relative", height: "100vh" }}>
-
             <Container maxWidth="sm" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
                 <Card raised>
                     <Container maxWidth="md">
