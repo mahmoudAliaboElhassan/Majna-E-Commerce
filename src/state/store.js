@@ -23,7 +23,7 @@ import customerSlice from "@state/slices/customer";
 import PageSlice from "@state/slices/page";
 import deliverySlice from "@state/slices/delivery";
 import albumSlice from "@state/slices/album";
-import { productReview } from "./slices/reviews";
+import productReview from "@state/slices/reviews";
 
 const rootPersistConfig = {
   key: "root",

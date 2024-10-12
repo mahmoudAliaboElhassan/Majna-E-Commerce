@@ -94,6 +94,10 @@ function UseInitialValues(props) {
     image: null,
     is_cover: "False",
   };
+  const INITIAL_FORM_STATE_ADD_REVIEW = {
+    rating: null,
+    content: null,
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -112,6 +116,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_Edit_ADDRESS,
     INITIAL_FORM_STATE_ADD_ORDER,
     INITAL_FORM_STATE_ADD_ALBUM,
+    INITIAL_FORM_STATE_ADD_REVIEW,
   };
 }
 

@@ -156,8 +156,10 @@
   "info-address": "Removing this Address means deleting it from your Addresses list",
   "deleting-cart": "Cart is Deleted Successfully !",
   "deleting-store": "Store is Deleted Successfully !",
+  "deleting-review": "Review is Deleted Successfully !",
   "keeping-cart": "Cart still Exists in your Shopping Cart !",
   "keeping-store": "Store still Exists in your Stores List !",
+  "keeping-review": "Review still Exists",
   "wait-carts": "Wait for all Carts to Load ...",
   "no-carts": "No Carts Added Yet",
   "cart-id": "Cart Id",
@@ -399,5 +401,15 @@
   "change-to-cover": "Make the image for the cover",
   "image-cover-changed": "Image has been Become The Cover !",
   "image-updated": "Image has Been Updated Successfully !",
-  "upload-new-image": "Update the Image"
+  "upload-new-image": "Update the Image",
+  "all-reviews": "Here are All Reviews to This Product",
+  "content": "Review Content",
+  "add-review": "Add Review",
+  "rating": "Rating",
+  "review-added": "The review has been added successfully",
+  "error-adding-review": "Error adding review",
+  "review-exists": "You have already added a review",
+  "error-not-authorized-review": "Log in first as Customer before adding a review",
+  "product-not-deliverd": "You cannot add a rating before purchasing it and delivering it to you. After that, you can add a rating",
+  "info-review": "Are you sure you want to delete this review?"
 }

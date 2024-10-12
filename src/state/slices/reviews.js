@@ -21,12 +21,27 @@ export const productReview = createSlice({
         state.loadingGetRevies = true;
       })
       .addCase(getReviews.fulfilled, (state, action) => {
-        state.reviews = action.payload;
+        state.reviews = action.payload.results;
         state.loadingGetRevies = false;
+        state.countOfReviews = action.payload.results?.length;
       })
       .addCase(getReviews.rejected, (state) => {
         state.loadingGetRevies = false;
-      });
+      })
+      .addCase(addReview.pending, (state) => {
+        state.loadingAddReview = true;
+      })
+      .addCase(addReview.fulfilled, (state, action) => {
+        state.reviews = action.payload.results;
+        state.loadingAddReview = false;
+        state.countOfReviews++;
+      })  
+      .addCase(addReview.rejected, (state) => {
+        state.loadingAddReview = false;
+      })
+      .addCase(deleteSpecifiedReview.fulfilled, (state) => {
+        state.countOfReviews--;
+      })
   },
 });
 

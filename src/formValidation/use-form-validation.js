@@ -297,6 +297,12 @@ function UseFormValidation() {
     image: Yup.mixed().required("Image is required"),
     is_cover: Yup.string().required(""),
   });
+  const FORM_VALIDATION_SCHEMA_ADD_REVIEW = Yup.object().shape({
+    rating: Yup.mixed().required("rating for this review is required"),
+    content: Yup.string()
+      .required("Content for your review is required")
+      .min(10, "minimum number of characters is 10"),
+  });
 
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
@@ -316,6 +322,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_EDIT_ADDRESS,
     FORM_VALIDATION_SCHEMA_ADD_ORDER,
     FORM_VALIDATION_SCHEMA_ADD_ALBUM,
+    FORM_VALIDATION_SCHEMA_ADD_REVIEW,
   };
 }
 

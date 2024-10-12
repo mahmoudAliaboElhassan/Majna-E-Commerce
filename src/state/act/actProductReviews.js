@@ -8,10 +8,7 @@ export const addReview = createAsyncThunk(
     const { rejectWithValue } = thunkAPI;
 
     try {
-      const res = await majnAPI.post(
-        `api/products/${productId}/reviews/`,
-        rest
-      );
+      const res = await majnAPI.post(`api/products/${productId}/reviews`, rest);
       console.log("from slice res is");
       console.log(res);
       return res;

@@ -18,10 +18,10 @@ import PasswordField from "@components/formui/passwordField";
 import AuthLink from "@components/formui/authLink";
 import ModalSignup from "@components/modal";
 import UseFormValidation from "@formValidation/use-form-validation";
-import UseThemMode from "@hooks/use-theme";
 import UseInitialValues from "@utils/use-initial-values";
-import { ResendConfirmation, logIn } from "@state/slices/auth";
+import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
+import { ResendConfirmation, logIn } from "@state/slices/auth";
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
     marginTop: theme.spacing(5),

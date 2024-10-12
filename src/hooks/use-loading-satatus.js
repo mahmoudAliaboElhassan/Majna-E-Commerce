@@ -14,6 +14,7 @@ function UseLoadingStatus() {
   const { loadingAddAddress, loadingEditAddress, loadingAddOrder } =
     useSelector((state) => state.customer);
     const{loadingAddAlbumItem}=useSelector((state)=>state.album)
+    const{loadingAddReview}=useSelector((state)=>state.review)
   const loadinStatus =
     loading ||
     loadingAddBrand ||
@@ -23,7 +24,7 @@ function UseLoadingStatus() {
     loadingUpdateProduct ||
     loadingAddAddress ||
     loadingEditAddress ||
-    loadingAddOrder||loadingAddAlbumItem;
+    loadingAddOrder||loadingAddAlbumItem||loadingAddReview;
   return Boolean(loadinStatus);
 }
 
