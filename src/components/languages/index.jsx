@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import Cookies from "js-cookie";
+import i18next from "i18next";
 import { IconButton, Divider, MenuItem, Menu } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
-import i18next from "i18next";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";

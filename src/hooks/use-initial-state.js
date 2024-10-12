@@ -129,6 +129,10 @@ function UseInitialStates() {
     countOfAlbumItems: 0,
     flag: 0,
   };
+  const initialStateProductReview = {
+    reviews: [],
+    loadingGetRevies: false,
+  };
 
   return {
     initialStateMode,
@@ -143,6 +147,7 @@ function UseInitialStates() {
     initialStatePage,
     initialStateDelivery,
     initalStateAlbumItems,
+    initialStateProductReview,
   };
 }
 

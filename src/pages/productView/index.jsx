@@ -239,7 +239,7 @@ function ProductInformation() {
               </Grid>
             </Grid>
           </Card>
-          <Reviews />
+          <Reviews productId={productId} />
         </Container>)}
       <ModalOrder openModalOrder={open_modal_order} close={closeModalOrder} productId={productId} maxNumber={total_quantity} price={price} productName={name} />
       <Footer /> </>);
