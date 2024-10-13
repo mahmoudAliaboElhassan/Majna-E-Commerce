@@ -303,6 +303,12 @@ function UseFormValidation() {
       .required("Content for your review is required")
       .min(10, "minimum number of characters is 10"),
   });
+  const FORM_VALIDATION_SCHEMA_EDIT_REVIEW = Yup.object().shape({
+    ratingEdit: Yup.mixed().required("rating for this review is required"),
+    contentEdit: Yup.string()
+      .required("Content for your review is required")
+      .min(10, "minimum number of characters is 10"),
+  });
 
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
@@ -323,6 +329,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_ADD_ORDER,
     FORM_VALIDATION_SCHEMA_ADD_ALBUM,
     FORM_VALIDATION_SCHEMA_ADD_REVIEW,
+    FORM_VALIDATION_SCHEMA_EDIT_REVIEW,
   };
 }
 

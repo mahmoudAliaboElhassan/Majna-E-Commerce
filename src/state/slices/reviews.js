@@ -35,13 +35,33 @@ export const productReview = createSlice({
         state.reviews = action.payload.results;
         state.loadingAddReview = false;
         state.countOfReviews++;
-      })  
+      })
       .addCase(addReview.rejected, (state) => {
         state.loadingAddReview = false;
       })
       .addCase(deleteSpecifiedReview.fulfilled, (state) => {
         state.countOfReviews--;
       })
+      .addCase(getSpecifiedReview.pending, (state, action) => {
+        state.loadingGetReview = true;
+      })
+      .addCase(getSpecifiedReview.fulfilled, (state, action) => {
+        state.loadingGetReview = false;
+        state.reviewRating = action.payload.rating;
+        state.reviewContent = action.payload.content;
+      })
+      .addCase(getSpecifiedReview.rejected, (state, action) => {
+        state.loadingGetReview = false;
+      })
+      .addCase(updateSpecifiedReview.pending, (state, action) => {
+        state.loadingUpdateReview = true;
+      })
+      .addCase(updateSpecifiedReview.fulfilled, (state, action) => {
+        state.loadingUpdateReview = false;
+      })
+      .addCase(updateSpecifiedReview.rejected, (state, action) => {
+        state.loadingUpdateReview = false;
+      });
   },
 });
 

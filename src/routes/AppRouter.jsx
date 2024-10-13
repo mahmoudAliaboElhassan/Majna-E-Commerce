@@ -118,6 +118,7 @@ const SpecificOrder = React.lazy(() => import("@pages/deliveryPanel/specificOrde
 const Payment = React.lazy(() => import("@pages/payment"));
 const PaymentSuccess = React.lazy(() => import("@pages/payment/paymentSucces"));
 const TermsConditions = React.lazy(() => import("@pages/termsConditions"))
+const UpdateReview = React.lazy(() => import("@pages/updateReview"))
 const router = createBrowserRouter([
   {
     path: "/",
@@ -313,6 +314,14 @@ const router = createBrowserRouter([
             ),
           },
         ],
+      },
+      {
+        path: "update-review/:productId/:reviewId",
+        element: (
+          <Suspense fallback={<Loader />}>
+            <UpdateReview />
+          </Suspense>
+        )
       },
       {
         path: "customer-control-panel",

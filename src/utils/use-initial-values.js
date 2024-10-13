@@ -98,6 +98,10 @@ function UseInitialValues(props) {
     rating: null,
     content: null,
   };
+  const INITIAL_FORM_STATE_EDIT_REVIEW = {
+    contentEdit: props?.reviewContent,
+    ratingEdit: props?.reviewRating,
+  };
   return {
     INITIAL_FORM_STATE_Login,
     INITIAL_FORM_STATE_SignUp,
@@ -117,6 +121,7 @@ function UseInitialValues(props) {
     INITIAL_FORM_STATE_ADD_ORDER,
     INITAL_FORM_STATE_ADD_ALBUM,
     INITIAL_FORM_STATE_ADD_REVIEW,
+    INITIAL_FORM_STATE_EDIT_REVIEW,
   };
 }
 

@@ -411,5 +411,10 @@
   "review-exists": "You have already added a review",
   "error-not-authorized-review": "Log in first as Customer before adding a review",
   "product-not-deliverd": "You cannot add a rating before purchasing it and delivering it to you. After that, you can add a rating",
-  "info-review": "Are you sure you want to delete this review?"
+  "info-review": "Are you sure you want to delete this review?",
+  "delete-review": "Delete Review",
+  "update-review": "Update Review",
+  "wait-review": "Wait for Review Data to Load ...",
+  "review-updated": "The review has Updated added successfully",
+  "loading-reviews": "Wait for product reviews to load..."
 }

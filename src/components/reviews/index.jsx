@@ -10,17 +10,21 @@ import {
 import { useTranslation } from 'react-i18next';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from "sweetalert2";
+import UpdateIcon from '@mui/icons-material/Update';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import { getReviews, deleteSpecifiedReview } from "@state/slices/reviews"
 import AddReview from '@components/reviews/addReview';
 import "@pages/shoppingCart/style.css"
-import { toast } from 'react-toastify';
+import LoadingFetching from '@components/loadingFetching';
+
 
 function Reviews({ productId }) {
     const { t } = useTranslation()
     const [showForm, setShowForm] = useState(false)
     const { Uid } = useSelector((state) => state.auth)
-    const { reviews, countOfReviews } = useSelector((state) => state.review)
+    const { reviews, countOfReviews, loadingGetRevies } = useSelector((state) => state.review)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getReviews({ productId }))
@@ -62,32 +66,39 @@ function Reviews({ productId }) {
         <Container style={{ marginTop: "16px" }}>
             <div>
                 {reviews?.length && <>
-                    <Typography variant="h5" style={{ textAlign: "center", marginBottom: "8px" }}>{t("all-reviews")}</Typography>
-                    <Box>
-                        {reviews.map(({ rating, content, customer, id }) => (
-                            <>
-                                <Card raised style={{ padding: "16px" }}>
-                                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                                        <div>
-                                            <Typography variant="body">{content}</Typography>
-                                            <div>
-                                                {[...Array(rating)]?.map((_, index) => (
-                                                    <StarIcon sx={{ color: "yellow", fontSize: "2.5rem" }} />
-                                                ))}
-                                            </div>
 
-                                        </div>
-                                        {Uid == customer && (
-                                            <IconButton onClick={() => handleDeleteReview(id)}>
-                                                <DeleteIcon style={{ color: "#b81717", fontSize: "2.1rem" }} />
-                                            </IconButton>
-                                        )}
-                                    </div>
-                                </Card>
-                                <Divider color="white" variant="middle" />
-                            </>
-                        ))}
-                    </Box>
+                    {loadingGetRevies ? <LoadingFetching>{t("loading-reviews")}</LoadingFetching>
+                        : (<><Typography variant="h5" style={{ textAlign: "center", marginBottom: "8px" }}>{t("all-reviews")}</Typography>
+                            <Box>
+                                {reviews.map(({ rating, content, customer_id, id }) => (
+                                    <>
+                                        <Card raised style={{ padding: "16px" }}>
+                                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                                                <div>
+                                                    <Typography variant="body">{content}</Typography>
+                                                    <div>
+                                                        {[...Array(rating)]?.map((_, index) => (
+                                                            <StarIcon sx={{ color: "yellow", fontSize: "2.5rem" }} />
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                                {Uid == customer_id && (
+                                                    <div>
+                                                        <IconButton onClick={() => handleDeleteReview(id)} title={t("delete-review")}>
+                                                            <DeleteIcon style={{ color: "#b81717", fontSize: "2.1rem" }} />
+                                                        </IconButton>
+                                                        <IconButton component={Link} title={t("update-review")}
+                                                            to={`/update-review/${productId}/${id}`} >
+                                                            <UpdateIcon style={{ fontSize: "2.1rem" }} />
+                                                        </IconButton>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </Card>
+                                        <Divider color="white" variant="middle" />
+                                    </>
+                                ))}
+                            </Box></>)}
                 </>
                 }
             </div>

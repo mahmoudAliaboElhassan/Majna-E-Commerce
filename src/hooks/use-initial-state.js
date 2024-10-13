@@ -132,7 +132,11 @@ function UseInitialStates() {
   const initialStateProductReview = {
     reviews: [],
     loadingGetRevies: false,
+    loadingGetReview: false,
     loadingAddReview: false,
+    loadingUpdateReview: false,
+    reviewRating: null,
+    reviewContent: null,
     countOfReviews: null,
   };
 
