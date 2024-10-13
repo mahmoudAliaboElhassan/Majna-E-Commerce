@@ -18,9 +18,16 @@ export const authSlice = createSlice({
   initialState: initialStateAuth,
   reducers: {
     handlelogOutState: (state) => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("type");
+      localStorage.removeItem("role");
+      localStorage.removeItem("expired");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("countOfCartItem");
       state.token = "";
-      state.role = "";
       state.expireToken = "";
+      state.role = "";
+      state.Uid = "";
     },
   },
   extraReducers: (builder) => {
@@ -113,6 +120,7 @@ export const authSlice = createSlice({
         state.token = "";
         state.role = "";
         state.expireToken = "";
+        state.Uid = "";
         console.log(`token in logout is ${state.token}`);
       })
       .addCase(logOut.rejected, (state, action) => {

@@ -60,6 +60,7 @@ function RootLayout() {
           localStorage.removeItem("token");
           localStorage.removeItem("role");
           localStorage.removeItem("expired");
+          localStorage.removeItem("userId");
           dispatch(handlelogOutState())
           clearInterval(interval);
         }

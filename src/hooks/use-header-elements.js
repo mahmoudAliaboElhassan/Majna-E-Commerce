@@ -8,13 +8,13 @@ import { logOut } from "@state/slices/auth";
 import ModalSignup from "@components/modal";
 import UseThemeMode from "@hooks/use-theme";
 import { resetCartItemsCount } from "@state/slices/cart";
+import { handlelogOutState } from "@state/slices/auth";
 
 function UseHeaderElements() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { themeMode } = UseThemeMode();
   const { token, role } = useSelector((state) => state.auth);
-  const [open_modal, setOpenModal] = useState(false);
 
   const HeaderElements = [
     {
@@ -66,7 +66,7 @@ function UseHeaderElements() {
           .then(() => {
             // Reset cart count after successful logout
             dispatch(resetCartItemsCount());
-
+            dispatch(handlelogOutState());
             toast.success("Logout successful, cart reset!", {
               position: "top-right",
               autoClose: 1000,

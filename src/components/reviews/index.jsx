@@ -65,12 +65,12 @@ function Reviews({ productId }) {
     return (
         <Container style={{ marginTop: "16px" }}>
             <div>
-                {reviews?.length && <>
+                {reviews?.length !== 0 && <>
 
                     {loadingGetRevies ? <LoadingFetching>{t("loading-reviews")}</LoadingFetching>
                         : (<><Typography variant="h5" style={{ textAlign: "center", marginBottom: "8px" }}>{t("all-reviews")}</Typography>
                             <Box>
-                                {reviews.map(({ rating, content, customer_id, id }) => (
+                                {reviews?.map(({ rating, content, customer_id, id, customer_username }) => (
                                     <>
                                         <Card raised style={{ padding: "16px" }}>
                                             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -91,6 +91,7 @@ function Reviews({ productId }) {
                                                             to={`/update-review/${productId}/${id}`} >
                                                             <UpdateIcon style={{ fontSize: "2.1rem" }} />
                                                         </IconButton>
+                                                        <Typography variant="body1">{customer_username}</Typography>
                                                     </div>
                                                 )}
                                             </div>
@@ -98,7 +99,10 @@ function Reviews({ productId }) {
                                         <Divider color="white" variant="middle" />
                                     </>
                                 ))}
-                            </Box></>)}
+                            </Box>
+                        </>
+                        )
+                    }
                 </>
                 }
             </div>
