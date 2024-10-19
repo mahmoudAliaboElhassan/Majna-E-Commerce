@@ -15,7 +15,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 
-
 import { getSpecifiedProduct, cleanUpGetSpecifiedProduct } from "@state/slices/products";
 import { postCart, postFavorite } from "@state/slices/cart";
 import LoadingFetching from "@components/loadingFetching";

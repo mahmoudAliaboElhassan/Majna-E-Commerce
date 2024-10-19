@@ -20,6 +20,7 @@ import { AppbarHeader } from "@styles/appbar";
 import SelectComp from '@components/formui/Select';
 import UseRating from '@hooks/use-rating';
 import { addReview } from "@state/slices/reviews"
+import ProductRating from '@components/reviews/productRating';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -114,11 +115,12 @@ function AddReview() {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <SelectComp
+                        {/* <SelectComp
                             name="rating"
                             label={t("rating")}
                             options={rating}
-                        />
+                        /> */}
+                        <ProductRating name="rating" />
                     </Grid>
 
                     <Grid item xs={12}>
