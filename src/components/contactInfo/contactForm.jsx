@@ -42,9 +42,7 @@ function ContactForm() {
             yourRole: formValues.userRole,
         };
 
-        console.log('Service ID:', process.env.REACT_APP_SERVICE_ID);
-        console.log('Template ID:', process.env.REACT_APP_TEMPLATE_ID);
-        console.log('User ID:', process.env.REACT_APP_USER_ID);
+        
 
         emailjs.send(
             process.env.REACT_APP_SERVICE_ID,
