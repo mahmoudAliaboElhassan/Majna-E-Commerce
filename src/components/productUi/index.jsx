@@ -224,8 +224,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
 import { useTranslation } from "react-i18next";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddCardIcon from '@mui/icons-material/AddCard';
-import PreviewIcon from '@mui/icons-material/Preview';
+import AddCardIcon from "@mui/icons-material/AddCard";
+import PreviewIcon from "@mui/icons-material/Preview";
 
 import { postCart, postFavorite } from "@state/slices/cart";
 import UseThemMode from "@hooks/use-theme";
@@ -242,9 +242,8 @@ const Product = ({ id, name, cover_image, price, brand }) => {
   const [idx, setIdx] = useState(null);
   const { t } = useTranslation();
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-  const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } = useSelector(
-    (state) => state.cart
-  );
+  const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } =
+    useSelector((state) => state.cart);
 
   const handleBtnClick = (id) => {
     setIsBtnDisabled(true);
@@ -284,12 +283,11 @@ const Product = ({ id, name, cover_image, price, brand }) => {
             icon: "error",
             confirmButtonText: t("ok"),
           });
-        })
-    }
-    else {
+        });
+    } else {
       Swal.fire({
         title: t("error-adding"),
-        text: t('excceeded-10'),
+        text: t("excceeded-10"),
         icon: "error",
         confirmButtonText: t("ok"),
       });
@@ -331,7 +329,6 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           confirmButtonText: t("ok"),
         });
       });
-
   };
   useEffect(() => {
     if (!isBtnDisabled) return;
@@ -356,11 +353,15 @@ const Product = ({ id, name, cover_image, price, brand }) => {
             <CardMedia
               component="img"
               height="140"
+              loading="lazy"
               image={cover_image}
               alt={name}
             />
             <CardContent>
-              <Typography gutterBottom variant="h6" component="div"
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="div"
                 sx={{ height: isMatch ? "60px" : "70px", mb: 4 }}
               >
                 {isMatch ? name.slice(0, 50) : name.slice(0, 60)}
@@ -374,7 +375,11 @@ const Product = ({ id, name, cover_image, price, brand }) => {
             </CardContent>
           </CardActionArea>
           <CardActions
-            style={{ textAlign: "center", display: "flex", alignItems: "center" }}
+            style={{
+              textAlign: "center",
+              display: "flex",
+              alignItems: "center",
+            }}
           >
             <Grid container spacing={1}>
               <Grid item xs={6} md={6} lg={4}>
@@ -384,17 +389,19 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   onClick={() => handleBtnClick(id)}
                   disabled={loadingPostCart && idx === id}
                   fullWidth
-                  title={t('add-to-cart')}
-                // sx={{ whiteSpace: "nowrap" }}  
+                  title={t("add-to-cart")}
+                  // sx={{ whiteSpace: "nowrap" }}
                 >
                   {/* {t("add-to-cart")} */}
-                  <AddCardIcon sx={{
-                    fontSize: {
-                      xs: "1.5em",
-                      sm: "1.75em",
-                      md: "2em",
-                    }
-                  }} />
+                  <AddCardIcon
+                    sx={{
+                      fontSize: {
+                        xs: "1.5em",
+                        sm: "1.75em",
+                        md: "2em",
+                      },
+                    }}
+                  />
                 </Button>
               </Grid>
               <Grid item xs={6} md={6} lg={4}>
@@ -404,16 +411,18 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   fullWidth
                   component={Link}
                   to={`product-view/${id}`}
-                  title={t('view-product')}
+                  title={t("view-product")}
                 >
                   {/* {t("view-product")} */}
-                  <PreviewIcon sx={{
-                    fontSize: {
-                      xs: "1.5em",
-                      sm: "1.75em",
-                      md: "2em",
-                    }
-                  }} />
+                  <PreviewIcon
+                    sx={{
+                      fontSize: {
+                        xs: "1.5em",
+                        sm: "1.75em",
+                        md: "2em",
+                      },
+                    }}
+                  />
                 </Button>
               </Grid>
               <Grid item xs={12} md={12} lg={4}>
@@ -423,16 +432,18 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                   disabled={loadingAddtoFavorite && idx === id}
                   fullWidth
                   onClick={() => handleFavorite(id)}
-                  title={t('add-favorite')}
+                  title={t("add-favorite")}
                 >
                   {/* {t("add-favorite")} */}
-                  <FavoriteIcon sx={{
-                    fontSize: {
-                      xs: "1.5em",
-                      sm: "1.75em",
-                      md: "2em",
-                    }
-                  }} />
+                  <FavoriteIcon
+                    sx={{
+                      fontSize: {
+                        xs: "1.5em",
+                        sm: "1.75em",
+                        md: "2em",
+                      },
+                    }}
+                  />
                 </Button>
               </Grid>
             </Grid>

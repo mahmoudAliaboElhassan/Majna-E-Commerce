@@ -22,7 +22,7 @@ import UseMediaQueryHook from "@hooks/use-media-query";
 
 const Swiperslide = ({ images }) => {
   // const imageArray = images?.length ? images : defaultSliderImages;
-  const { isMatch } = UseMediaQueryHook()
+  const { isMatch } = UseMediaQueryHook();
   return (
     <Box
       sx={{
@@ -46,7 +46,9 @@ const Swiperslide = ({ images }) => {
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
-            return `<span class="${className} custom-bullet">${index + 1}</span>`;
+            return `<span class="${className} custom-bullet">${
+              index + 1
+            }</span>`;
           },
         }}
         loop={true} // Enable looping
@@ -55,14 +57,16 @@ const Swiperslide = ({ images }) => {
         {defaultSliderImages.map((img, index) => {
           return (
             <SwiperSlide key={index}>
-              <img src={img} alt={`slide-${index}`}
-                // loading="lazy"
-                style={{ width: "100%", height: "100%" }} />
+              <img
+                src={img}
+                alt={`slide-${index}`}
+                loading="lazy"
+                style={{ width: "100%", height: "100%" }}
+              />
             </SwiperSlide>
           );
         })}
       </Swiper>
-
     </Box>
   );
 };

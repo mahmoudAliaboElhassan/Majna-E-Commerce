@@ -104,7 +104,7 @@ function Albums() {
             headerName: t("product-img"),
             width: 400, headerAlign: "center", align: "center",
             renderCell: (params) => (
-                <img src={params.value} alt={params.value} style={{ width: "100%", height: "auto" }} />
+                <img src={params.value} alt={params.value} style={{ width: "100%", height: "auto" }} loading="lazy"/>
             ),
         },
         {

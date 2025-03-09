@@ -119,7 +119,7 @@ function Introductory() {
               style={{ justifyContent: isMatch ? "center" : "start" }}
             >
               <p>{t("feel")}</p>
-              <img src={Image[1]} alt="New Collection Icon" />
+              <img src={Image[1]} alt="New Collection Icon" loading="lazy"/>
             </div>
             <p>{t("free")}</p>
             <p>{t("for-browsing")}</p>

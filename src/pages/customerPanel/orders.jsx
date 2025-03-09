@@ -78,6 +78,7 @@ function AllOrders() {
                 <img
                     src={params.value}
                     alt="Product"
+                    loading="lazy"
                     style={{ width: '100%', height: 'auto', objectFit: "cover" }}
                 />
             ),

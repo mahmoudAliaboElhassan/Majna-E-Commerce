@@ -139,6 +139,7 @@ const ImageUploader = () => {
               <img
                 src={URL.createObjectURL(image)}
                 alt={`Image ${index}`}
+                loading="lazy"
                 style={{ width: "100px", height: "100px", margin: "5px" }}
               />
             </label>

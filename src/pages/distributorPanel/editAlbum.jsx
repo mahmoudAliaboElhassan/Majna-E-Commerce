@@ -89,6 +89,7 @@ function EditAlbum() {
                 <img
                     src={imgUrl}
                     alt="Album Cover"
+                    loading="lazy"
                     style={{
                         width: "100%",
                         borderRadius: "8px",

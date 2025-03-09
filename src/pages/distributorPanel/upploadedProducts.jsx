@@ -8,22 +8,30 @@ import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
-import "@pages/shoppingCart/style.css"
+import "@pages/shoppingCart/style.css";
 import UseThemMode from "@hooks/use-theme";
 import { AppbarHeader } from "@styles/appbar";
 import { NoCount, NoCountContainer } from "@styles/products";
-import { DataGridContainer } from "@styles/dataGrid"
+import { DataGridContainer } from "@styles/dataGrid";
 import LoadingFetching from "@components/loadingFetching";
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
-import { getUploadedProducts, deleteUploadedProduct, cleanUpUploadedProducts } from "@state/slices/distributor";
+import {
+  getUploadedProducts,
+  deleteUploadedProduct,
+  cleanUpUploadedProducts,
+} from "@state/slices/distributor";
 
 function UploadedProducts() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { themeMode } = UseThemMode();
   const { Uid } = useSelector((state) => state.auth);
-  const { uploadedProducts, loadingGetUploadedProducts, countOfUploadedProducts } = useSelector((state) => state.distributor);
-  const [btnDisabled, setbtnDisabled] = useState(null)
+  const {
+    uploadedProducts,
+    loadingGetUploadedProducts,
+    countOfUploadedProducts,
+  } = useSelector((state) => state.distributor);
+  const [btnDisabled, setbtnDisabled] = useState(null);
   const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
 
   useEffect(() => {
@@ -33,7 +41,7 @@ function UploadedProducts() {
 
   const handleDelete = useCallback(
     (productId) => {
-      setbtnDisabled(productId)
+      setbtnDisabled(productId);
       Swal.fire({
         title: t("suring"),
         text: t("info-product"),
@@ -46,20 +54,22 @@ function UploadedProducts() {
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(deleteUploadedProduct({ distributorId: Uid, productId })).unwrap().then(() => {
-            Swal.fire({
-              title: t("deleting-product"),
-              icon: "success",
-              confirmButtonText: t("ok"),
+          dispatch(deleteUploadedProduct({ distributorId: Uid, productId }))
+            .unwrap()
+            .then(() => {
+              Swal.fire({
+                title: t("deleting-product"),
+                icon: "success",
+                confirmButtonText: t("ok"),
+              });
+            })
+            .catch((error) => {
+              Swal.fire({
+                title: t("error-deleting-product"),
+                icon: "warning",
+                confirmButtonText: t("ok"),
+              });
             });
-          }).catch((error) => {
-            Swal.fire({
-              title: t("error-deleting-product"),
-              icon: "warning",
-              confirmButtonText: t("ok"),
-            });
-          })
-
         } else {
           Swal.fire({
             title: t("keeping-product"),
@@ -75,35 +85,54 @@ function UploadedProducts() {
   const columns = [
     {
       field: "id",
-      headerName: t("product-id"), width: 100,
-      headerAlign: "center", align: "center",
+      headerName: t("product-id"),
+      width: 100,
+      headerAlign: "center",
+      align: "center",
     },
     {
-      field: "name", headerName: t("product-name"), width: 250,
-      headerAlign: "center", align: "center",
+      field: "name",
+      headerName: t("product-name"),
+      width: 250,
+      headerAlign: "center",
+      align: "center",
     },
     {
-      field: "brand", headerName: t("product-brand"), width: 200,
-      headerAlign: "center", align: "center",
+      field: "brand",
+      headerName: t("product-brand"),
+      width: 200,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "image",
       headerName: t("product-img"),
-      width: 200, headerAlign: "center", align: "center",
+      width: 200,
+      headerAlign: "center",
+      align: "center",
       renderCell: (params) => (
-        <img src={params.value} alt={params.value} style={{ width: "100%", height: "auto" }} />
+        <img
+          src={params.value}
+          alt={params.value}
+          style={{ width: "100%", height: "auto" }}
+          loading="lazy"
+        />
       ),
     },
     {
-      field: "price", headerName: t("product-price"),
-      width: 200, headerAlign: "center", align: "center",
+      field: "price",
+      headerName: t("product-price"),
+      width: 200,
+      headerAlign: "center",
+      align: "center",
     },
     {
-      field: "albums", headerName: t("view-albums"),
-      headerAlign: "center", align: "center",
+      field: "albums",
+      headerName: t("view-albums"),
+      headerAlign: "center",
+      align: "center",
       width: 200,
-      renderCell: (params) =>
-      (
+      renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="success"
@@ -115,11 +144,12 @@ function UploadedProducts() {
       ),
     },
     {
-      field: "view", headerName: t("view-product"),
-      headerAlign: "center", align: "center",
+      field: "view",
+      headerName: t("view-product"),
+      headerAlign: "center",
+      align: "center",
       width: 200,
-      renderCell: (params) =>
-      (
+      renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="success"
@@ -131,8 +161,11 @@ function UploadedProducts() {
       ),
     },
     {
-      field: "edit", headerName: t("edit-product"),
-      headerAlign: "center", align: "center", width: 200,
+      field: "edit",
+      headerName: t("edit-product"),
+      headerAlign: "center",
+      align: "center",
+      width: 200,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -142,11 +175,14 @@ function UploadedProducts() {
         >
           {t("edit")}
         </Button>
-      )
+      ),
     },
     {
-      field: "delete", headerName: t("delete-product"),
-      headerAlign: "center", align: "center", width: 200,
+      field: "delete",
+      headerName: t("delete-product"),
+      headerAlign: "center",
+      align: "center",
+      width: 200,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -160,17 +196,19 @@ function UploadedProducts() {
     },
   ];
 
-  const rows = uploadedProducts?.map(({ id, name, brand, price, cover_image }) => ({
-    id,
-    name,
-    brand,
-    price,
-    image: cover_image,
-    view: t("view-product"),
-    edit: t('edit'),
-    delete: t("delete"),
-    albums: t("albums"),
-  }));
+  const rows = uploadedProducts?.map(
+    ({ id, name, brand, price, cover_image }) => ({
+      id,
+      name,
+      brand,
+      price,
+      image: cover_image,
+      view: t("view-product"),
+      edit: t("edit"),
+      delete: t("delete"),
+      albums: t("albums"),
+    })
+  );
 
   return (
     <Box sx={{ p: 2 }}>
@@ -179,9 +217,10 @@ function UploadedProducts() {
           <LoadingFetching>{t("wait-uploaded-products")}</LoadingFetching>
         ) : countOfUploadedProducts ? (
           <>
-            <AppbarHeader data-aos="fade-up">{t("uploaded-products")}</AppbarHeader>
+            <AppbarHeader data-aos="fade-up">
+              {t("uploaded-products")}
+            </AppbarHeader>
             <DataGridContainer>
-
               <DataGrid
                 rows={rows}
                 columns={columns}
@@ -201,13 +240,11 @@ function UploadedProducts() {
           </>
         ) : (
           <NoCountContainer>
-            <NoCount>
-              {t("no-product-uploaded")}
-            </NoCount>
-          </NoCountContainer >
+            <NoCount>{t("no-product-uploaded")}</NoCount>
+          </NoCountContainer>
         )}
       </Container>
-    </Box >
+    </Box>
   );
 }
 

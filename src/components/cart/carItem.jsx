@@ -37,7 +37,7 @@ const CartItem = ({ id, title, product }) => {
     <div className={cartItem}>
       <div className={productItem}>
         <div className={productImg}>
-          <img src={product.cover_image} alt={title} />
+          <img src={product.cover_image} alt={title} loading="lazy" />
         </div>
         <p>{id}</p>
         <div className={productInfo}>

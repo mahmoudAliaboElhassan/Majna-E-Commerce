@@ -158,6 +158,7 @@ function ShoppingCart() {
           src={params.value}
           alt={params.value}
           style={{ width: "100%", height: "auto" }}
+          loading="lazy"
         />
       ),
     },

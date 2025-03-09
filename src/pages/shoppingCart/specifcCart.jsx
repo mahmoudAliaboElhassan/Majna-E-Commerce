@@ -22,7 +22,7 @@ function SpecificCartItem() {
     <>
       <div>specific cart item</div>
       <div>{cartId}</div>
-      <img src={cartItem?.product?.cover_image} />
+      <img src={cartItem?.product?.cover_image} loading="lazy" />
     </>
   );
 }
