@@ -10,7 +10,8 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 import "./introductory.css";
-import Image from "@assets/introductory";
+import Image from "@assets/sliderImages/breakslow-E6RTpqvOasU-unsplash.jpg";
+import Image1 from "@assets/introductory";
 import UseThemMode from "@hooks/use-theme";
 import UseMediaQueryHook from "@hooks/use-media-query";
 import { IntroudctoryButton } from "@styles/introductory";
@@ -23,10 +24,14 @@ function Introductory() {
 
   // Use useInView hook
   const { ref: imgRef, inView: imgInView } = useInView({ triggerOnce: false });
-  const { ref: textRef, inView: textInView } = useInView({ triggerOnce: false });
-  const { ref: introductoryRef, inView: introductoryInView } = useInView({ triggerOnce: false });
+  const { ref: textRef, inView: textInView } = useInView({
+    triggerOnce: false,
+  });
+  const { ref: introductoryRef, inView: introductoryInView } = useInView({
+    triggerOnce: false,
+  });
 
-  useEffect(() => { }, [theme.direction]);
+  useEffect(() => {}, [theme.direction]);
 
   const words = t("welcome-sentence").split(" ");
 
@@ -81,18 +86,22 @@ function Introductory() {
           className="hero-right"
         >
           <img
-            src={Image[0]}
+            src={Image}
             alt=""
             style={{ width: "350px", height: "350px" }}
             loading="lazy"
           />
         </motion.div>
-        <div
-          className="hero-left"
-        >
+        <div className="hero-left">
           <h2>
             <motion.div
-              style={{ overflow: "hidden", display: "flex", justifyContent: "center", flexWrap: "wrap", fontSize: "2rem" }}
+              style={{
+                overflow: "hidden",
+                display: "flex",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                fontSize: "2rem",
+              }}
               ref={textRef}
               initial="hidden"
               animate={textInView ? "visible" : "hidden"} // Use "hidden" instead of null
@@ -113,20 +122,24 @@ function Introductory() {
             ref={introductoryRef}
             initial={{ opacity: 0, y: -100 }}
             animate={introductoryInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1 }}>
+            transition={{ duration: 1 }}
+          >
             <div
               className="hero-hand-icon"
               style={{ justifyContent: isMatch ? "center" : "start" }}
             >
               <p>{t("feel")}</p>
-              <img src={Image[1]} alt="New Collection Icon" loading="lazy"/>
+              <img src={Image1[1]} alt="New Collection Icon" loading="lazy" />
             </div>
             <p>{t("free")}</p>
             <p>{t("for-browsing")}</p>
             <IntroudctoryButton to="discover">
               <Typography>{t("discover")}</Typography>
               {theme.direction === "rtl" ? (
-                <ArrowBackIcon className="icon" style={{ transition: "0.3s" }} />
+                <ArrowBackIcon
+                  className="icon"
+                  style={{ transition: "0.3s" }}
+                />
               ) : (
                 <ArrowForwardIcon
                   className="icon"

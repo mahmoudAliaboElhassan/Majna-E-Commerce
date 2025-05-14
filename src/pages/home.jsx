@@ -27,118 +27,129 @@ import { useSearchParams } from "react-router-dom";
 
 function Home() {
   // const [page, setPage] = useState(localStorage.getItem("page") || 1);
-  const { page } = useSelector((state) => state.PageSlice)
+  const { page } = useSelector((state) => state.PageSlice);
   const { items } = useSelector((state) => state.cart);
   const { productsArray, loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
   );
-  const { searchValue } = useSelector((state) => state.search)
+  const { searchValue } = useSelector((state) => state.search);
   const productsCount = Math.ceil(countOfProducts / 12);
   const dispatch = useDispatch();
 
-  const changePage = useCallback((e, value) => {
-    localStorage.setItem("page", value)
-    console.log("localStorage.getItem(page)")
-    console.log(localStorage.getItem("page"))
-    dispatch(setPage(value))
-  }, [page]);
-  console.log("page :", page)
+  const changePage = useCallback(
+    (e, value) => {
+      localStorage.setItem("page", value);
+      console.log("localStorage.getItem(page)");
+      console.log(localStorage.getItem("page"));
+      dispatch(setPage(value));
+    },
+    [page]
+  );
+  console.log("page :", page);
 
-
-  const [searchParams, setSearchParams] = useSearchParams()
-  const search = searchParams.get('search') || '';
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get("search") || "";
 
   // Function to update the search parameter
 
-
-  const [selectedCategory, setSelectedCategory] =
-    useState(localStorage.getItem("category") || "");
-  const [priceFromTo, setPriceFromTo] =
-    useState([localStorage.getItem("priceFrom"),
-    localStorage.getItem("priceTo")]);
+  const [selectedCategory, setSelectedCategory] = useState(
+    localStorage.getItem("category") || ""
+  );
+  const [priceFromTo, setPriceFromTo] = useState([
+    localStorage.getItem("priceFrom"),
+    localStorage.getItem("priceTo"),
+  ]);
   const [price, setPrice] = useState(localStorage.getItem("price"));
 
-  const handlePriceChange = useCallback((index, value) => {
-    const newPriceFromTo = [...priceFromTo];
-    newPriceFromTo[index] = value;
-    setPriceFromTo(newPriceFromTo);
-  }, [priceFromTo]);
+  const handlePriceChange = useCallback(
+    (index, value) => {
+      const newPriceFromTo = [...priceFromTo];
+      newPriceFromTo[index] = value;
+      setPriceFromTo(newPriceFromTo);
+    },
+    [priceFromTo]
+  );
 
   const handleClickPrice = useCallback(() => {
-    localStorage.setItem("priceFrom", priceFromTo[0])
-    localStorage.setItem("priceTo", priceFromTo[1])
-    localStorage.setItem("price", priceFromTo.join(","))
+    localStorage.setItem("priceFrom", priceFromTo[0]);
+    localStorage.setItem("priceTo", priceFromTo[1]);
+    localStorage.setItem("price", priceFromTo.join(","));
     setPrice(priceFromTo.join(","));
-    dispatch(setPage(1))
+    dispatch(setPage(1));
   }, [priceFromTo]);
 
   const resetPage = () => {
-    dispatch(setPage(1))
-  }
+    dispatch(setPage(1));
+  };
 
   const [ordering, setOrdering] = useState(null);
   const handleOrdering = useCallback((e) => {
     setOrdering(e.target.value);
   }, []);
 
-  const [selectedSubCategory, setSelectedSubCategory] = useState(localStorage.getItem("subCategory") || "");
+  const [selectedSubCategory, setSelectedSubCategory] = useState(
+    localStorage.getItem("subCategory") || ""
+  );
   const handleSelectedSubCategory = useCallback((value) => {
-    dispatch(setPage(1))
+    dispatch(setPage(1));
 
-    localStorage.setItem("subCategory", value)
+    localStorage.setItem("subCategory", value);
     setSelectedSubCategory(value);
     console.log("selectedSubCategory");
   }, []);
 
-  const handleProductsByCategory = useCallback((id) => {
-    localStorage.setItem("category", id)
-    localStorage.removeItem("subCategory")
-    setSelectedCategory(id);
-    setSelectedSubCategory("")
-    dispatch(setPage(1))
-    id
-      ? dispatch(
-        getProductsByCategory({
-          id: id,
-          price__range: price,
-          ordering,
-          page,
-          search: search,
-          sub_category_id: selectedSubCategory,
-        })
-      )
-      : dispatch(
-        getProducts({
-          price__range: price,
-          ordering,
-          page,
-          search: search,
-          sub_category_id: selectedSubCategory,
-        })
-      );
-  }, [dispatch, price, ordering, page, searchValue, selectedSubCategory, search]);
+  const handleProductsByCategory = useCallback(
+    (id) => {
+      localStorage.setItem("category", id);
+      localStorage.removeItem("subCategory");
+      setSelectedCategory(id);
+      setSelectedSubCategory("");
+      dispatch(setPage(1));
+      id
+        ? dispatch(
+            getProductsByCategory({
+              id: id,
+              price__range: price,
+              ordering,
+              page,
+              search: search,
+              sub_category_id: selectedSubCategory,
+            })
+          )
+        : dispatch(
+            getProducts({
+              price__range: price,
+              ordering,
+              page,
+              search: search,
+              sub_category_id: selectedSubCategory,
+            })
+          );
+    },
+    [dispatch, price, ordering, page, searchValue, selectedSubCategory, search]
+  );
 
   useEffect(() => {
     selectedCategory
       ? dispatch(
-        getProductsByCategory({
-          id: selectedCategory,
-          price__range: price,
-          ordering,
-          page,
-          search: search,
-          sub_category_id: selectedSubCategory,
-        })
-      )
+          getProductsByCategory({
+            id: selectedCategory,
+            price__range: price,
+            ordering,
+            page,
+            search: search,
+            sub_category_id: selectedSubCategory,
+          })
+        )
       : dispatch(
-        getProducts({
-          price__range: price,
-          ordering,
-          page,
-          search: search,
-          sub_category_id: selectedSubCategory,
-        })
-      );
+          getProducts({
+            price__range: price,
+            ordering,
+            page,
+            search: search,
+            sub_category_id: selectedSubCategory,
+          })
+        );
     return () => {
       dispatch(cleanUpGetProducts());
       dispatch(cleanUpgetProductsByCategory());

@@ -155,7 +155,7 @@ function ProductTypesSidebar({
             ))} */}
 
           <Ordering handleOrdering={handleOrdering} />
-          <Category
+          {/* <Category
             handleProductsByCategory={handleProductsByCategory}
             selectedCategory={selectedCategory}
           />
@@ -163,7 +163,7 @@ function ProductTypesSidebar({
             handleSelectedSubCategory={handleSelectedSubCategory}
             selectedCategory={selectedCategory}
             selectedSubCategory={selectedSubCategory}
-          />
+          /> */}
           <Price
             handlePriceChange={handlePriceChange}
             price={price}

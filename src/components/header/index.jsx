@@ -14,8 +14,8 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LogoutIcon from '@mui/icons-material/Logout';
-import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SearchIcon from "@mui/icons-material/Search";
 import { useTheme } from "@emotion/react";
@@ -90,10 +90,13 @@ function Header() {
   const locationPath = `/${location.pathname.split("/")[1]}`;
   console.log("locationPath");
   console.log(locationPath);
-  console.log(location.pathname)
-  useEffect(() => { }, [countOfCartItems]);
-  console.log("type of local storage", typeof (localStorage.getItem("countOfCartItem")))
-  console.log(typeof (localStorage.getItem("countOfCartItem")))
+  console.log(location.pathname);
+  useEffect(() => {}, [countOfCartItems]);
+  console.log(
+    "type of local storage",
+    typeof localStorage.getItem("countOfCartItem")
+  );
+  console.log(typeof localStorage.getItem("countOfCartItem"));
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -113,7 +116,8 @@ function Header() {
                       }}
                     />
                     <CartNumber className={quantityStyle}>
-                      {localStorage.getItem("countOfCartItem") != "0" && localStorage.getItem("countOfCartItem")}
+                      {localStorage.getItem("countOfCartItem") != "0" &&
+                        localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
                   <IconButton component={Link} to="favorite">
@@ -130,10 +134,13 @@ function Header() {
                   </IconButton>
                 </>
               )}
-              <Link to="/" style={{
-                marginRight: "auto",
-                marginLeft: "auto"
-              }}>
+              <Link
+                to="/"
+                style={{
+                  marginRight: "auto",
+                  marginLeft: "auto",
+                }}
+              >
                 <AppbarHeader
                   className="logo"
                   transition={{ delay: 0.7, duration: 1.6 }}
@@ -149,7 +156,7 @@ function Header() {
                     fontStyle: "normal",
                     whiteSpace: "nowrap",
                     cursor: "pointer",
-                    flex: 1
+                    flex: 1,
                   }}
                 >
                   {t("website-title")}
@@ -171,8 +178,11 @@ function Header() {
                   to="/"
                   sx={{
                     fontStyle: "normal",
-                    cursor: "pointer"
-                  }}>{t("website-title")}</AppbarHeader>
+                    cursor: "pointer",
+                  }}
+                >
+                  {t("website-title")}
+                </AppbarHeader>
                 {/* </IconButton> */}
               </Link>
               {token && role === "Customer" && (
@@ -188,7 +198,8 @@ function Header() {
                       }}
                     />
                     <CartNumber className={quantityStyle}>
-                      {localStorage.getItem("countOfCartItem") != "0" && localStorage.getItem("countOfCartItem")}
+                      {localStorage.getItem("countOfCartItem") != "0" &&
+                        localStorage.getItem("countOfCartItem")}
                     </CartNumber>
                   </IconButton>
 
@@ -224,7 +235,8 @@ function Header() {
                         textAlign: "center",
                         color: locationPath === el.to ? "white" : "normal", // Set color to white when active, adjust as needed
                         fontWeight: locationPath === el.to ? "bold" : "normal", // Set font weight to bold when active
-                        borderBottom: locationPath === el.to ? "2px solid white" : "none", // Set border bottom when active
+                        borderBottom:
+                          locationPath === el.to ? "2px solid white" : "none", // Set border bottom when active
                         lineHeight: "32px",
                         "&:hover": {
                           color: "white",
@@ -268,9 +280,18 @@ function Header() {
                       handleClickAuth(authel, index);
                     }}
                   >
-                    <div style={{ display: "flex", justifyContent: "space-around" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-around",
+                      }}
+                    >
                       <span>{authel.label}</span>
-                      {authel.label === t('logout') ? <LogoutIcon /> : authel.label === t('login') ? <LoginIcon /> : null}
+                      {authel.label === t("logout") ? (
+                        <LogoutIcon />
+                      ) : authel.label === t("login") ? (
+                        <LoginIcon />
+                      ) : null}
                     </div>
                   </MenuItem>
                 ))}
