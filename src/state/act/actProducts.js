@@ -6,7 +6,7 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (query, thunkAPI) => {
     const { rejectWithValue } = thunkAPI;
-    const entriesArray = Object.entries(query);
+    const entriesArray = Object?.entries(query);
     console.log("entriesArray");
     console.log(entriesArray);
     const queryParameters = entriesArray

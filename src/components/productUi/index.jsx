@@ -247,7 +247,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
 
   const handleBtnClick = (id) => {
     setIsBtnDisabled(true);
-    if (parseInt(countOfCartItems) < 10) {
+    if (!countOfCartItems || Number.parseInt(countOfCartItems) < 10) {
       setIdx(id);
       dispatch(
         postCart({

@@ -91,7 +91,7 @@ function ProductInformation() {
   };
 
   const handlePostCart = () => {
-    if (parseInt(countOfCartItems) < 10) {
+    if (!countOfCartItems || Number.parseInt(countOfCartItems) < 10) {
       dispatch(
         postCart({
           customerId: Uid,

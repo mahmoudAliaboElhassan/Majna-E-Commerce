@@ -32,6 +32,7 @@ function Home() {
   const { productsArray, loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
   );
+  console.log("productsArray :", productsArray);
   const { searchValue } = useSelector((state) => state.search);
   const productsCount = Math.ceil(countOfProducts / 12);
   const dispatch = useDispatch();

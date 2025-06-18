@@ -416,5 +416,53 @@
   "update-review": "Update Review",
   "wait-review": "Wait for Review Data to Load ...",
   "review-updated": "The review has Updated added successfully",
-  "loading-reviews": "Wait for product reviews to load..."
+  "loading-reviews": "Wait for product reviews to load...",
+
+  "searchPlaceholder": "Search for Products",
+
+  "heroTitle": "Discover Amazing Products",
+  "heroSubtitle": "Explore our curated collection of premium items",
+  "flashDeals": "Flash Deals",
+  "premiumQuality": "Premium Quality",
+  "trendingNow": "Trending Now",
+
+  "shopByCategory": "Shop by Category",
+  "electronics": "Electronics",
+  "fashion": "Fashion",
+  "homeGarden": "Home & Garden",
+  "sports": "Sports",
+  "books": "Books",
+  "beauty": "Beauty",
+  "items": "items",
+
+  "searchProducts": "Search products...",
+  "category": "Category",
+  "allCategories": "All Categories",
+  "sortBy": "Sort By",
+  "mostPopular": "Most Popular",
+  "priceLowHigh": "Price: Low to High",
+  "priceHighLow": "Price: High to Low",
+  "highestRated": "Highest Rated",
+  "newestFirst": "Newest First",
+
+  "featuredProducts": "Featured Products",
+  "viewAll": "View All",
+  "bestSeller": "Best Seller",
+  "newArrival": "New Arrival",
+  "ecoFriendly": "Eco-Friendly",
+  "proChoice": "Pro Choice",
+  "addToCart": "Add",
+
+  "premiumHeadphones": "Premium Wireless Headphones",
+  "smartWatch": "Smart Fitness Watch",
+  "cottonTshirt": "Organic Cotton T-Shirt",
+  "cameraLens": "Professional Camera Lens",
+  "deskLamp": "Minimalist Desk Lamp",
+  "bluetoothSpeaker": "Bluetooth Speaker",
+  "yogaMat": "Yoga Mat Premium",
+
+  "newsletterTitle": "Stay Updated with Latest Deals",
+  "newsletterSubtitle": "Subscribe to our newsletter and never miss amazing offers",
+  "emailPlaceholder": "Enter your email",
+  "subscribe": "Subscribe"
 }

@@ -414,5 +414,53 @@
   "update-review": "تعديل التقييم",
   "wait-review": "انتظر حتى يتم تحميل بيانات تقييمك...",
   "review-updated": "تم تعديل التقييم بنجاح",
-  "loading-reviews": "انتظر حتى يتم تحميل تقييمات المنتج..."
+  "loading-reviews": "انتظر حتى يتم تحميل تقييمات المنتج...",
+
+  "searchPlaceholder": "البحث عن المنتجات",
+
+  "heroTitle": "اكتشف منتجات مذهلة",
+  "heroSubtitle": "استكشف مجموعتنا المختارة من العناصر المميزة",
+  "flashDeals": "عروض سريعة",
+  "premiumQuality": "جودة عالية",
+  "trendingNow": "الأكثر رواجاً",
+
+  "shopByCategory": "تسوق حسب الفئة",
+  "electronics": "الإلكترونيات",
+  "fashion": "الأزياء",
+  "homeGarden": "المنزل والحديقة",
+  "sports": "الرياضة",
+  "books": "الكتب",
+  "beauty": "الجمال",
+  "items": "عنصر",
+
+  "searchProducts": "البحث عن المنتجات...",
+  "category": "الفئة",
+  "allCategories": "جميع الفئات",
+  "sortBy": "ترتيب حسب",
+  "mostPopular": "الأكثر شعبية",
+  "priceLowHigh": "السعر: من الأقل للأعلى",
+  "priceHighLow": "السعر: من الأعلى للأقل",
+  "highestRated": "الأعلى تقييماً",
+  "newestFirst": "الأحدث أولاً",
+
+  "featuredProducts": "المنتجات المميزة",
+  "viewAll": "عرض الكل",
+  "bestSeller": "الأكثر مبيعاً",
+  "newArrival": "وصل حديثاً",
+  "ecoFriendly": "صديق للبيئة",
+  "proChoice": "اختيار المحترفين",
+  "addToCart": "إضافة",
+
+  "premiumHeadphones": "سماعات رأس لاسلكية مميزة",
+  "smartWatch": "ساعة ذكية للياقة البدنية",
+  "cottonTshirt": "قميص قطني عضوي",
+  "cameraLens": "عدسة كاميرا احترافية",
+  "deskLamp": "مصباح مكتب بسيط",
+  "bluetoothSpeaker": "مكبر صوت بلوتوث",
+  "yogaMat": "حصيرة يوغا مميزة",
+
+  "newsletterTitle": "ابق على اطلاع بأحدث العروض",
+  "newsletterSubtitle": "اشترك في نشرتنا الإخبارية ولا تفوت العروض المذهلة",
+  "emailPlaceholder": "أدخل بريدك الإلكتروني",
+  "subscribe": "اشتراك"
 }
