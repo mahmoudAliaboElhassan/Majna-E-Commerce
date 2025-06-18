@@ -60,7 +60,7 @@ function ProductTypesSidebar({
   handleProductsByCategory,
   selectedCategory,
   selectedSubCategory,
-  handleSelectedSubCategory
+  handleSelectedSubCategory,
 }) {
   const { productTypes } = UseProductTypes();
   const [active, setActive] = useState(0);
@@ -77,8 +77,9 @@ function ProductTypesSidebar({
         style={{
           height: "calc(100% + 63px)",
           backgroundColor: themeMode === "light" ? "#ddd" : "#2b1f1f",
-          [Direction.borderRight]: `2px solid ${themeMode == "dark" ? Colors.light_gray : Colors.shaft
-            }`,
+          [Direction.borderRight]: `2px solid ${
+            themeMode == "dark" ? Colors.light_gray : Colors.shaft
+          }`,
           // boxShadow: `0 0 0 3px ${
           //   themeMode === "dark" ? blue[600] : blue[200]
           // }`,
@@ -155,7 +156,7 @@ function ProductTypesSidebar({
             ))} */}
 
           <Ordering handleOrdering={handleOrdering} />
-          {/* <Category
+          <Category
             handleProductsByCategory={handleProductsByCategory}
             selectedCategory={selectedCategory}
           />
@@ -163,7 +164,7 @@ function ProductTypesSidebar({
             handleSelectedSubCategory={handleSelectedSubCategory}
             selectedCategory={selectedCategory}
             selectedSubCategory={selectedSubCategory}
-          /> */}
+          />
           <Price
             handlePriceChange={handlePriceChange}
             price={price}

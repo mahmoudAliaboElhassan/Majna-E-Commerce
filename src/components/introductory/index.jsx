@@ -10,8 +10,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 import "./introductory.css";
-import Image from "@assets/sliderImages/breakslow-E6RTpqvOasU-unsplash.jpg";
-import Image1 from "@assets/introductory";
+import Image from "@assets/introductory";
 import UseThemMode from "@hooks/use-theme";
 import UseMediaQueryHook from "@hooks/use-media-query";
 import { IntroudctoryButton } from "@styles/introductory";
@@ -86,7 +85,7 @@ function Introductory() {
           className="hero-right"
         >
           <img
-            src={Image}
+            src={Image[0]}
             alt=""
             style={{ width: "350px", height: "350px" }}
             loading="lazy"
@@ -129,7 +128,7 @@ function Introductory() {
               style={{ justifyContent: isMatch ? "center" : "start" }}
             >
               <p>{t("feel")}</p>
-              <img src={Image1[1]} alt="New Collection Icon" loading="lazy" />
+              <img src={Image[1]} alt="New Collection Icon" loading="lazy" />
             </div>
             <p>{t("free")}</p>
             <p>{t("for-browsing")}</p>
