@@ -111,7 +111,7 @@ function Team() {
               >
                 <Box sx={{ flex: 1 }}>
                   <a
-                    href="https://www.linkedin.com/in/mahmoudfrontenddeveloper/"
+                    href="https://www.linkedin.com/in/mahmoudali-webdev/"
                     target="_blank"
                     style={{ color: "inherit" }}
                     title={t("linkedin")}
@@ -139,7 +139,7 @@ function Team() {
                 </Box>
                 <Box sx={{ flex: 1 }}>
                   <a
-                    href="https://mahmoudaliaboelhassan.github.io/Portfolio-Website/"
+                    href="https://mahmoud-ali-ze8h.vercel.app/"
                     target="_blank"
                     style={{ color: "inherit" }}
                     title={t("website")}

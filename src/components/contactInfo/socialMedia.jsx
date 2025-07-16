@@ -1,5 +1,3 @@
-import React from "react";
-
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailIcon from "@mui/icons-material/Mail";
@@ -55,7 +53,7 @@ function SocialMedia() {
         {t("github")}
       </a>
       <a
-        href="https://www.linkedin.com/in/mahmoudfrontenddeveloper/"
+        href="https://www.linkedin.com/in/mahmoudali-webdev/"
         target="_blank"
         style={{ marginBottom: "12px", display: "flex", alignItems: "center" }}
         data-aos="fade-down"
