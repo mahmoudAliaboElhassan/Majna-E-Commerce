@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const API=import.meta.env.VITE_API_URL
+
 // Function to create Axios instances with common settings
 function createAxiosInstance(baseURL, contentType, includeAuthHeader = false) {
   const instance = axios.create({
@@ -59,17 +61,17 @@ function createAxiosInstance(baseURL, contentType, includeAuthHeader = false) {
 
 // Create Axios instances for API and Files
 export const majnAPI = createAxiosInstance(
-  process.env.REACT_APP_API_URL,
+  API,
   "application/json",
   true
 );
 export const majnAPIWithoutAuth = createAxiosInstance(
-  process.env.REACT_APP_API_URL,
+  API,
   "application/json",
   false
 );
 export const majnaFiles = createAxiosInstance(
-  process.env.REACT_APP_API_URL,
+  API,
   'multipart/form-data; charset=utf-8; boundary="another cool boundary";',
   true
 );
