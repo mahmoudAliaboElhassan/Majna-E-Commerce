@@ -1,208 +1,4 @@
-// import { useState, useEffect } from "react";
-// import {
-//   Typography,
-//   Container,
-//   Button,
-//   Grid,
-//   Card,
-//   CardMedia,
-//   CardContent,
-//   CardActions,
-//   Box,
-//   useMediaQuery,
-//   CardActionArea,
-// } from "@mui/material";
-// import { motion } from "framer-motion";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
-// import { useInView } from "react-intersection-observer";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import Swal from "sweetalert2";
-// import { useTranslation } from "react-i18next";
-
-// import Image from "../../assets/image-1.jpg";
-// import { Colors } from "@styles/theme";
-// import UseThemMode from "@hooks/use-theme";
-// import { postCart } from "@state/slices/cart";
-// import "./item.css";
-
-// const Product = ({ id, name, cover_image, price, brand }) => {
-//   const dispatch = useDispatch();
-//   const { themeMode } = UseThemMode();
-//   const { ref, inView } = useInView({ triggerOnce: false });
-//   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-//   const { Uid } = useSelector((state) => state.auth);
-//   const [idx, setIdx] = useState(null);
-//   const handleBtnClick = (id) => {
-//     setIdx(id);
-//     // console.log("idx");
-//     // console.log(idx);
-//     // console.log("id");
-//     // console.log(id);
-//     // console.log(idx === id);
-//     dispatch(
-//       postCart({
-//         customerId: Uid,
-//         product_ids: [id],
-//       })
-//     )
-//       .unwrap()
-//       .then(() => {
-//         {
-//           toast.success(t("added-success"), {
-//             position: "top-right",
-//             autoClose: 1000,
-//             hideProgressBar: false,
-//             closeOnClick: true,
-//             pauseOnHover: true,
-//             draggable: true,
-//             progress: undefined,
-//             theme: themeMode,
-//           });
-//         }
-//       })
-//       .catch((error) => {
-//         if (error.response.status === 409) {
-//           Swal.fire({
-//             title: t("error-adding"),
-//             text: t("error-exist-cart"),
-//             icon: "error",
-//             confirmButtonColor: "#3085d6",
-//             confirmButtonText: t("ok"),
-//           });
-//         } else if (error.response.status === 401) {
-//           console.log("Error:", error.message);
-//           Swal.fire({
-//             title: t("error-adding"),
-//             text: t("error-not-authorized-text"),
-//             icon: "error",
-//             confirmButtonText: t("ok"),
-//           });
-//         } else if (error.response.status === 403) {
-//           console.log("Error:", error.message);
-//           Swal.fire({
-//             title: t("error-adding"),
-//             text: t("error-not-customer-text"),
-//             icon: "error",
-//             confirmButtonText: t("ok"),
-//           });
-//         }
-//       });
-//     setIsBtnDisabled(true);
-//   };
-
-//   useEffect(() => {
-//     if (!isBtnDisabled) return;
-//     const debounce = setTimeout(() => {
-//       setIsBtnDisabled(false);
-//     }, 300);
-//     return () => clearTimeout(debounce);
-//   }, [isBtnDisabled]);
-//   const { loadingPostCart } = useSelector((state) => state.cart);
-//   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-//   const { t } = useTranslation();
-//   return (
-//     <Grid item xs={12} sm={6} md={4} key={id}>
-//       <ToastContainer />
-//       <motion.div
-//         ref={ref}
-//         initial={{ x: 50, opacity: 0 }}
-//         transition={{ duration: 0.5 }}
-//         whileInView={{ x: 0, opacity: 1 }}
-//       >
-//         {/* <Box
-//           sx={{
-//             border: `1px solid ${
-//               themeMode === "dark" ? Colors.light : Colors.dark
-//             }`,
-//             borderRadius: "8px",
-//             transition: "0.4s",
-//             // padding: "16px",
-//             "&:hover": {
-//               boxShadow: "3px 4px 8px rgba(0, 0, 0, 0.2)",
-//             },
-//           }}
-//         >
-//           <div className="item">
-//             <div className="item-product">
-//               <img src={cover_image} alt={name} loading="lazy" />
-//             </div>
-//             <div className="product-info">
-//               <Typography variant="h6" component="p" gutterBottom>
-//                 {name.slice(0, 50)}
-//               </Typography>
-//               <Typography variant="h6" component="p" gutterBottom>
-//                 {brand}
-//               </Typography>
-//             </div>
-//             <div className="item-prices">
-//               <Typography variant="body1" component="div" color="textPrimary">
-//                 {price}$
-//               </Typography>
-//             </div>
-//             <Button
-//               variant={themeMode === "dark" ? "contained" : "outlined"}
-//               color="primary"
-//               onClick={() => handleBtnClick(id)}
-//               disabled={loadingPostCart && idx === id}
-//               sx={{ marginTop: "8px" }}
-//               fullWidth
-//             >
-//               {t("add-to-cart")}
-//             </Button>
-//           </div>
-//         </Box> */}
-//         <Card sx={{ maxWidth: 345 }}>
-//           <CardActionArea>
-//             <CardMedia
-//               component="img"
-//               height="140"
-//               image={cover_image}
-//               alt="green iguana"
-//             />
-//             <CardContent>
-//               <Typography gutterBottom variant="h5" component="div">
-//                 {name.slice(0, 20)} ...
-//               </Typography>
-//               <Typography variant="h6" component="p" gutterBottom>
-//                 {brand}
-//               </Typography>
-//               <Typography variant="body1" component="div" color="textPrimary">
-//                 {price}$
-//               </Typography>
-//             </CardContent>
-//           </CardActionArea>
-//           <CardActions
-//             style={{ display: "flex", justifyContent: "space-between" }}
-//           >
-//             <Button
-//               variant={themeMode === "dark" ? "contained" : "outlined"}
-//               color="primary"
-//               onClick={() => handleBtnClick(id)}
-//               disabled={loadingPostCart && idx === id}
-//               fullWidth
-//             >
-//               {t("add-to-cart")}
-//             </Button>
-//             <Button
-//               variant={themeMode === "dark" ? "contained" : "outlined"}
-//               color="primary"
-//               fullWidth
-//             >
-//               {t("view-product")}
-//             </Button>
-//           </CardActions>
-//         </Card>
-//       </motion.div>
-//     </Grid>
-//   );
-// };
-
-// export default Product;
-
-import { useState, useEffect } from "react";
-
+import { useState, useEffect } from "react"
 import {
   Typography,
   Grid,
@@ -214,41 +10,48 @@ import {
   Box,
   useMediaQuery,
   CardActionArea,
-} from "@mui/material";
-import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { useInView } from "react-intersection-observer";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Swal from "sweetalert2";
-import { useTranslation } from "react-i18next";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import AddCardIcon from "@mui/icons-material/AddCard";
-import PreviewIcon from "@mui/icons-material/Preview";
+  IconButton,
+  Chip,
+  Rating,
+} from "@mui/material"
+import { motion } from "framer-motion"
+import { useDispatch, useSelector } from "react-redux"
+import { useInView } from "react-intersection-observer"
+import { Link } from "react-router-dom"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import Swal from "sweetalert2"
+import { useTranslation } from "react-i18next"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder"
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart"
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye"
+import LocalShippingIcon from "@mui/icons-material/LocalShipping"
 
-import { postCart, postFavorite } from "@state/slices/cart";
-import UseThemMode from "@hooks/use-theme";
-import UseMediaQueryHook from "@hooks/use-media-query";
+import { postCart, postFavorite } from "@state/slices/cart"
+import UseThemMode from "@hooks/use-theme"
+import UseMediaQueryHook from "@hooks/use-media-query"
 
-import "./item.css";
+import "./item.css"
 
 const Product = ({ id, name, cover_image, price, brand }) => {
-  const dispatch = useDispatch();
-  const { themeMode } = UseThemMode();
-  const { ref, inView } = useInView({ triggerOnce: false });
-  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-  const { Uid, token, role } = useSelector((state) => state.auth);
-  const [idx, setIdx] = useState(null);
-  const { t } = useTranslation();
-  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const dispatch = useDispatch()
+  const { themeMode } = UseThemMode()
+  const { ref, inView } = useInView({ triggerOnce: false })
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isFavorited, setIsFavorited] = useState(false)
+  const { Uid, token, role } = useSelector((state) => state.auth)
+  const [idx, setIdx] = useState(null)
+  const { t } = useTranslation()
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"))
   const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } =
-    useSelector((state) => state.cart);
+    useSelector((state) => state.cart)
 
   const handleBtnClick = (id) => {
-    setIsBtnDisabled(true);
+    setIsBtnDisabled(true)
     if (!countOfCartItems || Number.parseInt(countOfCartItems) < 10) {
-      setIdx(id);
+      setIdx(id)
       dispatch(
         postCart({
           customerId: Uid,
@@ -266,35 +69,36 @@ const Product = ({ id, name, cover_image, price, brand }) => {
             draggable: true,
             progress: undefined,
             theme: themeMode,
-          });
+          })
         })
         .catch((error) => {
           const errorMessages = {
             409: t("error-exist-cart"),
             401: t("error-not-authorized-text"),
             403: t("error-not-customer-text"),
-          };
+          }
 
           const errorMessage =
-            errorMessages[error.response.status] || error.message;
+            errorMessages[error.response.status] || error.message
           Swal.fire({
             title: t("error-adding"),
             text: errorMessage,
             icon: "error",
             confirmButtonText: t("ok"),
-          });
-        });
+          })
+        })
     } else {
       Swal.fire({
         title: t("error-adding"),
         text: t("excceeded-10"),
         icon: "error",
         confirmButtonText: t("ok"),
-      });
+      })
     }
-  };
+  }
+
   const handleFavorite = (id) => {
-    setIdx(id);
+    setIdx(id)
     dispatch(
       postFavorite({
         customerId: Uid,
@@ -312,146 +116,306 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           draggable: true,
           progress: undefined,
           theme: themeMode,
-        });
+        })
       })
       .catch((error) => {
         const errorMessages = {
           401: t("error-not-authorized-text-favorite"),
           403: t("error-not-customer-text-favorite"),
-        };
+        }
 
         const errorMessage =
-          errorMessages[error.response.status] || error.message;
+          errorMessages[error.response.status] || error.message
         Swal.fire({
           title: t("error-adding-favorite"),
           text: errorMessage,
           icon: "error",
           confirmButtonText: t("ok"),
-        });
-      });
-  };
+        })
+      })
+  }
+
   useEffect(() => {
-    if (!isBtnDisabled) return;
+    if (!isBtnDisabled) return
     const debounce = setTimeout(() => {
-      setIsBtnDisabled(false);
-    }, 300);
-    return () => clearTimeout(debounce);
-  }, [isBtnDisabled]);
-  const { isMatch } = UseMediaQueryHook();
+      setIsBtnDisabled(false)
+    }, 300)
+    return () => clearTimeout(debounce)
+  }, [isBtnDisabled])
+
+  const { isMatch } = UseMediaQueryHook()
+
+  // Noon's signature yellow color
+  const noonYellow = "#FEEE00"
+  const noonDarkYellow = "#E6D400"
 
   return (
     <Grid item xs={12} sm={6} md={4} key={id}>
-      {/* <ToastContainer /> */}
       <motion.div
         ref={ref}
-        initial={{ x: 50, opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ y: 30, opacity: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        whileInView={{ y: 0, opacity: 1 }}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
       >
-        <Card sx={{ maxWidth: 345 }}>
-          <CardActionArea component={Link} to={`product-view/${id}`}>
-            <CardMedia
-              component="img"
-              height="140"
-              loading="lazy"
-              image={cover_image}
-              alt={name}
-            />
-            <CardContent>
-              <Typography
-                gutterBottom
-                variant="h6"
-                component="div"
-                sx={{ height: isMatch ? "60px" : "70px", mb: 4 }}
-              >
-                {isMatch ? name.slice(0, 50) : name.slice(0, 60)}
-              </Typography>
-              <Typography variant="h6" component="p" gutterBottom>
-                {brand}
-              </Typography>
-              <Typography variant="body1" component="div" color="textPrimary">
-                {price}$
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions
-            style={{
-              textAlign: "center",
-              display: "flex",
-              alignItems: "center",
+        <Card
+          sx={{
+            maxWidth: 345,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            borderRadius: "12px",
+            boxShadow: isHovered
+              ? "0 8px 24px rgba(0,0,0,0.12)"
+              : "0 2px 8px rgba(0,0,0,0.08)",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+            transform: isHovered ? "translateY(-8px)" : "translateY(0)",
+            border: "1px solid",
+            borderColor:
+              themeMode === "dark"
+                ? "rgba(255,255,255,0.1)"
+                : "rgba(0,0,0,0.08)",
+            position: "relative",
+            overflow: "visible",
+          }}
+        >
+          {/* Favorite Button - Top Right */}
+          <IconButton
+            onClick={() => handleFavorite(id)}
+            disabled={loadingAddtoFavorite && idx === id}
+            sx={{
+              position: "absolute",
+              top: 12,
+              right: 12,
+              zIndex: 2,
+              backgroundColor: "white",
+              boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+              "&:hover": {
+                backgroundColor: "white",
+                transform: "scale(1.1)",
+              },
+              "&:disabled": {
+                backgroundColor: "#E0E0E0",
+                color: "#999",
+              },
+              transition: "all 0.2s",
             }}
           >
-            <Grid container spacing={1}>
-              <Grid item xs={6} md={6} lg={4}>
-                <Button
-                  variant={themeMode === "dark" ? "contained" : "outlined"}
-                  color="primary"
-                  onClick={() => handleBtnClick(id)}
-                  disabled={loadingPostCart && idx === id}
-                  fullWidth
-                  title={t("add-to-cart")}
-                  // sx={{ whiteSpace: "nowrap" }}
-                >
-                  {/* {t("add-to-cart")} */}
-                  <AddCardIcon
-                    sx={{
-                      fontSize: {
-                        xs: "1.5em",
-                        sm: "1.75em",
-                        md: "2em",
-                      },
-                    }}
-                  />
-                </Button>
-              </Grid>
-              <Grid item xs={6} md={6} lg={4}>
-                <Button
-                  variant={themeMode === "dark" ? "contained" : "outlined"}
-                  color="primary"
-                  fullWidth
-                  component={Link}
-                  to={`product-view/${id}`}
-                  title={t("view-product")}
-                >
-                  {/* {t("view-product")} */}
-                  <PreviewIcon
-                    sx={{
-                      fontSize: {
-                        xs: "1.5em",
-                        sm: "1.75em",
-                        md: "2em",
-                      },
-                    }}
-                  />
-                </Button>
-              </Grid>
-              <Grid item xs={12} md={12} lg={4}>
-                <Button
-                  variant={themeMode === "dark" ? "contained" : "outlined"}
-                  color="primary"
-                  disabled={loadingAddtoFavorite && idx === id}
-                  fullWidth
-                  onClick={() => handleFavorite(id)}
-                  title={t("add-favorite")}
-                >
-                  {/* {t("add-favorite")} */}
-                  <FavoriteIcon
-                    sx={{
-                      fontSize: {
-                        xs: "1.5em",
-                        sm: "1.75em",
-                        md: "2em",
-                      },
-                    }}
-                  />
-                </Button>
-              </Grid>
-            </Grid>
+            {isFavorited ? (
+              <FavoriteIcon sx={{ color: "#FF4458", fontSize: "1.3rem" }} />
+            ) : (
+              <FavoriteBorderIcon sx={{ color: "#666", fontSize: "1.3rem" }} />
+            )}
+          </IconButton>
+
+          {/* Free Delivery Badge */}
+          <Chip
+            icon={<LocalShippingIcon sx={{ fontSize: "0.9rem !important" }} />}
+            label="Free Delivery"
+            size="small"
+            sx={{
+              position: "absolute",
+              top: 12,
+              left: 12,
+              zIndex: 2,
+              backgroundColor: noonYellow,
+              color: "#000",
+              fontWeight: 600,
+              fontSize: "0.7rem",
+              height: "24px",
+              "& .MuiChip-icon": {
+                color: "#000",
+              },
+            }}
+          />
+
+          {/* Product Image */}
+          <CardActionArea
+            component={Link}
+            to={`product-view/${id}`}
+            sx={{ flexGrow: 0 }}
+          >
+            <Box
+              sx={{
+                position: "relative",
+                paddingTop: "100%",
+                backgroundColor: "#F7F7F7",
+                overflow: "hidden",
+              }}
+            >
+              <CardMedia
+                component="img"
+                loading="lazy"
+                image={cover_image}
+                alt={name}
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain",
+                  padding: "16px",
+                  transition: "transform 0.3s ease",
+                  transform: isHovered ? "scale(1.05)" : "scale(1)",
+                }}
+              />
+            </Box>
+          </CardActionArea>
+
+          {/* Product Details */}
+          <CardContent
+            sx={{
+              flexGrow: 1,
+              display: "flex",
+              flexDirection: "column",
+              gap: 1,
+              pb: 1,
+            }}
+          >
+            {/* Brand */}
+            <Typography
+              variant="caption"
+              sx={{
+                color: themeMode === "dark" ? "#999" : "#666",
+                fontWeight: 500,
+                textTransform: "uppercase",
+                letterSpacing: "0.5px",
+                fontSize: "0.7rem",
+              }}
+            >
+              {brand}
+            </Typography>
+
+            {/* Product Name */}
+            <CardActionArea component={Link} to={`product-view/${id}`}>
+              <Typography
+                variant="body1"
+                component="h3"
+                sx={{
+                  fontWeight: 500,
+                  fontSize: "0.95rem",
+                  lineHeight: 1.4,
+                  height: isMatch ? "60px" : "70px",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3,
+                  WebkitBoxOrient: "vertical",
+                  color: themeMode === "dark" ? "#fff" : "#1a1a1a",
+                  mb: 1,
+                }}
+              >
+                {isMatch ? name.slice(0, 50) : name.slice(0, 60)}
+                {name.length > (isMatch ? 50 : 60) && "..."}
+              </Typography>
+            </CardActionArea>
+
+            {/* Rating */}
+            <Box
+              sx={{ display: "flex", alignItems: "center", gap: 0.5, mb: 0.5 }}
+            >
+              <Rating
+                value={4.5}
+                precision={0.5}
+                size="small"
+                readOnly
+                sx={{ fontSize: "1rem" }}
+              />
+              <Typography
+                variant="caption"
+                sx={{ color: "#666", fontSize: "0.75rem" }}
+              >
+                (128)
+              </Typography>
+            </Box>
+
+            {/* Price */}
+            <Box sx={{ display: "flex", alignItems: "baseline", gap: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: "1.25rem",
+                  color: themeMode === "dark" ? noonYellow : "#000",
+                }}
+              >
+                ${price}
+              </Typography>
+              <Typography
+                variant="caption"
+                sx={{
+                  color: "#999",
+                  textDecoration: "line-through",
+                  fontSize: "0.85rem",
+                }}
+              >
+                ${(price * 1.2).toFixed(2)}
+              </Typography>
+            </Box>
+          </CardContent>
+
+          {/* Action Buttons */}
+          <CardActions
+            sx={{
+              padding: "12px 16px 16px",
+              gap: 1,
+              display: "flex",
+            }}
+          >
+            {/* Add to Cart Button */}
+            <Button
+              variant="contained"
+              fullWidth
+              onClick={() => handleBtnClick(id)}
+              disabled={loadingPostCart && idx === id}
+              startIcon={<AddShoppingCartIcon />}
+              sx={{
+                backgroundColor: noonYellow,
+                fontWeight: 700,
+                textTransform: "none",
+                fontSize: "0.9rem",
+                borderRadius: "8px",
+                py: 1.2,
+                "&:hover": {
+                  backgroundColor: noonDarkYellow,
+                },
+                "&:disabled": {
+                  backgroundColor: "#E0E0E0",
+                  color: "#999",
+                },
+                boxShadow: "none",
+              }}
+            >
+              {t("add-to-cart")}
+            </Button>
+
+            {/* View Details Button */}
+            <IconButton
+              component={Link}
+              to={`product-view/${id}`}
+              sx={{
+                border: "2px solid",
+                borderColor:
+                  themeMode === "dark" ? "rgba(255,255,255,0.2)" : "#E0E0E0",
+                borderRadius: "8px",
+                color: themeMode === "dark" ? "#fff" : "#666",
+                "&:hover": {
+                  backgroundColor:
+                    themeMode === "dark" ? "rgba(255,255,255,0.05)" : "#F5F5F5",
+                  borderColor: noonYellow,
+                },
+                transition: "all 0.2s",
+              }}
+            >
+              <RemoveRedEyeIcon />
+            </IconButton>
           </CardActions>
         </Card>
       </motion.div>
     </Grid>
-  );
-};
+  )
+}
 
-export default Product;
+export default Product

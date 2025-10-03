@@ -1,5 +1,5 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import React from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
 import {
   Navigation,
   Pagination,
@@ -7,27 +7,51 @@ import {
   A11y,
   Autoplay,
   EffectFade,
-} from "swiper/modules";
-import "../../../node_modules/swiper/swiper-bundle.min.css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-import "swiper/css/effect-fade";
-import "swiper/css/autoplay";
-import { Box } from "@mui/material";
+} from "swiper/modules"
+import { Box } from "@mui/material"
 
-import defaultSliderImages from "@assets/sliderImages";
-import "./SwiperCustom.css"; // Import custom CSS file
-import UseMediaQueryHook from "@hooks/use-media-query";
+import "swiper/css"
+import "swiper/css/navigation"
+import "swiper/css/pagination"
+import "swiper/css/scrollbar"
+import "swiper/css/effect-fade"
+import "swiper/css/autoplay"
+
+import defaultSliderImages from "@assets/sliderImages"
+import UseMediaQueryHook from "@hooks/use-media-query"
+import UseThemMode from "@hooks/use-theme"
+import "./SwiperCustom.css"
 
 const Swiperslide = ({ images }) => {
-  // const imageArray = images?.length ? images : defaultSliderImages;
-  const { isMatch } = UseMediaQueryHook();
+  const { isMatch } = UseMediaQueryHook()
+  const { themeMode } = UseThemMode()
+  const imageArray = defaultSliderImages
+
   return (
     <Box
       sx={{
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+        boxShadow:
+          themeMode === "light"
+            ? "0 4px 16px rgba(0, 0, 0, 0.08)"
+            : "0 4px 16px rgba(0, 0, 0, 0.4)",
+        borderRadius: "12px",
+        overflow: "hidden",
         mt: -2.5,
+        position: "relative",
+        "&::before": {
+          content: '""',
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background:
+            themeMode === "light"
+              ? "linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 50%)"
+              : "linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 50%)",
+          pointerEvents: "none",
+          zIndex: 1,
+        },
       }}
     >
       <Swiper
@@ -40,35 +64,76 @@ const Swiperslide = ({ images }) => {
           Autoplay,
         ]}
         spaceBetween={0}
-        autoplay={{ delay: 3000 }}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         slidesPerView={isMatch ? 1 : 2}
         navigation
         pagination={{
           clickable: true,
           renderBullet: (index, className) => {
-            return `<span class="${className} custom-bullet">${
+            return `<span class="${className} custom-bullet" data-theme="${themeMode}">${
               index + 1
-            }</span>`;
+            }</span>`
           },
         }}
-        loop={true} // Enable looping
-        style={{ height: "350px", width: "100%" }}
+        loop={true}
+        speed={800}
+        effect="slide"
+        grabCursor={true}
+        style={{
+          height: isMatch ? "280px" : "350px",
+          width: "100%",
+          borderRadius: "12px",
+        }}
+        className={`swiper-container-${themeMode}`}
       >
-        {defaultSliderImages.map((img, index) => {
-          return (
-            <SwiperSlide key={index}>
+        {imageArray.map((img, index) => (
+          <SwiperSlide key={index}>
+            <Box
+              sx={{
+                width: "100%",
+                height: "100%",
+                position: "relative",
+                overflow: "hidden",
+                "&::after": {
+                  content: '""',
+                  position: "absolute",
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: "60px",
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.3), transparent)",
+                  pointerEvents: "none",
+                },
+              }}
+            >
               <img
                 src={img}
-                alt={`slide-${index}`}
+                alt={`Slide ${index + 1}`}
                 loading="lazy"
-                style={{ width: "100%", height: "100%" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 0.6s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "scale(1.05)"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "scale(1)"
+                }}
               />
-            </SwiperSlide>
-          );
-        })}
+            </Box>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </Box>
-  );
-};
+  )
+}
 
-export default React.memo(Swiperslide);
+export default React.memo(Swiperslide)

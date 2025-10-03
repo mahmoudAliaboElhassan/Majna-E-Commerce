@@ -1,25 +1,101 @@
-.sidebar {
-  width: 15%;
-  position: fixed;
-  height: 100%;
-  border-right: 2px solid #e5e5e5;
-  z-index: 3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+/* Sidebar Title Styles - Noon-inspired */
+.sidebar-title {
+  font-weight: 700 !important;
+  width: fit-content;
+  margin: 16px auto 20px !important;
+  color: inherit;
+  position: relative;
+  padding-bottom: 8px;
 }
 
-.logo-container {
-  margin-bottom: 4rem;
+.sidebar-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  border-radius: 2px;
 }
 
-.logo-container h1 {
-  margin-top: 1.3rem;
+/* Sidebar Items Container */
+.sidebar-items {
+  margin-top: 12px;
+  padding: 0 12px;
+}
+
+/* Custom Radio Input Container - Noon Style */
+.sidebar-label-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.25s ease;
+}
+
+.sidebar-label-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+/* Special "All" Gradient Style */
+.checkmark.all {
+  background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%) !important;
+  border-color: #f59e0b !important;
+}
+
+/* Divider Line */
+.line {
+  margin: 24px 0;
+  border: none;
+  border-top: 1px solid #e6e6e6;
+  opacity: 0.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .line {
+    border-top-color: #2d2d2d;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .sidebar-label-container {
+    padding: 10px 12px !important;
+    margin: 4px 0 !important;
+    gap: 10px !important;
+    min-height: 42px !important;
+  }
+
+  .checkmark {
+    height: 20px !important;
+    width: 20px !important;
+    min-width: 20px !important;
+    max-width: 20px !important;
+  }
+
+  .checkmark::after {
+    width: 7px !important;
+    height: 7px !important;
+  }
+}
+
+/* Smooth Focus States for Accessibility */
+.sidebar-label-container:focus-within {
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sidebar-label-container:focus-within {
+    outline-color: #fbbf24;
+  }
 }

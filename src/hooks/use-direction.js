@@ -1,7 +1,7 @@
 function UseDirection() {
-  const dir = document.documentElement.dir || "ltr";
-  const left = dir === "ltr" ? "left" : "right";
-  const right = dir === "ltr" ? "right" : "left";
+  const dir = document.documentElement.dir || "ltr"
+  const left = dir === "ltr" ? "left" : "right"
+  const right = dir === "ltr" ? "right" : "left"
 
   const Direction = {
     direction: dir,
@@ -13,8 +13,8 @@ function UseDirection() {
     paddingRight: `padding-${right}`,
     borderTopRightRadius: `border-top-${right}-radius`,
     borderRight: `border-${right}`,
-  };
-  return { Direction };
+  }
+  return { Direction }
 }
 
-export default UseDirection;
+export default UseDirection

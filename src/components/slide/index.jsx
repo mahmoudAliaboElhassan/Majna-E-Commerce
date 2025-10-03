@@ -1,12 +1,12 @@
-import React from "react";
+import React from "react"
 
-import { IconButton, Slide, Autocomplete } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import { IconButton, Slide, Autocomplete } from "@mui/material"
+import CloseIcon from "@mui/icons-material/Close"
 
-import { SearchBoxContainer } from "@styles/search";
+import { SearchBoxContainer } from "@styles/search"
 import Search from "@components/search"
-import UseDirection from "@hooks/use-direction";
-
+import UseDirection from "@hooks/use-direction"
+import { DrawerCloseIcon } from "../../styles/appbar"
 
 function SlideSearch({ show, close, dir }) {
   const { Direction } = UseDirection()
@@ -14,15 +14,15 @@ function SlideSearch({ show, close, dir }) {
     <Slide direction={dir} timeout={500} in={show}>
       <SearchBoxContainer>
         <Search />
-        <IconButton
+        <DrawerCloseIcon
           onClick={close}
           sx={{ position: "absolute", top: "50px", [Direction.right]: "10px" }}
         >
           <CloseIcon sx={{ fontSize: "4rem" }} color="secondary" />
-        </IconButton>
+        </DrawerCloseIcon>
       </SearchBoxContainer>
     </Slide>
-  );
+  )
 }
 
-export default React.memo(SlideSearch);
+export default React.memo(SlideSearch)

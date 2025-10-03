@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react"
 
 import {
   AppBar,
@@ -10,93 +10,93 @@ import {
   useMediaQuery,
   Container,
   ListItemIcon,
-} from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import LogoutIcon from "@mui/icons-material/Logout";
-import LoginIcon from "@mui/icons-material/Login";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import SearchIcon from "@mui/icons-material/Search";
-import { useTheme } from "@emotion/react";
-import { motion } from "framer-motion";
-import { TabContext } from "@mui/lab";
-import { useTranslation } from "react-i18next";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+} from "@mui/material"
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import LogoutIcon from "@mui/icons-material/Logout"
+import LoginIcon from "@mui/icons-material/Login"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import SearchIcon from "@mui/icons-material/Search"
+import { useTheme } from "@emotion/react"
+import { motion } from "framer-motion"
+import { TabContext } from "@mui/lab"
+import { useTranslation } from "react-i18next"
+import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
 
-import DrawerComponent from "@components/header/Drawer";
-import ModalSignup from "@components/modal";
-import SlideSearch from "@components/slide";
-import Mode from "@components/mode";
-import Search from "@components/search";
-import LanguageSelection from "@components/languages";
-import { AppbarHeader, CartNumber, TabsElementsList } from "@styles/appbar";
-import { Colors } from "@styles/theme";
-import useHeaderElements from "@hooks/use-header-elements";
-import UseDebounce from "@hooks/use-debounce";
-import UseToggle from "@hooks/use-toggle";
+import DrawerComponent from "@components/header/Drawer"
+import ModalSignup from "@components/modal"
+import SlideSearch from "@components/slide"
+import Mode from "@components/mode"
+import Search from "@components/search"
+import LanguageSelection from "@components/languages"
+import { AppbarHeader, CartNumber, TabsElementsList } from "@styles/appbar"
+import { Colors } from "@styles/theme"
+import useHeaderElements from "@hooks/use-header-elements"
+import UseDebounce from "@hooks/use-debounce"
+import UseToggle from "@hooks/use-toggle"
 // import { getTotalQuantities } from "@state/slices/cart";
-import { activate } from "@state/slices/active";
+import { activate } from "@state/slices/active"
 // import MyComponent from "../../searchandSelect.jsx";
-import styles from "@components/header/style.module.css";
+import styles from "@components/header/style.module.css"
 
 function Header() {
-  const [showSearch, setShowSearch] = useState(false);
-  const [value, setValue] = useState(null);
-  const firstRef = useRef();
-  const theme = useTheme();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const location = useLocation();
-  const { pumpCartQuantity, cgBgcolor, sizeFavorite } = styles;
-  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
-  const { t } = useTranslation();
-  const { allElements, allTabsElements, authElements } = useHeaderElements();
-  const [anchorElSign, setAnchorElSign] = useState(null);
-  const openSign = Boolean(anchorElSign);
+  const [showSearch, setShowSearch] = useState(false)
+  const [value, setValue] = useState(null)
+  const firstRef = useRef()
+  const theme = useTheme()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const location = useLocation()
+  const { pumpCartQuantity, cgBgcolor, sizeFavorite } = styles
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"))
+  const { t } = useTranslation()
+  const { allElements, allTabsElements, authElements } = useHeaderElements()
+  const [anchorElSign, setAnchorElSign] = useState(null)
+  const openSign = Boolean(anchorElSign)
   const handleClickSign = (event) => {
-    setAnchorElSign(event.currentTarget);
-  };
+    setAnchorElSign(event.currentTarget)
+  }
   const handleCloseSign = () => {
-    setAnchorElSign(null);
-  };
-  const [open_modal, toggle] = UseToggle();
+    setAnchorElSign(null)
+  }
+  const [open_modal, toggle] = UseToggle()
 
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("")
 
   const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
-    console.log(searchValue);
-    setSearchParams({ queryformMahmoud: searchValue });
-    console.log(searchParams);
-  };
-  const dispatch = useDispatch();
-  const { activeLink } = useSelector((state) => state.active);
-  const { token, role } = useSelector((state) => state.auth);
+    setSearchValue(event.target.value)
+    console.log(searchValue)
+    setSearchParams({ queryformMahmoud: searchValue })
+    console.log(searchParams)
+  }
+  const dispatch = useDispatch()
+  const { activeLink } = useSelector((state) => state.active)
+  const { token, role } = useSelector((state) => state.auth)
   // const qunatityNumbers = useSelector(getTotalQuantities);
-  const { countOfCartItems } = useSelector((state) => state.cart);
+  const { countOfCartItems } = useSelector((state) => state.cart)
   const handleClickAuth = (authel, index) => {
-    handleCloseSign();
-    index === 1 && (token ? authel.click?.() : toggle());
-  };
-  const setSearchFn = () => setShowSearch(false);
-  const closeModal = () => toggle(false);
-  const [isAnimate, setIsAnimate] = UseDebounce(500);
+    handleCloseSign()
+    index === 1 && (token ? authel.click?.() : toggle())
+  }
+  const setSearchFn = () => setShowSearch(false)
+  const closeModal = () => toggle(false)
+  const [isAnimate, setIsAnimate] = UseDebounce(500)
 
-  const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`;
-  const heartStyle = `${isAnimate ? cgBgcolor : ""}`;
+  const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`
+  const heartStyle = `${isAnimate ? cgBgcolor : ""}`
 
-  console.log(location.pathname.split("/"));
-  const locationPath = `/${location.pathname.split("/")[1]}`;
-  console.log("locationPath");
-  console.log(locationPath);
-  console.log(location.pathname);
-  useEffect(() => {}, [countOfCartItems]);
+  console.log(location.pathname.split("/"))
+  const locationPath = `/${location.pathname.split("/")[1]}`
+  console.log("locationPath")
+  console.log(locationPath)
+  console.log(location.pathname)
+  useEffect(() => {}, [countOfCartItems])
   console.log(
     "type of local storage",
     typeof localStorage.getItem("countOfCartItem")
-  );
-  console.log(typeof localStorage.getItem("countOfCartItem"));
+  )
+  console.log(typeof localStorage.getItem("countOfCartItem"))
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -233,7 +233,7 @@ function Header() {
                         fontSize: { md: "12px", lg: "16px" },
                         display: "inline",
                         textAlign: "center",
-                        color: locationPath === el.to ? "white" : "normal", // Set color to white when active, adjust as needed
+                        color: "white",
                         fontWeight: locationPath === el.to ? "bold" : "normal", // Set font weight to bold when active
                         borderBottom:
                           locationPath === el.to ? "2px solid white" : "none", // Set border bottom when active
@@ -277,7 +277,7 @@ function Header() {
                     component={Link}
                     {...authel}
                     onClick={() => {
-                      handleClickAuth(authel, index);
+                      handleClickAuth(authel, index)
                     }}
                   >
                     <div
@@ -305,9 +305,8 @@ function Header() {
         <SlideSearch show={showSearch} dir={"down"} close={setSearchFn} />
       </Container>
       <ModalSignup open_modal={open_modal} close={closeModal} />
-      <div id="firstSection"></div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

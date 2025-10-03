@@ -1,181 +1,161 @@
-import React, { useState } from "react";
+import React from "react"
+import { Box, Typography, Divider } from "@mui/material"
+import { useTranslation } from "react-i18next"
+import { ShoppingCart } from "@mui/icons-material"
 
-import { motion } from "framer-motion";
-import {
-  List,
-  Drawer,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  IconButton,
-  Divider,
-} from "@mui/material";
-import { Toolbar } from "@mui/material";
-import { Link } from "react-router-dom";
-import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
-import { useTranslation } from "react-i18next";
-
-import { Colors } from "@styles/theme";
-import UseProductTypes from "@hooks/use-product-types";
-import UseDirection from "@hooks/use-direction";
-import UseThemMode from "@hooks/use-theme";
-import Category from "@components/sidebarFiltering/category";
-import Price from "@components/sidebarFiltering/price";
-import Color from "@components/sidebarFiltering/colors";
-import Ordering from "@components/sidebarFiltering/ordering";
-import SubCategory from "@components/sidebarFiltering/subCategory";
-import { useDispatch } from "react-redux";
-
-const blue = {
-  100: "#DAECFF",
-  200: "#b6daff",
-  400: "#3399FF",
-  500: "#007FFF",
-  600: "#0072E5",
-  900: "#003A75",
-};
-
-const grey = {
-  50: "#F3F6F9",
-  100: "#E5EAF2",
-  200: "#DAE2ED",
-  300: "#C7D0DD",
-  400: "#B0B8C4",
-  500: "#9DA8B7",
-  600: "#6B7A90",
-  700: "#434D5B",
-  800: "#303740",
-  900: "#1C2025",
-};
+import UseDirection from "@hooks/use-direction"
+import UseThemMode from "@hooks/use-theme"
+import Category from "@components/sidebarFiltering/category"
+import Price from "@components/sidebarFiltering/price"
+import Ordering from "@components/sidebarFiltering/ordering"
+import SubCategory from "@components/sidebarFiltering/subCategory"
 
 function ProductTypesSidebar({
-  handleChange,
   handlePriceChange,
   priceFromTo,
   handleClickPrice,
   price,
-  color,
-  handleChangeColor,
   handleOrdering,
   handleProductsByCategory,
   selectedCategory,
   selectedSubCategory,
   handleSelectedSubCategory,
 }) {
-  const { productTypes } = UseProductTypes();
-  const [active, setActive] = useState(0);
-  const { themeMode } = UseThemMode();
-  const { Direction } = UseDirection();
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
+  const { themeMode } = UseThemMode()
+  const { Direction } = UseDirection()
+  const { t } = useTranslation()
+
+  const sidebarStyles = {
+    // width: "280px",
+    // minHeight: "calc(100vh - 64px)",
+    // position: "sticky",
+    // top: 0,
+    [Direction.left]: 0,
+    // backgroundColor: themeMode === "light" ? "#ffffff" : "#1e1e1e",
+    borderRight: `1px solid ${themeMode === "light" ? "#e6e6e6" : "#2d2d2d"}`,
+    overflowY: "auto",
+    overflowX: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    boxShadow:
+      themeMode === "light"
+        ? "0 2px 8px rgba(0,0,0,0.04)"
+        : "0 2px 8px rgba(0,0,0,0.2)",
+    "&::-webkit-scrollbar": {
+      width: "6px",
+    },
+    "&::-webkit-scrollbar-track": {
+      background: themeMode === "light" ? "#f5f5f5" : "#1a1a1a",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: themeMode === "light" ? "#d4d4d4" : "#404040",
+      borderRadius: "3px",
+      "&:hover": {
+        background: themeMode === "light" ? "#b8b8b8" : "#555",
+      },
+    },
+  }
+
+  const headerStyles = {
+    padding: "24px 20px 20px",
+    textAlign: "center",
+    // backgroundColor: themeMode === "light" ? "#fafafa" : "#252525",
+    borderBottom: `1px solid ${themeMode === "light" ? "#e6e6e6" : "#2d2d2d"}`,
+    position: "sticky",
+    top: 0,
+    zIndex: 10,
+    // background:
+    //   themeMode === "light"
+    //     ? "linear-gradient(180deg, #ffffff 0%, #fafafa 100%)"
+    //     : "linear-gradient(180deg, #252525 0%, #1e1e1e 100%)",
+  }
+
+  const contentStyles = {
+    flex: 1,
+    padding: "20px 16px",
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    // backgroundColor: themeMode === "light" ? "#ffffff" : "#1e1e1e",
+  }
+
   return (
-    <>
-      <div
-        open={true}
-        variant="persistent"
-        anchor={Direction.left}
-        style={{
-          height: "calc(100% + 63px)",
-          backgroundColor: themeMode === "light" ? "#ddd" : "#2b1f1f",
-          [Direction.borderRight]: `2px solid ${
-            themeMode == "dark" ? Colors.light_gray : Colors.shaft
-          }`,
-          // boxShadow: `0 0 0 3px ${
-          //   themeMode === "dark" ? blue[600] : blue[200]
-          // }`,
-        }}
-      >
-        <List
+    <Box sx={sidebarStyles}>
+      {/* Header */}
+      <Box sx={headerStyles}>
+        <ShoppingCart
           sx={{
-            zIndex: 2,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
+            fontSize: 42,
+            color: themeMode === "light" ? "#f59e0b" : "#fbbf24",
+            mb: 1,
+            filter: "drop-shadow(0 2px 4px rgba(245, 158, 11, 0.2))",
+          }}
+        />
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 700,
+            color: themeMode === "light" ? "#111827" : "#f3f4f6",
+            fontSize: { xs: "18px", sm: "20px", md: "22px" },
+            letterSpacing: "0.5px",
           }}
         >
-          <div>
-            <h1 style={{ marginTop: "1.3rem" }}>🛒</h1>
-          </div>
-          {/* {productTypes &&
-              productTypes.map((product, index) => (
-                <div key={product.to}>
-                  <h3
-                    style={{ cursor: "pointer", padding: "5px" }}
-                    sx={{ fontSize: { md: "12px", lg: "16px" } }}
-                    onClick={() => {
-                      setActive(index);
-                    }}
-                    component={Link}
-                    {...product}
-                  >
-                    {product.label}
-                  </h3>
-                  <motion.div
-                    initial={{ height: 0 }}
-                    transition={{
-                      type: "keyframes",
-                      ease: "easeInOut",
-                      duration: 1.3,
-                      delay: 0.7,
-                    }}
-                    animate={{
-                      opacity: active === index ? 1 : 0,
-                      height: active === index ? "auto" : 0,
-                    }}
-                  >
-                    {product.nestedTypes &&
-                      product.nestedTypes.map((nestedType, innerIndex) => (
-                        <p key={innerIndex}>{nestedType.label}</p>
-                      ))}
-                  </motion.div>
-                </div>
-              ))} */}
+          {t("filters") || "Filters"}
+        </Typography>
+      </Box>
 
-          {/* <div key={index}>
-              <h1 onClick={() => setActive(index)}>{product.label}</h1>
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                transition={{
-                  type: "keyframes",
-                  ease: "easeInOut",
-                  duration: 1.3,
-                  delay: 0.7,
-                }}
-                animate={{
-                  opacity: active === index ? 1 : 0,
-                  height: active === index ? "auto" : 0,
-                }}
-              >
-                {product.nestedTypes &&
-                  product.nestedTypes.map((nestedType, innerIndex) => (
-                    <p key={innerIndex}>{nestedType.label}</p>
-                  ))}
-              </motion.div>
-            </div>
-            ))} */}
+      {/* Filter Content */}
+      <Box sx={contentStyles}>
+        {/* Ordering */}
+        <Ordering handleOrdering={handleOrdering} />
 
-          <Ordering handleOrdering={handleOrdering} />
-          <Category
-            handleProductsByCategory={handleProductsByCategory}
-            selectedCategory={selectedCategory}
-          />
-          <SubCategory
-            handleSelectedSubCategory={handleSelectedSubCategory}
-            selectedCategory={selectedCategory}
-            selectedSubCategory={selectedSubCategory}
-          />
-          <Price
-            handlePriceChange={handlePriceChange}
-            price={price}
-            handleClickPrice={handleClickPrice}
-            priceFromTo={priceFromTo}
-          />
-          {/* <Color handleChangeColor={handleChangeColor} color={color} /> */}
-        </List>
-      </div>
-    </>
-  );
+        <Divider
+          sx={{
+            my: 1.5,
+            borderColor: themeMode === "light" ? "#e6e6e6" : "#2d2d2d",
+            opacity: 0.6,
+          }}
+        />
+
+        {/* Price */}
+        <Price
+          handlePriceChange={handlePriceChange}
+          price={price}
+          handleClickPrice={handleClickPrice}
+          priceFromTo={priceFromTo}
+        />
+
+        <Divider
+          sx={{
+            my: 1.5,
+            borderColor: themeMode === "light" ? "#e6e6e6" : "#2d2d2d",
+            opacity: 0.6,
+          }}
+        />
+
+        {/* Category */}
+        <Category
+          handleProductsByCategory={handleProductsByCategory}
+          selectedCategory={selectedCategory}
+        />
+
+        <Divider
+          sx={{
+            my: 1.5,
+            borderColor: themeMode === "light" ? "#e6e6e6" : "#2d2d2d",
+            opacity: 0.6,
+          }}
+        />
+
+        {/* Sub Category */}
+        <SubCategory
+          handleSelectedSubCategory={handleSelectedSubCategory}
+          selectedCategory={selectedCategory}
+          selectedSubCategory={selectedSubCategory}
+        />
+      </Box>
+    </Box>
+  )
 }
 
-export default ProductTypesSidebar;
+export default ProductTypesSidebar

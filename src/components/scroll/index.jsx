@@ -1,62 +1,56 @@
-import React, { useEffect, useRef, useState } from "react";
-import { IconButton } from "@mui/material";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-
-import UseDirection from "@hooks/use-direction";
-import { ScrollButton } from "@styles/scrollBtn";
+import { useEffect, useState } from "react"
+import { Zoom } from "@mui/material"
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp"
+import UseDirection from "@hooks/use-direction"
+import { NoonScrollButton } from "../../styles/scrollBtn"
 
 const ScrollToTopButton = () => {
-  const [showButton, setShowButton] = useState(false);
-  const { Direction } = UseDirection();
+  const [showButton, setShowButton] = useState(false)
+  const { Direction } = UseDirection()
 
   const handleScroll = () => {
-    if (window.scrollY > 100 && !showButton) {
-      setShowButton(true);
-    } else if (window.scrollY <= 100 && showButton) {
-      setShowButton(false);
-    }
-  };
+    setShowButton(window.scrollY > 100)
+  }
 
   const handleButtonClick = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    const element = document.querySelector("#firstSection")
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [showButton]); // Only re-add event listener when showButton changes
-  // const firstSectionRef = useRef(null);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [])
 
   return (
-    <>
+    <Zoom in={showButton} timeout={300}>
       <div
         style={{
           position: "fixed",
-          bottom: showButton ? 10 : -50,
-          right: 20,
-          transition: "bottom 0.6s",
-          zIndex: "999"
+          bottom: 20,
+          [Direction.right]: 20,
+          zIndex: 999,
         }}
       >
-        <ScrollButton
-          onClick={() => {
-            const element = document.querySelector("#firstSection");
-            console.log(element);
-            element?.scrollIntoView({
-              behavior: "smooth",
-            });
-          }}
+        <NoonScrollButton
+          onClick={handleButtonClick}
+          aria-label="Scroll to top"
+          disableRipple
         >
-          <KeyboardArrowUpIcon fontSize="large" />
-        </ScrollButton>
+          <KeyboardArrowUpIcon />
+        </NoonScrollButton>
       </div>
-      {/* <div style={{ height: "3000px" }} ref={firstSectionRef}>
-        loremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremloremlorem
-      </div> */}
-    </>
-  );
-};
+    </Zoom>
+  )
+}
 
-export default ScrollToTopButton;
+export default ScrollToTopButton
