@@ -1,28 +1,28 @@
-import { memo } from "react";
+import { memo } from "react"
 
-import { Button } from "@mui/material";
-import { Form } from "formik";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Button } from "@mui/material"
+import { Form } from "formik"
+import InputLabel from "@mui/material/InputLabel"
+import MenuItem from "@mui/material/MenuItem"
+import FormControl from "@mui/material/FormControl"
+import Select from "@mui/material/Select"
+import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 
-import styles from "./styles.module.css";
-import { deleteCartItem } from "@state/slices/cart";
-import { updateQuantity } from "@state/act/actCarts";
+import styles from "./styles.module.css"
+import { deleteCartItem } from "@state/slices/cart"
+import { updateQuantity } from "@state/act/actCarts"
 
 const { cartItem, productItem, productImg, productInfo, cartItemSelection } =
-  styles;
+  styles
 
 const CartItem = ({ id, title, product }) => {
-  const { Uid } = useSelector((state) => state.auth);
+  const { Uid } = useSelector((state) => state.auth)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const handleDeleteCart = () => {
-    dispatch(deleteCartItem({ customerId: Uid, cartId: id }));
-  };
+    dispatch(deleteCartItem({ customerId: Uid, cartId: id }))
+  }
   // const [quantity, setQuantity] = useState(null);
   const handleEditCart = () => {
     dispatch(
@@ -31,8 +31,8 @@ const CartItem = ({ id, title, product }) => {
         cartId: id,
         quantity: 6,
       })
-    );
-  };
+    )
+  }
   return (
     <div className={cartItem}>
       <div className={productItem}>
@@ -84,7 +84,7 @@ const CartItem = ({ id, title, product }) => {
         <Link to={`/cart-item/${id}`}>View</Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CartItem;
+export default CartItem

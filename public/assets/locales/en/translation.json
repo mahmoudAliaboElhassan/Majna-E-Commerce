@@ -464,5 +464,10 @@
   "newsletterTitle": "Stay Updated with Latest Deals",
   "newsletterSubtitle": "Subscribe to our newsletter and never miss amazing offers",
   "emailPlaceholder": "Enter your email",
-  "subscribe": "Subscribe"
+  "subscribe": "Subscribe",
+
+  "reset-password-subtitle": "Enter your new password below to reset your account.",
+  "forget-password-subtitle": "Enter your email address to receive a password reset link.",
+  "welcome-back": "Welcome back! Please log in to continue.",
+  "join-us-today": "Join us today and create your account in seconds!"
 }
