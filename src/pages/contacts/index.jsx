@@ -1,43 +1,48 @@
-import React from "react";
+import React from "react"
+import { useTranslation } from "react-i18next"
+import { Container, Grid, Box } from "@mui/material"
 
-import { useTranslation } from "react-i18next";
-import { Container, Grid, makeStyles } from "@material-ui/core";
-
-import { AppbarHeader } from "@styles/appbar";
-import SocialMedia from "@components/contactInfo/socialMedia";
-import ContactForm from "@components/contactInfo/contactForm";
-import Footer from "@components/footer";
-
-const useStyles = makeStyles((theme) => ({
-  formWrapper: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(5),
-    color:
-      theme.palette.type === "dark" ? theme.palette.common.white : "inherit",
-    backgroundColor: "transparent !important",
-  },
-}));
+import { AppbarHeader } from "@styles/appbar"
+import SocialMedia from "@components/contactInfo/socialMedia"
+import ContactForm from "@components/contactInfo/contactForm"
+import Footer from "@components/footer"
+import UseThemeMode from "@hooks/use-theme"
 
 function Contacts() {
-  const { t } = useTranslation();
-  const classes = useStyles();
+  const { t } = useTranslation()
+  const { themeMode } = UseThemeMode()
 
   return (
-    <>
-      <AppbarHeader data-aos="fade-up">{t("contact-us")}</AppbarHeader>
-      <Container className={classes.formWrapper}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        paddingBottom: "40px",
+      }}
+    >
+      <AppbarHeader
+        data-aos="fade-up"
+        sx={{
+          paddingTop: "40px",
+          marginBottom: "48px",
+        }}
+      >
+        {t("contact-us")}
+      </AppbarHeader>
+
+      <Container maxWidth="lg">
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={6} md={6} lg={6}>
+          <Grid item xs={12} md={6}>
             <ContactForm />
           </Grid>
-          <Grid item xs={12} sm={6} md={6} lg={6}>
+          <Grid item xs={12} md={6}>
             <SocialMedia />
           </Grid>
         </Grid>
       </Container>
+
       <Footer />
-    </>
-  );
+    </Box>
+  )
 }
 
-export default Contacts;
+export default Contacts

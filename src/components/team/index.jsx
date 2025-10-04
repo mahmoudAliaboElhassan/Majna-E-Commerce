@@ -1,5 +1,4 @@
-import React from "react";
-
+import React from "react"
 import {
   Typography,
   Container,
@@ -10,254 +9,302 @@ import {
   CardActions,
   CardActionArea,
   Box,
-} from "@mui/material";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import PersonIcon from "@mui/icons-material/Person";
-import { useTranslation } from "react-i18next";
-import { useInView } from "react-intersection-observer";
-import { motion } from "framer-motion";
+  IconButton,
+} from "@mui/material"
+import GitHubIcon from "@mui/icons-material/GitHub"
+import LinkedInIcon from "@mui/icons-material/LinkedIn"
+import PersonIcon from "@mui/icons-material/Person"
+import { useTranslation } from "react-i18next"
+import { useInView } from "react-intersection-observer"
+import { motion } from "framer-motion"
+import { styled } from "@mui/material/styles"
 
-import UseMediaQueryHook from "@hooks/use-media-query";
-import UseThemMode from "@hooks/use-theme";
-import teamImage from "@assets/team";
-import portfolioImage from "@assets/team/profile.png";
-import { AppbarHeader } from "@styles/appbar";
+import UseMediaQueryHook from "@hooks/use-media-query"
+import UseThemMode from "@hooks/use-theme"
+import teamImage from "@assets/team"
+import { AppbarHeader } from "@styles/appbar"
+
+const StyledCard = styled(Card)(() => {
+  const { themeMode } = UseThemMode()
+
+  return {
+    maxWidth: "100%",
+    borderRadius: "16px",
+    background:
+      themeMode === "dark"
+        ? "linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%)"
+        : "linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)",
+    border: `1px solid ${
+      themeMode === "dark"
+        ? "rgba(251, 191, 36, 0.15)"
+        : "rgba(245, 158, 11, 0.15)"
+    }`,
+    boxShadow:
+      themeMode === "dark"
+        ? "0 8px 24px rgba(251, 191, 36, 0.15)"
+        : "0 8px 24px rgba(245, 158, 11, 0.12)",
+    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+    overflow: "hidden",
+
+    "&:hover": {
+      transform: "translateY(-8px)",
+      boxShadow:
+        themeMode === "dark"
+          ? "0 12px 32px rgba(251, 191, 36, 0.25)"
+          : "0 12px 32px rgba(245, 158, 11, 0.2)",
+      borderColor:
+        themeMode === "dark"
+          ? "rgba(251, 191, 36, 0.3)"
+          : "rgba(245, 158, 11, 0.3)",
+    },
+  }
+})
+
+const StyledCardMedia = styled(CardMedia)(() => {
+  const { themeMode } = UseThemMode()
+
+  return {
+    height: "280px",
+    position: "relative",
+    transition: "transform 0.4s ease",
+
+    "&::after": {
+      content: '""',
+      position: "absolute",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background:
+        themeMode === "dark"
+          ? "linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.4) 100%)"
+          : "linear-gradient(180deg, transparent 0%, rgba(248, 250, 252, 0.3) 100%)",
+      pointerEvents: "none",
+    },
+
+    ".MuiCardActionArea-root:hover &": {
+      transform: "scale(1.05)",
+    },
+  }
+})
+
+const StyledCardContent = styled(CardContent)(() => {
+  const { themeMode } = UseThemMode()
+
+  return {
+    padding: "24px",
+    background:
+      themeMode === "dark"
+        ? "rgba(30, 41, 59, 0.5)"
+        : "rgba(255, 255, 255, 0.9)",
+  }
+})
+
+const SocialIconButton = styled(IconButton)(() => {
+  const { themeMode } = UseThemMode()
+
+  return {
+    width: "48px",
+    height: "48px",
+    borderRadius: "50%",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    color: themeMode === "dark" ? "#cbd5e1" : "#475569",
+
+    "&:hover": {
+      background:
+        themeMode === "dark"
+          ? "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)"
+          : "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+      color: "#ffffff",
+      transform: "translateY(-4px) scale(1.1)",
+      boxShadow:
+        themeMode === "dark"
+          ? "0 6px 16px rgba(251, 191, 36, 0.4)"
+          : "0 6px 16px rgba(245, 158, 11, 0.4)",
+    },
+  }
+})
 
 function Team() {
-  const { isMatch } = UseMediaQueryHook();
-  const { t } = useTranslation();
-  const { themeMode } = UseThemMode();
+  const { isMatch } = UseMediaQueryHook()
+  const { t } = useTranslation()
+  const { themeMode } = UseThemMode()
 
-  // Using useInView to trigger animation when in view
-  const { ref: ref1, inView: inView1 } = useInView({ triggerOnce: false });
-  const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: false });
+  const { ref: ref1, inView: inView1 } = useInView({ triggerOnce: false })
+  const { ref: ref2, inView: inView2 } = useInView({ triggerOnce: false })
+
+  const teamMembers = [
+    {
+      name: t("mahmoud-ali"),
+      faculty: t("faculty-mahmoud"),
+      job: t("job-mahmoud"),
+      image: teamImage[0],
+      alt: "Mahmoud Ali",
+      links: {
+        linkedin: "https://www.linkedin.com/in/mahmoudali-webdev/",
+        github: "https://github.com/mahmoudAliaboElhassan",
+        website: "https://mahmoud-ali-ze8h.vercel.app/",
+      },
+    },
+    {
+      name: t("mohammed-abdelaleem"),
+      faculty: t("faculty-mohammed"),
+      job: t("job-mohammed"),
+      image: teamImage[1],
+      alt: "Mohammed Abd Elaleem",
+      links: {
+        linkedin: "https://www.linkedin.com/in/mohamed-abdelaleem-0505431ab",
+        github: "https://github.com/mohamedAbdelaleem",
+      },
+    },
+  ]
 
   return (
-    <Container maxWidth="md" sx={{ overflow: "hidden" }}>
-      <AppbarHeader>{t("people-developed")}</AppbarHeader>
-      <Grid container spacing={5}>
-        <Grid item xs={12} md={6}>
-          <motion.div
-            ref={ref1}
-            initial={{ y: isMatch ? -50 : 0, x: isMatch ? 0 : -50, opacity: 0 }}
-            animate={
-              inView1
-                ? { y: isMatch ? 0 : 0, x: isMatch ? 0 : 0, opacity: 1 }
-                : {}
-            }
-            transition={{ duration: isMatch ? 1 : 1.5 }}
-          >
-            <Card sx={{ maxWidth: "100%" }}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="240"
-                  image={teamImage[0]}
-                  alt={"Mahmoud Ali"}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h4"
-                    component="div"
-                    sx={{
-                      fontSize: {
-                        xs: "17px",
-                        sm: "19px",
-                        md: "21px",
-                        lg: "27px",
-                      },
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {t("mahmoud-ali")}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{
-                      fontSize: {
-                        xs: "13px",
-                        sm: "16px",
-                        md: "17px",
-                        lg: "23px",
-                      },
-                    }}
-                  >
-                    {t("faculty-mahmoud")}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    component="div"
-                    color="textPrimary"
-                    sx={
-                      {
-                        // whiteSpace: "nowrap",
-                      }
-                    }
-                  >
-                    {t("job-mahmoud")}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
-                }}
-              >
-                <Box sx={{ flex: 1 }}>
-                  <a
-                    href="https://www.linkedin.com/in/mahmoudali-webdev/"
-                    target="_blank"
-                    style={{ color: "inherit" }}
-                    title={t("linkedin")}
-                  >
-                    <LinkedInIcon
-                      sx={{
-                        fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" },
-                      }}
-                    />
-                  </a>
-                </Box>
-                <Box sx={{ flex: 1 }}>
-                  <a
-                    href="https://github.com/mahmoudAliaboElhassan"
-                    target="_blank"
-                    style={{ color: "inherit" }}
-                    title={t("github")}
-                  >
-                    <GitHubIcon
-                      sx={{
-                        fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" },
-                      }}
-                    />
-                  </a>
-                </Box>
-                <Box sx={{ flex: 1 }}>
-                  <a
-                    href="https://mahmoud-ali-ze8h.vercel.app/"
-                    target="_blank"
-                    style={{ color: "inherit" }}
-                    title={t("website")}
-                  >
-                    <PersonIcon
-                      sx={{
-                        fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" },
-                      }}
-                    />
-                  </a>
-                </Box>
-              </CardActions>
-            </Card>
-          </motion.div>
-        </Grid>
+    <Container
+      maxWidth="lg"
+      sx={{
+        overflow: "hidden",
+        paddingY: "60px",
+      }}
+    >
+      <AppbarHeader sx={{ marginBottom: "48px" }}>
+        {t("people-developed")}
+      </AppbarHeader>
 
-        <Grid item xs={12} md={6}>
-          <motion.div
-            ref={ref2}
-            initial={{ y: isMatch ? 50 : 0, x: isMatch ? 0 : 50, opacity: 0 }}
-            animate={
-              inView2
-                ? { y: isMatch ? 0 : 0, x: isMatch ? 0 : 0, opacity: 1 }
-                : {}
-            }
-            transition={{ duration: isMatch ? 2 : 1.5 }}
-          >
-            <Card sx={{ maxWidth: "100%" }}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  height="240"
-                  image={teamImage[1]}
-                  alt={"Mohammed Abd Elaleem"}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h4"
-                    component="div"
-                    sx={{
-                      fontSize: {
-                        xs: "17px",
-                        sm: "19px",
-                        md: "21px",
-                        lg: "27px",
-                      },
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {t("mohammed-abdelaleem")}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{
-                      fontSize: {
-                        xs: "13px",
-                        sm: "16px",
-                        md: "17px",
-                        lg: "23px",
-                      },
-                    }}
-                  >
-                    {t("faculty-mohammed")}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    component="div"
-                    color="textPrimary"
-                  >
-                    {t("job-mohammed")}
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  textAlign: "center",
+      <Grid container spacing={4}>
+        {teamMembers.map((member, index) => {
+          const ref = index === 0 ? ref1 : ref2
+          const inView = index === 0 ? inView1 : inView2
+
+          return (
+            <Grid item xs={12} md={6} key={index}>
+              <motion.div
+                ref={ref}
+                initial={{
+                  y: isMatch ? (index === 0 ? -50 : 50) : 0,
+                  x: isMatch ? 0 : index === 0 ? -50 : 50,
+                  opacity: 0,
                 }}
+                animate={inView ? { y: 0, x: 0, opacity: 1 } : {}}
+                transition={{ duration: isMatch ? 1 + index * 0.2 : 1.5 }}
               >
-                <Box sx={{ flex: 1 }}>
-                  <a
-                    href="https://www.linkedin.com/in/mohamed-abdelaleem-0505431ab?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                    target="_blank"
-                    style={{ color: "inherit" }}
-                    title={t("linkedin")}
-                  >
-                    <LinkedInIcon
-                      sx={{
-                        fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" },
-                      }}
+                <StyledCard>
+                  <CardActionArea>
+                    <StyledCardMedia
+                      component="img"
+                      image={member.image}
+                      alt={member.alt}
                     />
-                  </a>
-                </Box>
-                <Box sx={{ flex: 1 }}>
-                  <a
-                    href="https://github.com/mohamedAbdelaleem"
-                    target="_blank"
-                    style={{ color: "inherit" }}
-                    title={t("github")}
+                    <StyledCardContent>
+                      <Typography
+                        gutterBottom
+                        variant="h4"
+                        component="div"
+                        sx={{
+                          fontSize: {
+                            xs: "20px",
+                            sm: "22px",
+                            md: "24px",
+                            lg: "28px",
+                          },
+                          fontWeight: 700,
+                          color: themeMode === "dark" ? "#fbbf24" : "#f59e0b",
+                          marginBottom: "8px",
+                        }}
+                      >
+                        {member.name}
+                      </Typography>
+                      <Typography
+                        variant="h6"
+                        component="p"
+                        gutterBottom
+                        sx={{
+                          fontSize: {
+                            xs: "14px",
+                            sm: "15px",
+                            md: "16px",
+                            lg: "18px",
+                          },
+                          fontWeight: 500,
+                          color: themeMode === "dark" ? "#94a3b8" : "#64748b",
+                          marginBottom: "12px",
+                        }}
+                      >
+                        {member.faculty}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="div"
+                        sx={{
+                          fontSize: {
+                            xs: "13px",
+                            sm: "14px",
+                            md: "15px",
+                          },
+                          color: themeMode === "dark" ? "#cbd5e1" : "#475569",
+                          lineHeight: 1.6,
+                        }}
+                      >
+                        {member.job}
+                      </Typography>
+                    </StyledCardContent>
+                  </CardActionArea>
+
+                  <CardActions
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      gap: "12px",
+                      padding: "20px",
+                      background:
+                        themeMode === "dark"
+                          ? "rgba(15, 23, 42, 0.6)"
+                          : "rgba(248, 250, 252, 0.8)",
+                    }}
                   >
-                    <GitHubIcon
-                      sx={{
-                        fontSize: { xs: "1.5em", sm: "1.75em", md: "2em" },
-                      }}
-                    />
-                  </a>
-                </Box>
-              </CardActions>
-            </Card>
-          </motion.div>
-        </Grid>
+                    <a
+                      href={member.links.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={t("linkedin")}
+                    >
+                      <SocialIconButton>
+                        <LinkedInIcon sx={{ fontSize: "24px" }} />
+                      </SocialIconButton>
+                    </a>
+
+                    <a
+                      href={member.links.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={t("github")}
+                    >
+                      <SocialIconButton>
+                        <GitHubIcon sx={{ fontSize: "24px" }} />
+                      </SocialIconButton>
+                    </a>
+
+                    {member.links.website && (
+                      <a
+                        href={member.links.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={t("website")}
+                      >
+                        <SocialIconButton>
+                          <PersonIcon sx={{ fontSize: "24px" }} />
+                        </SocialIconButton>
+                      </a>
+                    )}
+                  </CardActions>
+                </StyledCard>
+              </motion.div>
+            </Grid>
+          )
+        })}
       </Grid>
     </Container>
-  );
+  )
 }
 
-export default Team;
+export default Team
