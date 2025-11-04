@@ -1,37 +1,37 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback } from "react"
 
-import { Container, Grid, Card } from "@mui/material";
-import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Container, Grid, Card } from "@mui/material"
+import { useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { useLocation, useNavigate } from "react-router-dom"
 
-import UseHeaderElements from "@hooks/use-header-elements";
-import UseToggle from "@hooks/use-toggle";
-import { AppbarHeader } from "@styles/appbar";
-import { CardFooter, StyledLinkItem } from "@styles/footer";
-import ModalSignup from "@components/modal";
-import withGuard from "@utils/withGuard";
+import UseHeaderElements from "@hooks/use-header-elements"
+import UseToggle from "@hooks/use-toggle"
+import { AppbarHeader } from "@styles/appbar"
+import { CardFooter, StyledLinkItem } from "@styles/footer"
+import ModalSignup from "@components/modal"
+import withGuard from "@utils/withGuard"
 
 function Footer() {
-  const [open_modal, toggle] = UseToggle(false);
-  const { t } = useTranslation();
-  const date = new Date();
-  const year = date.getFullYear();
-  const { allElements } = UseHeaderElements();
-  const { token } = useSelector((state) => state.auth);
-  const closeModal = useCallback(() => toggle(false), []);
-  const location = useLocation();
-  const locationPath = `/${location.pathname.split("/")[1]}`;
+  const [open_modal, toggle] = UseToggle(false)
+  const { t } = useTranslation()
+  const date = new Date()
+  const year = date.getFullYear()
+  const { allElements } = UseHeaderElements()
+  const { token } = useSelector((state) => state.auth)
+  const closeModal = useCallback(() => toggle(false), [])
+  const location = useLocation()
+  const locationPath = `/${location.pathname.split("/")[1]}`
 
   const handleShow = (element, index, array) => {
     if (index === array.length - 1) {
       if (token) {
-        element?.click();
+        element?.click()
       } else {
-        toggle();
+        toggle()
       }
     }
-  };
+  }
 
   return (
     <>
@@ -50,7 +50,7 @@ function Footer() {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  color: "white"
+                  color: "white",
                 }}
               >
                 <StyledLinkItem
@@ -79,7 +79,7 @@ function Footer() {
       </CardFooter>
       <ModalSignup open_modal={open_modal} close={closeModal} />
     </>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

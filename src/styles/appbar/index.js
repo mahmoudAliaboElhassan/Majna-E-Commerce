@@ -11,7 +11,7 @@ export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   padding: "2px",
   flexGrow: 1,
   fontFamily: '"Montez","cursive"',
-  color: theme.palette.mode === "dark" ? "#fbbf24" : "white",
+  color: theme.palette.mode === "dark" ? "#fbbf24" : "#f59e0b",
   textAlign: "center",
   fontSize: "2.25em",
   fontStyle: "italic",
@@ -45,8 +45,8 @@ export const DrawerCloseIcon = styled(IconButton)(() => {
   const { themeMode } = UseThemeMode()
 
   return {
-    position: "absolute",
-    bottom: "24px",
+    position: "relative",
+    // bottom: "24px",
     left: "50%",
     zIndex: 999999,
     transform: "translateX(-50%)",

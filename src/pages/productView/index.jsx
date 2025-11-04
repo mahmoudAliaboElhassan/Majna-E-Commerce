@@ -1,53 +1,61 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { Container, Grid, Typography } from "@mui/material"; // Use @mui/material instead of @material-ui/core
+import React, { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useParams } from "react-router-dom"
 import {
+  Container,
+  Grid,
+  Typography,
   Card,
   CardMedia,
   CardContent,
   CardActions,
   Button,
   Box,
-} from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Swal from "sweetalert2";
+  Stack,
+} from "@mui/material"
+import { useTranslation } from "react-i18next"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import Swal from "sweetalert2"
 
 import {
   getSpecifiedProduct,
   cleanUpGetSpecifiedProduct,
-} from "@state/slices/products";
-import { postCart, postFavorite } from "@state/slices/cart";
-import LoadingFetching from "@components/loadingFetching";
-import UseThemMode from "@hooks/use-theme";
-import UseDirection from "@hooks/use-direction";
-import UseToggle from "@hooks/use-toggle";
-import { Colors } from "@styles/theme";
-import ModalOrder from "@components/modalOrder";
-import Footer from "@components/footer";
-import "./style.css";
-import Reviews from "@components/reviews";
+} from "@state/slices/products"
+import { postCart, postFavorite } from "@state/slices/cart"
+import LoadingFetching from "@components/loadingFetching"
+import UseThemMode from "@hooks/use-theme"
+import UseDirection from "@hooks/use-direction"
+import UseToggle from "@hooks/use-toggle"
+import { Colors } from "@styles/theme"
+import ModalOrder from "@components/modalOrder"
+import Footer from "@components/footer"
+import Reviews from "@components/reviews"
+import "./style.css"
 
 function ProductInformation() {
-  const dispatch = useDispatch();
-  const { productId } = useParams();
-  const { themeMode } = UseThemMode();
-  const { Direction } = UseDirection();
-  const { Uid } = useSelector((state) => state.auth);
-  const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } =
-    useSelector((state) => state.cart);
-  const [open_modal_order, toggle] = UseToggle();
-  const closeModalOrder = () => toggle(false);
-  const { loadingAddOrder } = useSelector((state) => state.customer);
-  const { t } = useTranslation();
+  const dispatch = useDispatch()
+  const { productId } = useParams()
+  const { themeMode } = UseThemMode()
+  const { Direction } = UseDirection()
+  const { t } = useTranslation()
 
+  // Selectors
+  const { Uid } = useSelector((state) => state.auth)
+  const { loadingPostCart, loadingAddtoFavorite, countOfCartItems } =
+    useSelector((state) => state.cart)
+  const { loadingAddOrder } = useSelector((state) => state.customer)
   const { productData, loadingSpecificProduct } = useSelector(
     (state) => state.products
-  );
+  )
 
-  let id,
+  // Local state
+  const [imgNo, setImgNo] = useState(0)
+  const [open_modal_order, toggle] = UseToggle()
+
+  // Destructure product data
+  const {
+    id,
     name,
     brand,
     price,
@@ -57,372 +65,360 @@ function ProductInformation() {
     inventory,
     added_at,
     album_items,
-    stores,
-    total_quantity;
+  } = productData || {}
 
-  if (productData) {
-    ({
-      id,
-      name,
-      brand,
-      price,
-      category,
-      sub_category,
-      description,
-      inventory,
-      added_at,
-      album_items,
-    } = productData);
-    if (inventory) {
-      ({ stores, total_quantity } = inventory);
+  const { stores, total_quantity } = inventory || {}
+
+  // Effects
+  useEffect(() => {
+    dispatch(getSpecifiedProduct({ id: productId }))
+    return () => {
+      dispatch(cleanUpGetSpecifiedProduct())
     }
+  }, [dispatch, productId])
+
+  // Handlers
+  const handleImageChange = ({ target: { value } }) => {
+    setImgNo(Number(value))
   }
 
-  useEffect(() => {
-    dispatch(getSpecifiedProduct({ id: productId }));
-    return () => {
-      dispatch(cleanUpGetSpecifiedProduct());
-    };
-  }, [dispatch, productId]);
+  const closeModalOrder = () => toggle(false)
 
-  const [imgNo, setImgNo] = useState(0);
-  const handleImageChange = ({ target: { value } }) => {
-    setImgNo(Number(value));
-  };
+  const showErrorAlert = (title, text) => {
+    Swal.fire({
+      title,
+      text,
+      icon: "error",
+      confirmButtonText: t("ok"),
+    })
+  }
+
+  const showSuccessToast = (message) => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: themeMode,
+    })
+  }
 
   const handlePostCart = () => {
     if (!countOfCartItems || Number.parseInt(countOfCartItems) < 10) {
-      dispatch(
-        postCart({
-          customerId: Uid,
-          product_ids: [id],
-        })
-      )
+      dispatch(postCart({ customerId: Uid, product_ids: [id] }))
         .unwrap()
-        .then(() => {
-          toast.success(t("added-success"), {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: themeMode,
-          });
-        })
+        .then(() => showSuccessToast(t("added-success")))
         .catch((error) => {
           const errorMessages = {
             409: t("error-exist-cart"),
             401: t("error-not-authorized-text"),
             403: t("error-not-customer-text"),
-          };
-
+          }
           const errorMessage =
-            errorMessages[error.response.status] || error.message;
-          Swal.fire({
-            title: t("error-adding"),
-            text: errorMessage,
-            icon: "error",
-            confirmButtonText: t("ok"),
-          });
-        });
+            errorMessages[error.response?.status] || error.message
+          showErrorAlert(t("error-adding"), errorMessage)
+        })
     } else {
-      Swal.fire({
-        title: t("error-adding"),
-        text: t("excceeded-10"),
-        icon: "error",
-        confirmButtonText: t("ok"),
-      });
+      showErrorAlert(t("error-adding"), t("excceeded-10"))
     }
-  };
+  }
 
   const handlePostFavorite = () => {
-    dispatch(
-      postFavorite({
-        customerId: Uid,
-        product_ids: [id],
-      })
-    )
+    dispatch(postFavorite({ customerId: Uid, product_ids: [id] }))
       .unwrap()
-      .then(() => {
-        toast.success(t("favorite-success"), {
-          position: "top-right",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: themeMode,
-        });
-      })
+      .then(() => showSuccessToast(t("favorite-success")))
       .catch((error) => {
         const errorMessages = {
           401: t("error-not-authorized-text-favorite"),
           403: t("error-not-customer-text-favorite"),
-        };
-
+        }
         const errorMessage =
-          errorMessages[error.response.status] || error.message;
-        Swal.fire({
-          title: t("error-adding-favorite"),
-          text: errorMessage,
-          icon: "error",
-          confirmButtonText: t("ok"),
-        });
-      });
-  };
+          errorMessages[error.response?.status] || error.message
+        showErrorAlert(t("error-adding-favorite"), errorMessage)
+      })
+  }
+
+  // Render loading state
+  if (loadingSpecificProduct) {
+    return <LoadingFetching>{t("wait-product")}</LoadingFetching>
+  }
+
+  // Component renders
+  const ProductDetail = ({ label, value }) => (
+    <Typography
+      variant="h6"
+      component="p"
+      gutterBottom
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        fontSize: { xs: "0.95rem", sm: "1rem", md: "1.1rem" },
+        gap: 2,
+        py: 0.5,
+      }}
+    >
+      <span style={{ fontWeight: "700" }}>{label}</span>
+      <span style={{ textAlign: Direction.right, wordBreak: "break-word" }}>
+        {value}
+      </span>
+    </Typography>
+  )
+
+  const ImageThumbnail = ({ url, idx }) => (
+    <Box key={idx} sx={{ m: { xs: 0.5, sm: 1 } }}>
+      <input
+        name="image"
+        type="radio"
+        value={idx}
+        id={`image-${idx}`}
+        onChange={handleImageChange}
+        checked={imgNo === idx}
+        style={{ display: "none" }}
+      />
+      <label htmlFor={`image-${idx}`} style={{ cursor: "pointer" }}>
+        <Box
+          component="img"
+          src={url}
+          alt={`Thumbnail ${idx}`}
+          loading="lazy"
+          sx={{
+            width: { xs: "60px", sm: "80px", md: "100px" },
+            height: { xs: "60px", sm: "80px", md: "100px" },
+            objectFit: "cover",
+            borderRadius: "8px",
+            border:
+              imgNo === idx
+                ? `3px solid ${themeMode === "dark" ? "#fff" : "#000"}`
+                : `1px solid ${themeMode === "dark" ? "#444" : "#ddd"}`,
+            transition: "all 0.3s ease",
+            "&:hover": {
+              transform: "scale(1.05)",
+              boxShadow: 3,
+            },
+          }}
+        />
+      </label>
+    </Box>
+  )
 
   return (
     <>
-      {loadingSpecificProduct ? (
-        <LoadingFetching>{t("wait-product")}</LoadingFetching>
-      ) : (
-        <Container>
-          <Card
-            raised
-            component="div"
-            sx={{ maxWidth: "100%", p: 2 }}
-            data-aos="fade-up"
-          >
+      <Container
+        maxWidth="xl"
+        sx={{
+          py: { xs: 2, sm: 3, md: 4 },
+          px: { xs: 2, sm: 3, md: 4 },
+        }}
+      >
+        <Card
+          raised
+          component="div"
+          sx={{
+            maxWidth: "100%",
+            p: { xs: 2, sm: 3, md: 4 },
+            borderRadius: { xs: 2, md: 3 },
+            boxShadow:
+              themeMode === "dark"
+                ? "0 8px 32px rgba(0,0,0,0.4)"
+                : "0 8px 32px rgba(0,0,0,0.1)",
+          }}
+          data-aos="fade-up"
+        >
+          <Grid container spacing={{ xs: 2, sm: 3, md: 4 }}>
+            {/* Product Image Section */}
             <Grid
-              container
+              item
+              xs={12}
+              md={6}
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                flexDirection: "column",
+                gap: 2,
               }}
             >
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={6}
-                lg={6}
+              {/* Main Image */}
+              <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+                  width: "100%",
+                  height: {
+                    xs: "300px",
+                    sm: "400px",
+                    md: "500px",
+                    lg: "600px",
+                  },
+                  borderRadius: 2,
+                  overflow: "hidden",
+                  boxShadow: 3,
                 }}
                 data-aos="zoom-in"
               >
                 <CardMedia
                   component="img"
-                  image={album_items?.[imgNo]?.url} // Access the URL using the imgNo index
-                  alt={"Product Image"}
+                  image={album_items?.[imgNo]?.url}
+                  alt={name || "Product Image"}
                   loading="lazy"
-                  height="500"
-                  style={{ width: "100%", height: "100vh" }}
+                  sx={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
                 />
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sm={6}
-                md={6}
-                lg={6}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-                data-aos="fade-right"
-              >
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h4"
-                    component="div"
-                    sx={{
-                      fontStyle: "italic",
-                      letterSpacing: "-2px",
-                      textAlign: "center",
-                      color: Colors.seconday,
-                      marginBottom: "-4px",
-                    }}
-                  >
-                    {name}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{
-                      fontSize: {
-                        xs: "23px",
-                        sm: "19px",
-                        md: "20px",
-                        lg: "23px",
-                      },
-                      borderBottom: `1px solid ${
-                        themeMode === "dark" ? "white" : "black"
-                      }`,
-                      py: 2,
-                    }}
-                  >
-                    {description}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span style={{ fontWeight: "700" }}>
-                      {t("product-brand")}{" "}
-                    </span>
-                    {brand}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span style={{ fontWeight: "700" }}>
-                      {t("product-category")}{" "}
-                    </span>
-                    {category}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span style={{ fontWeight: "700" }}>
-                      {t("product-subCategory")}{" "}
-                    </span>
-                    <span style={{ textAlign: `${[Direction.right]}` }}>
-                      {sub_category}
-                    </span>
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span style={{ fontWeight: "700" }}>{t("in-store")} </span>
-                    <span style={{ textAlign: "center" }}>
-                      {" "}
-                      {total_quantity ? total_quantity : t("not-exist")}
-                    </span>
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span style={{ fontWeight: "700" }}>
-                      {t("product-price")}{" "}
-                    </span>
-                    {price}$
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    gutterBottom
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <span style={{ fontWeight: "700" }}>
-                      {t("data-added")}{" "}
-                    </span>
-                    <span style={{ textAlign: `${[Direction.right]}` }}>
-                      {added_at}
-                    </span>
-                  </Typography>
-                </CardContent>
+              </Box>
+
+              {/* Thumbnail Images */}
+              {album_items?.length > 1 && (
                 <Box
                   sx={{
                     display: "flex",
-                    justifyContent: "center",
+                    justifyContent: { xs: "center", sm: "flex-start" },
                     flexWrap: "wrap",
+                    gap: { xs: 0.5, sm: 1 },
                   }}
                   data-aos="fade-up"
                 >
-                  {album_items?.length > 1 &&
-                    album_items?.map(({ url }, idx) => (
-                      <Box key={idx} sx={{ m: 1 }}>
-                        <input
-                          name="image"
-                          type="radio"
-                          value={idx}
-                          id={`image-${idx}`}
-                          onChange={handleImageChange}
-                          style={{ display: "none" }}
-                        />
-                        <label
-                          htmlFor={`image-${idx}`}
-                          style={{ cursor: "pointer" }}
-                        >
-                          <img
-                            src={url}
-                            alt={`Thumbnail ${idx}`}
-                            loading="lazy"
-                            style={{
-                              width: "100px",
-                              height: "100px",
-                              margin: "5px",
-                              border:
-                                imgNo === idx
-                                  ? `3px solid ${
-                                      themeMode === "dark" ? "white" : "black"
-                                    }`
-                                  : null,
-                            }}
-                          />
-                        </label>
-                      </Box>
-                    ))}
+                  {album_items.map(({ url }, idx) => (
+                    <ImageThumbnail key={idx} url={url} idx={idx} />
+                  ))}
                 </Box>
-                <CardActions
+              )}
+            </Grid>
+
+            {/* Product Details Section */}
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: { xs: 2, sm: 3 },
+              }}
+              data-aos="fade-left"
+            >
+              <CardContent sx={{ p: { xs: 0, sm: 1 } }}>
+                {/* Product Title */}
+                <Typography
+                  variant="h4"
+                  component="h1"
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "100%",
+                    fontWeight: 700,
+                    fontSize: { xs: "1.75rem", sm: "2rem", md: "2.5rem" },
+                    textAlign: "center",
+                    color: Colors.seconday,
+                    mb: 2,
+                    letterSpacing: "-0.5px",
                   }}
-                  data-aos="fade-up"
+                >
+                  {name}
+                </Typography>
+
+                {/* Product Description */}
+                <Typography
+                  variant="body1"
+                  component="p"
+                  sx={{
+                    fontSize: { xs: "0.95rem", sm: "1rem", md: "1.1rem" },
+                    lineHeight: 1.6,
+                    borderBottom: `2px solid ${
+                      themeMode === "dark" ? "#444" : "#e0e0e0"
+                    }`,
+                    pb: 2,
+                    mb: 2,
+                    color: themeMode === "dark" ? "#ccc" : "#666",
+                  }}
+                >
+                  {description}
+                </Typography>
+
+                {/* Product Details */}
+                <Stack spacing={1}>
+                  <ProductDetail label={t("product-brand")} value={brand} />
+                  <ProductDetail
+                    label={t("product-category")}
+                    value={category}
+                  />
+                  <ProductDetail
+                    label={t("product-subCategory")}
+                    value={sub_category}
+                  />
+                  <ProductDetail
+                    label={t("in-store")}
+                    value={total_quantity || t("not-exist")}
+                  />
+                  <ProductDetail
+                    label={t("product-price")}
+                    value={`${price}$`}
+                  />
+                  <ProductDetail label={t("data-added")} value={added_at} />
+                </Stack>
+              </CardContent>
+
+              {/* Action Buttons */}
+              <Stack spacing={2} sx={{ mt: "auto" }} data-aos="fade-up">
+                <Stack
+                  direction={{ xs: "column", sm: "row" }}
+                  spacing={2}
+                  sx={{ width: "100%" }}
                 >
                   <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}
                     onClick={handlePostCart}
                     disabled={loadingPostCart}
                     fullWidth
-                    sx={{ whiteSpace: "nowrap" }}
+                    sx={{
+                      py: { xs: 1.5, sm: 1.2 },
+                      fontSize: { xs: "0.9rem", sm: "1rem" },
+                      fontWeight: 600,
+                      whiteSpace: "nowrap",
+                    }}
                   >
-                    {t("add-to-cart")}{" "}
+                    {t("add-to-cart")}
                   </Button>
                   <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}
                     onClick={handlePostFavorite}
                     disabled={loadingAddtoFavorite}
                     fullWidth
-                    sx={{ mx: 2, whiteSpace: "nowrap" }}
+                    sx={{
+                      py: { xs: 1.5, sm: 1.2 },
+                      fontSize: { xs: "0.9rem", sm: "1rem" },
+                      fontWeight: 600,
+                      whiteSpace: "nowrap",
+                    }}
                   >
-                    {t("add-favorite")}{" "}
+                    {t("add-favorite")}
                   </Button>
-                </CardActions>{" "}
+                </Stack>
+
                 <Button
                   variant={themeMode === "dark" ? "contained" : "outlined"}
                   onClick={() => toggle()}
                   fullWidth
-                  sx={{ mx: 2, whiteSpace: "nowrap" }}
                   disabled={!total_quantity || loadingAddOrder}
-                  data-aos="fade-up"
+                  sx={{
+                    py: { xs: 1.5, sm: 1.2 },
+                    fontSize: { xs: "0.9rem", sm: "1rem" },
+                    fontWeight: 600,
+                    whiteSpace: "nowrap",
+                  }}
                 >
                   {t("add-order")}
                 </Button>
-              </Grid>
+              </Stack>
             </Grid>
-          </Card>
+          </Grid>
+        </Card>
+
+        {/* Reviews Section */}
+        <Box sx={{ mt: { xs: 3, sm: 4, md: 5 } }}>
           <Reviews productId={productId} />
-        </Container>
-      )}
+        </Box>
+      </Container>
+
+      {/* Modal */}
       <ModalOrder
         openModalOrder={open_modal_order}
         close={closeModalOrder}
@@ -431,9 +427,11 @@ function ProductInformation() {
         price={price}
         productName={name}
       />
-      <Footer />{" "}
+
+      {/* Footer */}
+      <Footer />
     </>
-  );
+  )
 }
 
-export default ProductInformation;
+export default ProductInformation

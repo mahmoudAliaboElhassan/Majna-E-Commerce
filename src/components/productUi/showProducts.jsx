@@ -1,9 +1,9 @@
-import { Grid } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { Grid } from "@mui/material"
+import { useTranslation } from "react-i18next"
+import { useSelector } from "react-redux"
 
-import PaginationComponent from "@components/pagination";
-import LoadingFetching from "@components/loadingFetching";
+import PaginationComponent from "@components/pagination"
+import LoadingFetching from "@components/loadingFetching"
 
 const ShowProducts = ({ records, renderProducts, page, count, changePage }) => {
   const { t } = useTranslation()
@@ -11,7 +11,7 @@ const ShowProducts = ({ records, renderProducts, page, count, changePage }) => {
   console.log(page)
   const { loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
-  );
+  )
 
   return (
     <>
@@ -33,21 +33,16 @@ const ShowProducts = ({ records, renderProducts, page, count, changePage }) => {
           {t("no-product")}
         </div>
       )}
-      {countOfProducts
-        ?
-        (
-          <Grid item xs={12} sm={12} md={12}>
-            <PaginationComponent
-              page={page}
-              count={count}
-              changePage={changePage}
-            />
-          </Grid>
-        )
-        : null
-      }
+      {countOfProducts ? (
+        <Grid item xs={12} sm={12} md={12}>
+          <PaginationComponent
+            page={page}
+            count={count}
+            changePage={changePage}
+          />
+        </Grid>
+      ) : null}
     </>
-
   )
-};
-export default ShowProducts;
+}
+export default ShowProducts

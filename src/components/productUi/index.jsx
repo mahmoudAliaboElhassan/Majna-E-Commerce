@@ -150,7 +150,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
   const noonDarkYellow = "#E6D400"
 
   return (
-    <Grid item xs={12} sm={6} md={4} key={id}>
+    <Grid item xs={12} lg={3} md={4} sm={6} key={id}>
       <motion.div
         ref={ref}
         initial={{ y: 30, opacity: 0 }}
@@ -161,7 +161,8 @@ const Product = ({ id, name, cover_image, price, brand }) => {
       >
         <Card
           sx={{
-            maxWidth: 345,
+            maxWidth: { xs: "100%", sm: 345 },
+            mx: "auto",
             height: "100%",
             display: "flex",
             flexDirection: "column",
@@ -272,6 +273,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
               flexDirection: "column",
               gap: 1,
               pb: 1,
+              px: { xs: 2, sm: 2 },
             }}
           >
             {/* Brand */}
@@ -295,9 +297,9 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                 component="h3"
                 sx={{
                   fontWeight: 500,
-                  fontSize: "0.95rem",
+                  fontSize: { xs: "0.9rem", sm: "0.95rem" },
                   lineHeight: 1.4,
-                  height: isMatch ? "60px" : "70px",
+                  height: { xs: "60px", sm: isMatch ? "60px" : "70px" },
                   overflow: "hidden",
                   display: "-webkit-box",
                   WebkitLineClamp: 3,
@@ -337,7 +339,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                 component="div"
                 sx={{
                   fontWeight: 700,
-                  fontSize: "1.25rem",
+                  fontSize: { xs: "1.15rem", sm: "1.25rem" },
                   color: themeMode === "dark" ? noonYellow : "#000",
                 }}
               >
@@ -359,7 +361,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           {/* Action Buttons */}
           <CardActions
             sx={{
-              padding: "12px 16px 16px",
+              padding: { xs: "12px 16px 16px", sm: "12px 16px 16px" },
               gap: 1,
               display: "flex",
             }}
@@ -375,9 +377,9 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                 backgroundColor: noonYellow,
                 fontWeight: 700,
                 textTransform: "none",
-                fontSize: "0.9rem",
+                fontSize: { xs: "0.85rem", sm: "0.9rem" },
                 borderRadius: "8px",
-                py: 1.2,
+                py: { xs: 1, sm: 1.2 },
                 "&:hover": {
                   backgroundColor: noonDarkYellow,
                 },
