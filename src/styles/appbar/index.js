@@ -11,7 +11,7 @@ export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   padding: "2px",
   flexGrow: 1,
   fontFamily: '"Montez","cursive"',
-  color: theme.palette.mode === "dark" ? "#fbbf24" : "#f59e0b",
+  color: theme.palette.mode === "dark" ? "#fbbf24" : "white",
   textAlign: "center",
   fontSize: "2.25em",
   fontStyle: "italic",
