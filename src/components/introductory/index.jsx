@@ -1,38 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 
-import { useTheme } from "@emotion/react";
-import { useTranslation } from "react-i18next";
-import { Container } from "@mui/material";
-import { Typography } from "@material-ui/core";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useTheme } from "@emotion/react"
+import { useTranslation } from "react-i18next"
+import { Container } from "@mui/material"
+import { Typography } from "@material-ui/core"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
+import { motion } from "framer-motion"
+import { useInView } from "react-intersection-observer"
 
-import "./introductory.css";
-import Image from "@assets/introductory";
-import UseThemMode from "@hooks/use-theme";
-import UseMediaQueryHook from "@hooks/use-media-query";
-import { IntroudctoryButton } from "@styles/introductory";
+import "./introductory.css"
+import Image from "@assets/introductory"
+import UseThemMode from "@hooks/use-theme"
+import UseMediaQueryHook from "@hooks/use-media-query"
+import { IntroudctoryButton } from "@styles/introductory"
 
 function Introductory() {
-  const theme = useTheme();
-  const { t } = useTranslation();
-  const { themeMode } = UseThemMode();
-  const { isMatch } = UseMediaQueryHook();
+  const theme = useTheme()
+  const { t } = useTranslation()
+  const { themeMode } = UseThemMode()
+  const { isMatch } = UseMediaQueryHook()
 
   // Use useInView hook
-  const { ref: imgRef, inView: imgInView } = useInView({ triggerOnce: false });
+  const { ref: imgRef, inView: imgInView } = useInView({ triggerOnce: false })
   const { ref: textRef, inView: textInView } = useInView({
     triggerOnce: false,
-  });
+  })
   const { ref: introductoryRef, inView: introductoryInView } = useInView({
     triggerOnce: false,
-  });
+  })
 
-  useEffect(() => {}, [theme.direction]);
+  useEffect(() => {}, [theme.direction])
 
-  const words = t("welcome-sentence").split(" ");
+  const words = t("welcome-sentence").split(" ")
 
   const container = {
     hidden: { opacity: 0 },
@@ -40,7 +40,7 @@ function Introductory() {
       opacity: 1,
       transition: { staggerChildren: 0.22, delayChildren: 0.06 * i },
     }),
-  };
+  }
 
   const child = {
     visible: {
@@ -61,7 +61,7 @@ function Introductory() {
         stiffness: 100,
       },
     },
-  };
+  }
 
   return (
     <div
@@ -150,7 +150,7 @@ function Introductory() {
         </div>
       </Container>
     </div>
-  );
+  )
 }
 
-export default Introductory;
+export default Introductory

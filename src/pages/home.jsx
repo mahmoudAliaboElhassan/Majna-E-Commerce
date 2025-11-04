@@ -254,7 +254,7 @@ function Home() {
               startIcon={<FilterListIcon />}
               sx={{
                 backgroundColor: themeMode === "light" ? "#f59e0b" : "#fbbf24",
-                color: "#000",
+                color: "white",
                 fontWeight: 600,
                 py: 1.5,
                 borderRadius: "12px",

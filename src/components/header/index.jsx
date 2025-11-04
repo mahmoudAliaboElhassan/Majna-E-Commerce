@@ -49,7 +49,7 @@ function Header() {
   const [searchParams, setSearchParams] = useSearchParams()
   const location = useLocation()
   const { pumpCartQuantity, cgBgcolor, sizeFavorite } = styles
-  const isMatch = useMediaQuery(theme.breakpoints.down("md"))
+  const isMatch = useMediaQuery(theme.breakpoints.down("lg"))
   const { t } = useTranslation()
   const { allElements, allTabsElements, authElements } = useHeaderElements()
   const [anchorElSign, setAnchorElSign] = useState(null)

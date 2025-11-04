@@ -56,9 +56,4 @@
 
 .hero-left p {
   font-size: 1.5rem;
-  color: #555;
-}
-
-.hero.dark .hero-left p {
-  color: #ddd;
 }
