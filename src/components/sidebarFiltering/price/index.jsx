@@ -1,4 +1,3 @@
-import React from "react"
 import { TextField, Button, Box } from "@mui/material"
 import { Form, Formik } from "formik"
 import { useTranslation } from "react-i18next"
@@ -189,7 +188,7 @@ const Price = ({
               variant="contained"
               fullWidth
               disabled={!values.priceFrom && !values.priceTo}
-              startIcon={<SearchIcon />}
+              // startIcon={<SearchIcon />}
               sx={{
                 mt: 2,
                 py: 1.2,
