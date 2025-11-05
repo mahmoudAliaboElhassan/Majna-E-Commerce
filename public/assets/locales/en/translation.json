@@ -471,6 +471,7 @@
   "welcome-back": "Welcome back! Please log in to continue.",
   "join-us-today": "Join us today and create your account in seconds!",
   "filters": "Filters",
+  "loading": "loading ...",
   "apply-filters": "Apply Filters",
   "apply-price": "Apply Price"
 }

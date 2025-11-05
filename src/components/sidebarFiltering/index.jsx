@@ -193,7 +193,7 @@ function ProductTypesSidebar({
               ? "rgba(251, 191, 36, 0.15)"
               : "rgba(245, 158, 11, 0.15)"
           }`,
-          backgroundColor: themeMode === "dark" ? "#1e293b" : "#ffffff",
+          // backgroundColor: themeMode === "dark" ? "#1e293b" : "#ffffff",
           zIndex: 999,
         }}
       >
@@ -284,17 +284,17 @@ function ProductTypesSidebar({
       </Box>
 
       {/* Filter Sections */}
-      <Box sx={{ padding: "0 16px" }}>
+      <Box sx={desktopSidebarStyles}>
         {/* Ordering */}
         <Box
           sx={{
             marginBottom: "20px",
             padding: "16px",
             borderRadius: "12px",
-            background:
-              themeMode === "dark"
-                ? "rgba(251, 191, 36, 0.05)"
-                : "rgba(245, 158, 11, 0.03)",
+            // background:
+            //   themeMode === "dark"
+            //     ? "rgba(251, 191, 36, 0.05)"
+            //     : "rgba(245, 158, 11, 0.03)",
             border: `1px solid ${
               themeMode === "dark"
                 ? "rgba(251, 191, 36, 0.1)"
@@ -321,10 +321,10 @@ function ProductTypesSidebar({
             marginBottom: "20px",
             padding: "16px",
             borderRadius: "12px",
-            background:
-              themeMode === "dark"
-                ? "rgba(251, 191, 36, 0.05)"
-                : "rgba(245, 158, 11, 0.03)",
+            // background:
+            //   themeMode === "dark"
+            //     ? "rgba(251, 191, 36, 0.05)"
+            //     : "rgba(245, 158, 11, 0.03)",
             border: `1px solid ${
               themeMode === "dark"
                 ? "rgba(251, 191, 36, 0.1)"
@@ -357,10 +357,10 @@ function ProductTypesSidebar({
             marginBottom: "20px",
             padding: "16px",
             borderRadius: "12px",
-            background:
-              themeMode === "dark"
-                ? "rgba(251, 191, 36, 0.05)"
-                : "rgba(245, 158, 11, 0.03)",
+            // background:
+            //   themeMode === "dark"
+            //     ? "rgba(251, 191, 36, 0.05)"
+            //     : "rgba(245, 158, 11, 0.03)",
             border: `1px solid ${
               themeMode === "dark"
                 ? "rgba(251, 191, 36, 0.1)"
@@ -390,10 +390,10 @@ function ProductTypesSidebar({
             marginBottom: "20px",
             padding: "16px",
             borderRadius: "12px",
-            background:
-              themeMode === "dark"
-                ? "rgba(251, 191, 36, 0.05)"
-                : "rgba(245, 158, 11, 0.03)",
+            // background:
+            //   themeMode === "dark"
+            //     ? "rgba(251, 191, 36, 0.05)"
+            //     : "rgba(245, 158, 11, 0.03)",
             border: `1px solid ${
               themeMode === "dark"
                 ? "rgba(251, 191, 36, 0.1)"

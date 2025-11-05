@@ -114,11 +114,12 @@ function Header() {
                           color: "blue",
                         },
                       }}
-                    />
-                    <CartNumber className={quantityStyle}>
-                      {localStorage.getItem("countOfCartItem") != "0" &&
-                        localStorage.getItem("countOfCartItem")}
-                    </CartNumber>
+                    />{" "}
+                    {localStorage.getItem("countOfCartItem") !== "0" && (
+                      <CartNumber className={quantityStyle}>
+                        {localStorage.getItem("countOfCartItem")}
+                      </CartNumber>
+                    )}
                   </IconButton>
                   <IconButton component={Link} to="favorite">
                     <FavoriteIcon
@@ -197,10 +198,11 @@ function Header() {
                         },
                       }}
                     />
-                    <CartNumber className={quantityStyle}>
-                      {localStorage.getItem("countOfCartItem") != "0" &&
-                        localStorage.getItem("countOfCartItem")}
-                    </CartNumber>
+                    {localStorage.getItem("countOfCartItem") !== "0" && (
+                      <CartNumber className={quantityStyle}>
+                        {localStorage.getItem("countOfCartItem")}
+                      </CartNumber>
+                    )}
                   </IconButton>
 
                   <IconButton component={Link} to="favorite">

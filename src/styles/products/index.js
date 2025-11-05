@@ -59,10 +59,10 @@ export const FilteringBox = styled(Box)(() => {
     width: "100%",
     marginTop: "20px",
     borderRadius: "12px",
-    background:
-      themeMode === "dark"
-        ? "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
-        : "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)",
+    // background:
+    //   themeMode === "dark"
+    //     ? "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)"
+    //     : "linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)",
     boxShadow:
       themeMode === "dark"
         ? "0 4px 16px rgba(251, 191, 36, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.05)"
