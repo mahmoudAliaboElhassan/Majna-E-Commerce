@@ -4,7 +4,6 @@ import { IconButton } from "@mui/material"
 import "@fontsource/montez"
 import { motion } from "framer-motion"
 
-import { Colors } from "../theme"
 import UseThemeMode from "@hooks/use-theme"
 
 export const AppbarHeader = styled(motion.div)(({ theme }) => ({
@@ -81,3 +80,16 @@ export const DrawerCloseIcon = styled(IconButton)(() => {
     },
   }
 })
+const mymode = localStorage.getItem("mymode")
+console.log("mymode form style", mymode)
+export const authIconButtonStyle = {
+  padding: "8px 12px",
+  borderRadius: "8px",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    background:
+      mymode === "dark" ? "rgba(251, 191, 36, 0.2)" : "rgba(245, 158, 11, 0.2)",
+    transform: "translateY(-2px)",
+  },
+}
+export const iconColor = mymode == "light" ? "white" : "#fbbf24"

@@ -23,6 +23,8 @@ function Footer() {
   const location = useLocation()
   const locationPath = `/${location.pathname.split("/")[1]}`
 
+  const { mymode } = useSelector((state) => state.mode)
+
   const handleShow = (element, index, array) => {
     if (index === array.length - 1) {
       if (token) {
@@ -68,9 +70,20 @@ function Footer() {
               xs={12}
               sm={12}
               md={12}
-              sx={{ borderTop: "2px solid white", paddingTop: 3 }}
+              sx={{
+                borderTop: `2px solid ${
+                  mymode === "dark" ? "#fbbf24" : "black"
+                } `,
+                paddingTop: 3,
+              }}
             >
-              <AppbarHeader sx={{ position: "relative", zIndex: "9999" }}>
+              <AppbarHeader
+                sx={{
+                  position: "relative",
+                  zIndex: "9999",
+                  color: mymode === "dark" ? "#fbbf24" : "black",
+                }}
+              >
                 {t("made-with")} &copy; {year}
               </AppbarHeader>
             </Grid>

@@ -19,7 +19,7 @@ import LoginIcon from "@mui/icons-material/Login"
 import FavoriteIcon from "@mui/icons-material/Favorite"
 import SearchIcon from "@mui/icons-material/Search"
 import { useTheme } from "@emotion/react"
-import { motion } from "framer-motion"
+import { motion, transform } from "framer-motion"
 import { TabContext } from "@mui/lab"
 import { useTranslation } from "react-i18next"
 import { Link, useLocation, useSearchParams } from "react-router-dom"
@@ -36,10 +36,9 @@ import { Colors } from "@styles/theme"
 import useHeaderElements from "@hooks/use-header-elements"
 import UseDebounce from "@hooks/use-debounce"
 import UseToggle from "@hooks/use-toggle"
-// import { getTotalQuantities } from "@state/slices/cart";
-import { activate } from "@state/slices/active"
-// import MyComponent from "../../searchandSelect.jsx";
+import UseDirection from "@hooks/use-direction"
 import styles from "@components/header/style.module.css"
+import { authIconButtonStyle, iconColor } from "../../styles/appbar"
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false)
@@ -60,6 +59,8 @@ function Header() {
   const handleCloseSign = () => {
     setAnchorElSign(null)
   }
+  const { Direction } = UseDirection()
+
   const [open_modal, toggle] = UseToggle()
 
   const [searchValue, setSearchValue] = useState("")
@@ -96,7 +97,81 @@ function Header() {
     "type of local storage",
     typeof localStorage.getItem("countOfCartItem")
   )
-  console.log(typeof localStorage.getItem("countOfCartItem"))
+  const { mymode } = useSelector((state) => state.mode)
+
+  const getAuthMenuIcon = (label) => {
+    if (label === t("logout")) {
+      return <LoginIcon className="auth-icon" sx={menuIconStyle} />
+    } else if (label === t("login")) {
+      return <LogoutIcon className="auth-icon" sx={menuIconStyle} />
+    }
+    return null
+  }
+  const menuIconStyle = {
+    fontSize: "20px",
+    color: mymode === "dark" ? "#cbd5e1" : "#64748b",
+    transition: "all 0.2s ease",
+    transform: `rotate(${Direction.direction == "ltr" ? "180deg" : "0"})`,
+  }
+  const authMenuStyle = {
+    "& .MuiPaper-root": {
+      borderRadius: "12px",
+      marginTop: "8px",
+      minWidth: "220px",
+      background: mymode === "dark" ? "#1e293b" : "#ffffff",
+      border: `1px solid ${
+        mymode === "dark"
+          ? "rgba(251, 191, 36, 0.2)"
+          : "rgba(245, 158, 11, 0.2)"
+      }`,
+      boxShadow:
+        mymode === "dark"
+          ? "0 8px 24px rgba(251, 191, 36, 0.15)"
+          : "0 8px 24px rgba(245, 158, 11, 0.15)",
+    },
+  }
+
+  const authMenuItemStyle = {
+    padding: "12px 20px",
+    fontSize: "15px",
+    fontWeight: 500,
+    color: mymode === "dark" ? "#f1f5f9" : "#0f172a",
+    transition: "all 0.2s ease",
+    borderRadius: "6px",
+    margin: "4px 8px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: "12px",
+    "&:hover": {
+      background:
+        mymode === "dark"
+          ? "rgba(251, 191, 36, 0.15)"
+          : "rgba(245, 158, 11, 0.1)",
+      transform: "translateX(4px)",
+      "& .auth-icon": {
+        transform: "scale(1.1)",
+        color: iconColor,
+      },
+    },
+  }
+
+  const logoutMenuItemStyle = {
+    ...authMenuItemStyle,
+    "&:hover": {
+      background:
+        mymode === "dark"
+          ? "rgba(239, 68, 68, 0.15)"
+          : "rgba(220, 38, 38, 0.1)",
+      transform: "translateX(4px)",
+      color: mymode === "dark" ? "#fca5a5" : "#dc2626",
+      "& .auth-icon": {
+        transform: "scale(1.1)",
+        color: mymode === "dark" ? "#ef4444" : "#dc2626",
+      },
+    },
+  }
+
   return (
     <div style={{ opacity: role === "reviewer" ? 0 : 1 }}>
       <AppBar position="fixed" ref={firstRef}>
@@ -258,20 +333,34 @@ function Header() {
                 variant="h6"
                 component="button"
                 onClick={handleClickSign}
+                sx={authIconButtonStyle}
               >
                 <AccountCircleIcon
-                  sx={{ color: Colors.white }}
-                  fontSize="medium"
+                  sx={{ color: iconColor, fontSize: "24px" }}
                 />
                 <ArrowDropDownIcon
                   fontSize="small"
-                  sx={{ color: Colors.white }}
+                  sx={{
+                    color: iconColor,
+                    transition: "transform 0.3s ease",
+                    transform: openSign ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
                 />
               </IconButton>
+
               <Menu
                 anchorEl={anchorElSign}
                 open={openSign}
                 onClose={handleCloseSign}
+                sx={authMenuStyle}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: Direction.direction === "rtl" ? "right" : "left",
+                }}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: Direction.direction === "rtl" ? "right" : "left",
+                }}
               >
                 {authElements.map((authel, index) => (
                   <MenuItem
@@ -281,20 +370,14 @@ function Header() {
                     onClick={() => {
                       handleClickAuth(authel, index)
                     }}
+                    sx={
+                      authel.label === t("logout")
+                        ? logoutMenuItemStyle
+                        : authMenuItemStyle
+                    }
                   >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                      }}
-                    >
-                      <span>{authel.label}</span>
-                      {authel.label === t("logout") ? (
-                        <LogoutIcon />
-                      ) : authel.label === t("login") ? (
-                        <LoginIcon />
-                      ) : null}
-                    </div>
+                    <span style={{ fontWeight: 500 }}>{authel.label}</span>
+                    {getAuthMenuIcon(authel.label)}
                   </MenuItem>
                 ))}
               </Menu>

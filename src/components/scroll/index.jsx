@@ -45,6 +45,7 @@ const ScrollToTopButton = () => {
           onClick={handleButtonClick}
           aria-label="Scroll to top"
           disableRipple
+          style={{ color: "white" }}
         >
           <KeyboardArrowUpIcon />
         </NoonScrollButton>

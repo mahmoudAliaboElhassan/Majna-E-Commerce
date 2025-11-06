@@ -1,12 +1,11 @@
 function UseInitialStates() {
   const initialStateMode = {
-    // mymode: localStorage.getItem("mymode") === "true" ? "dark" : "light",
-    mymode: "light",
-  };
+    mymode: localStorage.getItem("mymode") || "dark",
+  }
   const initialStateActiveLinks = {
     activeLink: sessionStorage.getItem("activeLink") || "",
     // mymode: null,
-  };
+  }
 
   const initialStateAuth = {
     myJob: "",
@@ -19,7 +18,7 @@ function UseInitialStates() {
     role: localStorage.getItem("role"),
     expireToken: localStorage.getItem("expired"),
     loadingLogOut: false,
-  };
+  }
 
   const initialStateDistributor = {
     brands: [],
@@ -50,7 +49,7 @@ function UseInitialStates() {
     loadingUpdateProduct: false,
     loadingDeleteStore: false,
     countOfStores: 0,
-  };
+  }
 
   const initialStateReviewer = {
     allBrans: [],
@@ -62,12 +61,12 @@ function UseInitialStates() {
     loadingStatus: false,
     loadingSpecificBrand: false,
     countOfBrands: 0,
-  };
+  }
   const initialStateProducts = {
     countOfProducts: 0,
     productsArray: [],
     loadingProducts: false,
-  };
+  }
   const initialStateCart = {
     cartItems: [],
     cartArr: [],
@@ -85,14 +84,14 @@ function UseInitialStates() {
     loadingDeleteCart: false,
     loadingDeleteFavorite: false,
     loadingDeleteCarts: false,
-  };
+  }
   const initialStateSearch = {
     searchChange: localStorage.getItem("searchChange") || "", // Should retrieve correctly
     searchValue: localStorage.getItem("searchValue") || "",
-  };
+  }
   const initialStatePage = {
     page: localStorage.getItem("page") || "", // Should retrieve correctly
-  };
+  }
   const initialStateCustomer = {
     loadingGetAddresses: false,
     loadingAddAddress: false,
@@ -108,14 +107,14 @@ function UseInitialStates() {
     clientSecret: sessionStorage.getItem("clientSecret"),
     loadingGetPublisherKey: false,
     publisherKey: sessionStorage.getItem("publisherKey"),
-  };
+  }
   const initialStateDelivery = {
     loadingOrdersDelivery: false,
     ordersDelivery: [],
     loadingSpecificOrderData: false,
     specificOrderData: null,
     loadingUpdateOrderStatus: false,
-  };
+  }
 
   const initalStateAlbumItems = {
     albumItems: [],
@@ -128,7 +127,7 @@ function UseInitialStates() {
     imgIsCover: null,
     countOfAlbumItems: 0,
     flag: 0,
-  };
+  }
   const initialStateProductReview = {
     reviews: [],
     loadingGetRevies: false,
@@ -138,7 +137,7 @@ function UseInitialStates() {
     reviewRating: null,
     reviewContent: null,
     countOfReviews: null,
-  };
+  }
 
   return {
     initialStateMode,
@@ -154,7 +153,7 @@ function UseInitialStates() {
     initialStateDelivery,
     initalStateAlbumItems,
     initialStateProductReview,
-  };
+  }
 }
 
-export default UseInitialStates;
+export default UseInitialStates
