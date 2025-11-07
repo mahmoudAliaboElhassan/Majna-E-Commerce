@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import i18next from "i18next"
 import { IconButton, Divider, MenuItem, Menu } from "@mui/material"
 import LanguageIcon from "@mui/icons-material/Language"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
+
 import { useSelector } from "react-redux"
 
 import UseLanguages from "@hooks/use-languages"
 import UseDirection from "@hooks/use-direction"
-import UseThemMode from "@hooks/use-theme"
-import { authIconButtonStyle, iconColor } from "../../styles/appbar"
+import { authIconButtonStyle } from "../../styles/appbar"
 
 function LanguageSelection() {
   const { Languages } = UseLanguages()
   const { Direction } = UseDirection()
-  const { themeMode } = UseThemMode()
   const { mymode } = useSelector((state) => state.mode)
 
   const currLanguageCode = Cookies.get("i18next") || "en"
@@ -41,8 +38,6 @@ function LanguageSelection() {
   const handleClick = (e) => {
     setClickedElement(e.currentTarget)
   }
-
-  const { ref, inView } = useInView({ triggerOnce: false })
 
   const menuStyle = {
     "& .MuiPaper-root": {
@@ -108,11 +103,16 @@ function LanguageSelection() {
   return (
     <>
       <IconButton onClick={handleClick} sx={authIconButtonStyle}>
-        <LanguageIcon sx={{ color: iconColor, fontSize: "22px" }} />
+        <LanguageIcon
+          sx={{
+            color: mymode == "light" ? "white" : "#fbbf24",
+            fontSize: "22px",
+          }}
+        />
         <ArrowDropDownIcon
           fontSize="small"
           sx={{
-            color: iconColor,
+            color: mymode == "light" ? "white" : "#fbbf24",
             transition: "transform 0.3s ease",
             transform: open ? "rotate(180deg)" : "rotate(0deg)",
           }}

@@ -15,7 +15,7 @@ function LoadingFetching({ children }) {
           <div class="dot"></div>
           <div class="dot"></div>
         </div>
-        <AppbarHeader style={{  color: mymode === "dark" ? "#fbbf24" : "black",
+        <AppbarHeader style={{  color: "#fbbf24" 
 }}>{children}</AppbarHeader>
       </div>
     </section>

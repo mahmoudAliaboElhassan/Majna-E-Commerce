@@ -1,209 +1,236 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { Grid, Typography } from "@material-ui/core";
-import { Box, Button, makeStyles } from "@material-ui/core";
-import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
-import ThumbDownIcon from "@mui/icons-material/ThumbDown";
-import { useTranslation } from "react-i18next";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Swal from "sweetalert2";
-import { useParams, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
+import { Grid, Typography, Box, Button, Paper } from "@mui/material"
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt"
+import ThumbDownIcon from "@mui/icons-material/ThumbDown"
+import { useTranslation } from "react-i18next"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+import Swal from "sweetalert2"
+import { useParams } from "react-router-dom"
 
 import {
   UpdateBrandStatus,
   getSpecificBrand,
   cleanUpSpecifiedBrand,
-} from "@state/slices/reviewer";
-import PdfViewer from "@components/pdfFile";
-import LoadingFetching from "@components/loadingFetching";
-import UseThemMode from "@hooks/use-theme";
-import UseDirection from "@hooks/use-direction";
-import "./style.css"
+} from "@state/slices/reviewer"
+import PdfViewer from "@components/pdfFile"
+import LoadingFetching from "@components/loadingFetching"
+import UseThemMode from "@hooks/use-theme"
+import UseDirection from "@hooks/use-direction"
+import { EmptyStateBox, PageContainer } from "@styles/dataGrid"
+import { AppbarHeader } from "@styles/appbar"
 
-const useStyles = makeStyles((theme) => ({
-  buttonContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: theme.spacing(2),
-  },
-  button: {
-    margin: theme.spacing(1),
-    padding: "10px 20px",
-    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-    fontWeight: "bold",
-    "&:hover": {
-      opacity: 0.8,
-    },
-  },
-  acceptButton: {
-    backgroundColor: "#4CAF50",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "#45a049",
-    },
-  },
-  rejectButton: {
-    backgroundColor: "#f44336",
-    color: "white",
-    "&:hover": {
-      backgroundColor: "#d32f2f",
-    },
-  },
-}));
-
-function BrnadApplication() {
-  const classes = useStyles();
-  const { t } = useTranslation();
-  const { themeMode } = UseThemMode();
-  const { Direction } = UseDirection();
-  const { ApplicationId } = useParams();
+function BrandApplication() {
+  const { t } = useTranslation()
+  const { themeMode } = UseThemMode()
+  const { mymode } = useSelector((state) => state.mode)
+  const { Direction } = UseDirection()
+  const { ApplicationId } = useParams()
   const [btnDisabled, setBtnDisabled] = useState(null)
-  console.log(ApplicationId);
+
   const {
     authorizationDocument,
     identityDocument,
     loadingSpecificBrand,
     brandName,
     loadingStatus,
-  } = useSelector((state) => state.reviewer);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  } = useSelector((state) => state.reviewer)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   useEffect(() => {
-    dispatch(getSpecificBrand({ ApplicationId }));
+    dispatch(getSpecificBrand({ ApplicationId }))
     return () => {
-      dispatch(cleanUpSpecifiedBrand());
-    };
-  }, [ApplicationId]);
+      dispatch(cleanUpSpecifiedBrand())
+    }
+  }, [ApplicationId, dispatch])
 
   const handleStatus = (statusCondition) => {
     dispatch(UpdateBrandStatus({ id: ApplicationId, status: statusCondition }))
       .unwrap()
       .then(() => {
-        console.log("success");
-        {
-          toast.success(t(statusCondition), {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: themeMode,
-          });
-        }
+        toast.success(t(statusCondition), {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: themeMode,
+        })
         setTimeout(() => {
-          navigate("/reviewer-control-panel");
-        }, 1000);
+          navigate("/reviewer-control-panel")
+        }, 1000)
       })
       .catch((error) => {
-        if (error.response.status === 409) {
+        if (error.response?.status === 409) {
           Swal.fire({
             title: t("error_brand_updating"),
             text: t("error_brand_updating_text"),
             icon: "error",
             confirmButtonText: t("ok"),
-          });
+          })
         }
-      });
-  };
+      })
+  }
 
   return (
-    <>
-      {/* <ToastContainer /> */}
+    <PageContainer>
       {loadingSpecificBrand ? (
-        <LoadingFetching>{t("loading_Single_brand")}</LoadingFetching>
+        <EmptyStateBox>
+          <LoadingFetching>{t("loading_Single_brand")}</LoadingFetching>
+        </EmptyStateBox>
       ) : (
         <>
           {!authorizationDocument || !identityDocument ? (
-            <>
-              <Typography>{t('data-not-loaded')}</Typography>
+            <Paper
+              elevation={2}
+              data-aos="fade-up"
+              sx={{
+                p: 4,
+                textAlign: "center",
+                border: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === "dark"
+                      ? "rgba(244, 67, 54, 0.3)"
+                      : "rgba(244, 67, 54, 0.2)"
+                  }`,
+                background: (theme) =>
+                  theme.palette.mode === "dark"
+                    ? "linear-gradient(135deg, rgba(244, 67, 54, 0.1) 0%, rgba(211, 47, 47, 0.05) 100%)"
+                    : "linear-gradient(135deg, rgba(244, 67, 54, 0.05) 0%, rgba(211, 47, 47, 0.02) 100%)",
+              }}
+            >
+              <Typography
+                variant="h5"
+                sx={{
+                  mb: 3,
+                  fontWeight: 600,
+                  color: (theme) =>
+                    theme.palette.mode === "dark" ? "#ef5350" : "#f44336",
+                }}
+              >
+                {t("data-not-loaded")}
+              </Typography>
               <Button
-                startIcon={
-                  <ThumbDownIcon
-                    sx={{
-                      [Direction.marginRight]: "8px",
-                      fontSize: "25px !important",
-                    }}
-                  />
-                }
+                startIcon={<ThumbDownIcon />}
                 fullWidth
                 variant="contained"
-                color="warning"
-                className={`${classes.button} ${classes.rejectButton}`}
+                color="error"
+                size="large"
                 disabled={loadingStatus}
                 onClick={() => handleStatus("rejected")}
+                sx={{
+                  py: 2,
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  "&:hover": {
+                    transform: "translateY(-2px)",
+                    boxShadow: "0 8px 24px rgba(244, 67, 54, 0.3)",
+                  },
+                  transition: "all 0.3s ease",
+                }}
               >
                 {t("reject_application")}
               </Button>
-            </>
+            </Paper>
           ) : (
             <>
-              <Typography
-                variant="h2"
-                style={{
-                  fontSize: "2rem",
-                  fontWeight: "bold",
-                  marginBottom: "1rem",
-                  textAlign: "center",
-                }}
+              <AppbarHeader
+                data-aos="fade-up"
+                style={{ color: mymode === "dark" ? "#fbbf24" : "black" }}
               >
                 {brandName}
-              </Typography>
-              {/* <Grid container spacing={2}> */}
-              {/* <Grid item xs={12} md={6} lg={6}> */}
-              <PdfViewer
-                fileAuthorize={authorizationDocument}
-                fileIdntity={identityDocument}
-              />
+              </AppbarHeader>
 
-              <Box className={classes.buttonContainer}>
-                <Grid container spacing={4} justifyContent='center'>
-                  <Grid item xs={12} sm={6} md={6}  >
+              <Paper
+                elevation={2}
+                data-aos="fade-up"
+                data-aos-delay="100"
+                sx={{
+                  p: 3,
+                  mb: 3,
+                  border: (theme) =>
+                    `1px solid ${
+                      theme.palette.mode === "dark"
+                        ? "rgba(251, 191, 36, 0.15)"
+                        : "rgba(245, 158, 11, 0.15)"
+                    }`,
+                  background: (theme) =>
+                    theme.palette.mode === "dark"
+                      ? "linear-gradient(135deg, rgba(251, 191, 36, 0.05) 0%, rgba(245, 158, 11, 0.02) 100%)"
+                      : "linear-gradient(135deg, rgba(245, 158, 11, 0.03) 0%, rgba(217, 119, 6, 0.01) 100%)",
+                }}
+              >
+                <PdfViewer
+                  fileAuthorize={authorizationDocument}
+                  fileIdntity={identityDocument}
+                />
+              </Paper>
+
+              <Box data-aos="fade-up" data-aos-delay="200">
+                <Grid container spacing={3} justifyContent="center">
+                  <Grid item xs={12} sm={6} md={5}>
                     <Button
-                      startIcon={
-                        <ThumbUpAltIcon
-                          sx={{
-                            [Direction.marginRight]: "8px",
-                            fontSize: "25px !important",
-                          }}
-                        />
-                      }
+                      startIcon={<ThumbUpAltIcon />}
                       color="success"
                       fullWidth
                       variant="contained"
-                      className={`${classes.button} ${classes.acceptButton}`}
+                      size="large"
                       disabled={loadingStatus && btnDisabled === "accept"}
                       onClick={() => {
                         handleStatus("approved")
                         setBtnDisabled("accept")
                       }}
+                      sx={{
+                        py: 2,
+                        fontSize: "1.1rem",
+                        fontWeight: 600,
+                        background:
+                          "linear-gradient(135deg, #4CAF50 0%, #45a049 100%)",
+                        boxShadow: "0 4px 12px rgba(76, 175, 80, 0.3)",
+                        "&:hover": {
+                          transform: "translateY(-2px)",
+                          boxShadow: "0 8px 24px rgba(76, 175, 80, 0.4)",
+                          background:
+                            "linear-gradient(135deg, #45a049 0%, #388e3c 100%)",
+                        },
+                        transition: "all 0.3s ease",
+                      }}
                     >
                       {t("accept_application")}
                     </Button>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={6}  >
+                  <Grid item xs={12} sm={6} md={5}>
                     <Button
-                      startIcon={
-                        <ThumbDownIcon
-                          sx={{
-                            [Direction.marginRight]: "8px",
-                            fontSize: "25px !important",
-                          }}
-                        />
-                      }
+                      startIcon={<ThumbDownIcon />}
                       variant="contained"
-                      color="warning"
+                      color="error"
                       fullWidth
-                      className={`${classes.button} ${classes.rejectButton}`}
+                      size="large"
                       disabled={loadingStatus && btnDisabled === "reject"}
                       onClick={() => {
                         handleStatus("rejected")
                         setBtnDisabled("reject")
+                      }}
+                      sx={{
+                        py: 2,
+                        fontSize: "1.1rem",
+                        fontWeight: 600,
+                        background:
+                          "linear-gradient(135deg, #f44336 0%, #d32f2f 100%)",
+                        boxShadow: "0 4px 12px rgba(244, 67, 54, 0.3)",
+                        "&:hover": {
+                          transform: "translateY(-2px)",
+                          boxShadow: "0 8px 24px rgba(244, 67, 54, 0.4)",
+                          background:
+                            "linear-gradient(135deg, #d32f2f 0%, #c62828 100%)",
+                        },
+                        transition: "all 0.3s ease",
                       }}
                     >
                       {t("reject_application")}
@@ -215,8 +242,8 @@ function BrnadApplication() {
           )}
         </>
       )}
-    </>
-  );
+    </PageContainer>
+  )
 }
 
-export default BrnadApplication;
+export default BrandApplication

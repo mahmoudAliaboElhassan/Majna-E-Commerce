@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect } from "react"
 
 import {
   AppBar,
@@ -9,7 +9,6 @@ import {
   Menu,
   useMediaQuery,
   Container,
-  ListItemIcon,
 } from "@mui/material"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
@@ -17,9 +16,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import LogoutIcon from "@mui/icons-material/Logout"
 import LoginIcon from "@mui/icons-material/Login"
 import FavoriteIcon from "@mui/icons-material/Favorite"
-import SearchIcon from "@mui/icons-material/Search"
 import { useTheme } from "@emotion/react"
-import { motion, transform } from "framer-motion"
 import { TabContext } from "@mui/lab"
 import { useTranslation } from "react-i18next"
 import { Link, useLocation, useSearchParams } from "react-router-dom"
@@ -32,13 +29,12 @@ import Mode from "@components/mode"
 import Search from "@components/search"
 import LanguageSelection from "@components/languages"
 import { AppbarHeader, CartNumber, TabsElementsList } from "@styles/appbar"
-import { Colors } from "@styles/theme"
 import useHeaderElements from "@hooks/use-header-elements"
 import UseDebounce from "@hooks/use-debounce"
 import UseToggle from "@hooks/use-toggle"
 import UseDirection from "@hooks/use-direction"
 import styles from "@components/header/style.module.css"
-import { authIconButtonStyle, iconColor } from "../../styles/appbar"
+import { authIconButtonStyle } from "../../styles/appbar"
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false)
@@ -151,7 +147,7 @@ function Header() {
       transform: "translateX(4px)",
       "& .auth-icon": {
         transform: "scale(1.1)",
-        color: iconColor,
+        color: mymode == "light" ? "white" : "#fbbf24",
       },
     },
   }
@@ -233,6 +229,7 @@ function Header() {
                     whiteSpace: "nowrap",
                     cursor: "pointer",
                     flex: 1,
+                    color: mymode === "dark" ? "#fbbf24" : "white",
                   }}
                 >
                   {t("website-title")}
@@ -255,6 +252,7 @@ function Header() {
                   sx={{
                     fontStyle: "normal",
                     cursor: "pointer",
+                    color: mymode === "dark" ? "#fbbf24" : "white",
                   }}
                 >
                   {t("website-title")}
@@ -296,10 +294,7 @@ function Header() {
               )}
 
               <TabContext value={value}>
-                <TabsElementsList
-                  textColor="inherit"
-                  indicatorColor="secondary"
-                >
+                <TabsElementsList indicatorColor="secondary">
                   {allTabsElements.map((el, idx) => (
                     <Tab
                       key={el.to}
@@ -310,11 +305,12 @@ function Header() {
                         fontSize: { md: "12px", lg: "16px" },
                         display: "inline",
                         textAlign: "center",
-                        color: "white",
+                        color: mymode == "dark" ? "#fbbf24" : "white",
                         fontWeight: locationPath === el.to ? "bold" : "normal", // Set font weight to bold when active
                         borderBottom:
                           locationPath === el.to ? "2px solid white" : "none", // Set border bottom when active
                         lineHeight: "32px",
+
                         "&:hover": {
                           color: "white",
                           borderBottom: "2px solid white",
@@ -336,12 +332,15 @@ function Header() {
                 sx={authIconButtonStyle}
               >
                 <AccountCircleIcon
-                  sx={{ color: iconColor, fontSize: "24px" }}
+                  sx={{
+                    color: mymode == "light" ? "white" : "#fbbf24",
+                    fontSize: "24px",
+                  }}
                 />
                 <ArrowDropDownIcon
                   fontSize="small"
                   sx={{
-                    color: iconColor,
+                    color: mymode == "light" ? "white" : "#fbbf24",
                     transition: "transform 0.3s ease",
                     transform: openSign ? "rotate(180deg)" : "rotate(0deg)",
                   }}

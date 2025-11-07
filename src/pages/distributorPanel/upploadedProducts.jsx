@@ -1,47 +1,53 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react"
 
-import { Box, Button, Container } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import Swal from "sweetalert2";
-import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Button } from "@mui/material"
+import { DataGrid } from "@mui/x-data-grid"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import Swal from "sweetalert2"
+import "react-toastify/dist/ReactToastify.css"
+import { Link } from "react-router-dom"
 
-import "@pages/shoppingCart/style.css";
-import UseThemMode from "@hooks/use-theme";
-import { AppbarHeader } from "@styles/appbar";
-import { NoCount, NoCountContainer } from "@styles/products";
-import { DataGridContainer } from "@styles/dataGrid";
-import LoadingFetching from "@components/loadingFetching";
-import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn";
+import "@pages/shoppingCart/style.css"
+import UseThemMode from "@hooks/use-theme"
+import { AppbarHeader } from "@styles/appbar"
+import {
+  EmptyStateText,
+  EmptyStateBox,
+  DataGridWrapper,
+  PageContainer,
+  ProductImage,
+} from "@styles/dataGrid"
+import LoadingFetching from "@components/loadingFetching"
+import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn"
 import {
   getUploadedProducts,
   deleteUploadedProduct,
   cleanUpUploadedProducts,
-} from "@state/slices/distributor";
+} from "@state/slices/distributor"
 
 function UploadedProducts() {
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { themeMode } = UseThemMode();
-  const { Uid } = useSelector((state) => state.auth);
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const { themeMode } = UseThemMode()
+  const { Uid } = useSelector((state) => state.auth)
+  const { mymode } = useSelector((state) => state.mode)
   const {
     uploadedProducts,
     loadingGetUploadedProducts,
     countOfUploadedProducts,
-  } = useSelector((state) => state.distributor);
-  const [btnDisabled, setbtnDisabled] = useState(null);
-  const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn();
+  } = useSelector((state) => state.distributor)
+  const [btnDisabled, setbtnDisabled] = useState(null)
+  const LoadingStatusDeleteUpdate = UseLoadingStatusUpdateDeleteBtn()
 
   useEffect(() => {
-    dispatch(getUploadedProducts({ distributorId: Uid }));
-    return () => dispatch(cleanUpUploadedProducts());
-  }, [dispatch, countOfUploadedProducts]);
+    dispatch(getUploadedProducts({ distributorId: Uid }))
+    return () => dispatch(cleanUpUploadedProducts())
+  }, [dispatch, countOfUploadedProducts, Uid])
 
   const handleDelete = useCallback(
     (productId) => {
-      setbtnDisabled(productId);
+      setbtnDisabled(productId)
       Swal.fire({
         title: t("suring"),
         text: t("info-product"),
@@ -61,26 +67,26 @@ function UploadedProducts() {
                 title: t("deleting-product"),
                 icon: "success",
                 confirmButtonText: t("ok"),
-              });
+              })
             })
             .catch((error) => {
               Swal.fire({
                 title: t("error-deleting-product"),
                 icon: "warning",
                 confirmButtonText: t("ok"),
-              });
-            });
+              })
+            })
         } else {
           Swal.fire({
             title: t("keeping-product"),
             icon: "info",
             confirmButtonText: t("ok"),
-          });
+          })
         }
-      });
+      })
     },
     [dispatch, t, Uid]
-  );
+  )
 
   const columns = [
     {
@@ -111,7 +117,7 @@ function UploadedProducts() {
       headerAlign: "center",
       align: "center",
       renderCell: (params) => (
-        <img
+        <ProductImage
           src={params.value}
           alt={params.value}
           style={{ width: "100%", height: "auto" }}
@@ -194,7 +200,7 @@ function UploadedProducts() {
         </Button>
       ),
     },
-  ];
+  ]
 
   const rows = uploadedProducts?.map(
     ({ id, name, brand, price, cover_image }) => ({
@@ -208,44 +214,52 @@ function UploadedProducts() {
       delete: t("delete"),
       albums: t("albums"),
     })
-  );
+  )
 
   return (
-    <Box sx={{ p: 2 }}>
-      <Container>
+    <>
+      <PageContainer>
         {loadingGetUploadedProducts ? (
-          <LoadingFetching>{t("wait-uploaded-products")}</LoadingFetching>
+          <EmptyStateBox>
+            <LoadingFetching>{t("wait-uploaded-products")}</LoadingFetching>
+          </EmptyStateBox>
         ) : countOfUploadedProducts ? (
           <>
-            <AppbarHeader data-aos="fade-up">
+            <AppbarHeader
+              data-aos="fade-up"
+              style={{ color: mymode === "dark" ? "#fbbf24" : "black" }}
+            >
               {t("uploaded-products")}
             </AppbarHeader>
-            <DataGridContainer>
+            <DataGridWrapper
+              elevation={2}
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               <DataGrid
                 rows={rows}
                 columns={columns}
                 initialState={{
                   pagination: {
                     paginationModel: {
-                      pageSize: 5,
+                      pageSize: 10,
                     },
                   },
                 }}
                 pageSizeOptions={[5, 10, 15, 20]}
-                checkboxSelection
                 disableRowSelectionOnClick
                 rowHeight={120}
               />
-            </DataGridContainer>
+            </DataGridWrapper>
           </>
         ) : (
-          <NoCountContainer>
-            <NoCount>{t("no-product-uploaded")}</NoCount>
-          </NoCountContainer>
+          <EmptyStateBox data-aos="fade-up">
+            <EmptyStateText>{t("no-product-uploaded")}</EmptyStateText>
+          </EmptyStateBox>
         )}
-      </Container>
-    </Box>
-  );
+      </PageContainer>
+    </>
+  )
 }
 
-export default UploadedProducts;
+export default UploadedProducts

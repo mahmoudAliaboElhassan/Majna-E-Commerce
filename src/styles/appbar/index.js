@@ -5,12 +5,13 @@ import "@fontsource/montez"
 import { motion } from "framer-motion"
 
 import UseThemeMode from "@hooks/use-theme"
+import { useSelector } from "react-redux"
 
 export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   padding: "2px",
   flexGrow: 1,
   fontFamily: '"Montez","cursive"',
-  color: theme.palette.mode === "dark" ? "#fbbf24" : "white",
+  color: "#fbbf24",
   textAlign: "center",
   fontSize: "2.25em",
   fontStyle: "italic",

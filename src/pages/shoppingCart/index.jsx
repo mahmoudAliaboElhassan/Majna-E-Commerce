@@ -1,5 +1,4 @@
 import { Fragment, useCallback, useEffect, useState } from "react"
-
 import { Box, Container, TextField, Button, Grid } from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import Swal from "sweetalert2"
@@ -10,42 +9,39 @@ import "react-toastify/dist/ReactToastify.css"
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom"
 
-import CartItem from "@components/cart/carItem"
-import CartListProducts from "@components/cart/cartListProducts"
+import {
+  EmptyStateText,
+  EmptyStateBox,
+  DataGridWrapper,
+  PageContainer,
+  ProductImage,
+  FilterContainer,
+} from "@styles/dataGrid"
 import {
   getCarts,
   updateQuantity,
   cleanUpCartItems,
   deleteCartItem,
+  deleteCarts,
 } from "@state/slices/cart"
 import Footer from "@components/footer"
 import LoadingFetching from "@components/loadingFetching"
 import UseFormValidation from "@formValidation/use-form-validation"
 import { helperStyle } from "@styles/error"
 import { AppbarHeader } from "@styles/appbar"
-import { DataGridContainer } from "@styles/dataGrid"
 import UseThemMode from "@hooks/use-theme"
 import "@pages/shoppingCart/style.css"
 import withGuard from "@utils/withGuard"
-import { NoCount } from "@styles/products"
 import UseLoadingStatusUpdateDeleteBtn from "@hooks/use-loading-delete-btn"
 import ModalOrderAll from "@components/modalAllProducts"
-import { deleteCarts } from "@state/slices/cart"
 
 function ShoppingCart() {
   const dispatch = useDispatch()
   const { Uid } = useSelector((state) => state.auth)
   const { cartItems, countOfCartItems, loadingCarts, cartQuantity } =
     useSelector((state) => state.cart)
+  const { mymode } = useSelector((state) => state.mode)
   const { themeMode } = UseThemMode()
-  useEffect(() => {
-    dispatch(getCarts({ id: Uid }))
-    return () => {
-      dispatch(cleanUpCartItems())
-    }
-  }, [dispatch, countOfCartItems, Uid, cartQuantity])
-  console.log("countOfCartItems")
-  console.log(countOfCartItems !== 0)
   const { t } = useTranslation()
   const { FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY } = UseFormValidation()
 
@@ -56,22 +52,27 @@ function ShoppingCart() {
   const [btnDeleteDisabled, setBtnDeleteDisabled] = useState(null)
   const [openModal, setOpenModal] = useState(false)
 
+  useEffect(() => {
+    dispatch(getCarts({ id: Uid }))
+    return () => {
+      dispatch(cleanUpCartItems())
+    }
+  }, [dispatch, countOfCartItems, Uid, cartQuantity])
+
   const handleDeleteCartItems = () => {
     dispatch(deleteCarts({ customerId: Uid }))
       .unwrap()
       .then(() => {
-        {
-          toast.success(t("cart-deleted"), {
-            position: "top-right",
-            autoClose: 1000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: themeMode,
-          })
-        }
+        toast.success(t("cart-deleted"), {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: themeMode,
+        })
       })
   }
 
@@ -123,73 +124,79 @@ function ShoppingCart() {
     {
       field: "id",
       headerName: t("cart-id"),
-      width: 100,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "name",
-      headerName: t("product-name"),
-      width: 200,
-      headerAlign: "center",
-      align: "center",
-    },
-    {
-      field: "brand",
-      headerName: t("product-brand"),
-      width: 200,
+      flex: 0.5,
+      minWidth: 80,
       headerAlign: "center",
       align: "center",
     },
     {
       field: "image",
       headerName: t("product-img"),
-      width: 200,
+      flex: 1,
+      minWidth: 150,
       headerAlign: "center",
       align: "center",
       renderCell: (params) => (
-        <img
-          src={params.value}
-          alt={params.value}
-          style={{ width: "100%", height: "auto" }}
-          loading="lazy"
-        />
+        <ProductImage src={params.value} alt="Product" loading="lazy" />
       ),
+    },
+    {
+      field: "name",
+      headerName: t("product-name"),
+      flex: 1.5,
+      minWidth: 150,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "brand",
+      headerName: t("product-brand"),
+      flex: 1,
+      minWidth: 120,
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "price",
       headerName: t("product-price"),
-      width: 200,
+      flex: 0.8,
+      minWidth: 100,
       headerAlign: "center",
       align: "center",
+      type: "number",
     },
     {
       field: "quantity",
       headerName: t("product-quantity"),
-      width: 200,
+      flex: 0.6,
+      minWidth: 80,
       headerAlign: "center",
       align: "center",
+      type: "number",
     },
     {
       field: "totalPrice",
       headerName: t("total-price"),
-      width: 200,
+      flex: 0.8,
+      minWidth: 100,
       headerAlign: "center",
       align: "center",
+      type: "number",
     },
     {
       field: "view",
       headerName: t("view-cart"),
       headerAlign: "center",
       align: "center",
-      minWidth: 200,
-      flex: 1,
+      flex: 0.8,
+      minWidth: 100,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="success"
           component={Link}
           to={`/product-view/${params.row.id}`}
+          size="small"
         >
           {t("view")}
         </Button>
@@ -198,8 +205,8 @@ function ShoppingCart() {
     {
       field: "edit",
       headerName: t("edit-quantity"),
+      flex: 1.5,
       minWidth: 200,
-      flex: 1,
       headerAlign: "center",
       align: "center",
       renderCell: (params) => (
@@ -218,18 +225,16 @@ function ShoppingCart() {
               )
                 .unwrap()
                 .then(() => {
-                  {
-                    toast.success(t("updated-success"), {
-                      position: "top-right",
-                      autoClose: 1000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: themeMode,
-                    })
-                  }
+                  toast.success(t("updated-success"), {
+                    position: "top-right",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: themeMode,
+                  })
                 })
             }
           }}
@@ -249,6 +254,7 @@ function ShoppingCart() {
                 onClick={handleSubmit}
                 variant={themeMode === "dark" ? "contained" : "outlined"}
                 color="info"
+                size="small"
                 disabled={
                   LoadingStatusDeleteUpdate && btnEditDisabled === params.row.id
                 }
@@ -270,12 +276,13 @@ function ShoppingCart() {
       headerName: t("delete-cart"),
       headerAlign: "center",
       align: "center",
-      minWidth: 200,
-      flex: 1,
+      flex: 0.8,
+      minWidth: 100,
       renderCell: (params) => (
         <Button
           variant={themeMode === "dark" ? "contained" : "outlined"}
           color="error"
+          size="small"
           disabled={
             LoadingStatusDeleteUpdate && btnDeleteDisabled === params.row.id
           }
@@ -295,10 +302,8 @@ function ShoppingCart() {
     image: cart?.product?.cover_image,
     quantity: cart?.quantity,
     totalPrice: (cart?.quantity * cart?.product?.price).toFixed(3),
-    view: t("view"),
-    delete: t("delete"),
-    edit: t("edit"),
   }))
+
   const allProducts = cartItems?.map((cart) => ({
     product_id: cart?.id,
     quantity: cart?.quantity,
@@ -308,42 +313,45 @@ function ShoppingCart() {
   cartItems?.forEach((cart) => {
     totalPrice += cart?.product?.price * cart?.quantity
   })
-  console.log("totalPrice", totalPrice)
+
   return (
     <>
-      <Box
-        sx={{
-          p: 2,
-          minHeight: "55vh",
-          position: "relative",
-        }}
-      >
-        {" "}
-        {/* <ToastContainer /> */}
-        <Container>
-          {loadingCarts ? (
+      <PageContainer>
+        {loadingCarts ? (
+          <EmptyStateBox>
             <LoadingFetching>{t("wait-carts")}</LoadingFetching>
-          ) : countOfCartItems !== "0" ? (
-            <>
-              <AppbarHeader data-aos="fade-up">
-                {t("product-added-to-cart")}
-              </AppbarHeader>
+          </EmptyStateBox>
+        ) : countOfCartItems !== "0" ? (
+          <>
+            <AppbarHeader
+               data-aos="fade-up"
+            >
+              {t("product-added-to-cart")}
+            </AppbarHeader>
+
+            <DataGridWrapper
+              elevation={2}
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
               <DataGrid
                 rows={rows}
                 columns={columns}
                 initialState={{
                   pagination: {
                     paginationModel: {
-                      pageSize: 5,
+                      pageSize: 10,
                     },
                   },
                 }}
                 pageSizeOptions={[5, 10, 15, 20]}
-                checkboxSelection
                 disableRowSelectionOnClick
                 rowHeight={120}
               />
-              <Grid container spacing={1}>
+            </DataGridWrapper>
+
+            <Box sx={{ mt: 3 }} data-aos="fade-up" data-aos-delay="150">
+              <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
                   <Button
                     onClick={() => setOpenModal(true)}
@@ -358,6 +366,7 @@ function ShoppingCart() {
                   <Button
                     onClick={handleDeleteCartItems}
                     variant={themeMode === "dark" ? "contained" : "outlined"}
+                    color="error"
                     disabled={loadingDeleteCarts}
                     fullWidth
                   >
@@ -365,12 +374,14 @@ function ShoppingCart() {
                   </Button>
                 </Grid>
               </Grid>
-            </>
-          ) : (
-            <NoCount>{t("no-carts")}</NoCount>
-          )}
-        </Container>
-      </Box>
+            </Box>
+          </>
+        ) : (
+          <EmptyStateBox data-aos="fade-up">
+            <EmptyStateText>{t("no-carts")}</EmptyStateText>
+          </EmptyStateBox>
+        )}
+      </PageContainer>
       <ModalOrderAll
         openModalOrder={openModal}
         close={() => setOpenModal(false)}

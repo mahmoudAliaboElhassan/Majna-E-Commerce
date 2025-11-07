@@ -81,8 +81,7 @@ function Footer() {
                 sx={{
                   position: "relative",
                   zIndex: "9999",
-                  color: mymode === "dark" ? "#fbbf24" : "black",
-                }}
+                 }}
               >
                 {t("made-with")} &copy; {year}
               </AppbarHeader>

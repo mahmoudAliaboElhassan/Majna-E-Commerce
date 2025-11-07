@@ -57,7 +57,7 @@ function DrawerComponent({ drawerElements }) {
       }
     }
   }
-
+  const { mymode } = useSelector((state) => state.mode)
   const handleSearchButton = () => {
     setShowSearch(true)
     setOpenDrawer(false)
@@ -129,7 +129,9 @@ function DrawerComponent({ drawerElements }) {
             }}
             onClick={() => setOpenDrawer(true)}
           >
-            <MenuIcon />
+            <MenuIcon
+              style={{ color: mymode == "light" ? "white" : "#fbbf24" }}
+            />
           </IconButton>
         )}
 

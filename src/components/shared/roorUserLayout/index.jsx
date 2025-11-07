@@ -6,6 +6,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft"
 import ChevronRightIcon from "@mui/icons-material/ChevronRight"
 import { useTheme } from "@emotion/react"
 import { styled } from "@mui/material/styles"
+import UseDirection from "@hooks/use-direction"
 
 import MainDrawer from "@components/shared/mainDrawer"
 import UseThemeMode from "@hooks/use-theme"
@@ -65,12 +66,12 @@ const MainBody = styled(Box, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => {
   const { themeMode } = UseThemeMode()
-
+  const { Direction } = UseDirection()
   return {
     flexGrow: 1,
     padding: "24px",
     width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
-    marginLeft: open ? `${drawerWidth}px` : 0,
+    [Direction.marginLeft]: open ? `${drawerWidth}px` : 0,
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

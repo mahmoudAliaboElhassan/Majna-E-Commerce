@@ -16,9 +16,19 @@ function Mode() {
     <>
       <IconButton sx={authIconButtonStyle} onClick={changeMode}>
         {mymode == "dark" ? (
-          <Brightness7Icon sx={{ color: iconColor, fontSize: "22px" }} />
+          <Brightness7Icon
+            sx={{
+              color: mymode == "light" ? "white" : "#fbbf24",
+              fontSize: "22px",
+            }}
+          />
         ) : (
-          <Brightness4Icon sx={{ color: iconColor, fontSize: "22px" }} />
+          <Brightness4Icon
+            sx={{
+              color: mymode == "light" ? "white" : "#fbbf24",
+              fontSize: "22px",
+            }}
+          />
         )}
       </IconButton>
     </>
