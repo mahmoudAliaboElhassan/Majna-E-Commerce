@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import React, { useEffect } from "react"
+import AOS from "aos"
+import "aos/dist/aos.css"
 // i imported them as error page does not come from RootLayout
 
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { useTranslation } from "react-i18next";
-import { Link, useRouteError } from "react-router-dom";
+import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
+import { useTranslation } from "react-i18next"
+import { Link, useRouteError } from "react-router-dom"
 
-import errorImage from "@assets/error2.svg";
-import { ErrorContainer } from "@styles/error";
+import errorImage from "@assets/error2.svg"
+import { ErrorContainer } from "@styles/error"
 
 const ErrorPage = () => {
-  const { t } = useTranslation();
-  const error = useRouteError();
+  const { t } = useTranslation()
+  const error = useRouteError()
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
-  }, []);
+    AOS.init({ duration: 1000 })
+  }, [])
 
   return (
     <>
@@ -37,7 +37,6 @@ const ErrorPage = () => {
             {error.statusText || error.message}
           </i>
         </p>
-
         <img
           src={errorImage}
           alt="Confused Woman"
@@ -46,19 +45,15 @@ const ErrorPage = () => {
           loading="lazy"
           data-aos="zoom-in"
         />{" "}
-        <Button component={Link} to="/"
-          variant="outlined"
-          fullWidth
-        >
+        <Button component={Link} to="/" variant="outlined">
           {t("go-back")}
         </Button>
       </ErrorContainer>
     </>
-  );
-};
+  )
+}
 
-export default ErrorPage;
-
+export default ErrorPage
 
 // when i make inital value for state to localstorage
 // and when remove localStorage i should remove the value of state itself

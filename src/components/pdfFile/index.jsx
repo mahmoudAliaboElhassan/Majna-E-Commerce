@@ -1,23 +1,23 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 // import { Worker, Viewer } from "@react-pdf-viewer/core";
 // import "@react-pdf-viewer/core/lib/styles/index.css";
 // import { pdfjs } from "react-pdf";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { useTranslation } from "react-i18next";
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
+import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
+import { useTranslation } from "react-i18next"
+import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer"
 
-import { PdfContainer } from "@styles/reviewer";
-import UseThemMode from "@hooks/use-theme";
-import { Colors } from "@styles/theme";
-import ImageUploader from "@components/formui/multipleImages";
+import { PdfContainer } from "@styles/reviewer"
+import UseThemMode from "@hooks/use-theme"
+import { Colors } from "@styles/theme"
+import ImageUploader from "@components/formui/multipleImages"
 
 const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
-  const { t } = useTranslation();
-  const [view, setView] = useState(false);
-  const toggleFile = () => setView(!view);
-  const { themeMode } = UseThemMode();
+  const { t } = useTranslation()
+  const [view, setView] = useState(false)
+  const toggleFile = () => setView(!view)
+  const { themeMode } = UseThemMode()
 
   const docs = [
     { uri: fileAuthorize, fileType: "pdf", fileName: t("authorizeDocument") }, // Remote file
@@ -27,7 +27,7 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
     //   fileType: "pdf",
     //   fileName: "mahmoud",
     // }, // Local File
-  ];
+  ]
   return (
     <>
       {/* <Button
@@ -58,10 +58,10 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
         documents={docs}
         initialActiveDocument={docs[0]}
         pluginRenderers={DocViewerRenderers}
-      // stye={{ height: "100vh" }}
+        // stye={{ height: "100vh" }}
       />
     </>
-  );
-};
+  )
+}
 
-export default PdfViewer;
+export default PdfViewer
