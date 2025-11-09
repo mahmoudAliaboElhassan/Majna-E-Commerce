@@ -12,7 +12,7 @@ export const SearchBoxContainer = styled(Box)(() => {
   const { themeMode } = UseThemMode()
   return {
     position: "fixed",
-    width: "100%",
+    width: "40%",
     height: "100%",
     top: 0,
     left: 0,
@@ -70,8 +70,9 @@ export const SearchBox = styled(Box)(() => {
   return {
     display: "flex",
     alignItems: "center",
+    flex: 1,
     gap: "8px",
-    width: "100%",
+    // width: "40%",
     maxWidth: "600px",
     margin: "0 auto",
     position: "relative",

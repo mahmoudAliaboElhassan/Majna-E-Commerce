@@ -18,6 +18,11 @@ import UseThemMode from "@hooks/use-theme"
 import UseInitialValues from "@utils/use-initial-values"
 import { resetPassword } from "@state/slices/auth"
 import withGuard from "@utils/withGuard"
+import {
+  cardStyles,
+  formWrapperStyles,
+  headerBoxStyles,
+} from "../../../styles/forms"
 
 const { INITIAL_FORM_STATE_RESET_PASSWORD } = UseInitialValues()
 
@@ -29,84 +34,32 @@ function ResetPassword() {
   const { uid, token } = useParams()
   const { themeMode } = UseThemMode()
 
-  const containerStyles = {
-    position: "absolute",
-    left: "50%",
-    top: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    maxWidth: "480px",
-    px: 2,
-  }
-
-  const cardStyles = {
-    background:
-      themeMode === "light"
-        ? "#ffffff"
-        : "linear-gradient(135deg, #1e293b 0%, #0f172a 100%)",
-    borderRadius: "16px",
-    boxShadow:
-      themeMode === "light"
-        ? "0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)"
-        : "0 8px 32px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(251, 191, 36, 0.1)",
-    border: `1px solid ${
-      themeMode === "light" ? "#e5e7eb" : "rgba(251, 191, 36, 0.15)"
-    }`,
-    overflow: "hidden",
-  }
-
-  const headerBoxStyles = {
-    background:
-      themeMode === "light"
-        ? "linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)"
-        : "linear-gradient(135deg, #292524 0%, #1c1917 100%)",
-    borderBottom: `2px solid ${themeMode === "light" ? "#f59e0b" : "#fbbf24"}`,
-    py: 4,
-    px: 3,
-    textAlign: "center",
-    position: "relative",
-    "&::before": {
-      content: '""',
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      height: "4px",
-      background:
-        themeMode === "light"
-          ? "linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b)"
-          : "linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24)",
-    },
-  }
-
-  const formWrapperStyles = {
-    py: 4,
-    px: 3,
-  }
-
   return (
     <Box
       sx={{
-        position: "relative",
         minHeight: "100vh",
-        background:
-          themeMode === "light"
-            ? "#ffffff"
-            : "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+        overflow: "hidden",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
       }}
     >
-      <Container maxWidth="sm" sx={containerStyles}>
+      <Container
+        maxWidth="sm"
+        sx={{
+          width: "100%",
+          maxWidth: "480px",
+          px: 2,
+        }}
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <Card raised sx={cardStyles}>
+          <Card raised sx={cardStyles(themeMode)}>
             {/* Header Section */}
-            <Box sx={headerBoxStyles}>
+            <Box sx={headerBoxStyles(themeMode)}>
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -114,8 +67,8 @@ function ResetPassword() {
               >
                 <Box
                   sx={{
-                    width: "80px",
-                    height: "80px",
+                    width: "60px",
+                    height: "60px",
                     borderRadius: "50%",
                     background:
                       themeMode === "light"
@@ -124,7 +77,7 @@ function ResetPassword() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    margin: "0 auto 16px",
+                    margin: "0 auto 12px",
                     boxShadow:
                       themeMode === "light"
                         ? "0 4px 20px rgba(245, 158, 11, 0.3)"
@@ -133,7 +86,7 @@ function ResetPassword() {
                 >
                   <VpnKeyOutlined
                     sx={{
-                      fontSize: 40,
+                      fontSize: 32,
                       color: themeMode === "light" ? "#ffffff" : "#1e1e1e",
                     }}
                   />
@@ -146,11 +99,11 @@ function ResetPassword() {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <Typography
-                  variant="h4"
+                  variant="h5"
                   sx={{
                     fontWeight: 700,
                     color: themeMode === "light" ? "#78350f" : "#fbbf24",
-                    mb: 1,
+                    mb: 0.5,
                   }}
                 >
                   {t("reset-password")}
@@ -160,8 +113,7 @@ function ResetPassword() {
                   sx={{
                     color: themeMode === "light" ? "#92400e" : "#fde68a",
                     opacity: 0.9,
-                    maxWidth: "90%",
-                    margin: "0 auto",
+                    fontSize: "0.875rem",
                   }}
                 >
                   {t("reset-password-subtitle") ||
@@ -213,7 +165,7 @@ function ResetPassword() {
                 }}
               >
                 <Form>
-                  <Grid container spacing={3}>
+                  <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <PasswordField
                         name="password"
