@@ -1,28 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 
-import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
-import Card from "@mui/material/Card";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { Form, Formik } from "formik";
-import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Container, Grid, Typography, makeStyles } from "@material-ui/core"
+import Card from "@mui/material/Card"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { Form, Formik } from "formik"
+import Swal from "sweetalert2"
+import { ToastContainer, toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import UseThemMode from "@hooks/use-theme";
-import ButtonWrapper from "@components/formui/SubmitButton";
-import { AppbarHeader } from "@styles/appbar";
-import UseFormValidation from "@formValidation/use-form-validation";
-import UseInitialValues from "@utils/use-initial-values";
-import SelectComp from "@components/formui/Select";
-import FileInput from "@components/formui/file";
-import {
-  addBrand,
-  fetchBrands,
-  cleanUpBrands,
-} from "@state/slices/distributor";
-import withGuard from "@utils/withGuard";
-import LoadingFetching from "@components/loadingFetching";
+import UseThemMode from "@hooks/use-theme"
+import ButtonWrapper from "@components/formui/SubmitButton"
+import { AppbarHeader } from "@styles/appbar"
+import UseFormValidation from "@formValidation/use-form-validation"
+import UseInitialValues from "@utils/use-initial-values"
+import SelectComp from "@components/formui/Select"
+import FileInput from "@components/formui/file"
+import { addBrand, fetchBrands, cleanUpBrands } from "@state/slices/distributor"
+import withGuard from "@utils/withGuard"
+import LoadingFetching from "@components/loadingFetching"
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -38,30 +34,38 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     transform: "translate(-50%,-50%)",
   },
-}));
-const { INITIAL_FORM_STATE_ADD_BRAND } = UseInitialValues();
+}))
+const { INITIAL_FORM_STATE_ADD_BRAND } = UseInitialValues()
 
 function AddBrandApplication() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const { FORM_VALIDATION_SCHEMA_Add_BRAND } = UseFormValidation();
-  const { t } = useTranslation();
-  const { themeMode } = UseThemMode();
-  const { brands, loadingFetch } = useSelector((state) => state.distributor);
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const { FORM_VALIDATION_SCHEMA_Add_BRAND } = UseFormValidation()
+  const { t } = useTranslation()
+  const { themeMode } = UseThemMode()
+  const { brands, loadingFetch } = useSelector((state) => state.distributor)
 
   useEffect(() => {
     if (brands.length === 0) {
-      dispatch(fetchBrands());
+      dispatch(fetchBrands())
     }
     return () => {
-      dispatch(cleanUpBrands());
-    };
-  }, [dispatch]);
+      dispatch(cleanUpBrands())
+    }
+  }, [dispatch])
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       {!loadingFetch ? (
-        <Container maxWidth="sm" style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
+        <Container
+          maxWidth="sm"
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%,-50%)",
+          }}
+        >
           {/* <ToastContainer /> */}
           <Card raised>
             <Container maxWidth="md">
@@ -78,7 +82,7 @@ function AddBrandApplication() {
                     }}
                     validationSchema={FORM_VALIDATION_SCHEMA_Add_BRAND}
                     onSubmit={(values) => {
-                      console.log({ ...values });
+                      console.log({ ...values })
                       dispatch(
                         addBrand({
                           authorization_doc: values.authorizeDocument,
@@ -98,7 +102,7 @@ function AddBrandApplication() {
                               draggable: true,
                               progress: undefined,
                               theme: themeMode,
-                            });
+                            })
                           }
                         })
 
@@ -110,7 +114,7 @@ function AddBrandApplication() {
                               icon: "error",
                               confirmButtonColor: "#3085d6",
                               confirmButtonText: t("ok"),
-                            });
+                            })
                           } else if (error.response.status === 401) {
                             Swal.fire({
                               title: t("unauthorize"),
@@ -118,7 +122,7 @@ function AddBrandApplication() {
                               icon: "error",
                               confirmButtonColor: "#3085d6",
                               confirmButtonText: t("ok"),
-                            });
+                            })
                           } else if (error.response.status === 403) {
                             Swal.fire({
                               title: t("forbidden"),
@@ -126,16 +130,18 @@ function AddBrandApplication() {
                               icon: "error",
                               confirmButtonColor: "#3085d6",
                               confirmButtonText: t("ok"),
-                            });
+                            })
                           }
-                          console.log(error);
-                        });
+                          console.log(error)
+                        })
                     }}
                   >
                     <Form className={classes.formWrapper}>
                       <Grid container spacing={2}>
                         <Grid item xs={12}>
-                          <AppbarHeader data-aos="fade-up">{t("add-brand")}</AppbarHeader>
+                          <AppbarHeader data-aos="fade-up">
+                            {t("add-brand")}
+                          </AppbarHeader>
                         </Grid>{" "}
                         <Grid item xs={12}>
                           <SelectComp
@@ -171,7 +177,7 @@ function AddBrandApplication() {
         <LoadingFetching>{t("loading-brands")}</LoadingFetching>
       )}
     </div>
-  );
+  )
 }
 
-export default (AddBrandApplication);
+export default AddBrandApplication

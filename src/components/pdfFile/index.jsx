@@ -1,17 +1,13 @@
-import React, { useState } from "react"
-
-// import { Worker, Viewer } from "@react-pdf-viewer/core";
-// import "@react-pdf-viewer/core/lib/styles/index.css";
-// import { pdfjs } from "react-pdf";
+import React, { useState, useEffect } from "react"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import { useTranslation } from "react-i18next"
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer"
+import Box from "@mui/material/Box"
+import CircularProgress from "@mui/material/CircularProgress"
 
 import { PdfContainer } from "@styles/reviewer"
 import UseThemMode from "@hooks/use-theme"
 import { Colors } from "@styles/theme"
-import ImageUploader from "@components/formui/multipleImages"
 
 const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
   const { t } = useTranslation()
@@ -19,18 +15,9 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
   const toggleFile = () => setView(!view)
   const { themeMode } = UseThemMode()
 
-  const docs = [
-    { uri: fileAuthorize, fileType: "pdf", fileName: t("authorizeDocument") }, // Remote file
-    { uri: fileIdntity, fileType: "pdf", fileName: t("idDocument") }, // Remote file
-    // {
-    //   uri: require("./files/mahmoud.pdf"),
-    //   fileType: "pdf",
-    //   fileName: "mahmoud",
-    // }, // Local File
-  ]
   return (
     <>
-      {/* <Button
+      <Button
         component={Typography}
         sx={{
           display: "flex",
@@ -41,25 +28,34 @@ const PdfViewer = ({ fileAuthorize, fileIdntity }) => {
         onClick={toggleFile}
         variant="contained"
       >
-        {view ? t("hide") : t(`show`)}
-        {t(label)}
+        {view ? t("hide") : t("show")} {t("documents")}
       </Button>
+
       {view && (
-        <PdfContainer>
-          // <Worker
-            // // workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}
-          >
-            <Viewer fileUrl={file} />
-          // </Worker>
-        </PdfContainer>
+        <>
+          <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>
+            {t("authorizeDocument")}
+          </Typography>
+          <PdfContainer>
+            <iframe
+              src={fileAuthorize}
+              style={{ width: "100%", height: "600px", border: "none" }}
+              title={t("authorizeDocument")}
+            />
+          </PdfContainer>
+
+          <Typography variant="h6" sx={{ mt: 3, mb: 1 }}>
+            {t("idDocument")}
+          </Typography>
+          <PdfContainer>
+            <iframe
+              src={fileIdntity}
+              style={{ width: "100%", height: "600px", border: "none" }}
+              title={t("idDocument")}
+            />
+          </PdfContainer>
+        </>
       )}
-      <ImageUploader /> */}
-      <DocViewer
-        documents={docs}
-        initialActiveDocument={docs[0]}
-        pluginRenderers={DocViewerRenderers}
-        // stye={{ height: "100vh" }}
-      />
     </>
   )
 }

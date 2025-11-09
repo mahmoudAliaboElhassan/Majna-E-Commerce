@@ -1,48 +1,53 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react"
 
-import { useField, useFormikContext } from "formik";
-import { Button, FormControl, FormHelperText } from "@material-ui/core";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import InputLabel from "@mui/material/InputLabel";
+import { useField, useFormikContext } from "formik"
+import {
+  Button,
+  FormControl,
+  FormHelperText,
+  Typography,
+} from "@material-ui/core"
+import CloudUploadIcon from "@mui/icons-material/CloudUpload"
+import InputLabel from "@mui/material/InputLabel"
+import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile"
 
-import UseThemMode from "@hooks/use-theme";
-import UseDirection from "@hooks/use-direction";
-import { Colors } from "@styles/theme";
+import UseThemMode from "@hooks/use-theme"
+import UseDirection from "@hooks/use-direction"
+import { Colors } from "@styles/theme"
 
 const FileInput = ({ name, label, ...otherProps }) => {
-  const { setFieldValue, errors, touched } = useFormikContext();
-  const [field, meta] = useField("myFile");
-  const inputFileRef = useRef(null);
+  const { setFieldValue, errors, touched, values } = useFormikContext()
+  const [field, meta] = useField(name)
+  const inputFileRef = useRef(null)
+  const [fileName, setFileName] = useState("")
 
   const handleIconClick = () => {
-    inputFileRef.current.click();
-  };
+    inputFileRef.current.click()
+  }
 
   const handleChange = (e) => {
-    setFieldValue(name, e.target.files[0]);
-    console.log(e.target.files[0]);
-  };
+    const file = e.target.files[0]
+    if (file) {
+      setFieldValue(name, file)
+      setFileName(file.name)
+      console.log(file)
+    }
+  }
 
-  const { themeMode } = UseThemMode();
-  const { Direction } = UseDirection();
+  const { themeMode } = UseThemMode()
+  const { Direction } = UseDirection()
+
   const configFile = {
     ...otherProps,
-    ...field,
-    style: { display: "none" }, // Hide the original input
+    style: { display: "none" },
     onChange: handleChange,
     type: "file",
-    // accept: ".pdf",
     fullWidth: true,
-  };
-
-  if (meta && meta.touched && meta.error) {
-    configFile.error = true;
-    configFile.helperText = meta.error;
   }
 
   return (
     <FormControl error={touched[name] && Boolean(errors[name])} fullWidth>
-      <InputLabel htmlFor="myFile">{label}</InputLabel>
+      <InputLabel htmlFor={name}>{label}</InputLabel>
       <Button
         variant="outlined"
         onClick={handleIconClick}
@@ -54,15 +59,35 @@ const FileInput = ({ name, label, ...otherProps }) => {
               : themeMode === "dark"
               ? Colors.labelDark
               : Colors.labelLight,
+          justifyContent: "center",
+          
         }}
       >
-        {/* <div style={{ [Direction.marginRight]: "10px" }}>{label}</div> */}
+        
       </Button>
 
-      <input {...configFile} ref={inputFileRef} />
+      <input {...configFile} ref={inputFileRef} id={name} name={name} />
+
+      {fileName && !errors[name] && (
+        <Typography
+          variant="caption"
+          style={{
+            marginTop: "4px",
+            display: "flex",
+            alignItems: "center",
+            color: themeMode === "dark" ? Colors.labelDark : Colors.labelLight,
+          }}
+        >
+          <InsertDriveFileIcon
+            style={{ fontSize: "16px", marginRight: "4px" }}
+          />
+          {fileName}
+        </Typography>
+      )}
+
       <FormHelperText>{touched[name] && errors[name]}</FormHelperText>
     </FormControl>
-  );
-};
+  )
+}
 
-export default FileInput;
+export default FileInput

@@ -545,5 +545,6 @@
     "review_content_required": "محتوى مراجعتك مطلوب",
     "review_content_min_10": "الحد الأدنى لعدد الأحرف هو 10"
   },
-  "change-password-subtitle": "غيّر كلمة المرور للحفاظ على أمان حسابك."
+  "change-password-subtitle": "غيّر كلمة المرور للحفاظ على أمان حسابك.",
+  "documents": "الملفات"
 }
