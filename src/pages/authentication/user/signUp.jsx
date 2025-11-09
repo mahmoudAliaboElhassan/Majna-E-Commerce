@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import { Container, Grid, Typography, Box } from "@mui/material"
 import Card from "@mui/material/Card"
 import { Form, Formik } from "formik"
@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 import { motion } from "framer-motion"
 import Swal from "sweetalert2"
 import { PersonAddOutlined } from "@mui/icons-material"
+import "react-toastify/dist/ReactToastify.css"
 
 import TextFieldWrapper from "@components/formui/textField"
 import PasswordField from "@components/formui/passwordField"
@@ -19,8 +20,7 @@ import UseFormValidation from "@formValidation/use-form-validation"
 import UseThemMode from "@hooks/use-theme"
 import UseInitialValues from "@utils/use-initial-values"
 import { signUp } from "@state/slices/auth"
-
-import "react-toastify/dist/ReactToastify.css"
+import withGuard from "@utils/withGuard"
 
 const { INITIAL_FORM_STATE_SignUp } = UseInitialValues()
 
@@ -320,4 +320,4 @@ function SignUp() {
   )
 }
 
-export default SignUp
+export default withGuard(SignUp)

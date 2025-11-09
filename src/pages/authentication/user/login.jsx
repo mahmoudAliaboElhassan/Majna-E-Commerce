@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
+
 import { Container, Grid, Typography, Box } from "@mui/material"
 import Card from "@mui/material/Card"
 import { Link, useNavigate } from "react-router-dom"
@@ -9,6 +10,7 @@ import Swal from "sweetalert2"
 import { toast } from "react-toastify"
 import { motion } from "framer-motion"
 import { LockOutlined } from "@mui/icons-material"
+import "react-toastify/dist/ReactToastify.css"
 
 import { getCarts } from "@state/slices/cart"
 import TextFieldWrapper from "@components/formui/textField"
@@ -20,8 +22,7 @@ import UseFormValidation from "@formValidation/use-form-validation"
 import UseInitialValues from "@utils/use-initial-values"
 import UseThemMode from "@hooks/use-theme"
 import { ResendConfirmation, logIn } from "@state/slices/auth"
-
-import "react-toastify/dist/ReactToastify.css"
+import withGuard from "@utils/withGuard"
 
 const { INITIAL_FORM_STATE_Login } = UseInitialValues()
 
@@ -38,15 +39,15 @@ function Login() {
 
   const handleCloseModal = useCallback(() => setOpenModal(false), [])
 
-  useEffect(() => {
-    if (token) {
-      if (role === "reviewer") {
-        navigate("/reviewer")
-      } else if (role === "distributor" || role === "customer") {
-        navigate("/")
-      }
-    }
-  }, [token, role, navigate])
+  // useEffect(() => {
+  //   if (token) {
+  //     if (role === "reviewer") {
+  //       navigate("/reviewer")
+  //     } else if (role === "distributor" || role === "customer") {
+  //       navigate("/")
+  //     }
+  //   }
+  // }, [token, role, navigate])
 
   const containerStyles = {
     position: "absolute",
@@ -362,4 +363,4 @@ function Login() {
   )
 }
 
-export default Login
+export default withGuard(Login)

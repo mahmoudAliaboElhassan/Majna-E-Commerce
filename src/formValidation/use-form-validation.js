@@ -1,314 +1,301 @@
-import { useTranslation } from "react-i18next";
-import * as Yup from "yup";
-import { ref } from "yup";
+import { useTranslation } from "react-i18next"
+import * as Yup from "yup"
+import { ref } from "yup"
 
 function UseFormValidation() {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const FORM_VALIDATION_SCHEMA_Login = Yup.object().shape({
     email: Yup.string()
-      .email("Enter a Valid Email")
-      .required(t("required_email"))
-      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email Should be Valid Email"),
+      .email(t("validation.email_valid"))
+      .required(t("validation.email_required"))
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, t("validation.email_valid")),
 
-    // lastName: Yup.string().required("required"),
     password: Yup.string()
-      .required("Password Field is required")
+      .required(t("validation.password_required"))
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])/,
-        "Password must contain at least one letter and one number"
+        t("validation.password_letter_number")
       )
-      .min(6, "Minimum Number of Chars is 6"),
-    // Phone: Yup.number()
-    //   .integer()
-    //   .typeError("please enter a valid phone number")
-    //   .required("Required"),
-    // languages: Yup.string().required("required"),
-    // arriveDate: Yup.date().required("Required"),
-    // DepDate: Yup.date().required("Requeired"),
-  });
+      .min(6, t("validation.password_min_6")),
+  })
 
   const FORM_VALIDATION_SCHEMA_SignUp = Yup.object().shape({
-    username: Yup.string("User Name Should be of Chars Only")
-      .max(20, "Maximum Number Of Characters is twenty")
-      .required("User Name Field is Required"),
+    username: Yup.string(t("validation.username_chars_only"))
+      .max(20, t("validation.username_max_20"))
+      .required(t("validation.username_required")),
 
     email: Yup.string()
-      .email("Enter a Valid Email")
-      .required("Email Field is required")
-      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email Should be Valid Email"),
+      .email(t("validation.email_valid"))
+      .required(t("validation.email_required"))
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, t("validation.email_valid")),
 
     password: Yup.string()
-      .required("Password Field is required")
-      .min(6, "Minimum Number of Chars is 6")
+      .required(t("validation.password_required"))
+      .min(6, t("validation.password_min_6"))
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])/,
-        "Password must contain at least one letter and one number"
+        t("validation.password_letter_number")
       ),
 
     confirm_password: Yup.string()
-      .required("Please re-type your password")
-      // use oneOf to match one of the values inside the array.
-      // use "ref" to get the value of passwrod.
-      .oneOf([ref("password")], "Passwords does not match"),
-    //   Phone: Yup.number()
-    //     .integer()
-    //     .typeError("please enter a valid phone number")
-    //     .required("Required"),
-    //   languages: Yup.string().required("required"),
-    //   arriveDate: Yup.date().required("Required"),
-    //   DepDate: Yup.date().required("Requeired"),
-    termsOfService: Yup.boolean().oneOf(
-      [true],
-      "The terms and conditions must be accepted."
-    ),
-  });
+      .required(t("validation.confirm_password_required"))
+      .oneOf([ref("password")], t("validation.passwords_not_match")),
+
+    termsOfService: Yup.boolean().oneOf([true], t("validation.terms_required")),
+  })
 
   const FORM_VALIDATION_SCHEMA_CHANGE_PASSWORD = Yup.object().shape({
     currentPassword: Yup.string()
-      .required("Password Field is required")
-      .min(6, "Minimum Number of Chars is 6")
+      .required(t("validation.password_required"))
+      .min(6, t("validation.password_min_6"))
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])/,
-        "Password must contain at least one letter and one number"
+        t("validation.password_letter_number")
       ),
 
     newPassword: Yup.string()
-      .required("Password Field is required")
-      .min(6, "Minimum Number of Chars is 6")
+      .required(t("validation.password_required"))
+      .min(6, t("validation.password_min_6"))
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])/,
-        "Password must contain at least one letter and one number"
+        t("validation.password_letter_number")
       ),
 
     confirm_newPassword: Yup.string()
-      .required("Please re-type your New password")
-      // use oneOf to match one of the values inside the array.
-      // use "ref" to get the value of passwrod.
-      .oneOf([ref("newPassword")], "Passwords does not match"),
-  });
+      .required(t("validation.confirm_new_password_required"))
+      .oneOf([ref("newPassword")], t("validation.passwords_not_match")),
+  })
 
   const FORM_VALIDATION_SCHEMA_FORGET_PASSWORD = Yup.object().shape({
     email: Yup.string()
-      .email("Enter a Valid Email")
-      .required("Email Field is required")
-      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email Should be Valid Email"),
-  });
+      .email(t("validation.email_valid"))
+      .required(t("validation.email_required"))
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, t("validation.email_valid")),
+  })
 
   const FORM_VALIDATION_SCHEMA_RESET_PASSWORD = Yup.object().shape({
     password: Yup.string()
-      .required("Password Field is required")
-      .min(6, "Minimum Number of Chars is 6")
+      .required(t("validation.password_required"))
+      .min(6, t("validation.password_min_6"))
       .matches(
         /^(?=.*[a-zA-Z])(?=.*[0-9])/,
-        "Password must contain at least one letter and one number"
+        t("validation.password_letter_number")
       ),
-  });
+  })
 
   const FORM_VALIDATION_SCHEMA_Add_BRAND = Yup.object().shape({
-    productType: Yup.string().required("Product Type is Required"),
+    productType: Yup.string().required(t("validation.product_type_required")),
 
     IdDistributor: Yup.mixed()
-      .required("Id of the User is required")
-      .test("fileFormat", "Only PDF files are allowed", (value) => {
+      .required(t("validation.id_user_required"))
+      .test("fileFormat", t("validation.only_pdf"), (value) => {
         if (value) {
-          const supportedFormats = ["pdf"];
-          return supportedFormats.includes(value.name.split(".").pop());
+          const supportedFormats = ["pdf"]
+          return supportedFormats.includes(value.name.split(".").pop())
         }
-        return true;
+        return true
       })
-      .test("fileSize", "File size must not be more than 7MB", (value) => {
+      .test("fileSize", t("validation.file_size_7mb"), (value) => {
         if (value) {
-          return value.size <= 7340032; // 7MB in bytes
+          return value.size <= 7340032
         }
-        return true;
+        return true
       }),
 
     authorizeDocument: Yup.mixed()
-      .required("Authorize Document is required")
+      .required(t("validation.authorize_doc_required"))
       .test(
         "notEqualFileName",
-        "Authorize Document file name must be different from IdDistributor file name",
+        t("validation.authorize_doc_different"),
         (value, { parent }) => {
-          const { IdDistributor } = parent;
+          const { IdDistributor } = parent
           if (value && IdDistributor) {
-            const idDistributorFileName = IdDistributor.name;
-            const authorizeDocumentFileName = value.name;
-            return idDistributorFileName !== authorizeDocumentFileName;
+            const idDistributorFileName = IdDistributor.name
+            const authorizeDocumentFileName = value.name
+            return idDistributorFileName !== authorizeDocumentFileName
           }
-          return true;
+          return true
         }
       )
-      .test("fileFormat", "Only PDF files are allowed", (value) => {
+      .test("fileFormat", t("validation.only_pdf"), (value) => {
         if (value) {
-          const supportedFormats = ["pdf"];
-          return supportedFormats.includes(value.name.split(".").pop());
+          const supportedFormats = ["pdf"]
+          return supportedFormats.includes(value.name.split(".").pop())
         }
-        return true;
+        return true
       })
-      .test("fileSize", "File size must not be more than 7MB", (value) => {
+      .test("fileSize", t("validation.file_size_7mb"), (value) => {
         if (value) {
-          return value.size <= 7340032; // 7MB in bytes
+          return value.size <= 7340032
         }
-        return true;
+        return true
       }),
-  });
+  })
 
   const FORM_VALIDATION_SCHEMA_Add_STORE = Yup.object().shape({
-    storeName: Yup.string().required("Store Name is Required"),
-    storeCity: Yup.string().required("Store City is Required"),
-    storeAddress: Yup.string().required(
-      "Full Address of the Store is Required"
-    ),
-  });
+    storeName: Yup.string().required(t("validation.store_name_required")),
+    storeCity: Yup.string().required(t("validation.store_city_required")),
+    storeAddress: Yup.string().required(t("validation.store_address_required")),
+  })
+
   const FORM_VALIDATION_SCHEMA_EDIT_STORE = Yup.object().shape({
-    singleStoreName: Yup.string().required("Store Name is Required"),
-    singleStoreAddress: Yup.string().required("Store City is Required"),
-    singleStoreCity: Yup.string().required(
-      "Full Address of the Store is Required"
+    singleStoreName: Yup.string().required(t("validation.store_name_required")),
+    singleStoreAddress: Yup.string().required(
+      t("validation.store_city_required")
     ),
-  });
+    singleStoreCity: Yup.string().required(
+      t("validation.store_address_required")
+    ),
+  })
+
   const FORM_VALIDATION_SCHEMA_Add_PRODUCT = Yup.object().shape({
-    brand_pk: Yup.string().required("Product Brand is Required"),
-    name: Yup.string().required("Product Title is Required"),
-    price: Yup.number("Price Should be Number")
-      .required("Product Price is Required ")
-      .min(1, "Price can not be zero or negative"),
-    sub_category_pk: Yup.string().required("Product SubCategory is Required"),
-    categories: Yup.string().required("Product Category is Required"),
-    description: Yup.string().required("Product Description is Required"),
+    brand_pk: Yup.string().required(t("validation.product_brand_required")),
+    name: Yup.string().required(t("validation.product_title_required")),
+    price: Yup.number(t("validation.price_should_be_number"))
+      .required(t("validation.product_price_required"))
+      .min(1, t("validation.price_not_zero_negative")),
+    sub_category_pk: Yup.string().required(
+      t("validation.product_subcategory_required")
+    ),
+    categories: Yup.string().required(
+      t("validation.product_category_required")
+    ),
+    description: Yup.string().required(
+      t("validation.product_description_required")
+    ),
     inventory: Yup.array().of(
       Yup.object().shape({
-        store_pk: Yup.string().required("Required Store Name"),
+        store_pk: Yup.string().required(
+          t("validation.store_name_required_short")
+        ),
         quantity: Yup.number()
-          .required("Required quantity")
-          .min(1, "Minimum amount of Product is one"),
+          .required(t("validation.quantity_required"))
+          .min(1, t("validation.quantity_min_one")),
       })
     ),
     album: Yup.array()
       .of(
         Yup.object().shape({
-          image: Yup.mixed().required("Image is required"),
-          // .test(
-          //   "fileFormat",
-          //   "Only PNG and JPG files are allowed",
-          //   (value) => {
-          //     if (value) {
-          //       const supportedFormats = ["png", "jpg"];
-          //       const fileExtension = value.name
-          //         .split(".")
-          //         .pop()
-          //         .toLowerCase();
-          //       return supportedFormats.includes(fileExtension);
-          //     }
-          //     return true;
-          //   }
-          // )
+          image: Yup.mixed().required(t("validation.image_required")),
           is_cover: Yup.string().required(""),
         })
       )
-      .min(2, "Minimum number of Images is Two")
+      .min(2, t("validation.images_min_two"))
       .test(
         "atLeastOneCover",
-        "At least one image must be marked as cover",
+        t("validation.at_least_one_cover"),
         function (value) {
           const atLeastOneCover = value.some(
             (image) => image.is_cover === "True"
-          );
-          return atLeastOneCover;
+          )
+          return atLeastOneCover
         }
       )
-      .max(3, "You can select only up to three images ."),
-  });
+      .max(3, t("validation.images_max_three")),
+  })
 
   const FORM_VALIDATION_SCHEMA_PRICES = Yup.object().shape({
-    priceFrom: Yup.number("Price From should be a number")
-      .required("Price From is required")
-      .min(1, "Price From cannot be negative or Zero"),
-    priceTo: Yup.number("Price To should be a number")
-      .required("Price To is required")
-      .min(Yup.ref("priceFrom"), "Price To must be greater than Price From")
+    priceFrom: Yup.number(t("validation.price_from_number"))
+      .required(t("validation.price_from_required"))
+      .min(1, t("validation.price_from_not_negative_zero")),
+    priceTo: Yup.number(t("validation.price_to_number"))
+      .required(t("validation.price_to_required"))
+      .min(Yup.ref("priceFrom"), t("validation.price_to_greater"))
       .test(
         "is-greater",
-        "Price To must be greater than Price From by at least 1",
+        t("validation.price_to_greater_by_one"),
         function (value) {
-          const { priceFrom } = this.parent;
-          return value > priceFrom;
+          const { priceFrom } = this.parent
+          return value > priceFrom
         }
       ),
-  });
+  })
+
   const FORM_VALIDATION_SCHEMA_UPDATE_QUANTITY = Yup.object().shape({
     quantity: Yup.number()
-      .required("Product Quantity is Required")
-      .min(0, "Negative Number is not Allowed"),
-  });
+      .required(t("validation.product_quantity_required"))
+      .min(0, t("validation.negative_not_allowed")),
+  })
+
   const FORM_VALIDATION_SCHEMA_CONTACT = Yup.object().shape({
     yourName: Yup.string()
-      .required("Name is Required")
-      .max(20, "Maximum number of characters is 20"),
+      .required(t("validation.name_required"))
+      .max(20, t("validation.name_max_20")),
     yourEmail: Yup.string()
-      .required("Email is Required")
-      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Email Should be Valid Email"),
+      .required(t("validation.email_required"))
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, t("validation.email_valid")),
     yourSubject: Yup.string()
-      .required("Subject is Required")
-      .max(50, "Maximum number of characters is 50"),
-    yourMessage: Yup.string().required("Message is Required"),
-    userRole: Yup.string().required("User Role is Required"),
-  });
+      .required(t("validation.subject_required"))
+      .max(50, t("validation.subject_max_50")),
+    yourMessage: Yup.string().required(t("validation.message_required")),
+    userRole: Yup.string().required(t("validation.user_role_required")),
+  })
+
   const FORM_VALIDATION_SCHEMA_UPDATE_PRODUCT = Yup.object().shape({
-    singleProductName: Yup.string().required("Product Title is Required"),
-    singleProductPrice: Yup.number("Price Should be Number")
-      .required("Product Price is Required ")
-      .min(1, "Price can not be zero or negative"),
+    singleProductName: Yup.string().required(
+      t("validation.product_title_required")
+    ),
+    singleProductPrice: Yup.number(t("validation.price_should_be_number"))
+      .required(t("validation.product_price_required"))
+      .min(1, t("validation.price_not_zero_negative")),
     singleProductDescription: Yup.string().required(
-      "Product Description is Required"
+      t("validation.product_description_required")
     ),
     singleProductInventory: Yup.array().of(
       Yup.object().shape({
-        store_id: Yup.string().required("Required Store Name"),
+        store_id: Yup.string().required(
+          t("validation.store_name_required_short")
+        ),
         quantity: Yup.number()
-          .required("Required quantity")
-          .min(1, "Minimum amount of Product is one"),
+          .required(t("validation.quantity_required"))
+          .min(1, t("validation.quantity_min_one")),
       })
     ),
-  });
+  })
 
   const FORM_VALIDATION_SCHEMA_ADD_ADDRESS = Yup.object().shape({
-    city: Yup.string().required("City is Required"),
-    address: Yup.string().required("Full Address is Required"),
-  });
+    city: Yup.string().required(t("validation.city_required")),
+    address: Yup.string().required(t("validation.full_address_required")),
+  })
+
   const FORM_VALIDATION_SCHEMA_EDIT_ADDRESS = Yup.object().shape({
-    singleAddressCity: Yup.string().required("City is Required"),
-    singleAddress: Yup.string().required("Full Address is Required"),
-  });
+    singleAddressCity: Yup.string().required(t("validation.city_required")),
+    singleAddress: Yup.string().required(t("validation.full_address_required")),
+  })
+
   const FORM_VALIDATION_SCHEMA_ADD_ORDER = Yup.object().shape({
-    pickup_address_id: Yup.string().required("Order Address is Required"),
+    pickup_address_id: Yup.string().required(
+      t("validation.order_address_required")
+    ),
     order_items: Yup.array().of(
       Yup.object().shape({
-        product_id: Yup.string().required("Product ID is Required"),
+        product_id: Yup.string().required(t("validation.product_id_required")),
         quantity: Yup.string().required(
-          "Quantity Of Product is Required is Required"
+          t("validation.quantity_product_required")
         ),
       })
     ),
-  });
+  })
 
   const FORM_VALIDATION_SCHEMA_ADD_ALBUM = Yup.object().shape({
-    image: Yup.mixed().required("Image is required"),
+    image: Yup.mixed().required(t("validation.image_required")),
     is_cover: Yup.string().required(""),
-  });
+  })
+
   const FORM_VALIDATION_SCHEMA_ADD_REVIEW = Yup.object().shape({
-    rating: Yup.mixed().required("rating for this review is required"),
+    rating: Yup.mixed().required(t("validation.rating_required")),
     content: Yup.string()
-      .required("Content for your review is required")
-      .min(10, "minimum number of characters is 10"),
-  });
+      .required(t("validation.review_content_required"))
+      .min(10, t("validation.review_content_min_10")),
+  })
+
   const FORM_VALIDATION_SCHEMA_EDIT_REVIEW = Yup.object().shape({
-    ratingEdit: Yup.mixed().required("rating for this review is required"),
+    ratingEdit: Yup.mixed().required(t("validation.rating_required")),
     contentEdit: Yup.string()
-      .required("Content for your review is required")
-      .min(10, "minimum number of characters is 10"),
-  });
+      .required(t("validation.review_content_required"))
+      .min(10, t("validation.review_content_min_10")),
+  })
 
   return {
     FORM_VALIDATION_SCHEMA_SignUp,
@@ -330,7 +317,7 @@ function UseFormValidation() {
     FORM_VALIDATION_SCHEMA_ADD_ALBUM,
     FORM_VALIDATION_SCHEMA_ADD_REVIEW,
     FORM_VALIDATION_SCHEMA_EDIT_REVIEW,
-  };
+  }
 }
 
-export default UseFormValidation;
+export default UseFormValidation

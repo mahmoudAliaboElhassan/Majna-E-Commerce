@@ -9,6 +9,7 @@ import { toast } from "react-toastify"
 import { motion } from "framer-motion"
 import Swal from "sweetalert2"
 import { VpnKeyOutlined } from "@mui/icons-material"
+import "react-toastify/dist/ReactToastify.css"
 
 import PasswordField from "@components/formui/passwordField"
 import ButtonWrapper from "@components/formui/SubmitButton"
@@ -16,8 +17,7 @@ import UseFormValidation from "@formValidation/use-form-validation"
 import UseThemMode from "@hooks/use-theme"
 import UseInitialValues from "@utils/use-initial-values"
 import { resetPassword } from "@state/slices/auth"
-
-import "react-toastify/dist/ReactToastify.css"
+import withGuard from "@utils/withGuard"
 
 const { INITIAL_FORM_STATE_RESET_PASSWORD } = UseInitialValues()
 
@@ -236,4 +236,4 @@ function ResetPassword() {
   )
 }
 
-export default ResetPassword
+export default withGuard(ResetPassword)

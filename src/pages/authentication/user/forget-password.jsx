@@ -8,6 +8,7 @@ import { toast } from "react-toastify"
 import { motion } from "framer-motion"
 import Swal from "sweetalert2"
 import { LockResetOutlined } from "@mui/icons-material"
+import "react-toastify/dist/ReactToastify.css"
 
 import TextFieldWrapper from "@components/formui/textField"
 import ButtonWrapper from "@components/formui/SubmitButton"
@@ -16,8 +17,7 @@ import UseFormValidation from "@formValidation/use-form-validation"
 import UseThemMode from "@hooks/use-theme"
 import UseInitialValues from "@utils/use-initial-values"
 import { forgetPassword } from "@state/slices/auth"
-
-import "react-toastify/dist/ReactToastify.css"
+import withGuard from "@utils/withGuard"
 
 const { INITIAL_FORM_STATE_FORGET_PASSWORD } = UseInitialValues()
 
@@ -256,4 +256,4 @@ function ForgetPassword() {
   )
 }
 
-export default ForgetPassword
+export default withGuard(ForgetPassword)

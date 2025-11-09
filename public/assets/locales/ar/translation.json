@@ -470,5 +470,79 @@
   "join-us-today": "انضم إلينا اليوم وأنشئ حسابك في ثوانٍ.",
   "filters": "خيارات التصفية",
   "apply-filters": "تطبيق التصفية",
-  "apply-price": "تطبيق السعر"
+  "apply-price": "تطبيق السعر",
+  "logout-success": "تمت عملية تسجيل الخروج بنجاح",
+  "validation": {
+    "email_valid": "أدخل بريد إلكتروني صالح",
+    "email_required": "حقل البريد الإلكتروني مطلوب",
+
+    "password_required": "حقل كلمة المرور مطلوب",
+    "password_min_6": "الحد الأدنى لعدد الأحرف هو 6",
+    "password_letter_number": "يجب أن تحتوي كلمة المرور على حرف واحد ورقم واحد على الأقل",
+    "confirm_password_required": "يرجى إعادة كتابة كلمة المرور",
+    "confirm_new_password_required": "يرجى إعادة كتابة كلمة المرور الجديدة",
+    "passwords_not_match": "كلمات المرور غير متطابقة",
+
+    "username_chars_only": "يجب أن يتكون اسم المستخدم من أحرف فقط",
+    "username_max_20": "الحد الأقصى لعدد الأحرف هو عشرون",
+    "username_required": "حقل اسم المستخدم مطلوب",
+
+    "terms_required": "يجب قبول الشروط والأحكام.",
+
+    "product_type_required": "نوع المنتج مطلوب",
+    "id_user_required": "معرف المستخدم مطلوب",
+    "only_pdf": "ملفات PDF فقط مسموح بها",
+    "file_size_7mb": "يجب ألا يتجاوز حجم الملف 7 ميجابايت",
+    "authorize_doc_required": "مستند التفويض مطلوب",
+    "authorize_doc_different": "يجب أن يكون اسم ملف مستند التفويض مختلفاً عن اسم ملف معرف الموزع",
+
+    "store_name_required": "اسم المتجر مطلوب",
+    "store_city_required": "مدينة المتجر مطلوبة",
+    "store_address_required": "العنوان الكامل للمتجر مطلوب",
+    "store_name_required_short": "اسم المتجر مطلوب",
+
+    "product_brand_required": "علامة المنتج التجارية مطلوبة",
+    "product_title_required": "عنوان المنتج مطلوب",
+    "price_should_be_number": "يجب أن يكون السعر رقماً",
+    "product_price_required": "سعر المنتج مطلوب",
+    "price_not_zero_negative": "لا يمكن أن يكون السعر صفراً أو سالباً",
+    "product_subcategory_required": "الفئة الفرعية للمنتج مطلوبة",
+    "product_category_required": "فئة المنتج مطلوبة",
+    "product_description_required": "وصف المنتج مطلوب",
+    "quantity_required": "الكمية مطلوبة",
+    "quantity_min_one": "الحد الأدنى لكمية المنتج هو واحد",
+    "product_quantity_required": "كمية المنتج مطلوبة",
+    "negative_not_allowed": "الأرقام السالبة غير مسموح بها",
+
+    "image_required": "الصورة مطلوبة",
+    "images_min_two": "الحد الأدنى لعدد الصور هو اثنتان",
+    "at_least_one_cover": "يجب تحديد صورة واحدة على الأقل كصورة غلاف",
+    "images_max_three": "يمكنك اختيار ثلاث صور كحد أقصى.",
+
+    "price_from_number": "يجب أن يكون السعر من رقماً",
+    "price_from_required": "السعر من مطلوب",
+    "price_from_not_negative_zero": "لا يمكن أن يكون السعر من سالباً أو صفراً",
+    "price_to_number": "يجب أن يكون السعر إلى رقماً",
+    "price_to_required": "السعر إلى مطلوب",
+    "price_to_greater": "يجب أن يكون السعر إلى أكبر من السعر من",
+    "price_to_greater_by_one": "يجب أن يكون السعر إلى أكبر من السعر من بمقدار 1 على الأقل",
+
+    "name_required": "الاسم مطلوب",
+    "name_max_20": "الحد الأقصى لعدد الأحرف هو 20",
+    "subject_required": "الموضوع مطلوب",
+    "subject_max_50": "الحد الأقصى لعدد الأحرف هو 50",
+    "message_required": "الرسالة مطلوبة",
+    "user_role_required": "دور المستخدم مطلوب",
+
+    "city_required": "المدينة مطلوبة",
+    "full_address_required": "العنوان الكامل مطلوب",
+
+    "order_address_required": "عنوان الطلب مطلوب",
+    "product_id_required": "معرف المنتج مطلوب",
+    "quantity_product_required": "كمية المنتج مطلوبة",
+
+    "rating_required": "التقييم لهذه المراجعة مطلوب",
+    "review_content_required": "محتوى مراجعتك مطلوب",
+    "review_content_min_10": "الحد الأدنى لعدد الأحرف هو 10"
+  }
 }

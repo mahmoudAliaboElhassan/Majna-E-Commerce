@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Container, Grid, Typography, makeStyles } from "@material-ui/core";
-import Card from "@mui/material/Card";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import { Form, Formik } from "formik";
-import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Container, Grid, Typography, makeStyles } from "@material-ui/core"
+import Card from "@mui/material/Card"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import { Form, Formik } from "formik"
+import Swal from "sweetalert2"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import ButtonWrapper from "@components/formui/SubmitButton";
-import PasswordField from "@components/formui/passwordField";
-import AuthLink from "@components/formui/authLink";
-import UseThemMode from "@hooks/use-theme";
-import UseInitialValues from "@utils/use-initial-values";
-import UseFormValidation from "@formValidation/use-form-validation";
-import { changePassword, logOut } from "@state/slices/auth";
-import { AppbarHeader } from "@styles/appbar";
-import withGuard from "@utils/withGuard";
+import ButtonWrapper from "@components/formui/SubmitButton"
+import PasswordField from "@components/formui/passwordField"
+import AuthLink from "@components/formui/authLink"
+import UseThemMode from "@hooks/use-theme"
+import UseInitialValues from "@utils/use-initial-values"
+import UseFormValidation from "@formValidation/use-form-validation"
+import { changePassword, logOut } from "@state/slices/auth"
+import { AppbarHeader } from "@styles/appbar"
+import withGuard from "@utils/withGuard"
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -34,21 +34,21 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     transform: "translate(-50%,-50%)",
   },
-}));
-const { INITIAL_FORM_STATE_CHANGE_PASSWORD } = UseInitialValues();
+}))
+const { INITIAL_FORM_STATE_CHANGE_PASSWORD } = UseInitialValues()
 function ChangePassword() {
-  const classes = useStyles();
-  const dispatch = useDispatch();
-  const { FORM_VALIDATION_SCHEMA_CHANGE_PASSWORD } = UseFormValidation();
-  const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { Uid } = useSelector((state) => state.auth);
-  const { themeMode } = UseThemMode();
+  const classes = useStyles()
+  const dispatch = useDispatch()
+  const { FORM_VALIDATION_SCHEMA_CHANGE_PASSWORD } = UseFormValidation()
+  const { t } = useTranslation()
+  const navigate = useNavigate()
+  const { Uid } = useSelector((state) => state.auth)
+  const { themeMode } = UseThemMode()
 
   return (
     <div style={{ position: "relative", height: "100vh" }}>
       <Container maxWidth="sm" className={classes.containerWrapper}>
-        {/* <ToastContainer /> */}
+        {/* </> */}
         <Card raised>
           <Container maxWidth="md">
             <Grid container>
@@ -79,11 +79,11 @@ function ChangePassword() {
                             draggable: true,
                             progress: undefined,
                             theme: themeMode,
-                          });
+                          })
                           setTimeout(() => {
-                            console.log("hello");
-                            navigate("/");
-                          }, 1000);
+                            console.log("hello")
+                            navigate("/")
+                          }, 1000)
                         }
                       })
                       .catch((error) => {
@@ -93,7 +93,7 @@ function ChangePassword() {
                             text: t("error-change-password-text"),
                             icon: "error",
                             confirmButtonText: t("ok"),
-                          });
+                          })
                         }
                         if (error.response.status === 404) {
                           Swal.fire({
@@ -101,9 +101,9 @@ function ChangePassword() {
                             text: t("error-change-password-not-user-text"),
                             icon: "error",
                             confirmButtonText: t("ok"),
-                          });
+                          })
                         }
-                      });
+                      })
                   }}
                 >
                   <Form className={classes.formWrapper}>
@@ -158,7 +158,7 @@ function ChangePassword() {
         </Card>
       </Container>
     </div>
-  );
+  )
 }
 
-export default (ChangePassword);
+export default withGuard(ChangePassword)

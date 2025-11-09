@@ -134,10 +134,10 @@ export const StyledListItemButton = styled(ListItemButton)(({ isActive }) => {
     }`,
 
     "&:hover": {
-      background:
-        themeMode === "dark"
-          ? "rgba(251, 191, 36, 0.1)"
-          : "rgba(245, 158, 11, 0.08)",
+      // background:
+      // themeMode === "dark"
+      //   ? "rgba(251, 191, 36, 0.1)"
+      //   : "rgba(245, 158, 11, 0.08)",
       transform: "translateX(4px)",
       boxShadow:
         themeMode === "dark"

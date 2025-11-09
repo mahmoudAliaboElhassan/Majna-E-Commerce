@@ -473,5 +473,80 @@
   "filters": "Filters",
   "loading": "loading ...",
   "apply-filters": "Apply Filters",
-  "apply-price": "Apply Price"
+  "apply-price": "Apply Price",
+  "logout-success": "Logout has been done successfully",
+
+  "validation": {
+    "email_valid": "Enter a Valid Email",
+    "email_required": "Email Field is required",
+
+    "password_required": "Password Field is required",
+    "password_min_6": "Minimum Number of Chars is 6",
+    "password_letter_number": "Password must contain at least one letter and one number",
+    "confirm_password_required": "Please re-type your password",
+    "confirm_new_password_required": "Please re-type your New password",
+    "passwords_not_match": "Passwords does not match",
+
+    "username_chars_only": "User Name Should be of Chars Only",
+    "username_max_20": "Maximum Number Of Characters is twenty",
+    "username_required": "User Name Field is Required",
+
+    "terms_required": "The terms and conditions must be accepted.",
+
+    "product_type_required": "Product Type is Required",
+    "id_user_required": "Id of the User is required",
+    "only_pdf": "Only PDF files are allowed",
+    "file_size_7mb": "File size must not be more than 7MB",
+    "authorize_doc_required": "Authorize Document is required",
+    "authorize_doc_different": "Authorize Document file name must be different from IdDistributor file name",
+
+    "store_name_required": "Store Name is Required",
+    "store_city_required": "Store City is Required",
+    "store_address_required": "Full Address of the Store is Required",
+    "store_name_required_short": "Required Store Name",
+
+    "product_brand_required": "Product Brand is Required",
+    "product_title_required": "Product Title is Required",
+    "price_should_be_number": "Price Should be Number",
+    "product_price_required": "Product Price is Required",
+    "price_not_zero_negative": "Price can not be zero or negative",
+    "product_subcategory_required": "Product SubCategory is Required",
+    "product_category_required": "Product Category is Required",
+    "product_description_required": "Product Description is Required",
+    "quantity_required": "Required quantity",
+    "quantity_min_one": "Minimum amount of Product is one",
+    "product_quantity_required": "Product Quantity is Required",
+    "negative_not_allowed": "Negative Number is not Allowed",
+
+    "image_required": "Image is required",
+    "images_min_two": "Minimum number of Images is Two",
+    "at_least_one_cover": "At least one image must be marked as cover",
+    "images_max_three": "You can select only up to three images.",
+
+    "price_from_number": "Price From should be a number",
+    "price_from_required": "Price From is required",
+    "price_from_not_negative_zero": "Price From cannot be negative or Zero",
+    "price_to_number": "Price To should be a number",
+    "price_to_required": "Price To is required",
+    "price_to_greater": "Price To must be greater than Price From",
+    "price_to_greater_by_one": "Price To must be greater than Price From by at least 1",
+
+    "name_required": "Name is Required",
+    "name_max_20": "Maximum number of characters is 20",
+    "subject_required": "Subject is Required",
+    "subject_max_50": "Maximum number of characters is 50",
+    "message_required": "Message is Required",
+    "user_role_required": "User Role is Required",
+
+    "city_required": "City is Required",
+    "full_address_required": "Full Address is Required",
+
+    "order_address_required": "Order Address is Required",
+    "product_id_required": "Product ID is Required",
+    "quantity_product_required": "Quantity Of Product is Required",
+
+    "rating_required": "rating for this review is required",
+    "review_content_required": "Content for your review is required",
+    "review_content_min_10": "minimum number of characters is 10"
+  }
 }

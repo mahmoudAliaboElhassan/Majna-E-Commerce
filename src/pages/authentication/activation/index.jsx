@@ -1,23 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import Swal from "sweetalert2";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useNavigate, useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { useTranslation } from "react-i18next"
+import Swal from "sweetalert2"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import { ActivateAccount, ResendConfirmation } from "@state/slices/auth";
-import UseThemMode from "@hooks/use-theme";
-import LoadingFetching from "@components/loadingFetching";
+import { ActivateAccount, ResendConfirmation } from "@state/slices/auth"
+import UseThemMode from "@hooks/use-theme"
+import LoadingFetching from "@components/loadingFetching"
+import withGuard from "@utils/withGuard"
 
 function ActivationAccount() {
-  const { uid, token } = useParams();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
-  const { themeMode } = UseThemMode();
-  const { loading, error } = useSelector((state) => state.auth);
+  const { uid, token } = useParams()
+  const navigate = useNavigate()
+  const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const { themeMode } = UseThemMode()
+  const { loading, error } = useSelector((state) => state.auth)
   useEffect(() => {
     if (uid && token) {
       dispatch(ActivateAccount({ uid, token }))
@@ -33,11 +34,11 @@ function ActivationAccount() {
               draggable: true,
               progress: undefined,
               theme: themeMode,
-            });
+            })
             setTimeout(() => {
-              console.log("hello");
-              navigate("/login");
-            }, 1000);
+              console.log("hello")
+              navigate("/login")
+            }, 1000)
           }
         })
         .catch((error) => {
@@ -50,7 +51,9 @@ function ActivationAccount() {
               confirmButtonText: t("ok"),
             }).then((result) => {
               if (result.isConfirmed) {
-                dispatch(ResendConfirmation({ email: localStorage.getItem("email") }))
+                dispatch(
+                  ResendConfirmation({ email: localStorage.getItem("email") })
+                )
                   .unwrap()
                   .then(() => {
                     {
@@ -63,16 +66,16 @@ function ActivationAccount() {
                         draggable: true,
                         progress: undefined,
                         theme: themeMode,
-                      });
+                      })
                       setTimeout(() => {
-                        console.log("hello");
-                      }, 1000);
+                        console.log("hello")
+                      }, 1000)
                     }
-                  });
+                  })
               }
-            });
+            })
           } else if (error.response.status === 409) {
-            console.log(error);
+            console.log(error)
             Swal.fire({
               text: t("error-activate-true"),
               icon: "error",
@@ -80,13 +83,13 @@ function ActivationAccount() {
               confirmButtonText: t("ok"),
             }).then((result) => {
               if (result.isConfirmed) {
-                navigate("/login");
+                navigate("/login")
               }
-            });
+            })
           }
-        });
+        })
     }
-  }, []);
+  }, [])
 
   return (
     <>
@@ -95,7 +98,7 @@ function ActivationAccount() {
         <LoadingFetching>{t("activating")}</LoadingFetching>
       )}
     </>
-  );
+  )
 }
 
-export default ActivationAccount;
+export default withGuard(ActivationAccount)

@@ -13,8 +13,6 @@ import { handlelogOutState } from "@state/slices/auth"
 function UseHeaderElements() {
   const { t } = useTranslation()
   const dispatch = useDispatch()
-  const { themeMode } = UseThemeMode()
-  const { token, role } = useSelector((state) => state.auth)
 
   const HeaderElements = [
     {
@@ -68,7 +66,7 @@ function UseHeaderElements() {
             // Reset cart count after successful logout
             dispatch(resetCartItemsCount())
             dispatch(handlelogOutState())
-            toast.success("Logout successful, cart reset!", {
+            toast.success(t("logout-success"), {
               position: "top-right",
               autoClose: 1000,
               hideProgressBar: false,

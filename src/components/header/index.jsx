@@ -83,16 +83,9 @@ function Header() {
   const quantityStyle = `${isAnimate ? pumpCartQuantity : ""}`
   const heartStyle = `${isAnimate ? cgBgcolor : ""}`
 
-  console.log(location.pathname.split("/"))
   const locationPath = `/${location.pathname.split("/")[1]}`
-  console.log("locationPath")
-  console.log(locationPath)
-  console.log(location.pathname)
+
   useEffect(() => {}, [countOfCartItems])
-  console.log(
-    "type of local storage",
-    typeof localStorage.getItem("countOfCartItem")
-  )
   const { mymode } = useSelector((state) => state.mode)
 
   const getAuthMenuIcon = (label) => {

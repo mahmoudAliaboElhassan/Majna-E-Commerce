@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 import {
   Checkbox,
@@ -6,38 +6,38 @@ import {
   FormControlLabel,
   FormGroup,
   FormLabel,
-} from "@material-ui/core";
-import { useField, useFormikContext } from "formik";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+} from "@material-ui/core"
+import { useField, useFormikContext } from "formik"
+import { useTranslation } from "react-i18next"
+import { Link } from "react-router-dom"
 
-import { Colors } from "@styles/theme";
-import UseThemMode from "@hooks/use-theme";
+import { Colors } from "@styles/theme"
+import UseThemMode from "@hooks/use-theme"
 
 const CheckboxWrapper = ({ name, label, legend, from, ...otherProps }) => {
-  const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField(name);
+  const { setFieldValue } = useFormikContext()
+  const [field, meta] = useField(name)
 
   const handleChange = (evt) => {
-    const { checked } = evt.target;
+    const { checked } = evt.target
     if (from === "add-album") {
-      setFieldValue(name, checked === true ? "True" : "False");
-    } else setFieldValue(name, checked);
-  };
+      setFieldValue(name, checked === true ? "True" : "False")
+    } else setFieldValue(name, checked)
+  }
 
-  const { themeMode } = UseThemMode();
+  const { themeMode } = UseThemMode()
 
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const configCheckbox = {
     ...field,
     onChange: handleChange,
-  };
+  }
 
-  const configFormControl = {};
+  const configFormControl = {}
   if (meta && meta.touched && meta.error) {
-    configFormControl.error = true;
-    configFormControl.helperText = meta.error;
+    configFormControl.error = true
+    configFormControl.helperText = meta.error
   }
 
   return (
@@ -70,9 +70,10 @@ const CheckboxWrapper = ({ name, label, legend, from, ...otherProps }) => {
           control={<Checkbox {...configCheckbox} />}
           label={label}
         />
-      </FormGroup>
+      </FormGroup>{" "}
+      <div style={{ color: Colors.labelError }}> {meta.error}</div>
     </FormControl>
-  );
-};
+  )
+}
 
-export default CheckboxWrapper;
+export default CheckboxWrapper

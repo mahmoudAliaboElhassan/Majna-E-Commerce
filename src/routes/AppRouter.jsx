@@ -1,110 +1,97 @@
-import React, { Suspense } from "react";
+import React, { Suspense } from "react"
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 
-import Loader from "@components/loader";
-import ErrorPage from "@pages/errorPage/index";
-import Home from "@pages/home";
-import RootLayout from "@pages/RootLayout";
+import Loader from "@components/loader"
+import ErrorPage from "@pages/errorPage/index"
+import Home from "@pages/home"
+import RootLayout from "@pages/RootLayout"
 
 const ResetPassword = React.lazy(() =>
   import("@pages/authentication/user/reset-password")
-);
+)
 
 const Activation = React.lazy(() =>
   import("@pages/authentication/activation/index")
-);
+)
 
-const AboutUsPage = React.lazy(() => import("@pages/about"));
+const AboutUsPage = React.lazy(() => import("@pages/about"))
 
-const SignUpPage = React.lazy(() =>
-  import("@pages/authentication/user/signUp")
-);
+const SignUpPage = React.lazy(() => import("@pages/authentication/user/signUp"))
 
-const LoginPage = React.lazy(() =>
-  import("@pages/authentication/user/login")
-);
+const LoginPage = React.lazy(() => import("@pages/authentication/user/login"))
 
-const ContactUsPage = React.lazy(() => import("@pages/contacts"));
+const ContactUsPage = React.lazy(() => import("@pages/contacts"))
 
 const ChangePassword = React.lazy(() =>
   import("@pages/authentication/user/change-password")
-);
+)
 
 const ForgetPassword = React.lazy(() =>
   import("@pages/authentication/user/forget-password")
-);
+)
 
 const RootDistributorPanelLayout = React.lazy(() =>
   import("@pages/distributorPanel/rootDistributorPanel")
-);
+)
 
 const ApprovedBrands = React.lazy(() =>
   import("@pages/distributorPanel/aprovedBrands")
-);
+)
 
 const AllBrandsApplications = React.lazy(() =>
   import("@pages/distributorPanel/allBrandsApplications")
-);
+)
 
-const AllStores = React.lazy(() => import("@pages/distributorPanel/stores"));
+const AllStores = React.lazy(() => import("@pages/distributorPanel/stores"))
 
-const UploadedProducts = React.lazy(() => import("@pages/distributorPanel/upploadedProducts"));
+const UploadedProducts = React.lazy(() =>
+  import("@pages/distributorPanel/upploadedProducts")
+)
 
-const AddStore = React.lazy(() =>
-  import("@pages/distributorPanel/addStore")
-);
+const AddStore = React.lazy(() => import("@pages/distributorPanel/addStore"))
 
 const AddBrandApplication = React.lazy(() =>
   import("@pages/distributorPanel/addBrandApplication")
-);
+)
 
 const AddProduct = React.lazy(() =>
   import("@pages/distributorPanel/addProduct")
-);
+)
 
-const EditStore = React.lazy(() =>
-  import("@pages/distributorPanel/editStore")
-);
+const EditStore = React.lazy(() => import("@pages/distributorPanel/editStore"))
 const EditProduct = React.lazy(() =>
   import("@pages/distributorPanel/editProduct")
-);
+)
 const EditProductAlbum = React.lazy(() =>
   import("@pages/distributorPanel/editProductAlbum")
-);
-const Albums = React.lazy(() =>
-  import("@pages/distributorPanel/albums")
-);
-const EditAlbum = React.lazy(() =>
-  import("@pages/distributorPanel/editAlbum")
-);
-const AddAlbum = React.lazy(() =>
-  import("@pages/distributorPanel/addAlbum")
-);
-
+)
+const Albums = React.lazy(() => import("@pages/distributorPanel/albums"))
+const EditAlbum = React.lazy(() => import("@pages/distributorPanel/editAlbum"))
+const AddAlbum = React.lazy(() => import("@pages/distributorPanel/addAlbum"))
 
 // const CardProductDetails = React.lazy(() =>
 //   import("@pages/distributorPanel/productDetails")
 // );
 
 const RootReviewerPanelLayOut = React.lazy(() =>
-  import("@pages/reviewer/rootReviewerLayout")
-);
+  import("@pages/reviewerPanel/rootReviewerLayout")
+)
 
-const AllBrands = React.lazy(() => import("@pages/reviewer/allBrands"));
+const AllBrands = React.lazy(() => import("@pages/reviewerPanel/allBrands"))
 
 const BrnadApplication = React.lazy(() =>
-  import("@pages/reviewer/brnadApplication")
-);
-const ShoppingCart = React.lazy(() => import("@pages/shoppingCart"));
+  import("@pages/reviewerPanel/brnadApplication")
+)
+const ShoppingCart = React.lazy(() => import("@pages/shoppingCart"))
 const SpecificCartItem = React.lazy(() =>
   import("@pages/shoppingCart/specifcCart")
-);
-const Favorite = React.lazy(() => import("@pages/favorite"));
-const ProductView = React.lazy(() =>
-  import("@pages/productView")
-);
-const RootCustomerPanelLayOut = React.lazy(() => import("@pages/customerPanel/rootCustomerPanel"))
+)
+const Favorite = React.lazy(() => import("@pages/favorite"))
+const ProductView = React.lazy(() => import("@pages/productView"))
+const RootCustomerPanelLayOut = React.lazy(() =>
+  import("@pages/customerPanel/rootCustomerPanel")
+)
 const Addresses = React.lazy(() => import("@pages/customerPanel/addresses"))
 const AddAddress = React.lazy(() => import("@pages/customerPanel/addAddress"))
 const EditAddress = React.lazy(() => import("@pages/customerPanel/editAddress"))
@@ -112,11 +99,15 @@ const Orders = React.lazy(() => import("@pages/customerPanel/orders"))
 
 const Discover = React.lazy(() => import("@pages/discover"))
 
-const RootDeliveryPanelLayout = React.lazy(() => import("@pages/deliveryPanel/rootDeliveryPanel"))
+const RootDeliveryPanelLayout = React.lazy(() =>
+  import("@pages/deliveryPanel/rootDeliveryPanel")
+)
 const AllOrders = React.lazy(() => import("@pages/deliveryPanel/allOrders"))
-const SpecificOrder = React.lazy(() => import("@pages/deliveryPanel/specificOrder"));
-const Payment = React.lazy(() => import("@pages/payment"));
-const PaymentSuccess = React.lazy(() => import("@pages/payment/paymentSucces"));
+const SpecificOrder = React.lazy(() =>
+  import("@pages/deliveryPanel/specificOrder")
+)
+const Payment = React.lazy(() => import("@pages/payment"))
+const PaymentSuccess = React.lazy(() => import("@pages/payment/paymentSucces"))
 const TermsConditions = React.lazy(() => import("@pages/termsConditions"))
 const UpdateReview = React.lazy(() => import("@pages/updateReview"))
 const router = createBrowserRouter([
@@ -321,7 +312,7 @@ const router = createBrowserRouter([
           <Suspense fallback={<Loader />}>
             <UpdateReview />
           </Suspense>
-        )
+        ),
       },
       {
         path: "customer-control-panel",
@@ -329,49 +320,49 @@ const router = createBrowserRouter([
           <Suspense fallback={<Loader />}>
             <RootCustomerPanelLayOut />
           </Suspense>
-        ), children:
-          [
-            {
-              index: true,
-              element: (
-                <Suspense fallback={<Loader />}>
-                  <Addresses />
-                </Suspense>
-              )
-            },
-            {
-              path: "addresses",
-              element: (
-                <Suspense fallback={<Loader />}>
-                  <Addresses />
-                </Suspense>
-              )
-            },
-            {
-              path: "add-address",
-              element: (
-                <Suspense fallback={<Loader />}>
-                  <AddAddress />
-                </Suspense>
-              )
-            },
-            {
-              path: "edit-address/:addressId",
-              element: (
-                <Suspense fallback={<Loader />}>
-                  <EditAddress />
-                </Suspense>
-              )
-            },
-            {
-              path: "all-orders",
-              element: (
-                <Suspense fallback={<Loader />}>
-                  <Orders />
-                </Suspense>
-              )
-            },
-          ]
+        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Addresses />
+              </Suspense>
+            ),
+          },
+          {
+            path: "addresses",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Addresses />
+              </Suspense>
+            ),
+          },
+          {
+            path: "add-address",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AddAddress />
+              </Suspense>
+            ),
+          },
+          {
+            path: "edit-address/:addressId",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <EditAddress />
+              </Suspense>
+            ),
+          },
+          {
+            path: "all-orders",
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Orders />
+              </Suspense>
+            ),
+          },
+        ],
       },
       // {
       //   path: "product/:id",
@@ -425,7 +416,7 @@ const router = createBrowserRouter([
           <Suspense fallback={<Loader />}>
             <Discover />
           </Suspense>
-        )
+        ),
       },
       {
         path: "payment",
@@ -433,7 +424,7 @@ const router = createBrowserRouter([
           <Suspense fallback={<Loader />}>
             <Payment />
           </Suspense>
-        )
+        ),
       },
       {
         path: "payment-success",
@@ -441,7 +432,7 @@ const router = createBrowserRouter([
           <Suspense fallback={<Loader />}>
             <PaymentSuccess />
           </Suspense>
-        )
+        ),
       },
       {
         path: "delivery-control-panel",
@@ -453,26 +444,29 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: (<Suspense fallback={<Loader />}>
-              <AllOrders />
-            </Suspense>
-            )
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AllOrders />
+              </Suspense>
+            ),
           },
           {
             path: "all-delivery-orders",
-            element: (<Suspense fallback={<Loader />}>
-              <AllOrders />
-            </Suspense>
-            )
+            element: (
+              <Suspense fallback={<Loader />}>
+                <AllOrders />
+              </Suspense>
+            ),
           },
           {
             path: "order/:orderId",
-            element: (<Suspense fallback={<Loader />}>
-              <SpecificOrder />
-            </Suspense>
-            )
-          }
-        ]
+            element: (
+              <Suspense fallback={<Loader />}>
+                <SpecificOrder />
+              </Suspense>
+            ),
+          },
+        ],
       },
       {
         path: "/reviewer-control-panel",
@@ -526,8 +520,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+])
 const AppRouter = () => {
-  return <RouterProvider router={router} />;
-};
-export default AppRouter;
+  return <RouterProvider router={router} />
+}
+export default AppRouter
