@@ -71,20 +71,20 @@ const Swiperslide = ({ images }) => {
         }}
         slidesPerView={isMatch ? 1 : 2}
         navigation
-        pagination={{
-          clickable: true,
-          renderBullet: (index, className) => {
-            return `<span class="${className} custom-bullet" data-theme="${themeMode}">${
-              index + 1
-            }</span>`
-          },
-        }}
+        // pagination={{
+        //   clickable: true,
+        //   renderBullet: (index, className) => {
+        //     return `<span class="${className} custom-bullet" data-theme="${themeMode}">${
+        //       index + 1
+        //     }</span>`
+        //   },
+        // }}
         loop={true}
         speed={800}
         effect="slide"
         grabCursor={true}
         style={{
-          height: isMatch ? "280px" : "350px",
+          height: isMatch ? "350px" : "400px",
           width: "100%",
           borderRadius: "12px",
         }}
