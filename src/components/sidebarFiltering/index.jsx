@@ -43,13 +43,15 @@ function ProductTypesSidebar({
 
   // Desktop sidebar styles (static)
   const desktopSidebarStyles = {
-    [Direction.left]: 0,
-    borderRight: `1px solid ${themeMode === "light" ? "#e6e6e6" : "#2d2d2d"}`,
+    // [Direction.left]: 0,
+    [Direction.borderRight]: `1px solid ${
+      themeMode === "light" ? "#e6e6e6" : "#2d2d2d"
+    }`,
     overflowY: "auto",
     overflowX: "hidden",
     display: "flex",
     flexDirection: "column",
-    height: "100%",
+    // height: "100%",
     boxShadow:
       themeMode === "light"
         ? "0 2px 8px rgba(0,0,0,0.04)"
@@ -71,7 +73,7 @@ function ProductTypesSidebar({
 
   const contentStyles = {
     flex: 1,
-    padding: "20px 16px",
+    padding: "0 16px",
     display: "flex",
     flexDirection: "column",
     gap: "12px",

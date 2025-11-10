@@ -150,7 +150,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
   const noonDarkYellow = "#E6D400"
 
   return (
-    <Grid item xs={12} lg={3} md={4} sm={6} key={id}>
+    <Grid item xs={12} md={4} sm={6} key={id}>
       <motion.div
         ref={ref}
         initial={{ y: 30, opacity: 0 }}

@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect } from "react"
 import {
   Box,
   Container,
@@ -13,91 +13,91 @@ import {
   Avatar,
   Typography,
   CardActionArea,
-} from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import FlashOnIcon from "@mui/icons-material/FlashOn";
-import StarIcon from "@mui/icons-material/Star";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+} from "@mui/material"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+import VisibilityIcon from "@mui/icons-material/Visibility"
+import TrendingUpIcon from "@mui/icons-material/TrendingUp"
+import FlashOnIcon from "@mui/icons-material/FlashOn"
+import StarIcon from "@mui/icons-material/Star"
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 
-import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
+import Swal from "sweetalert2"
 
-import { getProducts } from "@state/slices/products";
-import { postCart } from "@state/slices/cart";
-import Footer from "@components/footer";
-import LoadingFetching from "@components/loadingFetching";
+import { getProducts } from "@state/slices/products"
+import { postCart } from "@state/slices/cart"
+import Footer from "@components/footer"
+import LoadingFetching from "@components/loadingFetching"
 
 export default function Discover() {
-  const { t, i18n } = useTranslation();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [viewMode, setViewMode] = useState("grid");
-  const [sortBy, setSortBy] = useState("popular");
-  const [showAllProducts, setShowAllProducts] = useState(false);
-  const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-  const [activeProductId, setActiveProductId] = useState(null);
+  const { t, i18n } = useTranslation()
+  const [searchQuery, setSearchQuery] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [viewMode, setViewMode] = useState("grid")
+  const [sortBy, setSortBy] = useState("popular")
+  const [showAllProducts, setShowAllProducts] = useState(false)
+  const [isBtnDisabled, setIsBtnDisabled] = useState(false)
+  const [activeProductId, setActiveProductId] = useState(null)
 
   const { productsArray, loadingProducts, countOfProducts } = useSelector(
     (state) => state.products
-  );
+  )
   const { loadingPostCart, countOfCartItems } = useSelector(
     (state) => state.cart
-  );
-  const { Uid, token, role } = useSelector((state) => state.auth);
+  )
+  const { Uid, token, role } = useSelector((state) => state.auth)
 
-  console.log("productsArray from discover", productsArray);
-  const isRTL = i18n.language === "ar";
+  console.log("productsArray from discover", productsArray)
+  const isRTL = i18n.language === "ar"
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getProducts({}));
-  }, [dispatch]);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    if (!isBtnDisabled) return;
+    dispatch(getProducts({}))
+  }, [dispatch])
+
+  useEffect(() => {
+    if (!isBtnDisabled) return
     const debounce = setTimeout(() => {
-      setIsBtnDisabled(false);
-    }, 300);
-    return () => clearTimeout(debounce);
-  }, [isBtnDisabled]);
+      setIsBtnDisabled(false)
+    }, 300)
+    return () => clearTimeout(debounce)
+  }, [isBtnDisabled])
 
   // Utility function to truncate text to specific character limit
   const truncateText = (text, maxLength = 100) => {
-    if (!text) return "";
-    if (text.length <= maxLength) return text;
-    return text.substring(0, maxLength).trim() + "...";
-  };
+    if (!text) return ""
+    if (text.length <= maxLength) return text
+    return text.substring(0, maxLength).trim() + "..."
+  }
 
   // Utility function to get random elements from array
   const getRandomProducts = (array, count) => {
-    if (!array || array.length === 0) return [];
-    const shuffled = [...array].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, Math.min(count, array.length));
-  };
+    if (!array || array.length === 0) return []
+    const shuffled = [...array].sort(() => 0.5 - Math.random())
+    return shuffled.slice(0, Math.min(count, array.length))
+  }
 
   // Utility function to generate random rating
   const getRandomRating = () => {
-    return Math.round((Math.random() * 2 + 3) * 10) / 10; // Random between 3.0 and 5.0
-  };
+    return Math.round((Math.random() * 2 + 3) * 10) / 10 // Random between 3.0 and 5.0
+  }
 
   // Utility function to generate random reviews count
   const getRandomReviews = () => {
-    return Math.floor(Math.random() * 200) + 20; // Random between 20 and 220
-  };
+    return Math.floor(Math.random() * 200) + 20 // Random between 20 and 220
+  }
 
   // Utility function to generate random discount
   const getRandomDiscount = () => {
-    const discounts = [10, 15, 20, 25, 30];
-    return discounts[Math.floor(Math.random() * discounts.length)];
-  };
+    const discounts = [10, 15, 20, 25, 30]
+    return discounts[Math.floor(Math.random() * discounts.length)]
+  }
 
   // Utility function to generate random description if not available
   const generateRandomDescription = () => {
@@ -107,17 +107,17 @@ export default function Discover() {
       "Innovative design meets functionality in this outstanding product. Ideal for both personal and professional use.",
       "Expertly designed with user comfort in mind. Features advanced technology and superior build quality.",
       "Versatile and reliable product that exceeds expectations. Perfect blend of style, comfort, and durability.",
-    ];
-    return descriptions[Math.floor(Math.random() * descriptions.length)];
-  };
+    ]
+    return descriptions[Math.floor(Math.random() * descriptions.length)]
+  }
 
   // Handle Add to Cart functionality
   const handleAddToCart = (productId) => {
-    setIsBtnDisabled(true);
-    setActiveProductId(productId);
+    setIsBtnDisabled(true)
+    setActiveProductId(productId)
 
     if (!countOfCartItems || Number.parseInt(countOfCartItems) < 10) {
-      console.log("Adding product to cart:", productId);
+      console.log("Adding product to cart:", productId)
       dispatch(
         postCart({
           customerId: Uid,
@@ -134,40 +134,40 @@ export default function Discover() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-          });
+          })
         })
         .catch((error) => {
           const errorMessages = {
             409: t("error-exist-cart") || "Product already exists in cart",
             401: t("error-not-authorized-text") || "Not authorized",
             403: t("error-not-customer-text") || "Customer access required",
-          };
+          }
 
           const errorMessage =
-            errorMessages[error.response?.status] || error.message;
+            errorMessages[error.response?.status] || error.message
           Swal.fire({
             title: t("error-adding") || "Error Adding Product",
             text: errorMessage,
             icon: "error",
             confirmButtonText: t("ok") || "OK",
-          });
-        });
+          })
+        })
     } else {
       Swal.fire({
         title: t("error-adding") || "Error Adding Product",
         text: t("excceeded-10") || "Maximum 10 items allowed in cart",
         icon: "error",
         confirmButtonText: t("ok") || "OK",
-      });
+      })
     }
-  };
+  }
 
   // Handle View All Products
   const handleViewAll = () => {
-    setShowAllProducts(true);
+    setShowAllProducts(true)
     // Optionally fetch more products or navigate to a products page
     // navigate('/products')
-  };
+  }
 
   // Categories with translations
   const categories = [
@@ -177,26 +177,24 @@ export default function Discover() {
     { id: "sports", name: t("sports"), count: 98, icon: "⚽" },
     { id: "books", name: t("books"), count: 234, icon: "📚" },
     { id: "beauty", name: t("beauty"), count: 167, icon: "💄" },
-  ];
+  ]
 
   // Featured products from productsArray
   const featuredProducts = useMemo(() => {
-    if (!productsArray || productsArray.length === 0) return [];
+    if (!productsArray || productsArray.length === 0) return []
 
-    const productCount = showAllProducts
-      ? Math.min(productsArray.length, 8)
-      : 2;
-    const randomProducts = getRandomProducts(productsArray, productCount);
+    const productCount = showAllProducts ? Math.min(productsArray.length, 8) : 2
+    const randomProducts = getRandomProducts(productsArray, productCount)
     const badges = [
       t("bestSeller"),
       t("newArrival"),
       t("ecoFriendly"),
       t("proChoice"),
-    ];
+    ]
 
     return randomProducts.map((product, index) => {
-      const discount = getRandomDiscount();
-      const originalPrice = product.price * (1 + discount / 100);
+      const discount = getRandomDiscount()
+      const originalPrice = product.price * (1 + discount / 100)
 
       return {
         id: product.id,
@@ -212,19 +210,17 @@ export default function Discover() {
         reviews: getRandomReviews(),
         badge: badges[index % badges.length],
         discount: discount,
-      };
-    });
-  }, [productsArray, t, showAllProducts]);
+      }
+    })
+  }, [productsArray, t, showAllProducts])
 
   // Trending products from productsArray
   const trendingProducts = useMemo(() => {
-    if (!productsArray || productsArray.length === 0) return [];
+    if (!productsArray || productsArray.length === 0) return []
 
-    const productCount = showAllProducts
-      ? Math.min(productsArray.length, 6)
-      : 3;
-    const randomProducts = getRandomProducts(productsArray, productCount);
-    const trendingPercentages = ["+15%", "+23%", "+18%", "+12%", "+28%"];
+    const productCount = showAllProducts ? Math.min(productsArray.length, 6) : 3
+    const randomProducts = getRandomProducts(productsArray, productCount)
+    const trendingPercentages = ["+15%", "+23%", "+18%", "+12%", "+28%"]
 
     return randomProducts.map((product, index) => ({
       id: product.id,
@@ -237,18 +233,18 @@ export default function Discover() {
       image: product.cover_image || "/placeholder.svg?height=200&width=200",
       rating: getRandomRating(),
       trending: trendingPercentages[index % trendingPercentages.length],
-    }));
-  }, [productsArray, showAllProducts]);
+    }))
+  }, [productsArray, showAllProducts])
 
   const handleViewModeChange = (event, newViewMode) => {
     if (newViewMode !== null) {
-      setViewMode(newViewMode);
+      setViewMode(newViewMode)
     }
-  };
+  }
 
   // Show loading state if products are loading
   if (loadingProducts) {
-    return <LoadingFetching>{t("loading") || "Loading..."}</LoadingFetching>;
+    return <LoadingFetching>{t("loading") || "Loading..."}</LoadingFetching>
   }
 
   return (
@@ -759,5 +755,5 @@ export default function Discover() {
       </Container>
       <Footer />
     </Box>
-  );
+  )
 }

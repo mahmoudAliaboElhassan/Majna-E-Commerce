@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react"
-import { Grid, Button, Badge, Box } from "@mui/material"
+import { Grid, Button, Badge, Box, Container } from "@mui/material"
 import { useDispatch, useSelector } from "react-redux"
 import { t } from "i18next"
 import FilterListIcon from "@mui/icons-material/FilterList"
@@ -195,99 +195,95 @@ function Home() {
       <Introductory />
       <Search />
 
-      <Grid container sx={{ overflow: "hidden", mb: 2 }}>
-        {/* Desktop Sidebar - Show from md up */}
-        <Grid
-          item
-          md={2.5}
-          sx={{
-            display: { xs: "none", md: "block" },
-          }}
-        >
-          <ProductTypesSidebar
-            handlePriceChange={handlePriceChange}
-            handleResetPrice={handleResetPrice}
-            priceFromTo={priceFromTo}
-            handleClickPrice={handleClickPrice}
-            price={price}
-            handleOrdering={handleOrdering}
-            handleProductsByCategory={handleProductsByCategory}
-            selectedCategory={selectedCategory}
-            selectedSubCategory={selectedSubCategory}
-            handleSelectedSubCategory={handleSelectedSubCategory}
-            handleClearAllFilters={handleClearAllFilters}
-            activeFiltersCount={activeFiltersCount}
-            isDrawer={false}
-            isOpen={false}
-            onClose={() => {}}
-          />
-        </Grid>
-
-        {/* Products Grid */}
-        <Grid
-          container
-          item
-          xs={12}
-          md={9.5}
-          spacing={2}
-          sx={{
-            padding: { xs: 2, sm: 3, md: 3 },
-            maxWidth: {
-              xs: "100%",
-              md: "calc(100% - 48px)",
-            },
-          }}
-        >
-          {/* Mobile Filter Button - Show only on sm screens, hide on xs */}
+      <Container
+        maxWidth="xl"
+        sx={{
+          px: 3,
+          py: { xs: 2, md: 3 },
+        }}
+      >
+        <Grid container spacing={2} sx={{ overflow: "hidden", mb: 2 }}>
+          {/* Desktop Sidebar - Show from md up */}
           <Grid
             item
-            xs={12}
+            md={2.5}
             sx={{
-              display: { xs: "block", md: "none" },
-              mb: 2,
+              display: { xs: "none", md: "block" },
             }}
           >
-            <Button
-              variant="contained"
-              fullWidth
-              onClick={toggleFilterDrawer}
-              startIcon={<FilterListIcon />}
-              sx={{
-                backgroundColor: themeMode === "light" ? "#f59e0b" : "#fbbf24",
-                color: "white",
-                fontWeight: 600,
-                py: 1.5,
-                borderRadius: "12px",
-                textTransform: "none",
-                fontSize: "1rem",
-                "&:hover": {
-                  backgroundColor:
-                    themeMode === "light" ? "#d97706" : "#f59e0b",
-                },
-                boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
-              }}
-            >
-              <Badge
-                badgeContent={activeFiltersCount}
-                color="error"
-                sx={{ mr: 1 }}
-              >
-                {t("filters") || "Filters"}
-              </Badge>
-            </Button>
+            <ProductTypesSidebar
+              handlePriceChange={handlePriceChange}
+              handleResetPrice={handleResetPrice}
+              priceFromTo={priceFromTo}
+              handleClickPrice={handleClickPrice}
+              price={price}
+              handleOrdering={handleOrdering}
+              handleProductsByCategory={handleProductsByCategory}
+              selectedCategory={selectedCategory}
+              selectedSubCategory={selectedSubCategory}
+              handleSelectedSubCategory={handleSelectedSubCategory}
+              handleClearAllFilters={handleClearAllFilters}
+              activeFiltersCount={activeFiltersCount}
+              isDrawer={false}
+              isOpen={false}
+              onClose={() => {}}
+            />
           </Grid>
 
-          <ShowProducts
-            records={productsArray}
-            renderProducts={(product) => <Product {...product} />}
-            page={page}
-            count={productsCount}
-            changePage={changePage}
-          />
-        </Grid>
-      </Grid>
+          {/* Products Grid */}
+          <Grid container item xs={12} md={9.5} spacing={2}>
+            {/* Mobile Filter Button - Show only on xs and sm screens */}
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: { xs: "block", md: "none" },
+                mb: 2,
+              }}
+            >
+              <Button
+                variant="contained"
+                fullWidth
+                onClick={toggleFilterDrawer}
+                startIcon={<FilterListIcon />}
+                sx={{
+                  backgroundColor:
+                    themeMode === "light" ? "#f59e0b" : "#fbbf24",
+                  color: "white",
+                  fontWeight: 600,
+                  py: 1.5,
+                  borderRadius: "12px",
+                  textTransform: "none",
+                  fontSize: "1rem",
+                  "&:hover": {
+                    backgroundColor:
+                      themeMode === "light" ? "#d97706" : "#f59e0b",
+                  },
+                  boxShadow: "0 4px 12px rgba(245, 158, 11, 0.3)",
+                }}
+              >
+                <Badge
+                  badgeContent={activeFiltersCount}
+                  color="error"
+                  sx={{ mr: 1 }}
+                >
+                  {t("filters") || "Filters"}
+                </Badge>
+              </Button>
+            </Grid>
 
-      {/* Mobile Drawer - Only for sm screens */}
+            <ShowProducts
+              records={productsArray}
+              renderProducts={(product) => <Product {...product} />}
+              page={page}
+              count={productsCount}
+              changePage={changePage}
+            />
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* Mobile Drawer - For xs and sm screens */}
       <ProductTypesSidebar
         handlePriceChange={handlePriceChange}
         priceFromTo={priceFromTo}
