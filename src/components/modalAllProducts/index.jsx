@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from "react"
 import {
   Modal,
   IconButton,
@@ -7,29 +7,31 @@ import {
   Grid,
   Typography,
   Button,
-} from "@mui/material";
-import { makeStyles } from "@material-ui/core/styles";
-import CloseIcon from "@mui/icons-material/Close";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+  Box,
+} from "@mui/material"
+import { makeStyles } from "@material-ui/core/styles"
+import CloseIcon from "@mui/icons-material/Close"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
+import Swal from "sweetalert2"
+import { toast } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import { Formik, Form } from "formik"; // Import Formik
-import UseThemMode from "@hooks/use-theme";
-import UseDirection from "@hooks/use-direction";
-import { AppbarHeader } from "@styles/appbar";
-import LoadingFetching from "@components/loadingFetching";
-import SelectAddress from "@components/formui/selectAddress";
+import { Formik, Form } from "formik" // Import Formik
+import UseThemMode from "@hooks/use-theme"
+import UseDirection from "@hooks/use-direction"
+import { AppbarHeader } from "@styles/appbar"
+import LoadingFetching from "@components/loadingFetching"
+import SelectAddress from "@components/formui/selectAddress"
 import {
   getAllAddresses,
   cleanUpGetAllAddresses,
   addOrder,
-} from "@state/slices/customer";
-import UseFormValidation from "@formValidation/use-form-validation";
-import { deleteCarts } from "@state/slices/cart";
+} from "@state/slices/customer"
+import UseFormValidation from "@formValidation/use-form-validation"
+import { deleteCarts } from "@state/slices/cart"
+import { StyledCloseButton } from "../../styles/appbar"
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -46,36 +48,38 @@ const useStyles = makeStyles((theme) => ({
     top: "50%",
     transform: "translate(-50%, -50%)",
   },
-}));
+}))
 
 function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
-  const { t } = useTranslation();
-  const { Uid, role } = useSelector((state) => state.auth);
-  const { themeMode } = UseThemMode();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const classes = useStyles();
-  const { Direction } = UseDirection();
-  const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation();
+  const { t, i18n } = useTranslation()
+  const { Uid, role } = useSelector((state) => state.auth)
+  const { themeMode } = UseThemMode()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const classes = useStyles()
+  const { Direction } = UseDirection()
+  const { FORM_VALIDATION_SCHEMA_ADD_ORDER } = UseFormValidation()
   const { addresses, loadingGetAddresses } = useSelector(
     (state) => state.customer
-  );
+  )
+
+  const isRTL = i18n.language === "ar"
 
   useEffect(() => {
     if (Uid && role === "Customer") {
-      dispatch(getAllAddresses({ customerId: Uid }));
+      dispatch(getAllAddresses({ customerId: Uid }))
     }
     return () => {
-      dispatch(cleanUpGetAllAddresses());
-    };
-  }, [Uid, role, dispatch]);
+      dispatch(cleanUpGetAllAddresses())
+    }
+  }, [Uid, role, dispatch])
 
   const handleOrderSubmit = (values) => {
-    close();
+    close()
     const orderData = {
       pickup_address_id: values.pickup_address_id, // Accessing selected pickup address
       order_items: allProducts,
-    };
+    }
 
     dispatch(addOrder(orderData))
       .unwrap()
@@ -84,21 +88,21 @@ function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
           position: "top-right",
           autoClose: 1000,
           theme: themeMode,
-        });
+        })
 
-        dispatch(deleteCarts({ customerId: Uid }));
-        close(); // Close the modal on success
-        navigate(`/payment?price=${totalPrice}`);
+        dispatch(deleteCarts({ customerId: Uid }))
+        close() // Close the modal on success
+        navigate(`/payment?price=${totalPrice}`)
       })
       .catch((error) => {
-        console.log(error.response.data);
-        const errorMessage = error.response.data;
-        const key = Object.keys(errorMessage);
-        console.log("error keys", error.response.data["103"]);
-        const words = errorMessage[key].message;
-        const index = words.indexOf("#");
+        console.log(error.response.data)
+        const errorMessage = error.response.data
+        const key = Object.keys(errorMessage)
+        console.log("error keys", error.response.data["103"])
+        const words = errorMessage[key].message
+        const index = words.indexOf("#")
 
-        const orderId = words.slice(index + 1); // Extracts everything after the #
+        const orderId = words.slice(index + 1) // Extracts everything after the #
         Swal.fire({
           title: `${t("order-id-error")} ${orderId}`,
           text: `${t("exists-in-store")} ${
@@ -106,9 +110,20 @@ function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
           }`,
           icon: "error",
           confirmButtonText: t("ok"),
-        });
-      });
-  };
+        })
+      })
+  }
+
+  // Reusable Close Button Component
+  const CloseButton = () => (
+    <StyledCloseButton onClick={close} themeMode={themeMode} isRTL={isRTL}>
+      <CloseIcon
+        sx={{
+          fontSize: { xs: "1.5rem", sm: "2rem" },
+        }}
+      />
+    </StyledCloseButton>
+  )
 
   return (
     <Modal
@@ -121,20 +136,12 @@ function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
         <LoadingFetching>{t("wait-addresses")}</LoadingFetching>
       ) : (
         <Container maxWidth="sm" className={classes.containerWrapper}>
-          {role === "Customer" ? (
-            addresses?.length ? (
-              <>
-                <IconButton
-                  onClick={close}
-                  sx={{
-                    position: "absolute",
-                    top: "5px",
-                    [Direction.left]: "25px",
-                  }}
-                >
-                  <CloseIcon sx={{ fontSize: "3rem" }} color="secondary" />
-                </IconButton>
-                <Card raised>
+          <Box sx={{ position: "relative" }}>
+            <CloseButton />
+
+            {role === "Customer" ? (
+              addresses?.length ? (
+                <Card raised sx={{ pt: 2 }}>
                   <Container maxWidth="md">
                     <Grid
                       container
@@ -184,89 +191,77 @@ function ModalOrderAll({ openModalOrder, close, allProducts, totalPrice }) {
                     </Grid>
                   </Container>
                 </Card>
-              </>
-            ) : (
-              <>
-                <IconButton
-                  onClick={close}
-                  sx={{
-                    position: "absolute",
-                    top: "5px",
-                    [Direction.left]: "40px",
-                  }}
-                >
-                  <CloseIcon sx={{ fontSize: "3rem" }} color="secondary" />
-                </IconButton>
-                <Container maxWidth="md">
-                  <Card
-                    sx={{
-                      minWidth: "80%",
-                      minHeight: "80vh",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <Typography style={{ fontSize: "18px" }}>
-                      {t("no-addresses")}
-                    </Typography>
-                    <Button
-                      onClick={close}
-                      variant={themeMode === "dark" ? "contained" : "outlined"}
-                      sx={{ fontSize: "19px" }}
-                      component={Link}
-                      to="/customer-control-panel/add-address"
-                    >
-                      {t("add-address")}
-                    </Button>
-                  </Card>
-                </Container>
-              </>
-            )
-          ) : (
-            <>
-              <IconButton
-                onClick={close}
-                sx={{
-                  position: "absolute",
-                  top: "5px",
-                  [Direction.left]: "40px",
-                }}
-              >
-                <CloseIcon sx={{ fontSize: "3rem" }} color="secondary" />
-              </IconButton>
-              <Container maxWidth="md">
+              ) : (
                 <Card
                   sx={{
                     minWidth: "80%",
-                    minHeight: "80vh",
+                    minHeight: { xs: "300px", sm: "80vh" },
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
                     flexDirection: "column",
+                    gap: 2,
+                    p: 3,
+                    position: "relative",
                   }}
                 >
-                  <Typography style={{ fontSize: "18px" }}>
-                    {t("login-now-add-address")}
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "16px", sm: "18px" },
+                      textAlign: "center",
+                    }}
+                  >
+                    {t("no-addresses")}
                   </Typography>
                   <Button
                     onClick={close}
                     variant={themeMode === "dark" ? "contained" : "outlined"}
-                    sx={{ fontSize: "19px" }}
+                    sx={{ fontSize: { xs: "16px", sm: "19px" } }}
                     component={Link}
-                    to="/login"
+                    to="/customer-control-panel/add-address"
                   >
-                    {t("login-now")}
+                    {t("add-address")}
                   </Button>
                 </Card>
-              </Container>
-            </>
-          )}
+              )
+            ) : (
+              <Card
+                sx={{
+                  minWidth: "80%",
+                  minHeight: { xs: "300px", sm: "80vh" },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  flexDirection: "column",
+                  gap: 2,
+                  p: 3,
+                  position: "relative",
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontSize: { xs: "16px", sm: "18px" },
+                    textAlign: "center",
+                  }}
+                >
+                  {t("login-now-add-address")}
+                </Typography>
+                <Button
+                  onClick={close}
+                  variant={themeMode === "dark" ? "contained" : "outlined"}
+                  sx={{ fontSize: { xs: "16px", sm: "19px" } }}
+                  component={Link}
+                  to="/login"
+                >
+                  {t("login-now")}
+                </Button>
+              </Card>
+            )}
+          </Box>
         </Container>
       )}
     </Modal>
-  );
+  )
 }
 
-export default ModalOrderAll;
+export default ModalOrderAll

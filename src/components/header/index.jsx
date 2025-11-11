@@ -174,9 +174,6 @@ function Header() {
                       sx={{
                         fontSize: "2rem",
                         color: "white",
-                        "&:hover": {
-                          color: "blue",
-                        },
                       }}
                     />{" "}
                     {localStorage.getItem("countOfCartItem") !== "0" && (
@@ -259,9 +256,6 @@ function Header() {
                       sx={{
                         fontSize: "2rem",
                         color: "white",
-                        "&:hover": {
-                          color: "blue",
-                        },
                       }}
                     />
                     {localStorage.getItem("countOfCartItem") !== "0" && (

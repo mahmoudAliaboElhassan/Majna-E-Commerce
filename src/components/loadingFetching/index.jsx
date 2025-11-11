@@ -1,10 +1,10 @@
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux"
 
-import { AppbarHeader } from "@styles/appbar";
-import "./loading-fetching.css";
+import { AppbarHeader } from "@styles/appbar"
+import "./loading-fetching.css"
 
 function LoadingFetching({ children }) {
-  const {mymode}=useSelector((state)=>state.mode)
+  const { mymode } = useSelector((state) => state.mode)
   return (
     <section class="dots-container">
       <div className="content">
@@ -15,11 +15,10 @@ function LoadingFetching({ children }) {
           <div class="dot"></div>
           <div class="dot"></div>
         </div>
-        <AppbarHeader style={{  color: "#fbbf24" 
-}}>{children}</AppbarHeader>
+        <AppbarHeader style={{ color: "#fbbf24" }}>{children}</AppbarHeader>
       </div>
     </section>
-  );
+  )
 }
 
-export default LoadingFetching;
+export default LoadingFetching

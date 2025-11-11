@@ -213,7 +213,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
           {/* Free Delivery Badge */}
           <Chip
             icon={<LocalShippingIcon sx={{ fontSize: "0.9rem !important" }} />}
-            label="Free Delivery"
+            label={t("free-delivery")}
             size="small"
             sx={{
               position: "absolute",
@@ -395,8 +395,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
 
             {/* View Details Button */}
             <IconButton
-              component={Link}
-              to={`product-view/${id}`}
+              onClick={() => navigate(`product-view/${id}`)}
               sx={{
                 border: "2px solid",
                 borderColor:
@@ -406,7 +405,7 @@ const Product = ({ id, name, cover_image, price, brand }) => {
                 "&:hover": {
                   backgroundColor:
                     themeMode === "dark" ? "rgba(255,255,255,0.05)" : "#F5F5F5",
-                  borderColor: noonYellow,
+                  borderColor: themeMode === "dark" ? noonYellow : "#E0E0E0",
                 },
                 transition: "all 0.2s",
               }}

@@ -14,7 +14,7 @@ import {
   Stack,
 } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Swal from "sweetalert2"
 
@@ -361,7 +361,11 @@ function ProductInformation() {
                 <Stack
                   direction={{ xs: "column", sm: "row" }}
                   spacing={2}
-                  sx={{ width: "100%" }}
+                  sx={{
+                    width: "100%",
+                    display: "flex",
+                    gap: { xs: 0, sm: "10px" },
+                  }}
                 >
                   <Button
                     variant={themeMode === "dark" ? "contained" : "outlined"}
@@ -370,6 +374,7 @@ function ProductInformation() {
                     fullWidth
                     sx={{
                       py: { xs: 1.5, sm: 1.2 },
+
                       fontSize: { xs: "0.9rem", sm: "1rem" },
                       fontWeight: 600,
                       whiteSpace: "nowrap",

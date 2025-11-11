@@ -36,6 +36,7 @@ import {
   cleanUpGetAllAddresses,
   addOrder,
 } from "@state/slices/customer"
+import { StyledCloseButton } from "../../styles/appbar"
 
 const useStyles = makeStyles((theme) => ({
   formWrapper: {
@@ -104,43 +105,13 @@ function ModalOrders({
 
   // Reusable Close Button Component
   const CloseButton = () => (
-    <IconButton
-      onClick={close}
-      sx={{
-        position: "absolute",
-        top: { xs: 8, sm: 12 },
-        [!isRTL ? "left" : "right"]: { xs: 8, sm: 12 },
-        borderRadius: "50%",
-        background:
-          themeMode === "dark"
-            ? "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)"
-            : "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
-        color: "#ffffff",
-        boxShadow:
-          themeMode === "dark"
-            ? "0 4px 12px rgba(251, 191, 36, 0.4)"
-            : "0 4px 12px rgba(245, 158, 11, 0.4)",
-        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-
-        "&:hover": {
-          transform: "scale(1.1)",
-          boxShadow:
-            themeMode === "dark"
-              ? "0 6px 16px rgba(251, 191, 36, 0.5)"
-              : "0 6px 16px rgba(245, 158, 11, 0.5)",
-          background:
-            themeMode === "dark"
-              ? "linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%)"
-              : "linear-gradient(135deg, #d97706 0%, #b45309 100%)",
-        },
-      }}
-    >
+    <StyledCloseButton onClick={close} themeMode={themeMode} isRTL={isRTL}>
       <CloseIcon
         sx={{
           fontSize: { xs: "1.5rem", sm: "2rem" },
         }}
       />
-    </IconButton>
+    </StyledCloseButton>
   )
 
   return (

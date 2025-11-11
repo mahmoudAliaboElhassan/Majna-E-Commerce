@@ -550,5 +550,7 @@
     "review_content_min_10": "minimum number of characters is 10"
   },
   "change-password-subtitle": "Change your password to keep your account secure.",
-  "documents": "Documents"
+  "documents": "Documents",
+  "all": "All",
+  "free-delivery": "Free Delivery"
 }

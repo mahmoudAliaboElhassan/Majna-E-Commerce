@@ -5,7 +5,6 @@ import "@fontsource/montez"
 import { motion } from "framer-motion"
 
 import UseThemeMode from "@hooks/use-theme"
-import { useSelector } from "react-redux"
 
 export const AppbarHeader = styled(motion.div)(({ theme }) => ({
   padding: "2px",
@@ -94,3 +93,42 @@ export const authIconButtonStyle = {
   },
 }
 export const iconColor = mymode == "light" ? "white" : "#fbbf24"
+
+export const StyledCloseButton = styled(IconButton)(
+  ({ theme, themeMode, isRTL }) => ({
+    position: "absolute",
+    borderRadius: "50%",
+    top: 8,
+    [theme.breakpoints.up("sm")]: {
+      top: 12,
+    },
+    [!isRTL ? "left" : "right"]: 8,
+    [theme.breakpoints.up("sm")]: {
+      [!isRTL ? "left" : "right"]: 12,
+    },
+    zIndex: 1300, // Ensure it's above the modal content
+
+    background:
+      themeMode === "dark"
+        ? "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)"
+        : "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)",
+    color: "#ffffff",
+    boxShadow:
+      themeMode === "dark"
+        ? "0 4px 12px rgba(251, 191, 36, 0.4)"
+        : "0 4px 12px rgba(245, 158, 11, 0.4)",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+
+    "&:hover": {
+      transform: "scale(1.1)",
+      boxShadow:
+        themeMode === "dark"
+          ? "0 6px 16px rgba(251, 191, 36, 0.5)"
+          : "0 6px 16px rgba(245, 158, 11, 0.5)",
+      background:
+        themeMode === "dark"
+          ? "linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%)"
+          : "linear-gradient(135deg, #d97706 0%, #b45309 100%)",
+    },
+  })
+)
