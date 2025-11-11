@@ -17,7 +17,7 @@ import {
 import { motion } from "framer-motion"
 import { useDispatch, useSelector } from "react-redux"
 import { useInView } from "react-intersection-observer"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import Swal from "sweetalert2"
@@ -134,6 +134,8 @@ const Product = ({ id, name, cover_image, price, brand }) => {
         })
       })
   }
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (!isBtnDisabled) return
