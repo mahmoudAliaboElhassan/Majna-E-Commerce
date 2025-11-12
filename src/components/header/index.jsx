@@ -140,7 +140,7 @@ function Header() {
       transform: "translateX(4px)",
       "& .auth-icon": {
         transform: "scale(1.1)",
-        color: mymode == "light" ? "#ffb804ff" : "#fbbf24",
+        color: mymode == "light" ? "#9b7004ff" : "#fbbf24",
       },
     },
   }
