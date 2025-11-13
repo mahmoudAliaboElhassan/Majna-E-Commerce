@@ -374,7 +374,7 @@ function SpecificOrder() {
             size="large"
             disabled={loadingUpdateOrderStatus}
             onClick={handleStatus}
-            data-aos="fade-up"
+            // data-aos="fade-up"
             sx={{
               py: 2,
               fontSize: "1.1rem",
