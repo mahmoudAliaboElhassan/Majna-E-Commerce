@@ -38,9 +38,10 @@ const CheckoutPage = ({ amount }) => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: `${
-          import.meta.env.VITE_BASE_WEBSITE_URL
-        }/payment-success?amount=${amount / 100}`,
+        return_url: ` 
+          https://majna-e-commerce.vercel.app/payment-success?amount=${
+            amount / 100
+          }`,
       },
     })
 
