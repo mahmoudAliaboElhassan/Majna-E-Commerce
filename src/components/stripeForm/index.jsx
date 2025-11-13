@@ -33,15 +33,15 @@ const CheckoutPage = ({ amount }) => {
       setLoading(false)
       return
     }
+    const returnUrl = `https://majna-e-commerce.vercel.app/payment-success?amount=${
+      amount / 100
+    }`
 
     const { error } = await stripe.confirmPayment({
       elements,
       clientSecret,
       confirmParams: {
-        return_url: ` 
-          https://majna-e-commerce.vercel.app/payment-success?amount=${
-            amount / 100
-          }`,
+        return_url: returnUrl,
       },
     })
 
