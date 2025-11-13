@@ -53,6 +53,10 @@
 .swiper-container-dark .swiper-button-next:after {
   color: #fbbf24;
 }
+.swiper-container-dark .swiper-button-prev:hover:after,
+.swiper-container-dark .swiper-button-next:hover:after {
+  color: white;
+}
 
 .swiper-container-dark .swiper-button-prev:hover,
 .swiper-container-dark .swiper-button-next:hover {

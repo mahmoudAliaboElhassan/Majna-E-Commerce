@@ -53,6 +53,7 @@ export const IntroudctoryButton = styled(Link)(() => {
     },
 
     "&:hover": {
+      color:"white",
       transform: "translateY(-2px)",
       boxShadow:
         themeMode === "dark"

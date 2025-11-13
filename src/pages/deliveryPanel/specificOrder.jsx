@@ -379,10 +379,7 @@ function SpecificOrder() {
               py: 2,
               fontSize: "1.1rem",
               fontWeight: 600,
-              background: (theme) =>
-                themeMode === "dark"
-                  ? "linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%)"
-                  : undefined,
+
               "&:hover": {
                 transform: "translateY(-2px)",
                 boxShadow: (theme) =>
