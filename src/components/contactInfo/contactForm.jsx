@@ -1,4 +1,4 @@
-import React from "react"
+import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Form, Formik } from "formik"
 import { Grid, Typography, Box } from "@mui/material"
@@ -56,8 +56,11 @@ function ContactForm() {
   const { FORM_VALIDATION_SCHEMA_CONTACT } = UseFormValidation()
   const { themeMode } = UseThemMode()
   const { userRoles } = UseUserRole()
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const sendEmail = (formValues) => {
+    setIsSubmitting(true)
+
     const templateParams = {
       yourName: formValues.yourName,
       yourEmail: formValues.yourEmail,
@@ -66,14 +69,16 @@ function ContactForm() {
       yourRole: formValues.userRole,
     }
 
-    emailjs
+    return emailjs
       .send(
         import.meta.env.VITE_APP_SERVICE_ID,
         import.meta.env.VITE_APP_TEMPLATE_ID,
         templateParams,
         import.meta.env.VITE_APP_USER_ID
       )
-      .then((response) => {
+      .then(() => {
+        setIsSubmitting(false)
+
         toast.success(t("sent-success"), {
           position: "top-right",
           autoClose: 3000,
@@ -84,7 +89,9 @@ function ContactForm() {
           theme: themeMode,
         })
       })
-      .catch((error) => {
+      .catch(() => {
+        setIsSubmitting(false)
+
         Swal.fire({
           title: t("error-sending-message"),
           icon: "error",
@@ -111,60 +118,62 @@ function ContactForm() {
       <Formik
         initialValues={INITIAL_FORM_STATE_CONTACT}
         validationSchema={FORM_VALIDATION_SCHEMA_CONTACT}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
+        onSubmit={async (values, { resetForm }) => {
           sendEmail(values)
-          setSubmitting(false)
-          resetForm()
+            .then(() => {
+              resetForm()
+            })
+            .catch(() => {
+              // Don’t reset on error
+            })
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextFieldWrapper
-                  name="yourName"
-                  label={t("your-name")}
-                  autoComplete="off"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextFieldWrapper
-                  name="yourEmail"
-                  label={t("your-email")}
-                  autoComplete="off"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextFieldWrapper
-                  name="yourSubject"
-                  label={t("subject")}
-                  autoComplete="off"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <SelectComp
-                  name="userRole"
-                  label={t("role")}
-                  options={userRoles}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextAreaWrapper
-                  name="yourMessage"
-                  textarea={3}
-                  label={t("message")}
-                  autoComplete="off"
-                  placeholder={t("message-txt")}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <ButtonWrapper disabledBtn={isSubmitting}>
-                  {t("send-message")}
-                </ButtonWrapper>
-              </Grid>
+        <Form>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextFieldWrapper
+                name="yourName"
+                label={t("your-name")}
+                autoComplete="off"
+              />
             </Grid>
-          </Form>
-        )}
+            <Grid item xs={12} sm={6}>
+              <TextFieldWrapper
+                name="yourEmail"
+                label={t("your-email")}
+                autoComplete="off"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextFieldWrapper
+                name="yourSubject"
+                label={t("subject")}
+                autoComplete="off"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <SelectComp
+                name="userRole"
+                label={t("role")}
+                options={userRoles}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextAreaWrapper
+                name="yourMessage"
+                textarea={3}
+                label={t("message")}
+                autoComplete="off"
+                placeholder={t("message-txt")}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <ButtonWrapper disabledBtn={isSubmitting}>
+                {t("send-message")}
+              </ButtonWrapper>
+            </Grid>
+          </Grid>
+        </Form>
       </Formik>
     </FormContainer>
   )

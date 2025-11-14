@@ -61,6 +61,8 @@ function Header() {
 
   const [searchValue, setSearchValue] = useState("")
 
+  const { loadingCarts } = useSelector((state) => state.cart)
+
   const handleSearchChange = (event) => {
     setSearchValue(event.target.value)
     console.log(searchValue)
@@ -175,8 +177,8 @@ function Header() {
                         fontSize: "2rem",
                         color: "white",
                       }}
-                    />{" "}
-                    {localStorage.getItem("countOfCartItem") !== "0" && (
+                    />
+                    {!loadingCarts && (
                       <CartNumber className={quantityStyle}>
                         {localStorage.getItem("countOfCartItem")}
                       </CartNumber>
@@ -258,7 +260,7 @@ function Header() {
                         color: "white",
                       }}
                     />
-                    {localStorage.getItem("countOfCartItem") !== "0" && (
+                    {!loadingCarts && (
                       <CartNumber className={quantityStyle}>
                         {localStorage.getItem("countOfCartItem")}
                       </CartNumber>

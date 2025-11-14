@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next"
 import UseLoadingStatus from "@hooks/use-loading-satatus"
 import UseThemMode from "@hooks/use-theme"
 
-const ButtonWrapper = ({ children, ...otherProps }) => {
+const ButtonWrapper = ({ children, disabledBtn, ...otherProps }) => {
   const { t } = useTranslation()
   const { submitForm } = useFormikContext()
   const { themeMode } = UseThemMode()
@@ -40,14 +40,14 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
         themeMode === "light"
           ? "linear-gradient(135deg, #d97706 0%, #b45309 100%)"
           : "linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%)",
-      transform: loadingStatus ? "none" : "translateY(-2px)",
+      transform: loadingStatus | disabledBtn ? "none" : "translateY(-2px)",
       boxShadow:
         themeMode === "light"
           ? "0 6px 16px rgba(245, 158, 11, 0.4)"
           : "0 6px 16px rgba(251, 191, 36, 0.4)",
     },
     "&:active": {
-      transform: loadingStatus ? "none" : "translateY(0)",
+      transform: loadingStatus | disabledBtn ? "none" : "translateY(0)",
     },
     "&.Mui-disabled": {
       background:
@@ -64,13 +64,13 @@ const ButtonWrapper = ({ children, ...otherProps }) => {
   const configButton = {
     fullWidth: true,
     type: "submit",
-    disabled: loadingStatus,
+    disabled: loadingStatus | disabledBtn,
     onClick: handleSubmit,
   }
 
   return (
     <Button sx={buttonStyles} {...configButton} {...otherProps}>
-      {loadingStatus ? (
+      {loadingStatus | disabledBtn ? (
         <Box
           sx={{
             display: "flex",
