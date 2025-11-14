@@ -1,24 +1,13 @@
 import { useEffect } from "react"
 import { useTheme, CssBaseline } from "@mui/material"
-import { makeStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { deepOrange } from "@mui/material/colors"
-import {
-  Cloud,
-  ContentCopy,
-  ContentCut,
-  ContentPaste,
-  NavigateBefore,
-  PhotoCamera,
-} from "@mui/icons-material"
+
 import { StylesProvider, jssPreset } from "@mui/styles"
-import styled from "@emotion/styled"
 import { create } from "jss"
 import rtl from "jss-rtl"
 import { Outlet } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom"
 import AOS from "aos"
 import "aos/dist/aos.css"
 import { ToastContainer, toast } from "react-toastify"
@@ -26,11 +15,10 @@ import "react-toastify/dist/ReactToastify.css"
 
 import ScrollToTopButton from "@components/scroll"
 import Header from "@components/header"
-import Footer from "@components/footer"
 import UseDirection from "@hooks/use-direction"
-import { Colors } from "@styles/theme"
-import { logOut, handlelogOutState } from "@state/slices/auth"
+import { handlelogOutState } from "@state/slices/auth"
 import LoadingFetching from "@components/loadingFetching"
+import SocketIODemo from "../hooks/use-socket"
 
 // Configure JSS
 const jss = create({
@@ -179,8 +167,6 @@ function RootLayout() {
     transition: "all 0.3s ease",
   }
 
-  const theme = useTheme()
-
   return (
     <StylesProvider jss={jss}>
       <ThemeProvider theme={thema}>
@@ -223,6 +209,7 @@ function RootLayout() {
           )}
           <ScrollToTopButton />
         </div>
+        {/* <SocketIODemo /> */}
       </ThemeProvider>
     </StylesProvider>
   )
