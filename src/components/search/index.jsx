@@ -42,12 +42,12 @@ const Search = ({ headerColor }) => {
       dispatch(setPage(1))
       updateSearch("")
 
-      if (headerColor) {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        })
-      }
+if (headerColor) {
+  window.lenis?.scrollTo(document.body.scrollHeight, {
+    duration: 1.5,
+    easing: (t) => 1 - Math.pow(1 - t, 3),
+  })
+}
     }
   }
 
@@ -57,10 +57,10 @@ const Search = ({ headerColor }) => {
       dispatch(setPage(1))
       updateSearch(value)
       if (headerColor) {
-        window.scrollTo({
-          top: document.body.scrollHeight,
-          behavior: "smooth",
-        })
+        window.lenis?.scrollTo(document.body.scrollHeight, {
+    duration: 1.5,
+    easing: (t) => 1 - Math.pow(1 - t, 3),
+  })
       }
     }
   }
@@ -70,8 +70,10 @@ const Search = ({ headerColor }) => {
     updateSearch(mysearch)
 
     if (headerColor) {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" })
-    }
+  window.lenis?.scrollTo(document.body.scrollHeight, {
+    duration: 1.5,
+    easing: (t) => 1 - Math.pow(1 - t, 3),
+  })    }
   }
 
   const handleKeyDown = (event) => {
