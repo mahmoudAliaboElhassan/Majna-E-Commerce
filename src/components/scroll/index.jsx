@@ -12,14 +12,16 @@ const ScrollToTopButton = () => {
     setShowButton(window.scrollY > 100)
   }
 
-  const handleButtonClick = () => {
-    const element = document.querySelector("#firstSection")
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+  const scrollToTop = () => {
+    if (window.lenis) {
+      console.log("window.lenis", window.lenis)
+      window.lenis.scrollTo(0, {
+        duration: 1.5,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
       })
     } else {
+      console.log("window.lenis", window.lenis)
+
       window.scrollTo({ top: 0, behavior: "smooth" })
     }
   }
@@ -42,7 +44,7 @@ const ScrollToTopButton = () => {
         }}
       >
         <NoonScrollButton
-          onClick={handleButtonClick}
+          onClick={scrollToTop}
           aria-label="Scroll to top"
           disableRipple
           style={{ color: "white" }}

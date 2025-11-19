@@ -6,9 +6,15 @@ import "mdb-ui-kit/css/mdb.min.css"
 
 import "./translation/i18next.js"
 import { store, persistor } from "./state/store.js"
+import { initSmoothScroll } from "./utils/smoothScroll.js"
 
 import AppRouter from "./routes/AppRouter.jsx"
 import "./index.css"
+
+window.addEventListener("DOMContentLoaded", () => {
+  const lenis = initSmoothScroll()
+  window.lenis = lenis
+})
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
