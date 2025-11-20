@@ -35,11 +35,16 @@ function RootLayout() {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    document.title = t("website-title")
     AOS.init({
       duration: 1000,
       easing: "ease-out-cubic",
+      once: true,
     })
+    AOS.refresh()
+  }, [t, mymode])
+
+  useEffect(() => {
+    document.title = t("website-title")
 
     const expired = new Date(expireToken).getTime()
     const interval = setInterval(() => {
@@ -56,7 +61,9 @@ function RootLayout() {
       }
     }, 1000)
 
-    return () => clearInterval(interval)
+    return () => {
+      clearInterval(interval)
+    }
   }, [t])
 
   const thema = createTheme({

@@ -113,7 +113,7 @@ function SpecificOrder() {
       ) : (
         <>
           <AppbarHeader
-            data-aos="fade-up"
+            data-aos="fade-down"
             style={{ color: mymode === "dark" ? "#fbbf24" : "black" }}
           >
             {t("order-details")}
@@ -374,7 +374,6 @@ function SpecificOrder() {
             size="large"
             disabled={loadingUpdateOrderStatus}
             onClick={handleStatus}
-            // data-aos="fade-up"
             sx={{
               py: 2,
               fontSize: "1.1rem",
